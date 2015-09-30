@@ -6,7 +6,7 @@ OPTIND=1
 help(){
 cat << EOF
 Usage: ${0##*/} [-hv] [-s SFML_ROOT_PATH]  
-CMake and Make the project Fodus.
+CMake the project Fodus.
 	-s SFML_ROOT_PATH	if SFML is installed in a not standard path and/or not recognized
 	-h 			display this help
 	-v			verbose mode
@@ -37,4 +37,3 @@ else
 	cmake .. -DSFML_ROOT=$sfml_path
 fi
 
-make

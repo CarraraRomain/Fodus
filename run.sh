@@ -39,7 +39,9 @@ while getopts "hrdvf:" option; do
 			echo "Running the debug bin..."
 			./bin/Debug/Fodus
 			;;
-
+		*)
+			echo "No recognized args ; use -d to run debug binary"
+			;;
 	esac
 done
 
