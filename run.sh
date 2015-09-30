@@ -6,14 +6,19 @@ OPTIND=1
 help(){
 cat << EOF
 Usage: ${0##*/} [-hvdr]  
-Launch the Fodus project. Will try to launch the release binary first, then the debug.
+Launch the Fodus project. Mandatory arg : -d or -r
 	-h 	display this help
 	-v	verbose mode
-	-d	force to run the debug binary
-	-r	force to run the release binary
+	-d	run the debug binary
+	-r	run the release binary
 EOF
 }
 
+echo "######################"
+echo -e "# \e[1m\e[34mFodus \e[32mLauncher\e[0m"
+echo "######################"
+echo -e "# Version 1.2.0"
+echo "######################"
 
 # Get launch args
 while getopts "hrdvf:" option; do
@@ -27,20 +32,21 @@ while getopts "hrdvf:" option; do
 			;;
 		r)
 			echo "Running the release bin..."
+			echo -e "\e[1m\e[31m! Not yet implemented\e[0m"
+			echo "Use -d instead"
 			;;
 		d)
 			echo "Running the debug bin..."
+			./bin/Debug/Fodus
 			;;
 
 	esac
 done
 
-echo "######################"
-echo -e "# \e[1m\e[34mFodus \e[32mLauncher\e[0m"
-echo "######################"
-echo -e "# Version 1.2.0"
-echo "######################"
-echo -e "\e[1m\e[31m! Not yet implemented\e[0m"
+
+
+
+
 echo -e "=> Exiting"
 exit 0
 
