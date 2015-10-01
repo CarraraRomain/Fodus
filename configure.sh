@@ -26,7 +26,7 @@ while getopts "hs:vf:" option; do
 	esac
 done
 
-
+rm build -r
 mkdir build
 cd build
 if ["$sfml_path" == ""]; then
