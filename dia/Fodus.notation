@@ -308,7 +308,7 @@
     <styles xmi:type="notation:StringValueStyle" xmi:id="_wBu5cWXVEeWyXocPDeSk4g" name="diagram_compatibility_version" stringValue="1.1.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_wBu5cmXVEeWyXocPDeSk4g"/>
     <styles xmi:type="style:PapyrusViewStyle" xmi:id="_wBu5c2XVEeWyXocPDeSk4g">
-      <owner xmi:type="uml:Model" href="Fodus.uml#_v_WT0GXVEeWyXocPDeSk4g"/>
+      <owner xmi:type="uml:Package" href="Fodus.uml#_LG_NAGwMEeWzo-fME0z-gw"/>
     </styles>
     <element xmi:type="uml:Model" href="Fodus.uml#_v_WT0GXVEeWyXocPDeSk4g"/>
     <edges xmi:type="notation:Connector" xmi:id="_IbgJkGXqEeWyXocPDeSk4g" type="4002" source="_IH5BIGXWEeWyXocPDeSk4g" target="_FzIZIGXqEeWyXocPDeSk4g">
@@ -675,7 +675,7 @@
     <styles xmi:type="notation:StringValueStyle" xmi:id="_iX45cWXyEeWyXocPDeSk4g" name="diagram_compatibility_version" stringValue="1.1.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_iX45cmXyEeWyXocPDeSk4g"/>
     <styles xmi:type="style:PapyrusViewStyle" xmi:id="_iX45c2XyEeWyXocPDeSk4g">
-      <owner xmi:type="uml:Model" href="Fodus.uml#_v_WT0GXVEeWyXocPDeSk4g"/>
+      <owner xmi:type="uml:Package" href="Fodus.uml#_180f4GwMEeWzo-fME0z-gw"/>
     </styles>
     <element xmi:type="uml:Model" href="Fodus.uml#_v_WT0GXVEeWyXocPDeSk4g"/>
     <edges xmi:type="notation:Connector" xmi:id="_LkTewGa0EeWbeujeqfejcA" type="4001" source="_nzwsQGXyEeWyXocPDeSk4g" target="_ZHHcMGXzEeWyXocPDeSk4g">
@@ -807,7 +807,7 @@
   <notation:Diagram xmi:id="_sTwN8GaoEeWbeujeqfejcA" type="PapyrusUMLStateMachineDiagram" name="Presentation" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_sTwN8WaoEeWbeujeqfejcA" type="2000">
       <children xmi:type="notation:DecorationNode" xmi:id="_sTwN8maoEeWbeujeqfejcA" type="2001">
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sTwN82aoEeWbeujeqfejcA" width="700" height="20"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sTwN82aoEeWbeujeqfejcA" width="700" height="25"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_sTwN9GaoEeWbeujeqfejcA" type="2002">
         <children xmi:type="notation:Shape" xmi:id="_sTwN9WaoEeWbeujeqfejcA" type="3000">
@@ -823,7 +823,6 @@
               <children xmi:type="notation:DecorationNode" xmi:id="_tR4DEmaoEeWbeujeqfejcA" type="6002">
                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tR4DE2aoEeWbeujeqfejcA"/>
               </children>
-              <element xmi:type="uml:State" href="Fodus.uml#_tRxVYGaoEeWbeujeqfejcA"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tR3cAWaoEeWbeujeqfejcA" x="280" y="40"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_t5SBUGaoEeWbeujeqfejcA" type="6000">
@@ -834,7 +833,6 @@
               <children xmi:type="notation:DecorationNode" xmi:id="_t5TPcGaoEeWbeujeqfejcA" type="6002">
                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_t5TPcWaoEeWbeujeqfejcA"/>
               </children>
-              <element xmi:type="uml:State" href="Fodus.uml#_t5JecGaoEeWbeujeqfejcA"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_t5SBUWaoEeWbeujeqfejcA" x="631" y="105"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_voiYcGaoEeWbeujeqfejcA" type="8000">
@@ -844,7 +842,6 @@
               <children xmi:type="notation:DecorationNode" xmi:id="_voi_gmaoEeWbeujeqfejcA" type="8002">
                 <layoutConstraint xmi:type="notation:Location" xmi:id="_voi_g2aoEeWbeujeqfejcA" x="25" y="-10"/>
               </children>
-              <element xmi:type="uml:Pseudostate" href="Fodus.uml#_voYAYGaoEeWbeujeqfejcA"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_voiYcWaoEeWbeujeqfejcA" x="30" y="103"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_1BqZQGaoEeWbeujeqfejcA" type="6000">
@@ -855,25 +852,19 @@
               <children xmi:type="notation:DecorationNode" xmi:id="_1BqZRWaoEeWbeujeqfejcA" type="6002">
                 <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1BqZRmaoEeWbeujeqfejcA"/>
               </children>
-              <element xmi:type="uml:State" href="Fodus.uml#_1BYscGaoEeWbeujeqfejcA"/>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_1BqZQWaoEeWbeujeqfejcA" x="141" y="94"/>
             </children>
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sTwN-WaoEeWbeujeqfejcA"/>
           </children>
-          <element xmi:type="uml:Region" href="Fodus.uml#_sTuYwGaoEeWbeujeqfejcA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sTwN-maoEeWbeujeqfejcA" width="700" height="287"/>
         </children>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sTwN-2aoEeWbeujeqfejcA" y="20" width="700" height="287"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sTwN-2aoEeWbeujeqfejcA" y="25" width="700" height="287"/>
       </children>
-      <element xmi:type="uml:StateMachine" href="Fodus.uml#_qTzvcGaoEeWbeujeqfejcA"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sTwN_GaoEeWbeujeqfejcA" x="157" y="96" width="700" height="307"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sTwN_GaoEeWbeujeqfejcA" x="157" y="96" width="700" height="312"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_sTwN_WaoEeWbeujeqfejcA" name="diagram_compatibility_version" stringValue="1.1.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_sTwN_maoEeWbeujeqfejcA"/>
-    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_sTwN_2aoEeWbeujeqfejcA">
-      <owner xmi:type="uml:Model" href="Fodus.uml#_v_WT0GXVEeWyXocPDeSk4g"/>
-    </styles>
-    <element xmi:type="uml:StateMachine" href="Fodus.uml#_qTzvcGaoEeWbeujeqfejcA"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_sTwN_2aoEeWbeujeqfejcA"/>
     <edges xmi:type="notation:Connector" xmi:id="_EV2VAGapEeWbeujeqfejcA" type="7000" source="_voiYcGaoEeWbeujeqfejcA" target="_1BqZQGaoEeWbeujeqfejcA">
       <children xmi:type="notation:DecorationNode" xmi:id="_EV2VA2apEeWbeujeqfejcA" type="7001">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EV2VBGapEeWbeujeqfejcA"/>
@@ -885,7 +876,6 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EV28EmapEeWbeujeqfejcA" y="60"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_EV2VAWapEeWbeujeqfejcA"/>
-      <element xmi:type="uml:Transition" href="Fodus.uml#_EVskAGapEeWbeujeqfejcA"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EV2VAmapEeWbeujeqfejcA" points="[8, -3, -111, -3]$[139, -3, 20, -3]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EWenIGapEeWbeujeqfejcA" id="(1.0,0.5)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EWenIWapEeWbeujeqfejcA" id="(0.0,0.4318181818181818)"/>
@@ -901,7 +891,6 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_K5LfIWapEeWbeujeqfejcA" y="60"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_K5KRAWapEeWbeujeqfejcA"/>
-      <element xmi:type="uml:Transition" href="Fodus.uml#_K42vAGapEeWbeujeqfejcA"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_K5KRAmapEeWbeujeqfejcA" points="[0, -6, 329, 33]$[-329, -6, 0, 33]$[-329, -39, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_K6REQGapEeWbeujeqfejcA" id="(0.0,0.4090909090909091)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ThETQGavEeWbeujeqfejcA" id="(0.3142857142857143,1.0)"/>
@@ -917,7 +906,6 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_PVB_ZWapEeWbeujeqfejcA" y="60"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_PVAxQWapEeWbeujeqfejcA"/>
-      <element xmi:type="uml:Transition" href="Fodus.uml#_PUqzAGapEeWbeujeqfejcA"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_PVAxQmapEeWbeujeqfejcA" points="[0, 0, -313, -47]$[308, 0, -5, -47]$[308, 47, -5, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_PWG9cGapEeWbeujeqfejcA" id="(1.0,0.4090909090909091)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_SGsnAGavEeWbeujeqfejcA" id="(0.6530612244897959,0.0)"/>
@@ -936,7 +924,6 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_AFLUlWaqEeWbeujeqfejcA" y="60"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_AFKtgWaqEeWbeujeqfejcA"/>
-      <element xmi:type="uml:Transition" href="Fodus.uml#_AE614GaqEeWbeujeqfejcA"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_AFKtgmaqEeWbeujeqfejcA" points="[-6, 0, -120, 37]$[-6, -34, -120, 3]$[114, -34, 0, 3]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_AGAbAGaqEeWbeujeqfejcA" id="(0.625,0.0)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_AGAbAWaqEeWbeujeqfejcA" id="(0.0,0.38636363636363635)"/>
@@ -952,10 +939,17 @@
         <layoutConstraint xmi:type="notation:Location" xmi:id="_X-f6JWaqEeWbeujeqfejcA" y="60"/>
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_X-fTEWaqEeWbeujeqfejcA"/>
-      <element xmi:type="uml:Transition" href="Fodus.uml#_X-SewGaqEeWbeujeqfejcA"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_X-fTEmaqEeWbeujeqfejcA" points="[25, 23, 475, 28]$[25, 45, 475, 50]$[-423, 45, 27, 50]$[-423, -5, 27, 0]$[-450, -5, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_X_OS4GaqEeWbeujeqfejcA" id="(0.0,0.4772727272727273)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_X_OS4WaqEeWbeujeqfejcA" id="(1.0,0.6136363636363636)"/>
     </edges>
+  </notation:Diagram>
+  <notation:Diagram xmi:id="_58ZwUGwLEeWzo-fME0z-gw" type="PapyrusUMLClassDiagram" name="Render Diagram" measurementUnit="Pixel">
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_58ZwUWwLEeWzo-fME0z-gw" name="diagram_compatibility_version" stringValue="1.1.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_58ZwUmwLEeWzo-fME0z-gw"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_58ZwU2wLEeWzo-fME0z-gw">
+      <owner xmi:type="uml:Package" href="Fodus.uml#_nCjqkGwNEeWzo-fME0z-gw"/>
+    </styles>
+    <element xmi:type="uml:Model" href="Fodus.uml#_v_WT0GXVEeWyXocPDeSk4g"/>
   </notation:Diagram>
 </xmi:XMI>
