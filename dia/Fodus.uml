@@ -165,7 +165,92 @@
       </eAnnotations>
     </packagedElement>
   </packagedElement>
-  <packagedElement xmi:type="uml:Package" xmi:id="_nCjqkGwNEeWzo-fME0z-gw" name="Render Engine"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_nCjqkGwNEeWzo-fME0z-gw" name="Render Engine">
+    <packagedElement xmi:type="uml:Class" xmi:id="_0kgXMGwOEeWzo-fME0z-gw" name="Scene">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_G840Em3NEeW5uc4LVz_yYw" name="elementlistlayer" type="_JD3-YGwPEeWzo-fME0z-gw" aggregation="composite" association="_G83l8G3NEeW5uc4LVz_yYw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Hch9c23NEeW5uc4LVz_yYw" name="debuglayer" type="_udUEkGwQEeWzo-fME0z-gw" aggregation="composite" association="_HchWYG3NEeW5uc4LVz_yYw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__HZOkHApEeW3x_Z1JZETVg" name="height" visibility="private"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_AqKo4HAqEeW3x_Z1JZETVg" name="width" visibility="private"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9uTNQGwOEeWzo-fME0z-gw" name="InfoLayer">
+      <generalization xmi:type="uml:Generalization" xmi:id="_5ZpRgG3MEeW5uc4LVz_yYw" general="_2d86MGwQEeWzo-fME0z-gw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_JD3-YGwPEeWzo-fME0z-gw" name="ElementListLayer">
+      <generalization xmi:type="uml:Generalization" xmi:id="_1ExjAG3MEeW5uc4LVz_yYw" general="_2d86MGwQEeWzo-fME0z-gw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_udUEkGwQEeWzo-fME0z-gw" name="DebugLayer">
+      <generalization xmi:type="uml:Generalization" xmi:id="_m2rsoG3MEeW5uc4LVz_yYw" general="_2d86MGwQEeWzo-fME0z-gw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2d86MGwQEeWzo-fME0z-gw" name="Layer"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_3gxpIGwQEeWzo-fME0z-gw" name="Surface"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_4awlIGwQEeWzo-fME0z-gw" name="TileSet"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5UgQkGwQEeWzo-fME0z-gw" name="Tile"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Gdm3EG3NEeW5uc4LVz_yYw" visibility="public" memberEnd="_GdoFMW3NEeW5uc4LVz_yYw _GdoFMm3NEeW5uc4LVz_yYw" navigableOwnedEnd="_GdoFMm3NEeW5uc4LVz_yYw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GdneIG3NEeW5uc4LVz_yYw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GdoFMG3NEeW5uc4LVz_yYw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_GdoFMW3NEeW5uc4LVz_yYw" type="_0kgXMGwOEeWzo-fME0z-gw" association="_Gdm3EG3NEeW5uc4LVz_yYw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_GdoFMm3NEeW5uc4LVz_yYw" name="infolayer" type="_9uTNQGwOEeWzo-fME0z-gw" aggregation="composite" association="_Gdm3EG3NEeW5uc4LVz_yYw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_G83l8G3NEeW5uc4LVz_yYw" memberEnd="_G840EW3NEeW5uc4LVz_yYw _G840Em3NEeW5uc4LVz_yYw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_G84NAG3NEeW5uc4LVz_yYw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_G840EG3NEeW5uc4LVz_yYw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_G840EW3NEeW5uc4LVz_yYw" type="_0kgXMGwOEeWzo-fME0z-gw" association="_G83l8G3NEeW5uc4LVz_yYw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_HchWYG3NEeW5uc4LVz_yYw" memberEnd="_Hch9cm3NEeW5uc4LVz_yYw _Hch9c23NEeW5uc4LVz_yYw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Hch9cG3NEeW5uc4LVz_yYw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Hch9cW3NEeW5uc4LVz_yYw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_Hch9cm3NEeW5uc4LVz_yYw" type="_0kgXMGwOEeWzo-fME0z-gw" association="_HchWYG3NEeW5uc4LVz_yYw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_tJqRIG3NEeW5uc4LVz_yYw" name="Layer">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_tqftUG3NEeW5uc4LVz_yYw" name="StaticLayer"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_zg3q0G3NEeW5uc4LVz_yYw" name="MobileLayer"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_0qQ70G3NEeW5uc4LVz_yYw" name="InfoLayer"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_2BxhUG3NEeW5uc4LVz_yYw" name="DebugLayer"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_AH0kQG3OEeW5uc4LVz_yYw" memberEnd="_AH3nkm3OEeW5uc4LVz_yYw _AH4OoG3OEeW5uc4LVz_yYw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AH3nkG3OEeW5uc4LVz_yYw" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AH3nkW3OEeW5uc4LVz_yYw" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_AH3nkm3OEeW5uc4LVz_yYw" name="scene" type="_0kgXMGwOEeWzo-fME0z-gw" association="_AH0kQG3OEeW5uc4LVz_yYw"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_AH4OoG3OEeW5uc4LVz_yYw" name="layers" type="_tJqRIG3NEeW5uc4LVz_yYw" association="_AH0kQG3OEeW5uc4LVz_yYw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5ITZ8HApEeW3x_Z1JZETVg" name="Camera">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_CzE2IHAqEeW3x_Z1JZETVg" name="x">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_GxS_MHAqEeW3x_Z1JZETVg" name="y">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_HmErEHAqEeW3x_Z1JZETVg" name="height">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ITIlYHAqEeW3x_Z1JZETVg" name="width">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_R8j9wHAqEeW3x_Z1JZETVg" name="resize">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_XTOgcHAqEeW3x_Z1JZETVg" name="width">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_Y8F7sHAqEeW3x_Z1JZETVg" name="height">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_S8d7kHAqEeW3x_Z1JZETVg" name="move">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_boMVkHAqEeW3x_Z1JZETVg" name="x">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_hq77IHAqEeW3x_Z1JZETVg" name="y">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_198vEHAvEeW3x_Z1JZETVg" name="StateObserver">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_4ImBsHAvEeW3x_Z1JZETVg" name="stateChanged"/>
+  </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_z92kMGXqEeWyXocPDeSk4g">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z93yUGXqEeWyXocPDeSk4g" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
