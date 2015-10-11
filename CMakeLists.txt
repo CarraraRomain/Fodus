@@ -27,6 +27,7 @@ file(
         GLOB_RECURSE
         SOURCE_FILES
         src/*
+		lib/*
 )
 # Define sources and executable
 set(EXECUTABLE_OUTPUT_PATH ../bin/${CMAKE_BUILD_TYPE})
