@@ -25,4 +25,4 @@ public:
 
 };
 
-#endif;
+#endif //FODUS_TILE_FACTORY_HPP

@@ -4,11 +4,13 @@
 
 
 TileFactory::TileFactory(std::string path) {
-loadTilesDoc(path);
+    _tilesDoc = new rapidjson::Document();
+    loadTilesDoc(path);
 }
 
 TileFactory::~TileFactory()
 {
+    delete(_tilesDoc);
 }
 
 rapidjson::Document* TileFactory::getTilesDoc() {
@@ -32,7 +34,7 @@ void TileFactory::loadTilesDoc(std::string path) {
         std::cout << "Good" << std::endl;
         ss << ifs.rdbuf(); // 1
         std::cout << "Done" << std::endl;
-        if (_tilesDoc->Parse(ss.str().c_str()).HasParseError()) throw std::invalid_argument("JSON bad encoding");
+        if (_tilesDoc->Parse<0>(ss.str().c_str()).HasParseError()) throw std::invalid_argument("JSON bad encoding");
         std::cout << ss.str();
     }
     else
@@ -45,11 +47,12 @@ void TileFactory::loadTilesDoc(std::string path) {
 
 Tile* TileFactory::buildTileForElt(std::string key) {
 
-    rapidjson::Value::ConstMemberIterator node = _tilesDoc->FindMember(key);
-    if (itr == document.MemberEnd()){
-        node = _tilesDoc->FindMember("UNDEFINED");
+    rapidjson::Value& node = (*_tilesDoc)["UNDEFINED"];
+    if (_tilesDoc->HasMember(key.c_str())){
+        node = (*_tilesDoc)[key.c_str()];
     }
-    Tile* tile = new Tile(&node->value);
+
+    Tile* tile = new Tile(node);
     return tile;
 }
 

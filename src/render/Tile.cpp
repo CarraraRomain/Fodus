@@ -5,10 +5,11 @@
 #include "Tile.hpp"
 #include "../../lib/rapidjson/rapidjson.h"
 
-Tile::Tile(rapidjson::Value* node) {
-    //rapidjson::Value::ConstMemberIterator
-_x = node["x"].GetInt();
-_y = node["y"].GetInt();
+
+
+Tile::Tile(const rapidjson::Value& node) {
+    _x = node["x"].GetInt();
+    _y = node["y"].GetInt();
 }
 
 Tile::~Tile(){

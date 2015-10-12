@@ -7,10 +7,10 @@
 
 #include "../../lib/rapidjson/document.h"
 
-class Tile
-{
+class Tile {
 public:
-    Tile(rapidjson::Value*);
+    Tile(const rapidjson::Value&);
+
     ~Tile();
 
 private:
@@ -25,19 +25,32 @@ private:
 
 public:
     int getId() const;
+
     void setId(int _id);
+
     const std::string &getKey() const;
+
     void setKey(const std::string &_key);
+
     int getX() const;
+
     void setX(int _x);
+
     int getY() const;
+
     void setY(int _y);
+
     int getWidth() const;
+
     void setWidth(int _width);
+
     int getHeight() const;
+
     void setHeight(int _height);
+
     int getTileNumber() const;
+
     void setTileNumber(int tileNumber);
 
-
+};
 #endif //FODUS_TILE_HPP
