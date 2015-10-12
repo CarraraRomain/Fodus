@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 /* RapidJSON lib (fast header only lib) | Tested using v1.0.2
 Lib is included in ../lib/rapidjson
@@ -21,7 +22,7 @@ URL : http://www.sfml-dev.org/
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	ofstream file;
+	//FILE* pFile = fopen(, "rb");
     /* Code adapted from the SFML 2 "Window" example */
 	cout << "Hello World" << endl;
     cout << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR << endl;
@@ -40,9 +41,37 @@ int main(int argc, char* argv[]) {
 	d.Accept(writer);
 
 	cout << buffer.GetString() << endl;
-	file.open("hello.json");
-	file << buffer.GetString() << endl;
-	file.close();
+
+
+	std::stringstream ss;
+	std::ifstream ifs;
+	ifs.open("..\\res\\GFX\\tiles.json", std::ios::binary);
+	if(ifs.is_open())
+	{
+		cout << "Good" << endl;
+		ss << ifs.rdbuf(); // 1
+		cout << "Done" << endl;
+		if (d.Parse(ss.str().c_str()).HasParseError()) throw std::invalid_argument("JSON bad encoding");
+		cout << ss.str();
+
+
+		rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+		d.Accept(writer);
+		for (int i = 0; i < d["employees"].Size();i++)
+		{
+			cout << d["employees"][i]["firstName"].GetString() << endl;
+		}
+		
+	}
+	else
+	{
+		cout << "Bad" << endl;
+	}
+	
+	
+
+	ifs.close();
+
 	// Creating dummy window
     sf::RenderWindow App(sf::VideoMode(800, 600), FODUS_NAME);
 	
