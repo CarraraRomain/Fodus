@@ -8,5 +8,17 @@
   "WALL_WE":
   {"x":10,"y":0},
   "WALL_EA":
-  {"x":51,"y":0}
+  {"x":51,"y":0},
+  "WALL_DUNGEON_UP_LEFT":
+  {"x":22,"y":0},
+  "WALL_DUNGEON_DO_LEFT":
+  {"x":23,"y":0},
+  "WALL_DUNGEON_UP_RIGHT":
+  {"x":22,"y":2},
+  "WALL_DUNGEON_DO_RIGHT":
+  {"x":23,"y":2},
+  "WALL_DUNGEON_UP_MID":
+  {"x":22,"y":1},
+  "WALL_DUNGEON_DO_MID":
+  {"x":23,"y":1}
 }

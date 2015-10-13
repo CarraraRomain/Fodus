@@ -35,5 +35,6 @@ int main(int argc, char* argv[]);
 void test_load_tiles();
 void test_sfml();
 
+std::vector<sf::Sprite> test_load_level(sf::RenderWindow&);
 
 #endif //FODUS_MAIN_HPP

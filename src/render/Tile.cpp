@@ -8,8 +8,8 @@
 
 
 Tile::Tile(const rapidjson::Value& node) {
-    _x = node["x"].GetInt();
-    _y = node["y"].GetInt();
+    _x = node["x"].GetInt()*32;
+    _y = node["y"].GetInt()*32;
 }
 
 Tile::~Tile(){
