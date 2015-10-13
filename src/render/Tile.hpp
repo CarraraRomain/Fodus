@@ -26,7 +26,7 @@ private:
 public:
     int getId() const;
 
-    void setId(int _id);
+    void setId(int id);
 
     const std::string &getKey() const;
 
@@ -34,19 +34,19 @@ public:
 
     int getX() const;
 
-    void setX(int _x);
+    void setX(int x);
 
     int getY() const;
 
-    void setY(int _y);
+    void setY(int y);
 
     int getWidth() const;
 
-    void setWidth(int _width);
+    void setWidth(int width);
 
     int getHeight() const;
 
-    void setHeight(int _height);
+    void setHeight(int height);
 
     int getTileNumber() const;
 

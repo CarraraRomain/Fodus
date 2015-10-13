@@ -40,6 +40,7 @@ void TileFactory::loadTilesDoc(std::string path) {
     else
     {
         std::cout << "Bad" << std::endl;
+        exit(-1);
     }
     ifs.close();
 }
@@ -47,11 +48,9 @@ void TileFactory::loadTilesDoc(std::string path) {
 
 Tile* TileFactory::buildTileForElt(std::string key) {
 
-    rapidjson::Value& node = (*_tilesDoc)["UNDEFINED"];
-    if (_tilesDoc->HasMember(key.c_str())){
-        node = (*_tilesDoc)[key.c_str()];
-    }
-
+    rapidjson::Value& node = (_tilesDoc->HasMember(key.c_str()))?
+                             (*_tilesDoc)[key.c_str()]:
+                             (*_tilesDoc)["UNDEFINED"];
     Tile* tile = new Tile(node);
     return tile;
 }
