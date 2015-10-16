@@ -4,15 +4,10 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-	//FILE* pFile = fopen(, "rb");
     /* Code adapted from the SFML 2 "Window" example */
 	cout << "Hello World" << endl;
     cout << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR << endl;
 
-    char *path=NULL;
-    size_t size;
-    path=getcwd(path,size);
-    cout<<"\n current Path"<<path<<endl;
 	// RapidJSON test
 	// 1. Parse a JSON string into DOM.
 	const char* json = "{\"project\":\"" FODUS_NAME "\",\"version\":1}";
@@ -41,9 +36,9 @@ void test_load_tiles(){
 	cout << "Testing loading Tiles from tiles.json..." << endl;
 	TileFactory TFactory("../../res/GFX/tiles.json");
     cout << "Creating Tiles"<<endl;
-
-    for (rapidjson::Value::ConstMemberIterator itr = TFactory.getTilesDoc()->MemberBegin();
-         itr != TFactory.getTilesDoc()->MemberEnd(); ++itr)
+    rapidjson::Value::ConstMemberIterator tiles = TFactory.getTilesDoc()->FindMember("tiles");
+    for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
+         itr != tiles->value.MemberEnd(); ++itr)
     {
         key = itr->name.GetString();
         cout << "Found " << key << endl;
@@ -61,13 +56,7 @@ void test_load_tiles(){
 void test_sfml() {
     // Creating dummy window
     sf::RenderWindow App(sf::VideoMode(800, 600), FODUS_NAME);
-    sf::Texture texture;
-    sf::Sprite sprite;
-    if (!texture.loadFromFile("../../res/GFX/Tiles0_P1.png")) {
-        cout << "Erreur!" << endl;
-    }
-    sprite.setTexture(texture);
-    sprite.setTextureRect(sf::IntRect(0, 22 * 32, 32, 32));
+
 
     while (App.isOpen()) {
 
@@ -81,7 +70,7 @@ void test_sfml() {
 
 
         std::vector<sf::Sprite> FVect = test_load_level(App);
-        App.draw(sprite);
+
         /*// Dummy blue rect shape
         sf::RectangleShape shape(sf::Vector2f(100,200));
         shape.setFillColor(sf::Color(42, 50, 250));
@@ -130,7 +119,7 @@ void test_sfml() {
         //cout << d["demo"][0][0]["key"].GetString();
 
         const rapidjson::Value& b = d["demo"];
-
+        int posX = 0;
         for (rapidjson::SizeType i = 0; i < b.Size(); i++)
         {
             const rapidjson::Value& c = b[i];
@@ -139,21 +128,26 @@ void test_sfml() {
 
             for (rapidjson::SizeType j = 0; j < c.Size(); j++)
             {
+                // e : {"key", "repeat"}
                 const rapidjson::Value& e = c[j];
 
                 //cout << e["key"].GetString();
-                sf::Sprite sprite;
-                Tile tile = *TFactory.buildTileForElt(e["key"].GetString());
-                sprite.setTexture(texture);
-                //sprite.setTextureRect(sf::IntRect(0, 22 * 32, 32, 32));
-                sprite.setTextureRect(sf::IntRect(tile.getY(), tile.getX(), 32, 32));
-                cout << e["key"].GetString() << ": X=" << tile.getX() << " Y=" << tile.getY()<<endl;
-                sprite.move(sf::Vector2f(32*j, 32*i));
-                SVect.push_back(sprite);
-                App.draw(sprite);
+                for(int k=0; k < e["repeat"].GetInt();k++) {
 
+                    sf::Sprite sprite;
+                    Tile tile = *TFactory.buildTileForElt(e["key"].GetString());
+                    sprite.setTexture(texture);
+                    //sprite.setTextureRect(sf::IntRect(0, 22 * 32, 32, 32));
+                    sprite.setTextureRect(sf::IntRect(tile.getY(), tile.getX(), 32, 32));
+                    cout << e["key"].GetString() << ": X=" << tile.getX() << " Y=" << tile.getY() << endl;
+                    sprite.move(sf::Vector2f(32 * posX, 32 * i));
+                    SVect.push_back(sprite);
+                    App.draw(sprite);
+                    posX++;
+                }
 
             }
+            posX = 0;
         }
 
 //       for (rapidjson::Value::ConstValueIterator itr = d["demo"].Begin();

@@ -26,7 +26,6 @@ URL : http://www.sfml-dev.org/
 #include <SFML/Graphics.hpp>
 
 #include "render/TileFactory.hpp"
-#include <unistd.h>
 #include <vector>
 #include <string>
 

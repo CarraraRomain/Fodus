@@ -48,9 +48,9 @@ void TileFactory::loadTilesDoc(std::string path) {
 
 Tile* TileFactory::buildTileForElt(std::string key) {
 
-    rapidjson::Value& node = (_tilesDoc->HasMember(key.c_str()))?
-                             (*_tilesDoc)[key.c_str()]:
-                             (*_tilesDoc)["UNDEFINED"];
+    rapidjson::Value& node = ((*_tilesDoc)["tiles"].HasMember(key.c_str()))?
+                             (*_tilesDoc)["tiles"][key.c_str()]:
+                             (*_tilesDoc)["tiles"]["UNDEFINED"];
     Tile* tile = new Tile(node);
     return tile;
 }

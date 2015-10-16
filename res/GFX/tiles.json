@@ -1,24 +1,56 @@
 {
-  "UNDEFINED":
-    {"x":0,"y":0},
-  "WALL_NO":
-    {"x":42,"y":42},
-  "WALL_SO":
-  {"x":78,"y":0},
-  "WALL_WE":
-  {"x":10,"y":0},
-  "WALL_EA":
-  {"x":51,"y":0},
-  "WALL_DUNGEON_UP_LEFT":
-  {"x":22,"y":0},
-  "WALL_DUNGEON_DO_LEFT":
-  {"x":23,"y":0},
-  "WALL_DUNGEON_UP_RIGHT":
-  {"x":22,"y":2},
-  "WALL_DUNGEON_DO_RIGHT":
-  {"x":23,"y":2},
-  "WALL_DUNGEON_UP_MID":
-  {"x":22,"y":1},
-  "WALL_DUNGEON_DO_MID":
-  {"x":23,"y":1}
+  "header": {
+    "version": "0.2",
+    "name": "Default Tileset"
+  },
+  "tiles": {
+    "WALL_WOOD_BOT_MID": {
+      "y": 1,
+      "x": 1
+    },
+    "WALL_WOOD_BOT_RIGHT": {
+      "y": 1,
+      "x": 2
+    },
+    "WALL_DUNGEON_BOT_RIGHT": {
+      "y": 20,
+      "x": 2
+    },
+    "WALL_WOOD_BOT_LEFT": {
+      "y": 1,
+      "x": 0
+    },
+    "WALL_DUNGEON_TOP_LEFT": {
+      "y": 19,
+      "x": 0
+    },
+    "WALL_DUNGEON_BOT_LEFT": {
+      "y": 20,
+      "x": 0
+    },
+    "WALL_WOOD_TOP_RIGHT": {
+      "y": 0,
+      "x": 2
+    },
+    "WALL_WOOD_TOP_MID": {
+      "y": 0,
+      "x": 1
+    },
+    "WALL_DUNGEON_TOP_MID": {
+      "y": 19,
+      "x": 1
+    },
+    "WALL_WOOD_TOP_LEFT": {
+      "y": 0,
+      "x": 0
+    },
+    "WALL_DUNGEON_TOP_RIGHT": {
+      "y": 19,
+      "x": 2
+    },
+    "WALL_DUNGEON_BOT_MID": {
+      "y": 20,
+      "x": 1
+    }
+  }
 }
