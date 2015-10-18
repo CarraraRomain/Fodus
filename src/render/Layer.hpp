@@ -4,7 +4,7 @@
 #include "../global.hpp"
 
 class Layer :
-	sf::Drawable
+	public sf::Drawable
 {
 public:
 	Layer();
@@ -16,7 +16,6 @@ public:
 protected:
 	sf::VertexArray m_vertices;
 	sf::Texture m_tileset;
-private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 

@@ -14,6 +14,5 @@ public:
 
 private:
 	TileFactory* m_tile_factory;
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 
