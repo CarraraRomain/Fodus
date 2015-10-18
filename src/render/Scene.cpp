@@ -21,3 +21,11 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		target.draw(*layer, states);
 	}
 }
+
+void Scene::update(ElementList* list)
+{
+	for (Layer* layer : m_layers)
+	{
+		(*layer).update(list);
+	}
+}

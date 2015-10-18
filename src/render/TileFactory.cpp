@@ -35,7 +35,7 @@ void TileFactory::loadTilesDoc(std::string path) {
         ss << ifs.rdbuf(); // 1
         std::cout << "Done" << std::endl;
         if (_tilesDoc->Parse<0>(ss.str().c_str()).HasParseError()) throw std::invalid_argument("JSON bad encoding");
-        std::cout << ss.str();
+        //std::cout << ss.str();
     }
     else
     {

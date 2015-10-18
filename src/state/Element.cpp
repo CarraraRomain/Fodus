@@ -26,3 +26,13 @@ int Element::getD()
 {
 	return m_d;
 }
+
+void Element::setKey(std::string key)
+{
+	m_key = key;
+}
+
+std::string Element::getKey()
+{
+	return m_key;
+}

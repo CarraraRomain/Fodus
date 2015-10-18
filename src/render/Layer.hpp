@@ -3,6 +3,8 @@
 #include "SFML/Graphics.hpp"
 #include "../global.hpp"
 
+class ElementList;
+
 class Layer :
 	public sf::Drawable
 {
@@ -11,6 +13,7 @@ public:
 	~Layer();
 	bool loadTileset(std::string Tilesetpath);
 	void resetVertices();
+	virtual void update(ElementList* list) = 0;
 	
 
 protected:

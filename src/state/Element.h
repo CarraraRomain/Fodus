@@ -1,3 +1,5 @@
+#include <string>
+
 class Element
 {
 public:
@@ -10,7 +12,11 @@ public:
 	void setD(int newD);
 	int getD();
 
+	void setKey(std::string key);
+	std::string getKey();
+
 private:
+	std::string m_key;
 	int m_x;
 	int m_y;
 	int m_d;

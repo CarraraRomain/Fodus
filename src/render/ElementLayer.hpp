@@ -10,7 +10,7 @@ class ElementLayer :
 public:
 	ElementLayer(std::string JSONpath);
 	~ElementLayer();
-	void update(ElementList list);
+	virtual void update(ElementList* list) override;
 
 private:
 	TileFactory* m_tile_factory;

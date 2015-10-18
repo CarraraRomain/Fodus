@@ -29,11 +29,13 @@ URL : http://www.sfml-dev.org/
 #include <vector>
 #include <string>
 
+class ElementList;
 int main(int argc, char* argv[]);
 
 void test_load_tiles();
 void test_sfml();
 
 std::vector<sf::Sprite> test_load_level(sf::RenderWindow&);
-
+rapidjson::Document test_load_json_level();
+void test_load_elt_list(ElementList*);
 #endif //FODUS_MAIN_HPP

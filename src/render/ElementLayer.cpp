@@ -15,26 +15,21 @@ ElementLayer::~ElementLayer()
 }
 
 
-void ElementLayer::update(ElementList list)
+void ElementLayer::update(ElementList* list)
 {
 	int X = 0;
 	int Y = 0;
 
-	for (;;)
+	for (int i = 0; i < list->size();i++)
 	{
-		Element elt;
-		X = elt.getX();
-		Y = elt.getY();
-		
+		Element* elt = (*list)[i];
+	
+		X = elt->getX();
+		Y = elt->getY();
 		sf::Vertex* quad = &m_vertices[(X + Y * WIDTH) * 4];
-		quad[0].position = sf::Vector2f(X, Y);
-		quad[1].position = sf::Vector2f(X + SIZE, Y);
-		quad[2].position = sf::Vector2f(X + SIZE, Y + SIZE);
-		quad[3].position = sf::Vector2f(X, Y + SIZE);
-
 		//Tile* tile = m_tile_factory->buildTileForElt(elt.getKey());
-		Tile* tile = m_tile_factory->buildTileForElt("UNDEFINED");
-		
+		Tile* tile = m_tile_factory->buildTileForElt(elt->getKey());
+
 		quad[0].texCoords = sf::Vector2f(tile->getX(), tile->getY());
 		quad[1].texCoords = sf::Vector2f(tile->getX()+SIZE, tile->getY());
 		quad[2].texCoords = sf::Vector2f(tile->getX() + SIZE, tile->getY()+SIZE);

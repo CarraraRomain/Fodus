@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 
 	cout << buffer.GetString() << endl;
 
-	test_load_tiles();
+	//test_load_tiles();
     test_sfml();
     return 0;
 }
@@ -58,9 +58,10 @@ void test_load_tiles(){
 void test_sfml() {
     // Creating dummy window
     sf::RenderWindow App(sf::VideoMode(SIZE*WIDTH,SIZE*HEIGHT), FODUS_NAME);
-
+	ElementList list;
     Scene scene("../../res/GFX/tiles.json");
-
+	test_load_elt_list(&list);
+	scene.update(&list);
     while (App.isOpen()) {
 
         sf::Event Event;
@@ -70,22 +71,12 @@ void test_sfml() {
         }
 
         //App.clear(sf::Color::Black);
-
+		
         App.draw(scene);
         //std::vector<sf::Sprite> FVect = test_load_level(App);
 
-        /*// Dummy blue rect shape
-        sf::RectangleShape shape(sf::Vector2f(100,200));
-        shape.setFillColor(sf::Color(42, 50, 250));
-        shape.setPosition(100,100);
-        App.draw(shape);
-        // Basic transform
-        sf::Transform t;
-        t.translate(10, 100);
-        t.rotate(-45);
-        App.clear();
-        App.draw(shape, t);*/
-
+        
+       // App.clear();
 
         App.display();
     }
@@ -170,3 +161,70 @@ void test_sfml() {
 
         return SVect;
     }
+
+
+	rapidjson::Document test_load_json_level()
+{
+
+	cout << "Loading demo level JSON..." << endl;
+	std::stringstream ss;
+	rapidjson::Document d;
+	std::ifstream ifs;
+	ifs.open("../../res/GFX/levels.json", std::ios::binary);
+	if (ifs.is_open())
+	{
+		std::cout << "Good" << std::endl;
+		ss << ifs.rdbuf(); // 1
+		std::cout << "Done" << std::endl;
+		if (d.Parse<0>(ss.str().c_str()).HasParseError()) throw std::invalid_argument("JSON bad encoding");
+		
+	}
+	else
+	{
+		std::cout << "Bad" << std::endl;
+		exit(-1);
+	}
+	ifs.close();
+	return d;
+}
+
+
+void test_load_elt_list(ElementList* list)
+{
+	// loading a level from ../../res/GFX/level.json
+	rapidjson::Document level = test_load_json_level();
+
+
+	//std::cout << level["header"].GetString();
+	//cout << level["demo"][0][0]["key"].GetString();
+
+	const rapidjson::Value& b = level["demo"];
+	int posX = 0;
+	for (rapidjson::SizeType i = 0; i < b.Size(); i++)
+	{
+		const rapidjson::Value& c = b[i];
+		//cout << c[0]["key"].GetString();
+
+		for (rapidjson::SizeType j = 0; j < c.Size(); j++)
+		{
+			// X = j | Y = i
+			// e : {"key", "repeat"}
+			const rapidjson::Value& e = c[j];
+
+			
+			for (int k = 0; k < e["repeat"].GetInt(); k++) {
+				Element* elt = new Element;
+				elt->setKey(e["key"].GetString());
+				elt->setX(posX);
+				elt->setY(i);
+				posX++;
+				list->push_back(elt);
+			}
+
+		}
+		posX = 0;
+	}
+
+
+}
+
