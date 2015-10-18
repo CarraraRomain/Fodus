@@ -40,6 +40,7 @@ void TileFactory::loadTilesDoc(std::string path) {
     else
     {
         std::cout << "Bad" << std::endl;
+		system("PAUSE");
         exit(-1);
     }
     ifs.close();
