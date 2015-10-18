@@ -3,27 +3,57 @@
   "demo":[
     [
       {"key":"WALL_DUNGEON_TOP_LEFT", "repeat":1},
-      {"key":"WALL_DUNGEON_TOP_MID", "repeat":9},
-      {"key":"WALL_DUNGEON_TOP_MID", "repeat":9},
+      {"key":"WALL_DUNGEON_TOP_MID", "repeat":22},
       {"key":"WALL_DUNGEON_TOP_RIGHT", "repeat":1}
     ],
     [
       {"key":"WALL_DUNGEON_BOT_LEFT", "repeat":1},
-      {"key":"WALL_DUNGEON_BOT_MID", "repeat":9},
-      {"key":"WALL_DUNGEON_BOT_MID", "repeat":9},
+      {"key":"WALL_DUNGEON_BOT_MID", "repeat":22},
       {"key":"WALL_DUNGEON_BOT_RIGHT", "repeat":1}
     ],
     [
-      {"key":"WALL_WOOD_TOP_LEFT", "repeat":1},
-      {"key":"WALL_WOOD_TOP_MID", "repeat":1},
-      {"key":"WALL_WOOD_TOP_RIGHT", "repeat":1}
+      {"key":"FLOOR_WOOD_1", "repeat":24}
     ],
     [
-      {"key":"WALL_WOOD_BOT_LEFT", "repeat":1},
-      {"key":"WALL_WOOD_BOT_MID", "repeat":1},
-      {"key":"WALL_WOOD_BOT_RIGHT", "repeat":1}
+      {"key":"FLOOR_WOOD_2", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_1", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_2", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_1", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_2", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_1", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_2", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_1", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_2", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_1", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_2", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_1", "repeat":24}
+    ],
+    [
+      {"key":"FLOOR_WOOD_2", "repeat":24}
     ]
-
+    
   ]
 
 }

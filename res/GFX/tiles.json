@@ -8,53 +8,45 @@
       "y": 0,
       "x": 0
     },
-    "WALL_WOOD_BOT_MID": {
-      "y": 1,
-      "x": 1
-    },
-    "WALL_WOOD_BOT_RIGHT": {
-      "y": 1,
-      "x": 2
-    },
+     "WALL_DUNGEON_TOP_MID": {
+      "y": 6, 
+      "x": 13
+    }, 
     "WALL_DUNGEON_BOT_RIGHT": {
-      "y": 20,
-      "x": 2
-    },
-    "WALL_WOOD_BOT_LEFT": {
-      "y": 1,
-      "x": 0
-    },
-    "WALL_DUNGEON_TOP_LEFT": {
-      "y": 19,
-      "x": 0
-    },
+      "y": 7, 
+      "x": 14
+    }, 
     "WALL_DUNGEON_BOT_LEFT": {
-      "y": 20,
-      "x": 0
-    },
-    "WALL_WOOD_TOP_RIGHT": {
-      "y": 0,
-      "x": 2
-    },
-    "WALL_WOOD_TOP_MID": {
-      "y": 0,
-      "x": 1
-    },
-    "WALL_DUNGEON_TOP_MID": {
-      "y": 19,
-      "x": 1
-    },
-    "WALL_WOOD_TOP_LEFT": {
-      "y": 0,
-      "x": 0
-    },
+      "y": 7, 
+      "x": 12
+    }, 
+    "WALL_DUNGEON_TOP_LEFT": {
+      "y": 6, 
+      "x": 12
+    }, 
     "WALL_DUNGEON_TOP_RIGHT": {
-      "y": 19,
-      "x": 2
-    },
+      "y": 6, 
+      "x": 14
+    }, 
     "WALL_DUNGEON_BOT_MID": {
-      "y": 20,
+      "y": 7, 
+      "x": 13
+    },
+	 "FLOOR_STONE_1": {
+      "y": 7, 
       "x": 1
-    }
+    },
+    "FLOOR_STONE_2": {
+      "y": 8, 
+      "x": 1
+    },
+	"FLOOR_WOOD_1": {
+      "y": 0, 
+      "x": 11
+    },
+    "FLOOR_WOOD_2": {
+      "y": 0, 
+      "x": 12
+    }	
   }
 }
