@@ -1,5 +1,7 @@
 
 #include "main.hpp"
+#include "global.hpp"
+#include "render/Scene.hpp"
 
 using namespace std;
 
@@ -55,8 +57,9 @@ void test_load_tiles(){
 
 void test_sfml() {
     // Creating dummy window
-    sf::RenderWindow App(sf::VideoMode(800, 600), FODUS_NAME);
+    sf::RenderWindow App(sf::VideoMode(SIZE*WIDTH,SIZE*HEIGHT), FODUS_NAME);
 
+    Scene scene("../../res/GFX/tiles.json");
 
     while (App.isOpen()) {
 
@@ -66,10 +69,10 @@ void test_sfml() {
                 App.close();
         }
 
-        App.clear(sf::Color::Black);
+        //App.clear(sf::Color::Black);
 
-
-        std::vector<sf::Sprite> FVect = test_load_level(App);
+        App.draw(scene);
+        //std::vector<sf::Sprite> FVect = test_load_level(App);
 
         /*// Dummy blue rect shape
         sf::RectangleShape shape(sf::Vector2f(100,200));

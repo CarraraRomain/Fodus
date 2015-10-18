@@ -4,6 +4,10 @@
     "name": "Default Tileset"
   },
   "tiles": {
+    "UNDEFINED": {
+      "y": 0,
+      "x": 0
+    },
     "WALL_WOOD_BOT_MID": {
       "y": 1,
       "x": 1

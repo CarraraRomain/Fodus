@@ -5,6 +5,7 @@
 ElementLayer::ElementLayer(std::string JSONpath)
 {
 	m_tile_factory = new TileFactory(JSONpath);
+    loadTileset("../../res/GFX/tileset0.png");
 }
 
 
