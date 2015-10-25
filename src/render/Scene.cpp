@@ -4,8 +4,11 @@
 
 Scene::Scene(std::string EltResJSON)
 {
-	ElementLayer* eltLayer = new ElementLayer(EltResJSON);
+	ElementLayer* eltLayer = new ElementLayer(0, EltResJSON);
+	ElementLayer* eltLayerUp = new ElementLayer(1, EltResJSON);
+	eltLayerUp->clearVertices();
 	m_layers.push_back(eltLayer);
+	m_layers.push_back(eltLayerUp);
 }
 
 

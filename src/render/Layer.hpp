@@ -13,6 +13,7 @@ public:
 	~Layer();
 	bool loadTileset(std::string Tilesetpath);
 	void resetVertices();
+	void clearVertices();
 	virtual void update(ElementList* list) = 0;
 	
 

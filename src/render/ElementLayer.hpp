@@ -8,11 +8,12 @@ class ElementLayer :
 	public Layer
 {
 public:
-	ElementLayer(std::string JSONpath);
+	ElementLayer(int depth, std::string JSONpath);
 	~ElementLayer();
 	virtual void update(ElementList* list) override;
 
 private:
+	int m_depth;
 	TileFactory* m_tile_factory;
 };
 

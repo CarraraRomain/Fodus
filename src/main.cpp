@@ -57,7 +57,7 @@ void test_load_tiles(){
 
 void test_sfml() {
     // Creating dummy window
-    sf::RenderWindow App(sf::VideoMode(SIZE*WIDTH,SIZE*HEIGHT), FODUS_NAME);
+    sf::RenderWindow App(sf::VideoMode(SIZE*WIDTH,SIZE*HEIGHT), FODUS_NAME, sf::Style::Titlebar | sf::Style::Close);
 	ElementList list;
     Scene scene("../../res/GFX/tiles.json");
 	test_load_elt_list(&list);
@@ -170,14 +170,13 @@ void test_sfml() {
 	std::stringstream ss;
 	rapidjson::Document d;
 	std::ifstream ifs;
-	ifs.open("../../res/GFX/levels.json", std::ios::binary);
+	ifs.open("../../res/GFX/level2.json", std::ios::binary);
 	if (ifs.is_open())
 	{
 		std::cout << "Good" << std::endl;
 		ss << ifs.rdbuf(); // 1
 		std::cout << "Done" << std::endl;
 		if (d.Parse<0>(ss.str().c_str()).HasParseError()) throw std::invalid_argument("JSON bad encoding");
-		
 	}
 	else
 	{
@@ -196,31 +195,31 @@ void test_load_elt_list(ElementList* list)
 
 
 	//std::cout << level["header"].GetString();
-	//cout << level["demo"][0][0]["key"].GetString();
+	//cout << level["level"][0][0][0..Depth]["key"].GetString();
 
-	const rapidjson::Value& b = level["demo"];
+	const rapidjson::Value& b = level["level"];
 	int posX = 0;
 	for (rapidjson::SizeType i = 0; i < b.Size(); i++)
 	{
 		const rapidjson::Value& c = b[i];
-		//cout << c[0]["key"].GetString();
+		//cout << c[0][0..Depth]["key"].GetString();
 
 		for (rapidjson::SizeType j = 0; j < c.Size(); j++)
 		{
 			// X = j | Y = i
-			// e : {"key", "repeat"}
+			// e : [0..Depth]["key"]
 			const rapidjson::Value& e = c[j];
 
-			
-			for (int k = 0; k < e["repeat"].GetInt(); k++) {
+			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
 				Element* elt = new Element;
-				elt->setKey(e["key"].GetString());
+				elt->setKey(e[k]["key"].GetString());
 				elt->setX(posX);
 				elt->setY(i);
-				posX++;
+				elt->setD(k);
+				
 				list->push_back(elt);
 			}
-
+			posX++;
 		}
 		posX = 0;
 	}
