@@ -1,0 +1,40 @@
+{
+  "header": {
+    "version": "0.2", 
+    "name": "Default Tileset"
+  }, 
+  "tiles": {
+    "WALL_DUNGEON_BOT_RIGHT": {
+      "y": 7, 
+      "x": 14
+    }, 
+    "WALL_DUNGEON_BOT_LEFT": {
+      "y": 7, 
+      "x": 12
+    }, 
+    "WALL_DUNGEON_TOP_LEFT": {
+      "y": 6, 
+      "x": 12
+    }, 
+    "FLOOR_STONE_1_": {
+      "y": 7, 
+      "x": 1
+    }, 
+    "WALL_DUNGEON_TOP_MID": {
+      "y": 6, 
+      "x": 13
+    }, 
+    "FLOOR_STONE_2_": {
+      "y": 8, 
+      "x": 1
+    }, 
+    "WALL_DUNGEON_TOP_RIGHT": {
+      "y": 6, 
+      "x": 14
+    }, 
+    "WALL_DUNGEON_BOT_MID": {
+      "y": 7, 
+      "x": 13
+    }
+  }
+}
