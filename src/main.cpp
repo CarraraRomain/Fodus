@@ -1,51 +1,46 @@
 
 #include "main.hpp"
-#include "global.hpp"
-#include "render/Scene.hpp"
 
-using namespace std;
 
 int main(int argc, char* argv[]) {
-    /* Code adapted from the SFML 2 "Window" example */
-	cout << "Hello World" << endl;
-    cout << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR << endl;
+	std::string type;
+	if (argc > 1) type = argv[1];
 
-	// RapidJSON test
-	// 1. Parse a JSON string into DOM.
-	const char* json = "{\"project\":\"" FODUS_NAME "\",\"version\":1}";
-	rapidjson::Document d;
-	d.Parse(json);
-	// 2. Modify it by DOM.
-	rapidjson::Value& s = d["version"];
-	s.SetInt(s.GetInt() + 1);
-	// 3. Stringify the DOM
-	rapidjson::StringBuffer buffer;
-	rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-	d.Accept(writer);
 
-	cout << buffer.GetString() << endl;
-
-	//test_load_tiles();
-    test_sfml();
+	std::cout << "==================" << std::endl;
+	std::cout << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR << std::endl;
+	std::cout << "==================" << std::endl;
+	if (type == "editor") launch_editor();
+	else if (type == "game") launch_game();
+	else {
+		do
+		{
+			std::cout << "> Launch game or level editor? (game/editor) ";
+			std::cin >> type;
+			if (type == "editor") launch_editor();
+			else if (type == "game") launch_game();
+		} while (type != "game" && type != "editor");
+	}
+    
     return 0;
 }
 
 
 void test_load_tiles(){
-    vector<Tile> TVect;
-    string key;
+	std::vector<Tile> TVect;
+	std::string key;
     int i=0;
-	cout << "Testing loading Tiles from tiles.json..." << endl;
+	std::cout << "Testing loading Tiles from tiles.json..." << std::endl;
 	TileFactory TFactory("../../res/GFX/tiles.json");
-    cout << "Creating Tiles"<<endl;
+	std::cout << "Creating Tiles"<< std::endl;
     rapidjson::Value::ConstMemberIterator tiles = TFactory.getTilesDoc()->FindMember("tiles");
     for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
          itr != tiles->value.MemberEnd(); ++itr)
     {
         key = itr->name.GetString();
-        cout << "Found " << key << endl;
+	    std::cout << "Found " << key << std::endl;
         TVect.push_back(*TFactory.buildTileForElt(key));
-        cout << "X:" << TVect[i].getX() << ", Y:" << TVect[i].getY() << endl;
+	    std::cout << "X:" << TVect[i].getX() << ", Y:" << TVect[i].getY() << std::endl;
         i++;
 
     }
@@ -82,13 +77,60 @@ void test_sfml() {
     }
 }
 
-    std::vector<sf::Sprite> test_load_level(sf::RenderWindow& App){
+void launch_editor()
+{
+	bool nerr = true;
+	std::string choice;
+	std::string name;
+	Editor editor;
+	std::cout << "Level Editor" << std::endl;
+	do {
+		while (choice != "yes"  && choice != "no")
+		{
+			std::cout << "\n======================\n";
+			std::cout << "New level? (yes/no) ";
+			std::cin >> choice;
+		}
+
+		std::cout << "Level file name? ";
+		std::cin >> name;
+		editor.setFile(name);
+		if (choice == "yes")
+		{
+			editor.new_level();
+		}
+		try
+		{
+			editor.load_level();
+			nerr = true;
+		}
+		catch (const std::invalid_argument & e)
+		{
+			std::cerr << e.what();
+			std::cerr << std::endl;
+			nerr = false;
+			choice = "";
+		}
+
+	} while (!nerr);
+	std::cout << "Loading GUI..." << std::endl;
+	//test_load_tiles();
+	editor.run();
+}
+
+void launch_game()
+{
+	std::cout << "Launching dat game..." << std::endl;
+	test_sfml();
+}
+
+std::vector<sf::Sprite> test_load_level(sf::RenderWindow& App){
         std::vector<sf::Sprite> SVect;
-        cout << "Loading demo level JSON..." << endl;
+	std::cout << "Loading demo level JSON..." << std::endl;
         std::stringstream ss;
         rapidjson::Document d;
         std::ifstream ifs;
-        string key;
+	std::string key;
         TileFactory TFactory("../../res/GFX/tiles.json");
         ifs.open("../../res/GFX/levels.json", std::ios::binary);
         if(ifs.is_open())
@@ -106,7 +148,7 @@ void test_sfml() {
         }
         sf::Texture texture;
         if (!texture.loadFromFile("../../res/GFX/Tiles0_P1.png")) {
-            cout << "Erreur!" << endl;
+	        std::cout << "Erreur!" << std::endl;
         }
 
         //std::cout << d["header"].GetString();
@@ -133,7 +175,7 @@ void test_sfml() {
                     sprite.setTexture(texture);
                     //sprite.setTextureRect(sf::IntRect(0, 22 * 32, 32, 32));
                     sprite.setTextureRect(sf::IntRect(tile.getY(), tile.getX(), 32, 32));
-                    cout << e["key"].GetString() << ": X=" << tile.getX() << " Y=" << tile.getY() << endl;
+	                std::cout << e["key"].GetString() << ": X=" << tile.getX() << " Y=" << tile.getY() << std::endl;
                     sprite.move(sf::Vector2f(32 * posX, 32 * i));
                     SVect.push_back(sprite);
                     App.draw(sprite);
@@ -163,14 +205,13 @@ void test_sfml() {
     }
 
 
-	rapidjson::Document test_load_json_level()
+rapidjson::Document test_load_json_level()
 {
-
-	cout << "Loading demo level JSON..." << endl;
+	std::cout << "Loading demo level JSON..." << std::endl;
 	std::stringstream ss;
 	rapidjson::Document d;
 	std::ifstream ifs;
-	ifs.open("../../res/GFX/level2.json", std::ios::binary);
+	ifs.open("../../res/GFX/levels/test.json", std::ios::binary);
 	if (ifs.is_open())
 	{
 		std::cout << "Good" << std::endl;
