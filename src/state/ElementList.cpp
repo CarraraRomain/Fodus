@@ -6,12 +6,25 @@ ElementList::ElementList()
 {
 }
 
-ElementList::ElementList(const ElementList&)
+ElementList::ElementList(ElementList const& list)
 {
+	m_elements = list.m_elements;
 }
 
-ElementList& ElementList::operator=(const ElementList&)
+/*
+ * Deep copy of each elt of the list
+ */
+ElementList& ElementList::operator=(const ElementList& list)
 {
+	if(this != &list)
+	{
+		for(Element* elt: list.m_elements)
+		{
+			Element* el = new Element;
+			*el = *elt;
+			m_elements.push_back(el);
+		}
+	}
 	return *this;
 }
 
@@ -23,7 +36,8 @@ ElementList& ElementList::operator=(ElementList&&)
 
 ElementList::~ElementList()
 {
-	for (Element* elt : m_elements) delete elt;
+	if(m_elements.size()>0)	for (Element* elt : m_elements) 
+		delete elt;
 }
 
 size_t ElementList::size() const

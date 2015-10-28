@@ -8,7 +8,8 @@ class ElementList
 {
 public:
 	ElementList();
-	ElementList(const ElementList&);
+	//ElementList(const ElementList&);
+	ElementList(ElementList const& ElementList);
 	ElementList& operator=(const ElementList&);
 	//ElementList(ElementList&&) noexcept;
 	ElementList& operator=(ElementList&&);
