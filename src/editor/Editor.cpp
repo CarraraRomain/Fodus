@@ -196,8 +196,11 @@ void Editor::run()
 					end_x = event.mouseButton.x / SIZE;
 					end_y = event.mouseButton.y / SIZE;
 					// Check boundaries
-					end_x = (end_x >= WIDTH) ? WIDTH - 1 : end_x;
+					end_x = (end_x >= WIDTH)  ?  WIDTH - 1 : end_x;
+					end_x = (end_x <  0)	  ?			 0 : end_x;
 					end_y = (end_y >= HEIGHT) ? HEIGHT - 1 : end_y;
+					end_y = (end_y <  0)	  ?			 0 : end_y;
+				
 					std::cout << "Button was released" << std::endl;
 					std::cout << "mouse x: " << end_x << std::endl;
 					std::cout << "mouse y: " << end_y << std::endl;
