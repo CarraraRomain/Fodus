@@ -19,7 +19,11 @@ echo -e "# \e[1m\e[34mFodus \e[32mLauncher\e[0m"
 echo "######################"
 echo -e "# Version 1.2.0"
 echo "######################"
-
+if [ $# -eq 0 ]; then
+	echo "No arguments given"
+	help
+	exit 0
+fi
 # Get launch args
 while getopts "hrdvf:" option; do
 	case "$option" in
