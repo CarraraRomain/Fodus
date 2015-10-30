@@ -1,5 +1,5 @@
 #include "Editor.hpp"
-#include "../render/Scene.hpp"
+
 
 
 using namespace std;
@@ -10,6 +10,7 @@ Editor::Editor()
 	m_level->SetObject();
 	m_list = new ElementList;
 	m_editor_list = new ElementList;
+	
 }
 
 
@@ -19,7 +20,27 @@ Editor::~Editor()
 	delete m_list;
 	delete m_editor_list;
 }
+/**
+ * Init GUI vars
+ */
+void Editor::load_gui()
+{
+	m_level_scene.reset(new Scene(JSON_TILES_INDEX));
+	m_editor_scene.reset(new Scene(JSON_TILES_INDEX));
+	m_level_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
+		SIZE*HEIGHT), "Level", sf::Style::Titlebar | sf::Style::Close));
+	m_level_window->setPosition(sf::Vector2i(0, 0));
 
+	m_editor_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
+		SIZE*HEIGHT), "Tiles", sf::Style::Titlebar | sf::Style::Close));
+	m_editor_window->setPosition(sf::Vector2i((sf::VideoMode::getDesktopMode().width) / 2, 0));
+	m_box.reset(new SelectBox());
+
+}
+
+/**
+ * JSON level loader
+ */
 void Editor::load_level()
 {
 	std::stringstream ss;
@@ -35,9 +56,9 @@ void Editor::load_level()
 	else throw std::invalid_argument("File Not Found");
 	ifs.close();
 }
-/*
-* JSON Template V2
-*/
+/**
+ * JSON Template V2
+ */
 void Editor::new_level()
 {
 	rapidjson::StringBuffer s;
@@ -107,13 +128,14 @@ void Editor::load_elts()
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				Element* elt = new Element;
+				std::unique_ptr<Element> elt;
+				elt.reset(new Element());
 				elt->setKey(e[k]["key"].GetString());
 				elt->setX(posX);
 				elt->setY(i);
 				elt->setD(k);
 
-				m_list->push_back(elt);
+				m_list->push_back(std::move(elt));
 			}
 			posX++;
 		}
@@ -132,160 +154,54 @@ void Editor::load_tiles()
 	for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
 	itr != tiles->value.MemberEnd(); ++itr)
 	{
-		Element* elt = new Element;
+		std::unique_ptr<Element> elt;
+		elt.reset(new Element());
 		elt->setKey(itr->name.GetString());
 		elt->setX(i);
 		elt->setY(0);
 		elt->setD(0);
-		m_editor_list->push_back(elt);
+		m_editor_list->push_back(std::move(elt));
 		i++;
 	}
 
 }
 
-void Editor::run()
+/**
+ * Loading
+ */
+void Editor::load()
 {
-	sf::RenderWindow App(sf::VideoMode(SIZE*WIDTH, SIZE*HEIGHT), "Level", sf::Style::Titlebar | sf::Style::Close);
-	App.setPosition(sf::Vector2i(0, 0));
-
-	sf::RenderWindow AppEditor(sf::VideoMode(SIZE*WIDTH, SIZE*HEIGHT), "Tiles", sf::Style::Titlebar | sf::Style::Close);
-	AppEditor.setPosition(sf::Vector2i((sf::VideoMode::getDesktopMode().width) / 2, 0));
-	int start_x = 0, start_y = 0, end_x = 0, end_y = 0;
-	Element* elt = nullptr;
-	Scene scene("../../res/GFX/tiles.json");
-	Scene scene_editor("../../res/GFX/tiles.json");
-	sf::RectangleShape box;
-	sf::Vector2f cur_pos;
-	bool isSelecting = false;
-	// Editor
+	load_gui();
 	load_level();
 	load_elts();
 	load_tiles();
-	scene.update(getList());
-	scene_editor.update(getEditorList());
-	while (App.isOpen()) {
+}
+/**
+ * Main loop
+ */
+void Editor::run()
+{
+	load();
+	
+	// Editor
+	
+	m_level_scene->update(getList());
+	m_editor_scene->update(getEditorList());
+	while (m_level_window->isOpen()) {
 
-		sf::Event event;
-		// Main window event loop
-		while (App.pollEvent(event)) {
-			switch (event.type)
-			{
-			case sf::Event::Closed:
-				App.close();
-				AppEditor.close();
-				save();
-				break;
-			case sf::Event::MouseButtonPressed:
-				if (elt)
-				{
-					start_x = event.mouseButton.x / SIZE;
-					start_y = event.mouseButton.y / SIZE;
-					std::cout << "Button was pressed" << std::endl;
-					std::cout << "mouse x: " << start_x << std::endl;
-					std::cout << "mouse y: " << start_y << std::endl;
+		level_event_loop();
+		editor_event_loop();
+	
+		m_level_window->clear();
+		m_editor_window->clear();
 
+		m_editor_window->draw(*m_editor_scene);
+		m_level_window->draw(*m_level_scene);
+		
+		m_level_window->draw(*m_box);
 
-					//editor->setElt(*elt, event.mouseButton.x / SIZE, event.mouseButton.y / SIZE, 0);
-					//scene.update(editor->getList());
-				}
-				break;
-			case sf::Event::MouseButtonReleased:
-				if (elt)
-				{
-					isSelecting = false;
-					end_x = event.mouseButton.x / SIZE;
-					end_y = event.mouseButton.y / SIZE;
-					// Check boundaries
-					end_x = (end_x >= WIDTH)  ?  WIDTH - 1 : end_x;
-					end_x = (end_x <  0)	  ?			 0 : end_x;
-					end_y = (end_y >= HEIGHT) ? HEIGHT - 1 : end_y;
-					end_y = (end_y <  0)	  ?			 0 : end_y;
-				
-					std::cout << "Button was released" << std::endl;
-					std::cout << "mouse x: " << end_x << std::endl;
-					std::cout << "mouse y: " << end_y << std::endl;
-					if (end_x < start_x)
-					{
-						int tmp = end_x;
-						end_x = start_x;
-						start_x = tmp;
-					}
-					if (end_y < start_y)
-					{
-						int tmp = end_y;
-						end_y = start_y;
-						start_y = tmp;
-					}
-					for (int k = start_y; k <= end_y; k++)
-					{
-						for (int i = start_x; i <= end_x; i++)
-						{
-							setElt(*elt, i, k);
-						}
-					}
-					scene.update(getList());
-				}
-				break;
-			case sf::Event::MouseMoved:
-				if (elt && sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				{
-					int draw_x = 0;
-					int draw_y = 0;
-					cur_pos.x = event.mouseMove.x - start_x*SIZE;
-					cur_pos.y = event.mouseMove.y - start_y*SIZE;
-
-					if (cur_pos.x >= 0) cur_pos.x = (int(cur_pos.x) / SIZE + 1) * SIZE;
-					else cur_pos.x = (int(cur_pos.x) / SIZE - 2) * SIZE;
-					if (cur_pos.y >= 0) cur_pos.y = (int(cur_pos.y) / SIZE + 1) * SIZE;
-					else cur_pos.y = (int(cur_pos.y) / SIZE - 2) * SIZE;
-
-					box.setSize(cur_pos);
-					draw_x = (cur_pos.x < 0) ? start_x + 1 : start_x;
-					draw_y = (cur_pos.y < 0) ? start_y + 1 : start_y;
-					box.setPosition(draw_x*SIZE, draw_y*SIZE);
-					box.setOutlineColor(sf::Color::Red);
-					box.setFillColor(sf::Color::Transparent);
-					box.setOutlineThickness(3);
-					isSelecting = true;
-				}
-				break;
-
-			}
-
-
-
-		}
-		// Editor window event loop
-		while (AppEditor.pollEvent(event)) {
-			switch (event.type)
-			{
-			case sf::Event::Closed:
-				App.close();
-				AppEditor.close();
-				save();
-				break;
-			case sf::Event::MouseButtonPressed:
-				std::cout << "Button was pressed" << std::endl;
-				std::cout << "mouse x: " << event.mouseButton.x / SIZE << std::endl;
-				std::cout << "mouse y: " << event.mouseButton.y / SIZE << std::endl;
-
-				elt = getElt(event.mouseButton.x / SIZE, event.mouseButton.y / SIZE, 0);
-				if (elt) cout << "Elt: " << elt->getKey() << endl;
-
-				break;
-
-			}
-		}
-		App.clear();
-		AppEditor.clear();
-
-		AppEditor.draw(scene_editor);
-		App.draw(scene);
-
-		if (isSelecting) App.draw(box);
-
-		App.display();
-		AppEditor.display();
+		m_level_window->display();
+		m_editor_window->display();
 	}
 
 	cout << "Closing" << endl;
@@ -306,31 +222,29 @@ ElementList* Editor::getEditorList()
 	return m_editor_list;
 }
 
-void Editor::setElt(Element& elt, int x, int y, int depth)
+void Editor::setElt(Element elt, int x, int y, int depth)
 {
-	Element* search_elt;
+	
 	bool found = false;
-	for (int i = 0; i < m_list->size(); i++)
+	for (int i = 0; i < int(m_list->size()); i++)
 	{
-		search_elt = (*m_list)[i];
-		if (search_elt->getX() == x && search_elt->getY() == y && search_elt->getD() == depth)
+	
+		if ((*m_list)[i]->getX() == x && (*m_list)[i]->getY() == y && (*m_list)[i]->getD() == depth)
 		{
+			(*m_list)[i]->setKey(elt.getKey());
 			found = true;
 			break;
 		}
 	}
-	if (found)
+	if (!found)
 	{
-		search_elt->setKey(elt.getKey());
-	}
-	else
-	{
-		search_elt = new Element;
-		*search_elt = elt;
-		search_elt->setX(x);
-		search_elt->setY(y);
-		search_elt->setD(depth);
-		m_list->push_back(search_elt);
+		std::unique_ptr<Element> ptr_element;
+		ptr_element.reset(new Element);
+		ptr_element->setX(x);
+		ptr_element->setY(y);
+		ptr_element->setD(depth);
+		ptr_element->setKey(elt.getKey());
+		m_list->push_back(std::move(ptr_element));
 	}
 
 	(*m_level)["level"][y][x][depth]["key"].SetString(elt.getKey(), m_level->GetAllocator());
@@ -339,17 +253,16 @@ void Editor::setElt(Element& elt, int x, int y, int depth)
 
 }
 
-
-Element* Editor::getElt(int x, int y, int depth)
+Element Editor::getElt(int x, int y, int depth)
 {
 
-	for (int i = 0; i < m_editor_list->size(); i++)
+	for (int i = 0; i < int(m_editor_list->size()); i++)
 	{
-		Element* elt = (*m_editor_list)[i];
-		if (elt->getX() == x && elt->getY() == y && elt->getD() == depth)
+		Element elt = *(*m_editor_list)[i];
+		if (elt.getX() == x && elt.getY() == y && elt.getD() == depth)
 			return elt;
 	}
-	return nullptr;
+	throw std::exception("Bad Coord");
 }
 
 void Editor::save()
@@ -362,4 +275,86 @@ void Editor::save()
 	of << json;
 	if (!of.good()) throw std::runtime_error("Can't write the JSON string to the file!");
 
+}
+
+void Editor::level_event_loop()
+{
+	sf::Event event;
+	// Main window event loop
+	while (m_level_window->pollEvent(event)) {
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			m_level_window->close();
+			m_editor_window->close();
+			save();
+			break;
+		case sf::Event::MouseButtonPressed:
+			if (m_selected_elt)
+			{
+				m_box->setStart(sf::Vector2i(event.mouseButton.x / SIZE,
+					event.mouseButton.y / SIZE));
+			}
+			break;
+		case sf::Event::MouseButtonReleased:
+			if (m_selected_elt)
+			{
+				m_box->inactive();
+				m_box->setEnd(sf::Vector2i(event.mouseButton.x / SIZE,
+					event.mouseButton.y / SIZE));
+
+
+
+				for (int k = m_box->getStart().y; k <= m_box->getEnd().y; k++)
+				{
+					for (int i = m_box->getStart().x; i <= m_box->getEnd().x; i++)
+					{
+						setElt(*m_selected_elt, i, k);
+					}
+				}
+				m_level_scene->update(getList());
+			}
+			break;
+		case sf::Event::MouseMoved:
+			if (m_selected_elt && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				m_box->setCurrent(sf::Vector2i(event.mouseMove.x / SIZE,
+					event.mouseMove.y / SIZE));
+				m_box->setBox();
+				m_box->active();
+			}
+			break;
+
+		}
+
+
+
+	}
+}
+
+void Editor::editor_event_loop()
+{
+	sf::Event event;
+	// Editor window event loop
+	while (m_editor_window->pollEvent(event)) {
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			m_level_window->close();
+			m_editor_window->close();
+			save();
+			break;
+		case sf::Event::MouseButtonPressed:
+			std::cout << "Button was pressed" << std::endl;
+			std::cout << "mouse x: " << event.mouseButton.x / SIZE << std::endl;
+			std::cout << "mouse y: " << event.mouseButton.y / SIZE << std::endl;
+
+			m_selected_elt.reset(new Element(getElt(event.mouseButton.x / SIZE, 
+				event.mouseButton.y / SIZE, 0)));
+			if (m_selected_elt) cout << "Elt: " << m_selected_elt->getKey() << endl;
+
+			break;
+
+		}
+	}
 }
