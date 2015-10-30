@@ -49,29 +49,26 @@ void Scene::update()
 
 void Scene::setEltAt(Element& elt, int x, int y, int depth)
 {
-	Element* search_elt;
+	Element search_elt;
 	bool found = false;
 	for (int i = 0; i < m_elt_list->size(); i++)
 	{
-		search_elt = (*m_elt_list)[i];
-		if (search_elt->getX() == x && search_elt->getY() == y && search_elt->getD() == depth)
+		search_elt = *(*m_elt_list)[i];
+		if (search_elt.getX() == x && search_elt.getY() == y && search_elt.getD() == depth)
 		{
+			search_elt.setKey(elt.getKey());
 			found = true;
 			break;
 		}
 	}
-	if(found)
+	if(!found)
 	{
-		search_elt->setKey(elt.getKey());
-	}
-	else
-	{
-		search_elt = new Element;
-		*search_elt = elt;
+		std::unique_ptr<Element> search_elt;
+		search_elt.reset(new Element());
 		search_elt->setX(x);
 		search_elt->setY(y);
 		search_elt->setD(depth);
-		m_elt_list->push_back(search_elt);
+		m_elt_list->push_back(std::move(search_elt));
 	}
 
 }

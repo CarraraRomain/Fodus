@@ -252,13 +252,14 @@ void test_load_elt_list(ElementList* list)
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				Element* elt = new Element;
+				std::unique_ptr<Element> elt;
+				elt.reset(new Element);
 				elt->setKey(e[k]["key"].GetString());
 				elt->setX(posX);
 				elt->setY(i);
 				elt->setD(k);
 				
-				list->push_back(elt);
+				list->push_back(std::move(elt));
 			}
 			posX++;
 		}
@@ -267,4 +268,3 @@ void test_load_elt_list(ElementList* list)
 
 
 }
-
