@@ -4,9 +4,9 @@
 
 using namespace std;
 
-Editor::Editor()
+Editor::Editor(std::shared_ptr<Bootstrap> boot)
 {
-	
+	m_boot = boot;
 }
 
 
@@ -38,6 +38,7 @@ void Editor::load_level()
 {
 	m_level.reset(new rapidjson::Document);
 	m_level->SetObject();
+
 
 	std::stringstream ss;
 	std::ifstream ifs;
@@ -225,12 +226,12 @@ void Editor::setElt(Element elt, int x, int y, int depth)
 	}
 	if (!found)
 	{
-		Element elt = Element();
-		elt.setKey(elt.getKey());
-		elt.setX(x);
-		elt.setY(y);
-		elt.setD(depth);
-		m_editor_list->push_back(elt);
+		Element el = Element();
+		el.setKey(elt.getKey());
+		el.setX(x);
+		el.setY(y);
+		el.setD(depth);
+		m_editor_list->push_back(el);
 	}
 
 	(*m_level)["level"][y][x][depth]["key"].SetString(elt.getKey(), m_level->GetAllocator());

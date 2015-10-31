@@ -1,4 +1,3 @@
-
 #include "main.hpp"
 
 /** Main entry point
@@ -17,17 +16,25 @@ int main(int argc, char* argv[]) {
 	LOG(DEBUG) << "***";
 	LOG(DEBUG) << "Fodus Started";
 	LOG(DEBUG) << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR;
-	// TODO Bootstrap launch
-	
-	if (type == "editor") launch_editor();
-	else if (type == "game") launch_game();
+
+	std::shared_ptr<Bootstrap> boot;
+	boot.reset(new Bootstrap);
+	boot->start();
+
+	std::shared_ptr<rapidjson::Document> tiles;
+	tiles = boot->getDocument("tiles");
+	std::cout << (*tiles)["header"]["name"].GetString() << std::endl;
+
+
+	if (type == "editor") launch_editor(boot);
+	else if (type == "game") launch_game(boot);
 	else {
 		do
 		{
 			std::cout << "> Launch game or level editor? (game/editor) ";
 			std::cin >> type;
-			if (type == "editor") launch_editor();
-			else if (type == "game") launch_game();
+			if (type == "editor") launch_editor(boot);
+			else if (type == "game") launch_game(boot);
 		} while (type != "game" && type != "editor");
 	}
     
@@ -90,13 +97,13 @@ void test_sfml() {
 /**
  * Launch the editor
  */
-void launch_editor()
+void launch_editor(std::shared_ptr<Bootstrap> boot)
 {
 	LOG(DEBUG) << "Launching Editor";
 	bool nerr = true;
 	std::string choice;
 	std::string name;
-	Editor editor;
+	Editor editor(boot);
 	std::cout << "Level Editor" << std::endl;
 	do {
 		while (choice != "yes"  && choice != "no")
@@ -134,7 +141,7 @@ void launch_editor()
 /**
 * Launch the game
 */
-void launch_game()
+void launch_game(std::shared_ptr<Bootstrap> boot)
 {
 	LOG(DEBUG) << "Launching Game";
 	std::cout << "Launching dat game..." << std::endl;

@@ -3,9 +3,6 @@
 #include "../state/ElementList.hpp"
 #include "../global.hpp"
 #include <SFML/Graphics.hpp>
-#include "../../lib/rapidjson/document.h"
-#include "../lib/rapidjson/prettywriter.h"
-#include "../lib/rapidjson/stringbuffer.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -21,12 +18,12 @@
 #include "../render/TileFactory.hpp"
 #include "../render/Scene.hpp"
 #include "SelectBox.hpp"
-
+#include "../bootstrap/Bootstrap.hpp"
 
 class Editor
 {
 public:
-	Editor();
+	Editor(std::shared_ptr<Bootstrap>);
 	~Editor();
 	void load_gui();
 	void new_level();
@@ -43,7 +40,8 @@ public:
 	void editor_event_loop();
 
 private:
-	
+	std::shared_ptr<Bootstrap> m_boot;
+
 	std::unique_ptr<sf::RenderWindow> m_level_window;
 	std::unique_ptr<sf::RenderWindow> m_editor_window;
 	std::unique_ptr<Scene> m_level_scene;
