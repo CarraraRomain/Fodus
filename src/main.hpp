@@ -5,11 +5,20 @@
 #ifndef FODUS_MAIN_HPP
 #define FODUS_MAIN_HPP
 
+/* EasyLogging++ lib | v9.81
+Logging library. Has to be include at the top of the file
+*/
+
+#define ELPP_NO_DEFAULT_LOG_FILE
+#include "../lib/easylogging/easylogging++.h"
 
 // config.h includes build & project config parameters
 #include "config.h"
 #include "global.hpp"
 
+// Standard Lib
+#include <vector>
+#include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -19,23 +28,22 @@ Lib is included in ../lib/rapidjson
 URL : https://github.com/miloyip/rapidjson
 */
 #include "../lib/rapidjson/document.h"
-
 #include "../lib/rapidjson/writer.h"
 #include "../lib/rapidjson/stringbuffer.h"
+
 /* SFML Library | Tested using v2.3.2 / 2.3.1
 URL : http://www.sfml-dev.org/
 */
 #include <SFML/Graphics.hpp>
 
+// Project includes
 #include "editor/Editor.hpp"
 #include "render/TileFactory.hpp"
-
 #include "render/Scene.hpp"
 
-#include <vector>
-#include <string>
+// Easylogging startup macro
+INITIALIZE_EASYLOGGINGPP
 
-class ElementList;
 int main(int argc, char* argv[]);
 
 void test_load_tiles();

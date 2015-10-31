@@ -1,15 +1,24 @@
 
 #include "main.hpp"
 
-
+/** Main entry point
+Where all shall begin
+*/
 int main(int argc, char* argv[]) {
+	// Logger config
+	el::Configurations conf("../../res/config/logger.conf");
+	el::Loggers::reconfigureAllLoggers(conf);
+
+	// Launch Args
+	// TODO to complete
 	std::string type;
 	if (argc > 1) type = argv[1];
 
-
-	std::cout << "==================" << std::endl;
-	std::cout << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR << std::endl;
-	std::cout << "==================" << std::endl;
+	LOG(DEBUG) << "***";
+	LOG(DEBUG) << "Fodus Started";
+	LOG(DEBUG) << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR;
+	// TODO Bootstrap launch
+	
 	if (type == "editor") launch_editor();
 	else if (type == "game") launch_game();
 	else {
@@ -77,8 +86,13 @@ void test_sfml() {
     }
 }
 
+
+/**
+ * Launch the editor
+ */
 void launch_editor()
 {
+	LOG(DEBUG) << "Launching Editor";
 	bool nerr = true;
 	std::string choice;
 	std::string name;
@@ -91,7 +105,7 @@ void launch_editor()
 			std::cout << "New level? (yes/no) ";
 			std::cin >> choice;
 		}
-
+		// TODO Bootstrap will fetch all level names, awesome
 		std::cout << "Level file name? ";
 		std::cin >> name;
 		editor.setFile(name);
@@ -114,16 +128,24 @@ void launch_editor()
 
 	} while (!nerr);
 	std::cout << "Loading GUI..." << std::endl;
-	//test_load_tiles();
 	editor.run();
 }
 
+/**
+* Launch the game
+*/
 void launch_game()
 {
+	LOG(DEBUG) << "Launching Game";
 	std::cout << "Launching dat game..." << std::endl;
+	// TODO Game class ( game.run() )
 	test_sfml();
 }
 
+
+/**
+* @deprecated
+*/
 std::vector<sf::Sprite> test_load_level(sf::RenderWindow& App){
         std::vector<sf::Sprite> SVect;
 	std::cout << "Loading demo level JSON..." << std::endl;

@@ -1,0 +1,18 @@
+{
+  "header": {
+    "version": "1.0",
+    "name": "Config file"
+  },
+  "global": 
+  {},
+  "graphics": 
+  {},
+  "resources": 
+  {
+	"tiles":"../../res/GFX/tiles.json",
+	"levels_index":"../../res/levels_index.json",
+	"levels_path":"../../res/levels/",
+	"GFX":"../../GFX/",
+	"SFX":"../../SFX/"
+  }
+}

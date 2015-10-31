@@ -1,0 +1,10 @@
+{
+  "header": {
+    "version": "1.0",
+    "name": "Levels Index File"
+  },
+  "levels": [
+    "test":{"desc":"none"},
+    "entrance":{"desc":"none"}
+	]
+}
