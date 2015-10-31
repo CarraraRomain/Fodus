@@ -13,6 +13,10 @@ URL : https://github.com/miloyip/rapidjson
 #include "../lib/rapidjson/stringbuffer.h"
 
 
+/* SFML Library | Tested using v2.3.2 / 2.3.1
+URL : http://www.sfml-dev.org/
+*/
+#include <SFML/Graphics.hpp>
 
 /* EasyLogging++ lib | v9.81
 Logging library. Has to be include at the top of the file
