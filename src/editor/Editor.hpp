@@ -23,7 +23,7 @@
 class Editor
 {
 public:
-	Editor(std::shared_ptr<Bootstrap>);
+	Editor(Bootstrap*);
 	~Editor();
 	void load_gui();
 	void new_level();
@@ -40,7 +40,7 @@ public:
 	void editor_event_loop();
 
 private:
-	std::shared_ptr<Bootstrap> m_boot;
+	Bootstrap* m_boot;
 
 	std::unique_ptr<sf::RenderWindow> m_level_window;
 	std::unique_ptr<sf::RenderWindow> m_editor_window;

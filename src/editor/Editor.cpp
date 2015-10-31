@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Editor::Editor(std::shared_ptr<Bootstrap> boot)
+Editor::Editor(Bootstrap* boot)
 {
 	m_boot = boot;
 }

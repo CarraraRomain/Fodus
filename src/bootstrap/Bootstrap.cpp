@@ -1,9 +1,12 @@
 #include "Bootstrap.hpp"
+#include "../editor/Editor.hpp"
+#include "../game/Game.hpp"
 
 
-
-Bootstrap::Bootstrap()
+Bootstrap::Bootstrap(int argc, char** argv)
 {
+	m_argc = argc;
+	m_argv = argv;
 }
 
 
@@ -36,7 +39,28 @@ void Bootstrap::loadConf()
 void Bootstrap::start()
 {
 	loadConf();
-	//loadFile("tiles");
+	
+}
+
+void Bootstrap::run()
+{
+	// Launch Args
+	// TODO to complete
+	std::string type;
+	if (m_argc > 1) type = m_argv[1];
+
+
+	if (type == "editor") launch_editor();
+	else if (type == "game") launch_game();
+	else {
+		do
+		{
+			std::cout << "> Launch game or level editor? (game/editor) ";
+			std::cin >> type;
+			if (type == "editor") launch_editor();
+			else if (type == "game") launch_game();
+		} while (type != "game" && type != "editor");
+	}
 }
 
 void Bootstrap::getConfig(const std::string&) const
@@ -105,4 +129,63 @@ bool Bootstrap::checkNode(std::string name)
 		return false;
 	}
 	return true;
+}
+
+
+
+/**
+* Launch the editor
+*/
+void Bootstrap::launch_editor()
+{
+	LOG(DEBUG) << "Launching Editor";
+	bool nerr = true;
+	std::string choice;
+	std::string name;
+	Editor editor(this);
+	std::cout << "Level Editor" << std::endl;
+	do {
+		while (choice != "yes"  && choice != "no")
+		{
+			std::cout << "\n======================\n";
+			std::cout << "New level? (yes/no) ";
+			std::cin >> choice;
+		}
+		// TODO Bootstrap will fetch all level names, awesome
+		std::cout << "Level file name? ";
+		std::cin >> name;
+		editor.setFile(name);
+		if (choice == "yes")
+		{
+			editor.new_level();
+		}
+		try
+		{
+			editor.load_level();
+			nerr = true;
+		}
+		catch (const std::invalid_argument & e)
+		{
+			std::cerr << e.what();
+			std::cerr << std::endl;
+			nerr = false;
+			choice = "";
+		}
+
+	} while (!nerr);
+	std::cout << "Loading GUI..." << std::endl;
+	editor.run();
+}
+
+/**
+* Launch the game
+*/
+void Bootstrap::launch_game()
+{
+	LOG(DEBUG) << "Launching Game";
+	std::cout << "Launching dat game..." << std::endl;
+	// TODO Game class ( game.run() )
+	Game game(this);
+	game.run();
+	//test_sfml();
 }
