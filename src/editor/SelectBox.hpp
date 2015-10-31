@@ -27,7 +27,7 @@ private:
 	sf::Vector2i m_end;
 	sf::RectangleShape m_box;
 	bool m_active;
-	sf::Vector2i SelectBox::checkBoundaries(sf::Vector2i& vect);
+	sf::Vector2i checkBoundaries(sf::Vector2i& vect);
 	void checkOrder();
 };
 

@@ -249,7 +249,7 @@ Element Editor::getElt(int x, int y, int depth)
 		if (elt.getX() == x && elt.getY() == y && elt.getD() == depth)
 			return elt;
 	}
-	throw std::exception("Bad Coord");
+	throw std::domain_error("Bad Coord");
 }
 
 void Editor::save()

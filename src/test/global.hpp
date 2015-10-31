@@ -1,4 +1,4 @@
 #pragma once
 
 #include <iostream>
-#include "../../../lib/easylogging/easylogging++.h"
+#include "../../lib/easylogging/easylogging++.h"

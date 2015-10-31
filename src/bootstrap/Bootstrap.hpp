@@ -27,7 +27,7 @@ private:
 	rapidjson::Document m_config;
 	// rapidjson doc is not movable nor copyable, we need ptr
 	std::map < std::string, std::shared_ptr<rapidjson::Document>> m_docs;
-	void Bootstrap::loadFile(const std::string& name);
+	void loadFile(const std::string& name);
 	bool checkNode(std::string);
 	void launch_editor();
 	void launch_game();
