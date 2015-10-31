@@ -335,11 +335,13 @@ void Editor::editor_event_loop()
 			std::cout << "Button was pressed" << std::endl;
 			std::cout << "mouse x: " << event.mouseButton.x / SIZE << std::endl;
 			std::cout << "mouse y: " << event.mouseButton.y / SIZE << std::endl;
-
-			m_selected_elt.reset(new Element(getElt(event.mouseButton.x / SIZE, 
-				event.mouseButton.y / SIZE, 0)));
-			if (m_selected_elt) cout << "Elt: " << m_selected_elt->getKey() << endl;
-
+			try{
+				m_selected_elt.reset(new Element(getElt(event.mouseButton.x / SIZE,
+														event.mouseButton.y / SIZE, 0)));
+				LOG(INFO) << "Elt: " << m_selected_elt->getKey() << endl;
+			}catch (const std::domain_error& e){
+				LOG(WARNING) << "No Elt here" << endl;
+				}
 			break;
 
 		}
