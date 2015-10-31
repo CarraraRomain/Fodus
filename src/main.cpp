@@ -56,7 +56,7 @@ void test_sfml() {
 	ElementList list;
     Scene scene("../../res/GFX/tiles.json");
 	test_load_elt_list(&list);
-	scene.update(&list);
+	scene.update(list);
     while (App.isOpen()) {
 
         sf::Event Event;
@@ -252,14 +252,13 @@ void test_load_elt_list(ElementList* list)
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				std::unique_ptr<Element> elt;
-				elt.reset(new Element);
-				elt->setKey(e[k]["key"].GetString());
-				elt->setX(posX);
-				elt->setY(i);
-				elt->setD(k);
-				
-				list->push_back(std::move(elt));
+				Element elt = Element();
+				elt.setKey(e[k]["key"].GetString());
+				elt.setX(posX);
+				elt.setY(i);
+				elt.setD(k);
+
+				list->push_back(elt);
 			}
 			posX++;
 		}

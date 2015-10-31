@@ -36,8 +36,6 @@ public:
 	void load();
 	void run();
 	void setFile(std::string);
-	ElementList* getList();
-	ElementList* getEditorList();
 	void setElt(Element elt, int x, int y, int depth = 0);
 	Element getElt(int x, int y, int depth);
 	void save();
@@ -45,18 +43,19 @@ public:
 	void editor_event_loop();
 
 private:
-	// graphics
+	
 	std::unique_ptr<sf::RenderWindow> m_level_window;
 	std::unique_ptr<sf::RenderWindow> m_editor_window;
 	std::unique_ptr<Scene> m_level_scene;
 	std::unique_ptr<Scene> m_editor_scene;
+	
 	std::unique_ptr<SelectBox> m_box;
 	std::unique_ptr<Element> m_selected_elt;
+	
+	std::unique_ptr<ElementList> m_level_list;
+	std::unique_ptr<ElementList> m_editor_list;
+	
+	std::unique_ptr<rapidjson::Document> m_level;
 	std::string m_file;
-	
-	ElementList* m_list;
-	ElementList* m_editor_list;
-	rapidjson::Document* m_level;
-	
 };
 

@@ -6,19 +6,12 @@ using namespace std;
 
 Editor::Editor()
 {
-	m_level = new rapidjson::Document;
-	m_level->SetObject();
-	m_list = new ElementList;
-	m_editor_list = new ElementList;
 	
 }
 
 
 Editor::~Editor()
 {
-	delete m_level;
-	delete m_list;
-	delete m_editor_list;
 }
 /**
  * Init GUI vars
@@ -43,6 +36,9 @@ void Editor::load_gui()
  */
 void Editor::load_level()
 {
+	m_level.reset(new rapidjson::Document);
+	m_level->SetObject();
+
 	std::stringstream ss;
 	std::ifstream ifs;
 	ifs.open("../../res/GFX/levels/" + m_file + ".json", std::ios::binary);
@@ -110,7 +106,7 @@ void Editor::new_level()
 
 void Editor::load_elts()
 {
-
+	m_level_list.reset(new ElementList());
 	//std::cout << level["header"].GetString();
 	//cout << level["level"][0][0][0..Depth]["key"].GetString();
 
@@ -128,14 +124,13 @@ void Editor::load_elts()
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				std::unique_ptr<Element> elt;
-				elt.reset(new Element());
-				elt->setKey(e[k]["key"].GetString());
-				elt->setX(posX);
-				elt->setY(i);
-				elt->setD(k);
+				Element elt = Element();
+				elt.setKey(e[k]["key"].GetString());
+				elt.setX(posX);
+				elt.setY(i);
+				elt.setD(k);
 
-				m_list->push_back(std::move(elt));
+				m_level_list->push_back(elt);
 			}
 			posX++;
 		}
@@ -146,6 +141,7 @@ void Editor::load_elts()
 
 void Editor::load_tiles()
 {
+	m_editor_list.reset(new ElementList());
 	string key;
 	int i = 0;
 	cout << "Loading Tiles from tiles.json..." << endl;
@@ -154,13 +150,12 @@ void Editor::load_tiles()
 	for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
 	itr != tiles->value.MemberEnd(); ++itr)
 	{
-		std::unique_ptr<Element> elt;
-		elt.reset(new Element());
-		elt->setKey(itr->name.GetString());
-		elt->setX(i);
-		elt->setY(0);
-		elt->setD(0);
-		m_editor_list->push_back(std::move(elt));
+		Element elt = Element();
+		elt.setKey(itr->name.GetString());
+		elt.setX(i);
+		elt.setY(0);
+		elt.setD(0);
+		m_editor_list->push_back(elt);
 		i++;
 	}
 
@@ -185,8 +180,8 @@ void Editor::run()
 	
 	// Editor
 	
-	m_level_scene->update(getList());
-	m_editor_scene->update(getEditorList());
+	m_level_scene->update(*m_level_list);
+	m_editor_scene->update(*m_editor_list);
 	while (m_level_window->isOpen()) {
 
 		level_event_loop();
@@ -212,39 +207,30 @@ void Editor::setFile(std::string file)
 	m_file = file;
 }
 
-ElementList* Editor::getList()
-{
-	return m_list;
-}
 
-ElementList* Editor::getEditorList()
-{
-	return m_editor_list;
-}
 
 void Editor::setElt(Element elt, int x, int y, int depth)
 {
 	
 	bool found = false;
-	for (int i = 0; i < int(m_list->size()); i++)
+	for (int i = 0; i < int(m_level_list->size()); i++)
 	{
 	
-		if ((*m_list)[i]->getX() == x && (*m_list)[i]->getY() == y && (*m_list)[i]->getD() == depth)
+		if ((*m_level_list)[i]->getX() == x && (*m_level_list)[i]->getY() == y && (*m_level_list)[i]->getD() == depth)
 		{
-			(*m_list)[i]->setKey(elt.getKey());
+			(*m_level_list)[i]->setKey(elt.getKey());
 			found = true;
 			break;
 		}
 	}
 	if (!found)
 	{
-		std::unique_ptr<Element> ptr_element;
-		ptr_element.reset(new Element);
-		ptr_element->setX(x);
-		ptr_element->setY(y);
-		ptr_element->setD(depth);
-		ptr_element->setKey(elt.getKey());
-		m_list->push_back(std::move(ptr_element));
+		Element elt = Element();
+		elt.setKey(elt.getKey());
+		elt.setX(x);
+		elt.setY(y);
+		elt.setD(depth);
+		m_editor_list->push_back(elt);
 	}
 
 	(*m_level)["level"][y][x][depth]["key"].SetString(elt.getKey(), m_level->GetAllocator());
@@ -312,7 +298,7 @@ void Editor::level_event_loop()
 						setElt(*m_selected_elt, i, k);
 					}
 				}
-				m_level_scene->update(getList());
+				m_level_scene->update(*m_level_list);
 			}
 			break;
 		case sf::Event::MouseMoved:

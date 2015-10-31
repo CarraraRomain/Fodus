@@ -28,7 +28,7 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	}
 }
 
-void Scene::update(ElementList* list)
+void Scene::update(const ElementList& list)
 {
 	// saving EltList is disabled for now
 	//*m_elt_list = *list;
@@ -42,7 +42,7 @@ void Scene::update()
 {
 	for (Layer* layer : m_layers)
 	{
-		(*layer).update(m_elt_list);
+		(*layer).update(*m_elt_list);
 	}
 }
 
@@ -51,7 +51,7 @@ void Scene::setEltAt(Element& elt, int x, int y, int depth)
 {
 	Element search_elt;
 	bool found = false;
-	for (int i = 0; i < m_elt_list->size(); i++)
+	for (int i = 0; i < int(m_elt_list->size()); i++)
 	{
 		search_elt = *(*m_elt_list)[i];
 		if (search_elt.getX() == x && search_elt.getY() == y && search_elt.getD() == depth)
@@ -63,12 +63,12 @@ void Scene::setEltAt(Element& elt, int x, int y, int depth)
 	}
 	if(!found)
 	{
-		std::unique_ptr<Element> search_elt;
-		search_elt.reset(new Element());
-		search_elt->setX(x);
-		search_elt->setY(y);
-		search_elt->setD(depth);
-		m_elt_list->push_back(std::move(search_elt));
+		Element elt = Element();
+		elt.setKey(elt.getKey());
+		elt.setX(x);
+		elt.setY(y);
+		elt.setD(depth);
+		m_elt_list->push_back(elt);
 	}
 
 }

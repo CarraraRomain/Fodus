@@ -16,14 +16,14 @@ ElementLayer::~ElementLayer()
 }
 
 
-void ElementLayer::update(ElementList* list)
+void ElementLayer::update(const ElementList& list)
 {
 	int X = 0;
 	int Y = 0;
 	int depth = 0;
-	for (int i = 0; i < list->size();i++)
+	for (int i = 0; i < int(list.size());i++)
 	{
-		Element elt = *(*list)[i];
+		Element elt = *(list)[i];
 	
 		X = elt.getX();
 		Y = elt.getY();

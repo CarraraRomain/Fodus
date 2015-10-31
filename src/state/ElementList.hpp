@@ -16,7 +16,7 @@ public:
 	~ElementList();
 	
 	size_t size() const;
-	void push_back(std::unique_ptr<Element> elt);
+	void push_back(const Element& elt);
 	void clear();
 
 	std::unique_ptr<Element>& operator[](size_t i);

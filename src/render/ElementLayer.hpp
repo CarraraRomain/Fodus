@@ -10,7 +10,7 @@ class ElementLayer :
 public:
 	ElementLayer(int depth, std::string JSONpath);
 	~ElementLayer();
-	virtual void update(ElementList* list) override;
+	virtual void update(const ElementList& list) override;
 
 private:
 	int m_depth;

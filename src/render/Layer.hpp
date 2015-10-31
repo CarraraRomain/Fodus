@@ -14,7 +14,7 @@ public:
 	bool loadTileset(std::string Tilesetpath);
 	void resetVertices();
 	void clearVertices();
-	virtual void update(ElementList* list) = 0;
+	virtual void update(const ElementList& list) = 0;
 	
 
 protected:
