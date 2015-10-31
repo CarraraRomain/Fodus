@@ -8,15 +8,17 @@ int main(int argc, char* argv[]) {
 	el::Configurations conf("../../res/config/logger.conf");
 	el::Loggers::reconfigureAllLoggers(conf);
 
-	LOG(DEBUG) << "***";
-	LOG(DEBUG) << "Fodus Started";
-	LOG(DEBUG) << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR;
+	LOG(INFO) << "***";
+	LOG(INFO) << "Fodus Started";
+	LOG(INFO) << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR;
 
 	Bootstrap boot(argc, argv);
 	
 	boot.start();
 
 	boot.run();
-    
+
+	LOG(INFO) << "Exiting now";
+	LOG(INFO) << "Bye";
     return 0;
 }

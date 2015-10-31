@@ -25,6 +25,7 @@ void Game::load()
 
 void Game::run()
 {
+	LOG(DEBUG) << "Game is running";
 	load();
 	ElementList list;
 	TestGame::test_load_elt_list(&list);
@@ -33,6 +34,7 @@ void Game::run()
 	{
 		game_event_loop();
 	}
+	LOG(DEBUG) << "Game ended";
 }
 
 void Game::game_event_loop()

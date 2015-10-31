@@ -177,6 +177,7 @@ void Editor::load()
  */
 void Editor::run()
 {
+	LOG(DEBUG) << "Editor is running";
 	load();
 	
 	// Editor
@@ -200,7 +201,7 @@ void Editor::run()
 		m_editor_window->display();
 	}
 
-	cout << "Closing" << endl;
+	LOG(DEBUG) << "Editor ended";
 }
 
 void Editor::setFile(std::string file)
@@ -338,9 +339,9 @@ void Editor::editor_event_loop()
 			try{
 				m_selected_elt.reset(new Element(getElt(event.mouseButton.x / SIZE,
 														event.mouseButton.y / SIZE, 0)));
-				LOG(INFO) << "Elt: " << m_selected_elt->getKey() << endl;
+				LOG(INFO) << "Elt: " << m_selected_elt->getKey();
 			}catch (const std::domain_error& e){
-				LOG(WARNING) << "No Elt here" << endl;
+				LOG(WARNING) << "No Elt here";
 				}
 			break;
 

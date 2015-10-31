@@ -38,12 +38,14 @@ void Bootstrap::loadConf()
 
 void Bootstrap::start()
 {
+	LOG(DEBUG) << "Bootstrap is starting";
 	loadConf();
 	
 }
 
 void Bootstrap::run()
 {
+	LOG(DEBUG) << "Bootstrap is running";
 	// Launch Args
 	// TODO to complete
 	std::string type;
@@ -61,6 +63,7 @@ void Bootstrap::run()
 			else if (type == "game") launch_game();
 		} while (type != "game" && type != "editor");
 	}
+	LOG(DEBUG) << "Boostrap ended";
 }
 
 void Bootstrap::getConfig(const std::string&) const
@@ -175,6 +178,7 @@ void Bootstrap::launch_editor()
 	} while (!nerr);
 	std::cout << "Loading GUI..." << std::endl;
 	editor.run();
+
 }
 
 /**
