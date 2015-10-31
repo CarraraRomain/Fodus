@@ -1,5 +1,5 @@
 #include "TestGame.hpp"
-#include "../../render/TileFactory.hpp"
+
 
 
 TestGame::TestGame()
@@ -36,16 +36,19 @@ rapidjson::Document TestGame::test_load_json_level()
 }
 
 
-void TestGame::test_load_elt_list(ElementList* list)
+void TestGame::test_load_elt_list(ElementList* list, Bootstrap* boot)
 {
+	LOG(DEBUG) << "Loading Elt list";
 	// loading a level from ../../res/GFX/level.json
-	rapidjson::Document level = test_load_json_level();
-
+	std::shared_ptr<rapidjson::Document> level;
+	LOG(DEBUG) << "Get level test";
+	level = boot->getLevel("test");
+	LOG(DEBUG) << "Done";
 
 	//std::cout << level["header"].GetString();
 	//cout << level["level"][0][0][0..Depth]["key"].GetString();
 
-	const rapidjson::Value& b = level["level"];
+	const rapidjson::Value& b = (*level)["level"];
 	int posX = 0;
 	for (rapidjson::SizeType i = 0; i < b.Size(); i++)
 	{
@@ -72,28 +75,6 @@ void TestGame::test_load_elt_list(ElementList* list)
 		posX = 0;
 	}
 
-
+	LOG(DEBUG) << "Load OK";
 }
 
-
-
-void TestGame::test_load_tiles() {
-	std::vector<Tile> TVect;
-	std::string key;
-	int i = 0;
-	std::cout << "Testing loading Tiles from tiles.json..." << std::endl;
-	TileFactory TFactory("../../res/GFX/tiles.json");
-	std::cout << "Creating Tiles" << std::endl;
-	rapidjson::Value::ConstMemberIterator tiles = TFactory.getTilesDoc()->FindMember("tiles");
-	for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
-	itr != tiles->value.MemberEnd(); ++itr)
-	{
-		key = itr->name.GetString();
-		std::cout << "Found " << key << std::endl;
-		TVect.push_back(*TFactory.buildTileForElt(key));
-		std::cout << "X:" << TVect[i].getX() << ", Y:" << TVect[i].getY() << std::endl;
-		i++;
-
-	}
-
-}

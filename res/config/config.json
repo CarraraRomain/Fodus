@@ -9,10 +9,11 @@
   {},
   "resources": 
   {
-	"tiles":"../../res/GFX/tiles.json",
-	"levels_index":"../../res/levels_index.json",
+	"tiles_index":"../../res/GFX/tiles.json",
+	"levels_index":"../../res/config/levels_index.json",
 	"levels_path":"../../res/levels/",
 	"GFX":"../../GFX/",
-	"SFX":"../../SFX/"
+	"SFX":"../../SFX/",
+    "tileset 0":"../../res/GFX/tileset0.png"
   }
 }

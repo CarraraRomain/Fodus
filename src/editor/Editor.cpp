@@ -18,8 +18,8 @@ Editor::~Editor()
  */
 void Editor::load_gui()
 {
-	m_level_scene.reset(new Scene(JSON_TILES_INDEX));
-	m_editor_scene.reset(new Scene(JSON_TILES_INDEX));
+	m_level_scene.reset(new Scene(m_boot));
+	m_editor_scene.reset(new Scene(m_boot));
 	m_level_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
 		SIZE*HEIGHT), "Level", sf::Style::Titlebar | sf::Style::Close));
 	m_level_window->setPosition(sf::Vector2i(0, 0));
@@ -146,7 +146,7 @@ void Editor::load_tiles()
 	string key;
 	int i = 0;
 	cout << "Loading Tiles from tiles.json..." << endl;
-	TileFactory TFactory("../../res/GFX/tiles.json");
+	TileFactory TFactory(m_boot);
 	rapidjson::Value::ConstMemberIterator tiles = TFactory.getTilesDoc()->FindMember("tiles");
 	for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
 	itr != tiles->value.MemberEnd(); ++itr)

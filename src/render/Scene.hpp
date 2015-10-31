@@ -6,7 +6,7 @@ class Scene :
 	public sf::Drawable
 {
 public:
-	Scene(std::string EltResJSON);
+	Scene(Bootstrap*);
 	~Scene();	
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void update(const ElementList& list);
@@ -16,6 +16,7 @@ public:
 	
 
 private:
+	Bootstrap* m_boot;
 	std::vector<Layer*> m_layers;
 	ElementList* m_elt_list;
 

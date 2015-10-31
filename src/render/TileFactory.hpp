@@ -7,21 +7,23 @@
 #include <sstream>
 
 #include "Tile.hpp"
+#include "../bootstrap/Bootstrap.hpp"
 
 class TileFactory
 {
 public:
-	TileFactory(std::string);
+	TileFactory(Bootstrap*);
 	~TileFactory();
 private:
-	rapidjson::Document* _tilesDoc;
+    Bootstrap* m_boot;
+	std::shared_ptr<rapidjson::Document> _tilesDoc;
     rapidjson::Value* getFactoryFor(std::string);
 public:
 	void setTilesDoc(rapidjson::Document*);
-    rapidjson::Document* getTilesDoc();
+    std::shared_ptr<rapidjson::Document> getTilesDoc();
     void registerFacto(std::string key );
     Tile* buildTileForElt(std::string key);
-    void loadTilesDoc(std::string path);
+    void loadTilesDoc(const std::string&);
 
 };
 

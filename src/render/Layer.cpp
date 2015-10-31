@@ -2,7 +2,7 @@
 
 
 
-Layer::Layer()
+Layer::Layer(Bootstrap* boot): m_boot(boot)
 {
 	m_vertices.setPrimitiveType(sf::Quads);
 	m_vertices.resize(WIDTH * HEIGHT * 4);
@@ -14,10 +14,10 @@ Layer::~Layer()
 {
 }
 
-bool Layer::loadTileset(std::string Tilesetpath)
+bool Layer::loadTileset(std::string tileset)
 {
 	sf::Image image;
-	if (!image.loadFromFile(Tilesetpath)) return false;
+	if (!image.loadFromFile(m_boot->getPath(tileset))) return false;
 	image.createMaskFromColor(sf::Color::Black);
 	m_tileset.loadFromImage(image);
 	

@@ -2,15 +2,16 @@
 
 
 
-Scene::Scene(std::string EltResJSON)
+Scene::Scene(Bootstrap* boot): m_boot(boot)
 {
-
-	ElementLayer* eltLayer = new ElementLayer(0, EltResJSON);
-	ElementLayer* eltLayerUp = new ElementLayer(1, EltResJSON);
+	LOG(DEBUG) << "Creating scene";
+	ElementLayer* eltLayer = new ElementLayer(m_boot,0);
+	ElementLayer* eltLayerUp = new ElementLayer(m_boot,1);
 	eltLayerUp->clearVertices();
 	m_layers.push_back(eltLayer);
 	m_layers.push_back(eltLayerUp);
 	m_elt_list = new ElementList;
+	LOG(DEBUG) << "Scene ready";
 }
 
 
@@ -30,6 +31,7 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void Scene::update(const ElementList& list)
 {
+	LOG(DEBUG) << "Updating scene";
 	// saving EltList is disabled for now
 	//*m_elt_list = *list;
 	for (Layer* layer : m_layers)

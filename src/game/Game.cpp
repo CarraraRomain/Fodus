@@ -13,7 +13,8 @@ Game::~Game()
 
 void Game::load_gui()
 {
-	m_game_scene.reset(new Scene(JSON_TILES_INDEX));
+	LOG(DEBUG) << "Loading GUI";
+	m_game_scene.reset(new Scene(m_boot));
 	m_game_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
 		SIZE*HEIGHT), "Level", sf::Style::Titlebar | sf::Style::Close));
 }
@@ -28,8 +29,10 @@ void Game::run()
 	LOG(DEBUG) << "Game is running";
 	load();
 	ElementList list;
-	TestGame::test_load_elt_list(&list);
+	TestGame::test_load_elt_list(&list, m_boot);
+	LOG(DEBUG) << "Updating";
 	m_game_scene->update(list);
+	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
 		game_event_loop();

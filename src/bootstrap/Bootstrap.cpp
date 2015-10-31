@@ -14,6 +14,10 @@ Bootstrap::~Bootstrap()
 {
 }
 
+/**
+ * Load the global conf
+ * FATAL failure if it fails
+ */
 void Bootstrap::loadConf()
 {
 	LOG(DEBUG) << "Opening global config";
@@ -36,6 +40,16 @@ void Bootstrap::loadConf()
 	LOG(DEBUG) << "Loaded global config";
 }
 
+/**
+ * Load the level index
+ */
+void Bootstrap::loadLevelIndex() {
+loadFile("levels_index");
+}
+
+/**
+ * Init method
+ */
 void Bootstrap::start()
 {
 	LOG(DEBUG) << "Bootstrap is starting";
@@ -43,6 +57,9 @@ void Bootstrap::start()
 	
 }
 
+/**
+ * Main method
+ */
 void Bootstrap::run()
 {
 	LOG(DEBUG) << "Bootstrap is running";
@@ -70,6 +87,9 @@ void Bootstrap::getConfig(const std::string&) const
 {
 }
 
+/**
+ * Get a doc ; if not already loaded loads it from the disk
+ */
 std::shared_ptr<rapidjson::Document> Bootstrap::getDocument(const std::string& key)
 {
 	std::map < std::string, std::shared_ptr<rapidjson::Document>>::const_iterator it;
@@ -85,6 +105,65 @@ std::shared_ptr<rapidjson::Document> Bootstrap::getDocument(const std::string& k
 	
 }
 
+/**
+ * Load and parses a level from disk
+ */
+std::shared_ptr<rapidjson::Document> Bootstrap::getLevel(const std::string& name) {
+
+	LOG(DEBUG) << "Opening level " << name;
+	std::shared_ptr<rapidjson::Document> file;
+	file.reset(new rapidjson::Document());
+	file->SetObject();
+	if(!checkLevelNode(name))
+	{
+		LOG(ERROR) << "Cannot load level " << name;
+		throw std::invalid_argument("No such res");
+	}
+	// TODO check levels_path
+	std::string path = m_config["resources"]["levels_path"].GetString();
+	std::stringstream ss;
+	std::ifstream ifs;
+	ifs.open(path + name + ".json", std::ios::binary);
+	if (ifs.is_open())
+	{
+		ss << ifs.rdbuf();
+		if (file->Parse<0>(ss.str().c_str()).HasParseError())
+		{
+			LOG(ERROR) << "JSON bad encoding";
+			throw std::invalid_argument("JSON bad encoding");
+		}
+
+	}
+	else
+	{
+		LOG(ERROR) << "Level file not found";
+		throw std::invalid_argument("Level file not found");
+	}
+	ifs.close();
+
+	LOG(DEBUG) << "Loaded level " << name;
+	return file;
+}
+/**
+ * Load and parses a level from disk
+ */
+std::string Bootstrap::getPath(const std::string& name) {
+
+	LOG(DEBUG) << "Opening res " << name;
+	if(!checkNode(name))
+	{
+		LOG(ERROR) << "Cannot load res " << name;
+		throw std::invalid_argument("No such res");
+	}
+	std::string path = m_config["resources"][name].GetString();
+	LOG(DEBUG) << "Loaded res " << name;
+	return path;
+
+}
+
+/**
+ * Load and parse a file from disk
+ */
 void Bootstrap::loadFile(const std::string& name)
 {
 	LOG(DEBUG) << "Opening " << name;
@@ -120,7 +199,14 @@ void Bootstrap::loadFile(const std::string& name)
 	LOG(DEBUG) << "Loaded " << name;
 }
 
-bool Bootstrap::checkNode(std::string name)
+/**
+ * TODO Implementation
+ */
+void Bootstrap::loadLevel(const std::string &name) {
+
+}
+
+bool Bootstrap::checkNode(const std::string& name) const
 {
 	if (!m_config["resources"].HasMember(name)) {
 		LOG(ERROR) << "Config has no res " << name;
@@ -134,11 +220,18 @@ bool Bootstrap::checkNode(std::string name)
 	return true;
 }
 
+/**
+ * TODO Implementation
+ */
+bool Bootstrap::checkLevelNode(const std::string& name) const
+{
+	return true;
+}
 
 
 /**
-* Launch the editor
-*/
+ * Launch the editor
+ */
 void Bootstrap::launch_editor()
 {
 	LOG(DEBUG) << "Launching Editor";
@@ -178,18 +271,15 @@ void Bootstrap::launch_editor()
 	} while (!nerr);
 	std::cout << "Loading GUI..." << std::endl;
 	editor.run();
-
 }
 
 /**
-* Launch the game
-*/
+ * Launch the game
+ */
 void Bootstrap::launch_game()
 {
 	LOG(DEBUG) << "Launching Game";
-	std::cout << "Launching dat game..." << std::endl;
-	// TODO Game class ( game.run() )
 	Game game(this);
 	game.run();
-	//test_sfml();
 }
+
