@@ -145,7 +145,7 @@ std::shared_ptr<rapidjson::Document> Bootstrap::getLevel(const std::string& name
 	return file;
 }
 /**
- * Load and parses a level from disk
+ * Get a resource path
  */
 std::string Bootstrap::getPath(const std::string& name) {
 
@@ -162,7 +162,7 @@ std::string Bootstrap::getPath(const std::string& name) {
 }
 
 /**
- * Load and parse a file from disk
+ * Load and parse a JSON file from disk
  */
 void Bootstrap::loadFile(const std::string& name)
 {
@@ -269,7 +269,6 @@ void Bootstrap::launch_editor()
 		}
 
 	} while (!nerr);
-	std::cout << "Loading GUI..." << std::endl;
 	editor.run();
 }
 

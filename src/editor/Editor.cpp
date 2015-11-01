@@ -18,6 +18,7 @@ Editor::~Editor()
  */
 void Editor::load_gui()
 {
+	LOG(DEBUG) << "Loading GUI";
 	m_level_scene.reset(new Scene(m_boot));
 	m_editor_scene.reset(new Scene(m_boot));
 	m_level_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
@@ -36,22 +37,11 @@ void Editor::load_gui()
  */
 void Editor::load_level()
 {
+	LOG(DEBUG) << "Get level " << m_file;
 	m_level.reset(new rapidjson::Document);
 	m_level->SetObject();
-
-
-	std::stringstream ss;
-	std::ifstream ifs;
-	ifs.open("../../res/GFX/levels/" + m_file + ".json", std::ios::binary);
-	if (ifs.is_open())
-	{
-		std::cout << "Good" << std::endl;
-		ss << ifs.rdbuf(); // 1
-		std::cout << "Done" << std::endl;
-		if (m_level->Parse<0>(ss.str().c_str()).HasParseError()) throw std::invalid_argument("JSON bad encoding");
-	}
-	else throw std::invalid_argument("File Not Found");
-	ifs.close();
+	m_level = m_boot->getLevel(m_file);
+	LOG(DEBUG) << "Done";
 }
 /**
  * JSON Template V2
@@ -145,7 +135,6 @@ void Editor::load_tiles()
 	m_editor_list.reset(new ElementList());
 	string key;
 	int i = 0;
-	cout << "Loading Tiles from tiles.json..." << endl;
 	TileFactory TFactory(m_boot);
 	rapidjson::Value::ConstMemberIterator tiles = TFactory.getTilesDoc()->FindMember("tiles");
 	for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
@@ -153,8 +142,9 @@ void Editor::load_tiles()
 	{
 		Element elt = Element();
 		elt.setKey(itr->name.GetString());
-		elt.setX(i);
-		elt.setY(0);
+		elt.setX(i%WIDTH);
+		LOG(DEBUG) << "i: " << i << ", Y: " << i / WIDTH;
+		elt.setY(i/WIDTH);
 		elt.setD(0);
 		m_editor_list->push_back(elt);
 		i++;
@@ -259,7 +249,7 @@ void Editor::save()
 	rapidjson::PrettyWriter<rapidjson::StringBuffer> w(s);
 	m_level->Accept(w);
 	string json(s.GetString(), s.GetSize());
-	ofstream of("../../res/GFX/levels/" + m_file + ".json");
+	ofstream of("../../res/levels/" + m_file + ".json");
 	of << json;
 	if (!of.good()) throw std::runtime_error("Can't write the JSON string to the file!");
 

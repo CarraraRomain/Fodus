@@ -53,7 +53,7 @@ private:
 	std::unique_ptr<ElementList> m_level_list;
 	std::unique_ptr<ElementList> m_editor_list;
 	
-	std::unique_ptr<rapidjson::Document> m_level;
+	std::shared_ptr<rapidjson::Document> m_level;
 	std::string m_file;
 };
 
