@@ -53,17 +53,17 @@ matrix1x1[0][0] = "ALONE"
 
 def initialize_file():
 
-    print "Init File struct..."
+    print("Init File struct...")
     return {"header": {"name": "Default Tileset", "version": "0.2"}, "tiles": {}}
 
 
 def create_res():
-    name = raw_input("New res name: ")
-    suffix = raw_input("suffix: ")
-    X = int(raw_input("X size: "))
-    Y = int(raw_input("Y size: "))
-    Xori = int(raw_input("X origin: "))
-    Yori = int(raw_input("Y origin: "))
+    name = input("New res name: ")
+    suffix = input("suffix: ")
+    X = int(input("X size: "))
+    Y = int(input("Y size: "))
+    Xori = int(input("X origin: "))
+    Yori = int(input("Y origin: "))
     result = {}
     prefix = ""
     for i in range(X):
@@ -76,42 +76,45 @@ def create_res():
                 prefix = matrix2x3[i][j]
             if X == 1 and Y == 3:
                 prefix = matrix1x3[i][j]
-
+            if X == 1 and Y == 2:
+                prefix = matrix1x2[i][j]
+            if X == 2 and Y == 2:
+                prefix = matrix2x2[i][j]
             full_name = name+"_"+prefix
             full_name = full_name + "_" + suffix if (suffix != "") else full_name
             result.update({full_name: {"x": Xori+i, "y": Yori+j}})
-    print "Generating " + name + "..."
+    print("Generating " + name + "...")
     return result
 
 
-print "*** Fodus JSON Res Generator ***"
-print " *-> X"
-print " | "
-print " v "
-print " Y "
-print "========="
-filename = raw_input("Tile file name: ")
-print "========="
-with open(filename+".json", "a+") as jsonfile:
-    print "Open file " + filename + ".json."
-
+print("*** Fodus JSON Res Generator ***")
+print(" *-> X")
+print(" | ")
+print(" v ")
+print(" Y ")
+print("=========")
+filename = input("Tile file name: ")
+print("=========")
+with open("tiles.json", "r+") as jsonfile:
+    print("Open file " + filename + ".json")
     try:
         data = json.load(jsonfile)
     except ValueError:
-        print "Empty file found"
+        print("Empty file found")
         data = initialize_file()
 
     for key in data['tiles'].keys():
-        print "Found : " + key
+        print("Found : " + key)
 
-    print "========="
-    rc = raw_input("Create new res? (y/n) ")
-    print "========="
+    print("=========")
+    rc = input("Create new res? (y/n) ")
+    print("=========")
     while rc != "n":
         data['tiles'].update(create_res())
-        print "========="
-        rc = raw_input("Create new res? (y/n) ")
+        print("=========")
+        rc = input("Create new res? (y/n) ")
 
     if data:
+        jsonfile.seek(0)
         jsonfile.truncate(0)
         json.dump(data, jsonfile, indent=2)
