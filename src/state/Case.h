@@ -1,11 +1,19 @@
+#include "Element.h"
+
 class Case : public Element
 {
 private:
-	UNDIFINED occupation, piege, depart, Attribute1;
+	int occupation;
+	int piege;
+	int depart;
 	
 public:
-	void Occupation(UNDIFINED occupation1);
-	void Piege(UNDIFINED piege1);
-	void Depart(UNDIFINED depart1);
-	void Attribute(UNDIFINED Attribute11);
+	void setOccupation(int newOccupation);
+	int getOccupation();
+
+	void setPiege(int newPiege);
+	int getPiege();
+
+	void setDepart(int newDepart);
+	int getDepart();
 };
