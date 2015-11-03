@@ -62,6 +62,7 @@ def create_res():
     suffix = input("suffix: ")
     X = int(input("X size: "))
     Y = int(input("Y size: "))
+    D = int(input("D Depth: "))
     Xori = int(input("X origin: "))
     Yori = int(input("Y origin: "))
     result = {}
@@ -82,7 +83,7 @@ def create_res():
                 prefix = matrix2x2[i][j]
             full_name = name+"_"+prefix
             full_name = full_name + "_" + suffix if (suffix != "") else full_name
-            result.update({full_name: {"x": Xori+i, "y": Yori+j}})
+            result.update({full_name: {"x": Xori+i, "y": Yori+j, "d": D}})
     print("Generating " + name + "...")
     return result
 
@@ -101,7 +102,7 @@ with open("tiles.json", "r+") as jsonfile:
         data = json.load(jsonfile)
     except ValueError:
         print("Empty file found")
-        data = initialize_file()
+        # data = initialize_file()
 
     for key in data['tiles'].keys():
         print("Found : " + key)
