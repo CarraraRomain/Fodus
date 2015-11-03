@@ -29,3 +29,8 @@ int Case::getDepart()
 {
 	return depart;
 }
+
+bool Case::isGround()
+{
+	return true;
+}

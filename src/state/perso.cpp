@@ -119,3 +119,21 @@ int Perso::getSeuil()
 {
 	return seuil;
 }
+
+bool Perso::isAllie()
+{
+	if (type == Principal || type == Zombie) return true;
+	else return false;
+}
+
+bool Perso::isEnnemy()
+{
+	if (type == Guerrier || type == Mage) return true;
+	else return false;
+}
+
+bool Perso::isNeutral()
+{
+	if (type == Monstre) return true;
+	else return false;
+}

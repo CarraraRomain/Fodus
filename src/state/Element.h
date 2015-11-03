@@ -15,6 +15,12 @@ public:
 	void setKey(std::string key);
 	std::string getKey();
 
+	virtual bool isGround();
+	virtual bool isPerso();
+	virtual bool isAllie();
+	virtual bool isNeutral();
+	virtual bool isEnnemy();
+
 private:
 	std::string m_key;
 	int m_x;

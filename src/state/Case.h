@@ -16,4 +16,6 @@ public:
 
 	void setDepart(int newDepart);
 	int getDepart();
+
+	virtual bool isGround() override;
 };

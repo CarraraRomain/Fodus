@@ -24,5 +24,4 @@ public:
 
 	void setCible(int newCible);
 	int getCible();
-
 };

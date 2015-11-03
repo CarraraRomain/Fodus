@@ -66,4 +66,8 @@ public:
 
 	void setSeuil(int newSeuil);
 	int getSeuil();
+
+	virtual bool isAllie() override;
+	virtual bool isEnnemy() override;
+	virtual bool isNeutral() override;
 };

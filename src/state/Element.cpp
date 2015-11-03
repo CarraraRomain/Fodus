@@ -36,3 +36,28 @@ std::string Element::getKey()
 {
 	return m_key;
 }
+
+bool Element::isGround()
+{
+	return false;
+}
+
+bool Element::isPerso()
+{
+	return false;
+}
+
+bool Element::isAllie()
+{
+	return false;
+}
+
+bool Element::isNeutral()
+{
+	return false;
+}
+
+bool Element::isEnnemy()
+{
+	return false;
+}
