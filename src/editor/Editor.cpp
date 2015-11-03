@@ -145,7 +145,7 @@ void Editor::load_tiles()
 		elt.setX(i%WIDTH);
 		LOG(DEBUG) << "i: " << i << ", Y: " << i / WIDTH;
 		elt.setY(i/WIDTH);
-		elt.setD(0);
+		elt.setD(itr->value["d"].GetInt());
 		m_editor_list->push_back(elt);
 		i++;
 	}
@@ -208,7 +208,7 @@ void Editor::setElt(Element elt, int x, int y, int depth)
 	for (int i = 0; i < int(m_level_list->size()); i++)
 	{
 	
-		if ((*m_level_list)[i]->getX() == x && (*m_level_list)[i]->getY() == y && (*m_level_list)[i]->getD() == depth)
+		if ((*m_level_list)[i]->getX() == x && (*m_level_list)[i]->getY() == y && (*m_level_list)[i]->getD() == elt.getD())
 		{
 			(*m_level_list)[i]->setKey(elt.getKey());
 			found = true;
@@ -221,11 +221,11 @@ void Editor::setElt(Element elt, int x, int y, int depth)
 		el.setKey(elt.getKey());
 		el.setX(x);
 		el.setY(y);
-		el.setD(depth);
+		el.setD(elt.getD());
 		m_editor_list->push_back(el);
 	}
 
-	(*m_level)["level"][y][x][depth]["key"].SetString(elt.getKey(), m_level->GetAllocator());
+	(*m_level)["level"][y][x][elt.getD()]["key"].SetString(elt.getKey(), m_level->GetAllocator());
 	
 
 
@@ -237,7 +237,7 @@ Element Editor::getElt(int x, int y, int depth)
 	for (int i = 0; i < int(m_editor_list->size()); i++)
 	{
 		Element elt = *(*m_editor_list)[i];
-		if (elt.getX() == x && elt.getY() == y && elt.getD() == depth)
+		if (elt.getX() == x && elt.getY() == y)
 			return elt;
 	}
 	throw std::domain_error("Bad Coord");
@@ -330,6 +330,7 @@ void Editor::editor_event_loop()
 				m_selected_elt.reset(new Element(getElt(event.mouseButton.x / SIZE,
 														event.mouseButton.y / SIZE, 0)));
 				LOG(INFO) << "Elt: " << m_selected_elt->getKey();
+				LOG(INFO) << "Elt Depth: " << m_selected_elt->getD();
 			}catch (const std::domain_error& e){
 				LOG(WARNING) << "No Elt here";
 				}

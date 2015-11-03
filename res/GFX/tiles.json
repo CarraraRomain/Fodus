@@ -1,204 +1,258 @@
 {
+  "tiles": {
+    "CEIL_CAVE_MID_LEFT": {
+      "y": 31,
+      "x": 2,
+      "d": 1
+    },
+    "WEAPON_1": {
+      "y": 6,
+      "x": 26,
+      "d": 1
+    },
+    "CEIL_CAVE_MID_MID": {
+      "y": 31,
+      "x": 3,
+      "d": 1
+    },
+    "VOID": {
+      "y": 0,
+      "x": 2,
+      "d": 0
+    },
+	"VOID_1": {
+      "y": 0,
+      "x": 2,
+      "d": 1
+    },
+    "DOOR_CAVE_TOP_3": {
+      "y": 39,
+      "x": 8,
+      "d": 1
+    },
+    "WALL_CAVE_MID_LEFT_2": {
+      "y": 36,
+      "x": 2,
+      "d": 1
+    },
+    "CEIL_CAVE_TOP_LEFT": {
+      "y": 30,
+      "x": 2,
+      "d": 1
+    },
+    "WALL_CAVE_MID_MID_2": {
+      "y": 36,
+      "x": 3,
+      "d": 1
+    },
+    "CEIL_CAVE_BOT_RIGHT": {
+      "y": 32,
+      "x": 4,
+      "d": 1
+    },
+    "DOOR_CAVE_TOP_2": {
+      "y": 39,
+      "x": 7,
+      "d": 1
+    },
+    "FLOOR_STONE_1": {
+      "y": 7,
+      "x": 1,
+      "d": 0
+    },
+    "WALL_CAVE_BOT_RIGHT_2": {
+      "y": 37,
+      "x": 4,
+      "d": 1
+    },
+    "WALL_DUNGEON_TOP_RIGHT": {
+      "y": 6,
+      "x": 14,
+      "d": 1
+    },
+    "DOOR_CAVE_TOP_4": {
+      "y": 39,
+      "x": 9,
+      "d": 1
+    },
+    "WALL_CAVE_BOT_MID_2": {
+      "y": 37,
+      "x": 3,
+      "d": 1
+    },
+    "DOOR_CAVE_BOT_1": {
+      "y": 40,
+      "x": 6,
+      "d": 1
+    },
+    "FLOOR_WOOD_2": {
+      "y": 0,
+      "x": 12,
+      "d": 0
+    },
+    "DOOR_CAVE_BOT_4": {
+      "y": 40,
+      "x": 9,
+      "d": 1
+    },
+    "CORNER_CAVE_TOP_RIGHT": {
+      "y": 30,
+      "x": 6,
+      "d": 1
+    },
+    "WALL_DUNGEON_TOP_LEFT": {
+      "y": 6,
+      "x": 12,
+      "d": 1
+    },
+    "UNDEFINED": {
+      "y": 0,
+      "x": 0,
+      "d": 0
+    },
+    "CEIL_CAVE_BOT_LEFT": {
+      "y": 32,
+      "x": 2,
+      "d": 1
+    },
+    "DOOR_CAVE_BOT_3": {
+      "y": 40,
+      "x": 8,
+      "d": 1
+    },
+    "WALL_DUNGEON_TOP_MID": {
+      "y": 6,
+      "x": 13,
+      "d": 1
+    },
+    "WALL_CAVE_BOT_LEFT_1": {
+      "y": 34,
+      "x": 2,
+      "d": 1
+    },
+    "CEIL_CAVE_MID_RIGHT": {
+      "y": 31,
+      "x": 4,
+      "d": 1
+    },
+    "WALL_DUNGEON_BOT_LEFT": {
+      "y": 7,
+      "x": 12,
+      "d": 1
+    },
+    "WALL_CAVE_TOP_LEFT_1": {
+      "y": 33,
+      "x": 2,
+      "d": 1
+    },
+    "DOOR_CAVE_TOP_1": {
+      "y": 39,
+      "x": 6,
+      "d": 1
+    },
+    "WALL_CAVE_TOP_RIGHT_2": {
+      "y": 35,
+      "x": 4,
+      "d": 1
+    },
+    "WALL_CAVE_TOP_MID_2": {
+      "y": 35,
+      "x": 3,
+      "d": 1
+    },
+    "CORNER_CAVE_BOT_LEFT": {
+      "y": 31,
+      "x": 5,
+      "d": 1
+    },
+    "FLOOR_WOOD_1": {
+      "y": 0,
+      "x": 11,
+      "d": 0
+    },
+    "WALL_CAVE_MID_RIGHT_2": {
+      "y": 36,
+      "x": 4,
+      "d": 1
+    },
+    "FLOOR_STONE_2": {
+      "y": 8,
+      "x": 1,
+      "d": 0
+    },
+    "WALL_CAVE_TOP_LEFT_2": {
+      "y": 35,
+      "x": 2,
+      "d": 1
+    },
+    "CORNER_CAVE_BOT_RIGHT": {
+      "y": 31,
+      "x": 6,
+      "d": 1
+    },
+    "CEIL_CAVE_TOP_MID": {
+      "y": 30,
+      "x": 3,
+      "d": 1
+    },
+    "DOOR_CAVE_BOT_2": {
+      "y": 40,
+      "x": 7,
+      "d": 1
+    },
+    "WALL_DUNGEON_BOT_MID": {
+      "y": 7,
+      "x": 13,
+      "d": 1
+    },
+    "WALL_CAVE_TOP_MID_1": {
+      "y": 33,
+      "x": 3,
+      "d": 1
+    },
+    "WALL_CAVE_BOT_LEFT_2": {
+      "y": 37,
+      "x": 2,
+      "d": 1
+    },
+    "CEIL_CAVE_BOT_MID": {
+      "y": 32,
+      "x": 3,
+      "d": 1
+    },
+    "CEIL_CAVE_TOP_RIGHT": {
+      "y": 30,
+      "x": 4,
+      "d": 1
+    },
+    "WALL_CAVE_BOT_MID_1": {
+      "y": 34,
+      "x": 3,
+      "d": 1
+    },
+    "CORNER_CAVE_TOP_LEFT": {
+      "y": 30,
+      "x": 5,
+      "d": 1
+    },
+    "WALL_DUNGEON_BOT_RIGHT": {
+      "y": 7,
+      "x": 14,
+      "d": 1
+    },
+    "WALL_CAVE_TOP_RIGHT_1": {
+      "y": 33,
+      "x": 4,
+      "d": 1
+    },
+    "WALL_CAVE_BOT_RIGHT_1": {
+      "y": 34,
+      "x": 4,
+      "d": 1
+    }
+  },
   "header": {
     "version": "0.2",
     "name": "Default Tileset"
-  },
-  "tiles": {
-    "FLOOR_STONE_1": {
-      "x": 1,
-      "y": 7
-    },
-    "DOOR_CAVE_BOT_4": {
-      "x": 9,
-      "y": 40
-    },
-    "WALL_CAVE_MID_RIGHT_2": {
-      "x": 4,
-      "y": 36
-    },
-    "CEIL_CAVE_MID_LEFT": {
-      "x": 2,
-      "y": 31
-    },
-    "CEIL_CAVE_BOT_RIGHT": {
-      "x": 4,
-      "y": 32
-    },
-    "WALL_CAVE_MID_MID_2": {
-      "x": 3,
-      "y": 36
-    },
-    "WALL_CAVE_BOT_RIGHT_1": {
-      "x": 4,
-      "y": 34
-    },
-    "FLOOR_WOOD_1": {
-      "x": 11,
-      "y": 0
-    },
-    "CEIL_CAVE_MID_MID": {
-      "x": 3,
-      "y": 31
-    },
-    "DOOR_CAVE_TOP_3": {
-      "x": 8,
-      "y": 39
-    },
-    "CORNER_CAVE_BOT_RIGHT": {
-      "x": 6,
-      "y": 31
-    },
-    "WALL_DUNGEON_TOP_RIGHT": {
-      "x": 14,
-      "y": 6
-    },
-    "DOOR_CAVE_BOT_2": {
-      "x": 7,
-      "y": 40
-    },
-    "WALL_CAVE_MID_LEFT_2": {
-      "x": 2,
-      "y": 36
-    },
-    "CEIL_CAVE_TOP_LEFT": {
-      "x": 2,
-      "y": 30
-    },
-    "WALL_DUNGEON_BOT_RIGHT": {
-      "x": 14,
-      "y": 7
-    },
-    "UNDEFINED": {
-      "x": 0,
-      "y": 0
-    },
-    "WALL_CAVE_TOP_LEFT_1": {
-      "x": 2,
-      "y": 33
-    },
-    "WALL_CAVE_BOT_LEFT_1": {
-      "x": 2,
-      "y": 34
-    },
-    "WALL_DUNGEON_BOT_MID": {
-      "x": 13,
-      "y": 7
-    },
-    "FLOOR_WOOD_2": {
-      "x": 12,
-      "y": 0
-    },
-    "CEIL_CAVE_TOP_MID": {
-      "x": 3,
-      "y": 30
-    },
-    "WALL_CAVE_BOT_RIGHT_2": {
-      "x": 4,
-      "y": 37
-    },
-    "WEAPON_1": {
-      "x": 26,
-      "y": 6
-    },
-    "WALL_DUNGEON_TOP_MID": {
-      "x": 13,
-      "y": 6
-    },
-    "CEIL_CAVE_BOT_MID": {
-      "x": 3,
-      "y": 32
-    },
-    "VOID": {
-      "x": 2,
-      "y": 0
-    },
-    "WALL_CAVE_TOP_MID_2": {
-      "x": 3,
-      "y": 35
-    },
-    "WALL_CAVE_TOP_RIGHT_2": {
-      "x": 4,
-      "y": 35
-    },
-    "WALL_DUNGEON_BOT_LEFT": {
-      "x": 12,
-      "y": 7
-    },
-    "CORNER_CAVE_TOP_LEFT": {
-      "x": 5,
-      "y": 30
-    },
-    "CEIL_CAVE_TOP_RIGHT": {
-      "x": 4,
-      "y": 30
-    },
-    "WALL_CAVE_BOT_MID_1": {
-      "x": 3,
-      "y": 34
-    },
-    "DOOR_CAVE_TOP_2": {
-      "x": 7,
-      "y": 39
-    },
-    "WALL_CAVE_BOT_MID_2": {
-      "x": 3,
-      "y": 37
-    },
-    "CEIL_CAVE_MID_RIGHT": {
-      "x": 4,
-      "y": 31
-    },
-    "WALL_CAVE_TOP_LEFT_2": {
-      "x": 2,
-      "y": 35
-    },
-    "DOOR_CAVE_TOP_1": {
-      "x": 6,
-      "y": 39
-    },
-    "WALL_CAVE_TOP_RIGHT_1": {
-      "x": 4,
-      "y": 33
-    },
-    "DOOR_CAVE_BOT_1": {
-      "x": 6,
-      "y": 40
-    },
-    "FLOOR_STONE_2": {
-      "x": 1,
-      "y": 8
-    },
-    "WALL_DUNGEON_TOP_LEFT": {
-      "x": 12,
-      "y": 6
-    },
-    "WALL_CAVE_TOP_MID_1": {
-      "x": 3,
-      "y": 33
-    },
-    "WALL_CAVE_BOT_LEFT_2": {
-      "x": 2,
-      "y": 37
-    },
-    "CORNER_CAVE_TOP_RIGHT": {
-      "x": 6,
-      "y": 30
-    },
-    "DOOR_CAVE_BOT_3": {
-      "x": 8,
-      "y": 40
-    },
-    "CEIL_CAVE_BOT_LEFT": {
-      "x": 2,
-      "y": 32
-    },
-    "DOOR_CAVE_TOP_4": {
-      "x": 9,
-      "y": 39
-    },
-    "CORNER_CAVE_BOT_LEFT": {
-      "x": 5,
-      "y": 31
-    }
   }
 }
