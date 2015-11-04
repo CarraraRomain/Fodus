@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../state/ElementList.hpp"
+#include "../state/LegacyElementList.hpp"
 #include "../global.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -33,8 +33,8 @@ public:
 	void load();
 	void run();
 	void setFile(std::string);
-	void setElt(Element elt, int x, int y, int depth = 0);
-	Element getElt(int x, int y, int depth);
+	void setElt(LegacyElement elt, int x, int y, int depth = 0);
+	LegacyElement getElt(int x, int y, int depth);
 	void save();
 	void level_event_loop();
 	void editor_event_loop();
@@ -48,10 +48,10 @@ private:
 	std::unique_ptr<Scene> m_editor_scene;
 	
 	std::unique_ptr<SelectBox> m_box;
-	std::unique_ptr<Element> m_selected_elt;
+	std::unique_ptr<LegacyElement> m_selected_elt;
 	
-	std::unique_ptr<ElementList> m_level_list;
-	std::unique_ptr<ElementList> m_editor_list;
+	std::unique_ptr<LegacyElementList> m_level_list;
+	std::unique_ptr<LegacyElementList> m_editor_list;
 	
 	std::shared_ptr<rapidjson::Document> m_level;
 	std::string m_file;

@@ -1,7 +1,7 @@
 #pragma once
 #include "Layer.hpp"
 #include "TileFactory.hpp"
-#include "../state/ElementList.hpp"
+#include "../state/LegacyElementList.hpp"
 #include "../global.hpp"
 
 class ElementLayer :
@@ -10,7 +10,7 @@ class ElementLayer :
 public:
 	ElementLayer(Bootstrap*, int);
 	~ElementLayer();
-	virtual void update(const ElementList& list) override;
+	virtual void update(const LegacyElementList& list) override;
 
 private:
 	int m_depth;

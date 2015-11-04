@@ -16,7 +16,7 @@ ElementLayer::~ElementLayer()
 }
 
 
-void ElementLayer::update(const ElementList& list)
+void ElementLayer::update(const LegacyElementList& list)
 {
 	LOG(DEBUG) << "Updating layer";
 	int X = 0;
@@ -24,7 +24,7 @@ void ElementLayer::update(const ElementList& list)
 	int depth = 0;
 	for (int i = 0; i < int(list.size());i++)
 	{
-		Element elt = *(list)[i];
+		LegacyElement elt = *(list)[i];
 	
 		X = elt.getX();
 		Y = elt.getY();

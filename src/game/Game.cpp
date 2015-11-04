@@ -28,7 +28,7 @@ void Game::run()
 {
 	LOG(DEBUG) << "Game is running";
 	load();
-	ElementList list;
+	LegacyElementList list;
 	TestGame::test_load_elt_list(&list, m_boot);
 	LOG(DEBUG) << "Updating";
 	m_game_scene->update(list);

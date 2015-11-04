@@ -97,7 +97,7 @@ void Editor::new_level()
 
 void Editor::load_elts()
 {
-	m_level_list.reset(new ElementList());
+	m_level_list.reset(new LegacyElementList());
 	//std::cout << level["header"].GetString();
 	//cout << level["level"][0][0][0..Depth]["key"].GetString();
 
@@ -115,7 +115,7 @@ void Editor::load_elts()
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				Element elt = Element();
+				LegacyElement elt = LegacyElement();
 				elt.setKey(e[k]["key"].GetString());
 				elt.setX(posX);
 				elt.setY(i);
@@ -132,7 +132,7 @@ void Editor::load_elts()
 
 void Editor::load_tiles()
 {
-	m_editor_list.reset(new ElementList());
+	m_editor_list.reset(new LegacyElementList());
 	string key;
 	int i = 0;
 	TileFactory TFactory(m_boot);
@@ -140,7 +140,7 @@ void Editor::load_tiles()
 	for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
 	itr != tiles->value.MemberEnd(); ++itr)
 	{
-		Element elt = Element();
+		LegacyElement elt = LegacyElement();
 		elt.setKey(itr->name.GetString());
 		elt.setX(i%WIDTH);
 		LOG(DEBUG) << "i: " << i << ", Y: " << i / WIDTH;
@@ -201,7 +201,7 @@ void Editor::setFile(std::string file)
 
 
 
-void Editor::setElt(Element elt, int x, int y, int depth)
+void Editor::setElt(LegacyElement elt, int x, int y, int depth)
 {
 	
 	bool found = false;
@@ -217,7 +217,7 @@ void Editor::setElt(Element elt, int x, int y, int depth)
 	}
 	if (!found)
 	{
-		Element el = Element();
+		LegacyElement el = LegacyElement();
 		el.setKey(elt.getKey());
 		el.setX(x);
 		el.setY(y);
@@ -231,12 +231,12 @@ void Editor::setElt(Element elt, int x, int y, int depth)
 
 }
 
-Element Editor::getElt(int x, int y, int depth)
+LegacyElement Editor::getElt(int x, int y, int depth)
 {
 
 	for (int i = 0; i < int(m_editor_list->size()); i++)
 	{
-		Element elt = *(*m_editor_list)[i];
+		LegacyElement elt = *(*m_editor_list)[i];
 		if (elt.getX() == x && elt.getY() == y)
 			return elt;
 	}
@@ -327,7 +327,7 @@ void Editor::editor_event_loop()
 			std::cout << "mouse x: " << event.mouseButton.x / SIZE << std::endl;
 			std::cout << "mouse y: " << event.mouseButton.y / SIZE << std::endl;
 			try{
-				m_selected_elt.reset(new Element(getElt(event.mouseButton.x / SIZE,
+				m_selected_elt.reset(new LegacyElement(getElt(event.mouseButton.x / SIZE,
 														event.mouseButton.y / SIZE, 0)));
 				LOG(INFO) << "Elt: " << m_selected_elt->getKey();
 				LOG(INFO) << "Elt Depth: " << m_selected_elt->getD();

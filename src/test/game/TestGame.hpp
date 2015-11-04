@@ -1,6 +1,6 @@
 #pragma once
 #include "../../../lib/rapidjson/document.h"
-#include "../../state/ElementList.hpp"
+#include "../../state/LegacyElementList.hpp"
 
 #include "../global.hpp"
 #include "../../bootstrap/Bootstrap.hpp"
@@ -12,7 +12,7 @@ public:
 	TestGame();
 	~TestGame();
 	static rapidjson::Document test_load_json_level();
-	static void test_load_elt_list(ElementList*, Bootstrap*);
+	static void test_load_elt_list(LegacyElementList*, Bootstrap*);
 	static void test_load_tiles();
 };
 

@@ -36,7 +36,7 @@ rapidjson::Document TestGame::test_load_json_level()
 }
 
 
-void TestGame::test_load_elt_list(ElementList* list, Bootstrap* boot)
+void TestGame::test_load_elt_list(LegacyElementList* list, Bootstrap* boot)
 {
 	LOG(DEBUG) << "Loading Elt list";
 	// loading a level from ../../res/GFX/level.json
@@ -62,7 +62,7 @@ void TestGame::test_load_elt_list(ElementList* list, Bootstrap* boot)
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				Element elt = Element();
+				LegacyElement elt = LegacyElement();
 				elt.setKey(e[k]["key"].GetString());
 				elt.setX(posX);
 				elt.setY(i);

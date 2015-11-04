@@ -10,7 +10,7 @@ Scene::Scene(Bootstrap* boot): m_boot(boot)
 	eltLayerUp->clearVertices();
 	m_layers.push_back(eltLayer);
 	m_layers.push_back(eltLayerUp);
-	m_elt_list = new ElementList;
+	m_elt_list = new LegacyElementList;
 	LOG(DEBUG) << "Scene ready";
 }
 
@@ -29,7 +29,7 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	}
 }
 
-void Scene::update(const ElementList& list)
+void Scene::update(const LegacyElementList& list)
 {
 	LOG(DEBUG) << "Updating scene";
 	// saving EltList is disabled for now
@@ -49,9 +49,9 @@ void Scene::update()
 }
 
 
-void Scene::setEltAt(Element& elt, int x, int y, int depth)
+void Scene::setEltAt(LegacyElement& elt, int x, int y, int depth)
 {
-	Element search_elt;
+	LegacyElement search_elt;
 	bool found = false;
 	for (int i = 0; i < int(m_elt_list->size()); i++)
 	{
@@ -65,7 +65,7 @@ void Scene::setEltAt(Element& elt, int x, int y, int depth)
 	}
 	if(!found)
 	{
-		Element elt = Element();
+		LegacyElement elt = LegacyElement();
 		elt.setKey(elt.getKey());
 		elt.setX(x);
 		elt.setY(y);
