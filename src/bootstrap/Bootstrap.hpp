@@ -5,7 +5,7 @@
 #include <map>
 #include "../global.hpp"
 
-
+#include "../engine/DebugCommand.hpp"
 /**
  * Class to bootstrap the program
  */

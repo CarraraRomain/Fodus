@@ -2,6 +2,7 @@
 
 
 
+
 CommandFactory::CommandFactory()
 {
 }
@@ -11,14 +12,14 @@ CommandFactory::~CommandFactory()
 {
 }
 
-void CommandFactory::registerFactory(const std::string& key, std::unique_ptr<CommandCreator> com)
+void CommandFactory::registerFactory(const std::string& key, CommandCreator* com)
 {
-	m_map[key] = std::move(com);
+	m_map[key] = com;
 }
 
 std::unique_ptr<Command> CommandFactory::build(const std::string& key) const
 {
-	std::map<std::string, std::unique_ptr<CommandCreator>>::const_iterator i;
+	std::map<std::string, CommandCreator*>::const_iterator i;
 	i = m_map.find(key);
 	if(i!=m_map.end())
 	{

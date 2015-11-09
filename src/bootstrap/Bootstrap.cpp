@@ -1,7 +1,10 @@
 #include "Bootstrap.hpp"
+
 #include "../editor/Editor.hpp"
 #include "../game/Game.hpp"
+#include "../engine/CommandFactory.hpp"
 
+CommandFactory command_factory;
 
 Bootstrap::Bootstrap(int argc, char** argv)
 {
@@ -62,12 +65,19 @@ void Bootstrap::start()
  */
 void Bootstrap::run()
 {
+	
 	LOG(DEBUG) << "Bootstrap is running";
 	// Launch Args
 	// TODO to complete
 	std::string type;
 	if (m_argc > 1) type = m_argv[1];
-
+	
+	// Commands factory Demo
+	std::unique_ptr<ComFacto<DebugCommand>> debug_facto;
+	debug_facto.reset(new ComFacto<DebugCommand>("debug"));
+	std::unique_ptr<Command> p = command_factory.build("debug");
+	if (p != nullptr) p->execute();
+	//
 
 	if (type == "editor") launch_editor();
 	else if (type == "game") launch_game();
