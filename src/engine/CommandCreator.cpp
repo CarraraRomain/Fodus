@@ -1,9 +1,8 @@
 #include "CommandCreator.hpp"
 
-#include "CommandFactory.hpp"
-
+#include "../bootstrap/Bootstrap.hpp"
 
 CommandCreator::CommandCreator(const std::string& key)
 {
-	command_factory.registerFactory(key, this);
+	boot.command_factory.registerFactory(key, this);
 }

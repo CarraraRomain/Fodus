@@ -6,6 +6,8 @@
 #include "../global.hpp"
 
 #include "../engine/DebugCommand.hpp"
+#include "../engine/CommandFactory.hpp"
+
 /**
  * Class to bootstrap the program
  */
@@ -13,6 +15,7 @@ class Bootstrap
 {
 public:
 	Bootstrap(int argc, char** argv);
+	Bootstrap();
 	~Bootstrap();
 	void loadConf();
 	void loadLevelIndex();
@@ -23,6 +26,7 @@ public:
 	void saveDocument(const std::string&, const rapidjson::Document&);
 	std::shared_ptr<rapidjson::Document> getLevel(const std::string&);
 	std::string getPath(const std::string&);
+	CommandFactory command_factory;
 
 private:
 	int m_argc;
@@ -39,3 +43,4 @@ private:
 	void launch_game();
 };
 
+extern Bootstrap boot;

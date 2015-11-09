@@ -1,5 +1,5 @@
 #include "main.hpp"
-
+Bootstrap boot;
 /** Main entry point
 Where all shall begin
 */
@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 	LOG(INFO) << "Fodus Started";
 	LOG(INFO) << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR;
 
-	Bootstrap boot(argc, argv);
+	
 	
 	boot.start();
 

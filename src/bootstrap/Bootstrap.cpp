@@ -2,14 +2,16 @@
 
 #include "../editor/Editor.hpp"
 #include "../game/Game.hpp"
-#include "../engine/CommandFactory.hpp"
-
-CommandFactory command_factory;
 
 Bootstrap::Bootstrap(int argc, char** argv)
 {
 	m_argc = argc;
 	m_argv = argv;
+}
+Bootstrap::Bootstrap()
+{
+	m_argc = 0;
+	m_argv = nullptr;
 }
 
 
