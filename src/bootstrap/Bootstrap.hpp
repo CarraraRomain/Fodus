@@ -42,5 +42,3 @@ private:
 	void launch_editor();
 	void launch_game();
 };
-
-extern Bootstrap boot;

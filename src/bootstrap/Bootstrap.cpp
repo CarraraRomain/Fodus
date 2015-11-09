@@ -76,7 +76,7 @@ void Bootstrap::run()
 	
 	// Commands factory Demo
 	std::unique_ptr<ComFacto<DebugCommand>> debug_facto;
-	debug_facto.reset(new ComFacto<DebugCommand>("debug"));
+	debug_facto.reset(new ComFacto<DebugCommand>(this, "debug"));
 	std::unique_ptr<Command> p = command_factory.build("debug");
 	if (p != nullptr) p->execute();
 	//
