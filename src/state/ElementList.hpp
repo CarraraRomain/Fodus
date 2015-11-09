@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Element.h"
+#include "perso.hpp"
 #include <vector>
 #include <memory>
+#include <string>
 
 
 class ElementList
@@ -21,7 +23,12 @@ public:
 
 	std::unique_ptr<Element>& operator[](size_t i);
 	const std::unique_ptr<Element>& operator[](size_t i) const;
-	
+
+	void setAttribute(std::string attribut, int valeur, int uid);
+	void setAttribute(std::string attribut, std::string valeur, int uid);
+
+	int findUid(int uid);
+
 private:
 	std::vector<std::unique_ptr<Element> > m_elements;
 };

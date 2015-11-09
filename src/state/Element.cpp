@@ -37,12 +37,7 @@ std::string Element::getKey()
 	return m_key;
 }
 
-bool Element::isGround()
-{
-	return false;
-}
-
-bool Element::isPerso()
+/*bool Element::isGround()
 {
 	return false;
 }
@@ -60,4 +55,9 @@ bool Element::isNeutral()
 bool Element::isEnnemy()
 {
 	return false;
+}*/
+
+int Element::getUid()
+{
+	return uid;
 }

@@ -1,5 +1,9 @@
 #include <string>
 
+#ifndef __Base_h__
+#define __Base_h__
+
+
 class Element
 {
 public:
@@ -12,18 +16,25 @@ public:
 	void setD(int newD);
 	int getD();
 
+	int getUid();
+
 	void setKey(std::string key);
 	std::string getKey();
 
-	virtual bool isGround();
-	virtual bool isPerso();
-	virtual bool isAllie();
-	virtual bool isNeutral();
-	virtual bool isEnnemy();
+	virtual bool isGround() = 0;
+	virtual bool isAllie() = 0;
+	virtual bool isNeutral() = 0;
+	virtual bool isEnnemy() = 0;
 
-private:
+	virtual void setAttribute(std::string attribute, int valeur) = 0;
+	virtual void setAttribute(std::string attribute, std::string valeur) = 0;
+
+protected:
 	std::string m_key;
 	int m_x;
 	int m_y;
 	int m_d;
+	int uid;
 };
+
+#endif

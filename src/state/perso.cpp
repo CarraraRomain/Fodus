@@ -1,125 +1,5 @@
 #include "perso.hpp"
 
-void Perso::setNom(std::string newNom)
-{
-	nom = newNom;
-}
-
-std::string Perso::getNom()
-{
-	return nom;
-}
-
-void Perso::setSante(int newSante)
-{
-	sante = newSante;
-}
-
-int Perso::getSante()
-{
-	return sante;
-}
-
-void Perso::setDefense(int newDefense)
-{
-	defense = newDefense;
-}
-
-int Perso::getDefense()
-{
-	return defense;
-}
-
-void Perso::setPuissance(int newPuissance)
-{
-	puissance = newPuissance;
-}
-
-int Perso::getPuissance()
-{
-	return puissance;
-}
-
-void Perso::setDeplacement(int newDeplacement)
-{
-	deplacement = newDeplacement;
-}
-
-int Perso::getDeplacement()
-{
-	return deplacement;
-}
-
-void Perso::setCorruption(int newCorruption)
-{
-	corruption = newCorruption;
-}
-
-int Perso::getCorruption()
-{
-	return corruption;
-}
-
-void Perso::setStatus(int newStatus)
-{
-	status = newStatus;
-}
-
-int Perso::getStatus()
-{
-	return status;
-}
-
-void Perso::setPortee(int newPortee)
-{
-	portee = newPortee;
-}
-
-int Perso::getPortee()
-{
-	return portee;
-}
-
-void Perso::setSanteCourante(int newSanteCourante)
-{
-	santeCourante = newSanteCourante;
-}
-
-int Perso::getSanteCourante()
-{
-	return santeCourante;
-}
-
-void Perso::setLimitZombi(int newLimitZombi)
-{
-	limitZombi = newLimitZombi;
-}
-
-int Perso::getLimitZombi()
-{
-	return limitZombi;
-}
-
-void Perso::setNiveau(int newNiveau)
-{
-	niveau = newNiveau;
-}
-
-int Perso::getNiveau()
-{
-	return niveau;
-}
-
-void Perso::setSeuil(int newSeuil)
-{
-	seuil = newSeuil;
-}
-
-int Perso::getSeuil()
-{
-	return seuil;
-}
-
 bool Perso::isAllie()
 {
 	if (type == Principal || type == Zombie) return true;
@@ -136,4 +16,31 @@ bool Perso::isNeutral()
 {
 	if (type == Monstre) return true;
 	else return false;
+}
+
+bool Perso::isGround()
+{
+	return false;
+}
+
+void Perso::setAttribute(std::string attribute, int valeur)
+{
+	if (attribute == "sante") sante = valeur;
+	if (attribute == "defense") sante = valeur;
+	if (attribute == "puissance") sante = valeur;
+	if (attribute == "deplacement") sante = valeur;
+	if (attribute == "corruption") sante = valeur;
+	if (attribute == "status") sante = valeur;
+	if (attribute == "portee") sante = valeur;
+	if (attribute == "santeCourante") sante = valeur;
+	if (attribute == "limiteZombie") sante = valeur;
+	if (attribute == "niveau") sante = valeur;
+	if (attribute == "seuil") sante = valeur;
+	if (attribute == "posX") m_x = valeur;
+	if (attribute == "posY") m_y = valeur;
+}
+
+void Perso::setAttribute(std::string attribute, std::string valeur)
+{
+	if (attribute == "nom")nom = valeur;
 }

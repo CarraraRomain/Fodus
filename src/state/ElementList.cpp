@@ -1,7 +1,6 @@
 #include "ElementList.hpp"
 
 
-
 ElementList::ElementList()
 {
 	
@@ -26,7 +25,8 @@ size_t ElementList::size() const
 void ElementList::push_back(const Element& elt)
 {
 	std::unique_ptr<Element> ptr;
-	ptr.reset(new Element(elt));
+	ptr.reset();
+	*ptr = elt;
 	m_elements.push_back(std::move(ptr));
 }
 
@@ -43,4 +43,29 @@ std::unique_ptr<Element>& ElementList::operator[](size_t i)
 const std::unique_ptr<Element>& ElementList::operator[](size_t i) const
 {
 	return m_elements[i];
+}
+
+void ElementList::setAttribute(std::string attribut, int valeur, int uid)
+{
+	int i = findUid(uid);
+	m_elements[i]->setAttribute(attribut,valeur);
+}
+
+void ElementList::setAttribute(std::string attribut, std::string valeur, int uid)
+{
+	int i = findUid(uid);
+	m_elements[i]->setAttribute(attribut, valeur);
+}
+
+int ElementList::findUid(int uid) {
+
+	int i;
+
+	for (i = 0; i < m_elements.size(); i++)
+	{
+		if (m_elements[i]->getUid() == uid) {
+			return i;
+		}
+	}
+	return -1;
 }

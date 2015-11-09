@@ -23,7 +23,7 @@ private:
 	int status;
 	int portee;
 	int santeCourante;
-	int limitZombi;
+	int limiteZombie;
 	int niveau;
 	int seuil;
 
@@ -31,43 +31,11 @@ private:
 	Classe type;
 
 public:
-	void setNom(std::string newNom);
-	std::string getNom();
-
-	void setSante(int newSante);
-	int getSante();
-
-	void setDefense(int newDefense);
-	int getDefense();
-
-	void setPuissance(int newPuissance);
-	int getPuissance();
-
-	void setDeplacement(int newDeplacement);
-	int getDeplacement();
-
-	void setCorruption(int newCorruption);
-	int getCorruption();
-
-	void setStatus(int newStatus);
-	int getStatus();
-
-	void setPortee(int newPortee);
-	int getPortee();
-
-	void setSanteCourante(int newSanteCourante);
-	int getSanteCourante();
-
-	void setLimitZombi(int newLimitZombi);
-	int getLimitZombi();
-
-	void setNiveau(int newNiveau);
-	int getNiveau();
-
-	void setSeuil(int newSeuil);
-	int getSeuil();
-
 	virtual bool isAllie() override;
 	virtual bool isEnnemy() override;
 	virtual bool isNeutral() override;
+	virtual bool isGround() override;
+
+	virtual void setAttribute(std::string attribute, int valeur) override;
+	virtual void setAttribute(std::string attribute, std::string valeur) override;
 };

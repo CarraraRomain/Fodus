@@ -8,14 +8,11 @@ private:
 	int depart;
 	
 public:
-	void setOccupation(int newOccupation);
-	int getOccupation();
-
-	void setPiege(int newPiege);
-	int getPiege();
-
-	void setDepart(int newDepart);
-	int getDepart();
-
 	virtual bool isGround() override;
+	virtual bool isAllie() override;
+	virtual bool isEnnemy() override;
+	virtual bool isNeutral() override;
+
+	virtual void setAttribute(std::string attribute, int valeur) override;
+	virtual void setAttribute(std::string attribute, std::string valeur) override;
 };
