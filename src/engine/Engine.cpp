@@ -9,7 +9,6 @@ void Engine::run()
 			rule.execute(liste[0], state);
 			liste.remove[0];
 		}*/
-		_sleep(100);
 	}
 }
 

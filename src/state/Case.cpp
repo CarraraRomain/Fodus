@@ -30,3 +30,10 @@ void Case::setAttribute(std::string attribute, int valeur)
 void Case::setAttribute(std::string attribute, std::string valeur)
 {
 }
+
+int Case::getAttribute(std::string attribute)
+{
+	if (attribute == "occupation") return occupation;
+	if (attribute == "piege") return piege;
+	if (attribute == "depart") return depart;
+}

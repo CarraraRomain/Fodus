@@ -23,5 +23,7 @@ public:
 	std::vector<int> getGround();
 
 	int getSize();
+
+	ElementList getList();
 };
 #endif

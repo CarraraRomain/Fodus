@@ -28,6 +28,7 @@ public:
 
 	virtual void setAttribute(std::string attribute, int valeur) = 0;
 	virtual void setAttribute(std::string attribute, std::string valeur) = 0;
+	virtual int getAttribute(std::string) = 0;
 
 protected:
 	std::string m_key;

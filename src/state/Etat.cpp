@@ -81,3 +81,9 @@ int Etat::getSize()
 	return liste.size();
 }
 
+ElementList Etat::getList()
+{
+	return liste;
+}
+
+
