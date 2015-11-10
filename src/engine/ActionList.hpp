@@ -5,9 +5,9 @@
 class ActionList
 {
 private:
-	std::vector<std::unique_ptr<Action>> liste;
+	std::vector<Action*> liste;
 	Etat state;
 
 public:
-	void ajout(std::unique_ptr<Action> newAction);
+	void addition(Action* newAction);
 };
