@@ -1,11 +1,17 @@
 #include "MoveCommand.h"
 
-MoveCommand::MoveCommand()
+MoveCommand::MoveCommand(CommandReceiver * receiver, int x , int y , int uid) : Command(receiver, Move)
 {
-	type = Move;
-
+	posX = x;
+	posY = y;
+	Uid = uid;
 }
 
 MoveCommand::~MoveCommand()
 {
+}
+
+void MoveCommand::execute()
+{
+	m_command_receiver->handleCommand(this);
 }

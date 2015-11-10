@@ -3,10 +3,12 @@
 
 class MoveCommand : public Command
 {
-public :
-	MoveCommand();
-	virtual ~MoveCommand();
-
-private:
-	CommandType type;
+public:
+	MoveCommand(CommandReceiver* receiver, int x, int y , int uid);
+	~MoveCommand();
+	virtual void execute() override;
+	
+	int posX;
+	int posY;
+	int Uid;
 };
