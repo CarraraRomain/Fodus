@@ -10,13 +10,13 @@ Command::~Command()
 {
 }
 
-
-void Command::setPayload(std::unique_ptr<rapidjson::Document> payload)
+const std::string& Command::getPayload(std::string needle) const
 {
-	m_payload = std::move(payload);
-}
-
-const rapidjson::Document& Command::getPayload() const
-{
-	return *m_payload;
+	std::map<std::string, std::string>::const_iterator it = m_payload.find(needle);
+	if (it != m_payload.end())
+	{
+		//element found;
+		return it->second;
+	}
+	return "";
 }

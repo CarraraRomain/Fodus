@@ -5,14 +5,18 @@ void Ruler::execute(Command* com, Etat* state)
 	switch (com->type)
 	{
 	case Move:
-		if (checkMove(state, com->getPayload()["X"].GetInt() , com->getPayload()["Y"].GetInt(), com->getPayload()["Uid"].GetInt()));
-		//create action here
+		if (checkMove(state, std::stoi(com->getPayload("X")),
+			std::stoi(com->getPayload("Y")), std::stoi(com->getPayload("UID"))))
+			LOG(DEBUG) << "Moving UID " + com->getPayload("UID");
+			//create action here
 		//ActionFactory.create("Move",CommandeUID,CommandeX,CommandeY);
 		break;
 	case Attack:
-		if (checkAttack(state, com->getPayload()["Uid1"].GetInt(), com->getPayload()["Uid2"].GetInt()));
+		if (checkAttack(state, std::stoi(com->getPayload("UID1")),
+			std::stoi(com->getPayload("UID"))))
 		//create ActionAttack;
-		break;
+			LOG(DEBUG) << "Attacking UID1 " + com->getPayload("UID1");
+			break;
 	}
 }
 

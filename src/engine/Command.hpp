@@ -5,14 +5,14 @@
 class Command
 {
 public:
+	// payload is set in the constructor
 	Command();
 	virtual ~Command();
 	virtual void execute() = 0;
-	void setPayload(std::unique_ptr<rapidjson::Document>);
-	const rapidjson::Document& getPayload() const;
+	const std::string& getPayload(std::string) const;
 	const CommandType type = Abstract;
 private:
-	std::unique_ptr<rapidjson::Document> m_payload;
+	const std::map<std::string, std::string> m_payload;
 };
 
 
