@@ -6,14 +6,15 @@
 #include "../global.hpp"
 
 #include "../engine/DebugCommand.hpp"
-#include "../engine/CommandFactory.hpp"
+#include "../engine/ModeCommand.hpp"
 
 /**
  * Class to bootstrap the program
  */
-class Bootstrap
+class Bootstrap: public CommandReceiver
 {
 public:
+	void handleCommand(Command*) override;
 	Bootstrap(int argc, char** argv);
 	Bootstrap();
 	~Bootstrap();
@@ -21,12 +22,12 @@ public:
 	void loadLevelIndex();
 	void start();
 	void run();
+	void poolCommands();
 	void getConfig(const std::string&) const;
 	std::shared_ptr<rapidjson::Document> getDocument(const std::string&);
 	void saveDocument(const std::string&, const rapidjson::Document&);
 	std::shared_ptr<rapidjson::Document> getLevel(const std::string&);
 	std::string getPath(const std::string&);
-	CommandFactory command_factory;
 
 private:
 	int m_argc;

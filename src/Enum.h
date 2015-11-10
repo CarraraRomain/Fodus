@@ -2,6 +2,7 @@
 
 enum CommandType {
 	Abstract,
+	Debug,
 	Move,
 	Attack,
 	Load,

@@ -5,17 +5,17 @@ void Ruler::execute(Command* com, Etat* state)
 	switch (com->type)
 	{
 	case Move:
-		if (checkMove(state, std::stoi(com->getPayload("X")),
-			std::stoi(com->getPayload("Y")), std::stoi(com->getPayload("UID"))))
-			LOG(DEBUG) << "Moving UID " + com->getPayload("UID");
+//		if (checkMove(state, std::stoi(com->getPayload("X")),
+//			std::stoi(com->getPayload("Y")), std::stoi(com->getPayload("UID"))))
+//			LOG(DEBUG) << "Moving UID " + com->getPayload("UID");
 			//create action here
 			//ActionFactory.create("Move",CommandeUID,CommandeX,CommandeY);
 		break;
 	case Attack:
-		if (checkAttack(state, std::stoi(com->getPayload("UID1")),
-			std::stoi(com->getPayload("UID"))))
+//		if (checkAttack(state, std::stoi(com->getPayload("UID1")),
+//			std::stoi(com->getPayload("UID"))))
 			//create ActionAttack;
-			LOG(DEBUG) << "Attacking UID1 " + com->getPayload("UID1");
+//			LOG(DEBUG) << "Attacking UID1 " + com->getPayload("UID1");
 		break;
 	}
 }

@@ -3,6 +3,21 @@
 #include "../editor/Editor.hpp"
 #include "../game/Game.hpp"
 
+void Bootstrap::handleCommand(Command* com)
+{
+	LOG(DEBUG) << "Command received by Bootstrap";
+	switch(com->type)
+	{
+	case Mode:
+		LOG(DEBUG) << "Executing Mode Command";
+		std::string mode = dynamic_cast<ModeCommand*>(com)->mode;
+		LOG(DEBUG) << "Will launch " << mode << " mode";
+		if (mode == "editor") launch_editor();
+		else if (mode == "game") launch_game();
+		break;
+	}
+}
+
 Bootstrap::Bootstrap(int argc, char** argv)
 {
 	m_argc = argc;
@@ -45,6 +60,7 @@ void Bootstrap::loadConf()
 	LOG(DEBUG) << "Loaded global config";
 }
 
+
 /**
  * Load the level index
  */
@@ -72,28 +88,23 @@ void Bootstrap::run()
 	// Launch Args
 	// TODO to complete
 	std::string type;
+	ModeCommand command = ModeCommand(this, type);
 	if (m_argc > 1) type = m_argv[1];
-	
-	// Commands factory Demo
-	std::unique_ptr<ComFacto<DebugCommand>> debug_facto;
-	debug_facto.reset(new ComFacto<DebugCommand>(this, "debug"));
-	std::unique_ptr<Command> p = command_factory.build("debug");
-	if (p != nullptr) p->execute();
-	//
 
-	if (type == "editor") launch_editor();
-	else if (type == "game") launch_game();
+
+	if (type == "editor" || type == "game") command.mode = type;
 	else {
 		do
 		{
 			std::cout << "> Launch game or level editor? (game/editor) ";
 			std::cin >> type;
-			if (type == "editor") launch_editor();
-			else if (type == "game") launch_game();
+			if (type == "editor" || type == "game") command.mode = type;
 		} while (type != "game" && type != "editor");
 	}
-	LOG(DEBUG) << "Boostrap ended";
+	command.execute();
+	LOG(DEBUG) << "Bootstrap ended";
 }
+
 
 void Bootstrap::getConfig(const std::string&) const
 {

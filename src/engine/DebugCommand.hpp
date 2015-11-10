@@ -4,8 +4,9 @@ class DebugCommand :
 	public Command
 {
 public:
-	DebugCommand();
+	DebugCommand(CommandReceiver* receiver, std::string m);
 	~DebugCommand();
 	virtual void execute() override;
+	std::string string;
 };
 

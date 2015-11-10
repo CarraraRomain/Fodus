@@ -2,10 +2,10 @@
 
 
 
-DebugCommand::DebugCommand()
+
+DebugCommand::DebugCommand(CommandReceiver* receiver, std::string m) : Command(receiver, Debug)
 {
 }
-
 
 DebugCommand::~DebugCommand()
 {
@@ -13,5 +13,5 @@ DebugCommand::~DebugCommand()
 
 void DebugCommand::execute()
 {
-	LOG(DEBUG) << "Command executed";
+	m_command_receiver->handleCommand(this);
 }
