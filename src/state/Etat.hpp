@@ -24,6 +24,6 @@ public:
 
 	int getSize();
 
-	ElementList getList();
+	ElementList* getList();
 };
 #endif
