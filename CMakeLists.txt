@@ -40,8 +40,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 #Find any version 2.X of SFML
 #See the FindSFML.cmake file for additional details and instructions
 # Manual locate for Windows
+
+set(SFML_ROOT /usr/lsa)
 if(WIN32)
-    #set(SFML_ROOT C:/SFML-2.3.2)
 	file(GLOB SFML_DLL
 	"${SFML_ROOT}/bin/*.dll"
 	)	
