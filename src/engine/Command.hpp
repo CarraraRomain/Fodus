@@ -11,8 +11,8 @@ public:
 	virtual void execute() = 0;
 	const std::string& getPayload(std::string) const;
 	const CommandType type = Abstract;
-private:
-	const std::map<std::string, std::string> m_payload;
+protected:
+	std::map<std::string, std::string> m_payload;
 };
 
 
