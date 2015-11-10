@@ -27,6 +27,8 @@ public:
 	void setAttribute(std::string attribut, int valeur, int uid);
 	void setAttribute(std::string attribut, std::string valeur, int uid);
 
+	int getAttribute(std::string attribute, int uid);
+
 	int findUid(int uid);
 
 private:

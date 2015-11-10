@@ -3,5 +3,5 @@
 class Action
 {
 public:
-	virtual void apply(Etat e) = 0;
+	virtual void execute(Etat e) = 0;
 };

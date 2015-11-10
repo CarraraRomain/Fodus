@@ -57,6 +57,11 @@ void ElementList::setAttribute(std::string attribut, std::string valeur, int uid
 	m_elements[i]->setAttribute(attribut, valeur);
 }
 
+int ElementList::getAttribute(std::string attribute, int uid)
+{
+	return m_elements[findUid(uid)]->getAttribute(attribute);
+}
+
 int ElementList::findUid(int uid) {
 
 	int i;

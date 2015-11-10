@@ -20,6 +20,11 @@ void Etat::setAttribute(std::string attribute, std::string valeur, int uid)
 	liste.setAttribute(attribute, valeur, uid);
 }
 
+int Etat::getAttribute(std::string attribute, int uid)
+{
+	return liste.getAttribute(attribute, uid);
+}
+
 std::vector<int> Etat::getEnnemies()
 {
 	int i;
