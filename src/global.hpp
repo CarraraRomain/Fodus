@@ -31,4 +31,6 @@ Logging library. Has to be include at the top of the file
 #define WIDTH 24
 #define HEIGHT 16
 
+#include "Enum.h"
+
 

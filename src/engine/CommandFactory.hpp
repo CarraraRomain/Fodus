@@ -2,7 +2,6 @@
 
 #include "../global.hpp"
 #include "CommandCreator.hpp"
-#include "Command.hpp"
 
 class CommandFactory
 {

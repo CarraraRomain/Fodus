@@ -1,5 +1,7 @@
 #include "CommandCreator.hpp"
 
+// Avoid circular include
+// (not to put in the .hpp)
 #include "../bootstrap/Bootstrap.hpp"
 
 

@@ -2,6 +2,7 @@
 #include "../global.hpp"
 #include "Command.hpp"
 
+// Avoid circular include
 class Bootstrap;
 
 class CommandCreator
