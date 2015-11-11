@@ -1,5 +1,6 @@
 #include "Scene.hpp"
-
+#include "../state/Case.h"
+#include "../test/game/TestGame.hpp"
 
 
 Scene::Scene(Bootstrap* boot): m_boot(boot)
@@ -10,7 +11,7 @@ Scene::Scene(Bootstrap* boot): m_boot(boot)
 	eltLayerUp->clearVertices();
 	m_layers.push_back(eltLayer);
 	m_layers.push_back(eltLayerUp);
-	m_elt_list = new LegacyElementList;
+	m_elt_list = new ElementList;
 	LOG(DEBUG) << "Scene ready";
 }
 
@@ -27,16 +28,44 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		target.draw(*layer, states);
 	}
+	std::map<int, AnimatedSprite*>::const_iterator it;
+	for (it = m_sprites.begin(); it != m_sprites.end(); ++it)
+	{
+		it->second->play(MoveForward);
+		target.draw(*it->second, states);
+	}
 }
 
-void Scene::update(const LegacyElementList& list)
+void Scene::update(const ElementList& list)
 {
 	LOG(DEBUG) << "Updating scene";
+	int uid(42);
 	// saving EltList is disabled for now
 	//*m_elt_list = *list;
 	for (Layer* layer : m_layers)
 	{
 		layer->update(list);
+	}
+	for (int i = 0; i < list.size();i++)
+	{
+		if (list[i]->type == Mobile)
+		{
+			std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
+			if (it == m_sprites.end())
+			{
+				addSprite(TestGame::m_animated_sprite);
+				m_sprites[uid]->setPosition(list[i]->getX()*SIZE,
+					list[i]->getY()*SIZE);
+			}else
+			{
+				it->second->setPosition(list[i]->getX()*SIZE,
+					list[i]->getY()*SIZE);
+				
+			}
+
+		
+
+		}
 	}
 }
 
@@ -49,35 +78,40 @@ void Scene::update()
 }
 
 
-void Scene::setEltAt(LegacyElement& elt, int x, int y, int depth)
+void Scene::setEltAt(Element& elt, int x, int y, int depth)
 {
-	LegacyElement search_elt;
 	bool found = false;
 	for (int i = 0; i < int(m_elt_list->size()); i++)
 	{
-		search_elt = *(*m_elt_list)[i];
-		if (search_elt.getX() == x && search_elt.getY() == y && search_elt.getD() == depth)
+
+		if ((*m_elt_list)[i]->getX() == x && 
+			(*m_elt_list)[i]->getY() == y &&
+			(*m_elt_list)[i]->getD() == depth)
 		{
-			search_elt.setKey(elt.getKey());
+			(*m_elt_list)[i]->setKey(elt.getKey());
 			found = true;
 			break;
 		}
 	}
 	if(!found)
 	{
-		LegacyElement elt = LegacyElement();
-		elt.setKey(elt.getKey());
-		elt.setX(x);
-		elt.setY(y);
-		elt.setD(depth);
-		m_elt_list->push_back(elt);
+		if(elt.type == Fixed)
+		{
+			Case* ptr_case = new Case(rand());
+			ptr_case->setKey(elt.getKey());
+			ptr_case->setX(x);
+			ptr_case->setY(y);
+			ptr_case->setD(depth);
+			m_elt_list->push_back(ptr_case);
+		}
+		
 	}
 
 }
 
 void Scene::addSprite(AnimatedSprite& sprite)
 {
-	m_sprites[0] = &sprite;
+	m_sprites[42] = &sprite;
 }
 
 const AnimatedSprite& Scene::getSprite(const int& uid)
@@ -85,4 +119,5 @@ const AnimatedSprite& Scene::getSprite(const int& uid)
 	std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
 	if (it != m_sprites.end())
 		return *(it->second);
+	throw std::invalid_argument("Not found");
 }

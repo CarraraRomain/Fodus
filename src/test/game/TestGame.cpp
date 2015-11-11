@@ -1,11 +1,13 @@
 #include "TestGame.hpp"
-
+#include "../../state/Case.h"
 
 
 TestGame::TestGame()
 {
+
 }
 
+AnimatedSprite TestGame::m_animated_sprite(sf::seconds(0.2), true);;
 
 TestGame::~TestGame()
 {
@@ -36,7 +38,7 @@ rapidjson::Document TestGame::test_load_json_level()
 }
 
 
-void TestGame::test_load_elt_list(LegacyElementList* list, Bootstrap* boot)
+void TestGame::test_load_elt_list(ElementList* list, Bootstrap* boot)
 {
 	LOG(DEBUG) << "Loading Elt list";
 	// loading a level from ../../res/GFX/level.json
@@ -62,13 +64,12 @@ void TestGame::test_load_elt_list(LegacyElementList* list, Bootstrap* boot)
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				LegacyElement elt = LegacyElement();
-				elt.setKey(e[k]["key"].GetString());
-				elt.setX(posX);
-				elt.setY(i);
-				elt.setD(k);
-
-				list->push_back(elt);
+				Case* ptr_case = new Case(rand());
+				ptr_case->setKey(e[k]["key"].GetString());
+				ptr_case->setX(posX);
+				ptr_case->setY(i);
+				ptr_case->setD(k);
+				list->push_back(ptr_case);
 			}
 			posX++;
 		}

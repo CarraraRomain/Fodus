@@ -17,3 +17,9 @@ enum AnimationType
 	MoveRight,
 	MoveLeft
 };
+
+enum ElementType
+{
+	Mobile,
+	Fixed
+};

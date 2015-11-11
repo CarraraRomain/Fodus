@@ -97,7 +97,7 @@ void Editor::new_level()
 
 void Editor::load_elts()
 {
-	m_level_list.reset(new LegacyElementList());
+	m_level_list.reset(new ElementList());
 	//std::cout << level["header"].GetString();
 	//cout << level["level"][0][0][0..Depth]["key"].GetString();
 
@@ -115,13 +115,12 @@ void Editor::load_elts()
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				LegacyElement elt = LegacyElement();
-				elt.setKey(e[k]["key"].GetString());
-				elt.setX(posX);
-				elt.setY(i);
-				elt.setD(k);
-
-				m_level_list->push_back(elt);
+				Case* ptr_case = new Case(rand());
+				ptr_case->setKey(e[k]["key"].GetString());
+				ptr_case->setX(posX);
+				ptr_case->setY(i);
+				ptr_case->setD(k);
+				m_level_list->push_back(ptr_case);
 			}
 			posX++;
 		}
@@ -132,7 +131,7 @@ void Editor::load_elts()
 
 void Editor::load_tiles()
 {
-	m_editor_list.reset(new LegacyElementList());
+	m_editor_list.reset(new ElementList());
 	string key;
 	int i = 0;
 	TileFactory TFactory(m_boot);
@@ -140,13 +139,13 @@ void Editor::load_tiles()
 	for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
 	itr != tiles->value.MemberEnd(); ++itr)
 	{
-		LegacyElement elt = LegacyElement();
-		elt.setKey(itr->name.GetString());
-		elt.setX(i%WIDTH);
+		Case* ptr_case = new Case(rand());
+		ptr_case->setKey(itr->name.GetString());
+		ptr_case->setX(i%WIDTH);
 		LOG(DEBUG) << "i: " << i << ", Y: " << i / WIDTH;
-		elt.setY(i/WIDTH);
-		elt.setD(itr->value["d"].GetInt());
-		m_editor_list->push_back(elt);
+		ptr_case->setY(i/WIDTH);
+		ptr_case->setD(itr->value["d"].GetInt());
+		m_editor_list->push_back(ptr_case);
 		i++;
 	}
 
@@ -201,7 +200,7 @@ void Editor::setFile(std::string file)
 
 
 
-void Editor::setElt(LegacyElement elt, int x, int y, int depth)
+void Editor::setElt(Case elt, int x, int y, int depth)
 {
 	
 	bool found = false;
@@ -217,12 +216,15 @@ void Editor::setElt(LegacyElement elt, int x, int y, int depth)
 	}
 	if (!found)
 	{
-		LegacyElement el = LegacyElement();
-		el.setKey(elt.getKey());
-		el.setX(x);
-		el.setY(y);
-		el.setD(elt.getD());
-		m_editor_list->push_back(el);
+		if (elt.type == Fixed)
+		{
+			Case* ptr_case = new Case(rand());
+			ptr_case->setKey(elt.getKey());
+			ptr_case->setX(x);
+			ptr_case->setY(y);
+			ptr_case->setD(depth);
+			m_editor_list->push_back(ptr_case);
+		}
 	}
 
 	(*m_level)["level"][y][x][elt.getD()]["key"].SetString(elt.getKey(), m_level->GetAllocator());
@@ -231,14 +233,14 @@ void Editor::setElt(LegacyElement elt, int x, int y, int depth)
 
 }
 
-LegacyElement Editor::getElt(int x, int y, int depth)
+Case Editor::getElt(int x, int y, int depth)
 {
 
 	for (int i = 0; i < int(m_editor_list->size()); i++)
 	{
-		LegacyElement elt = *(*m_editor_list)[i];
-		if (elt.getX() == x && elt.getY() == y)
-			return elt;
+		Element* elt = (*m_editor_list)[i].get();
+		if (elt->getX() == x && elt->getY() == y)
+			return *dynamic_cast<Case*>(elt);
 	}
 	throw std::domain_error("Bad Coord");
 }
@@ -327,7 +329,7 @@ void Editor::editor_event_loop()
 			std::cout << "mouse x: " << event.mouseButton.x / SIZE << std::endl;
 			std::cout << "mouse y: " << event.mouseButton.y / SIZE << std::endl;
 			try{
-				m_selected_elt.reset(new LegacyElement(getElt(event.mouseButton.x / SIZE,
+				m_selected_elt.reset(new Case(getElt(event.mouseButton.x / SIZE,
 														event.mouseButton.y / SIZE, 0)));
 				LOG(INFO) << "Elt: " << m_selected_elt->getKey();
 				LOG(INFO) << "Elt Depth: " << m_selected_elt->getD();

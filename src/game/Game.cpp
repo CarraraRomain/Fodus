@@ -25,17 +25,18 @@ void Game::load()
 {
 	load_gui();
 	m_game_engine.reset(new Engine);
+	TestGame::test_load_elt_list(m_game_engine->getState().getList(), m_boot);
 }
 
 void Game::run()
 {
 	LOG(DEBUG) << "Game is running";
 	
-	LegacyElementList list;
-	TestGame::test_load_elt_list(&list, m_boot);
+	ElementList list;
+	
 	load();
 	LOG(DEBUG) << "Updating";
-	Perso* elt = new Perso();
+	Perso* elt = new Perso(42);
 	elt->setAttribute("deplacement", 10);
 	elt->setX(10);
 	elt->setY(10);
@@ -51,14 +52,14 @@ void Game::run()
 	AnimationType type = MoveForward;
 	float speed = 80.f;
 	bool noKeyWasPressed = true;
-	m_game_scene->update(list);
+	m_game_scene->update(*m_game_engine->getState().getList());
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
 		game_event_loop();
 		handle_keys();
 
-//		sf::Time frameTime = frameClock.restart();
+		sf::Time frameTime = frameClock.restart();
 //		// if a key was pressed set the correct animation and move correctly
 //		sf::Vector2f movement(0.f, 0.f);
 //		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -97,7 +98,7 @@ void Game::run()
 //		animatedSprite.update(frameTime);
 		m_game_window->clear();
 		m_game_window->draw(*m_game_scene);
-		m_game_window->draw(animatedSprite);
+		//m_game_window->draw(animatedSprite);
 		m_game_window->display();
 	}
 	LOG(DEBUG) << "Game ended";
@@ -110,26 +111,26 @@ void Game::handle_keys()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		move = true;
-		x = 1;
-		y = 0;
+		x = 0;
+		y = -1;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		move = true;
+		x = 0;
+		y = 1;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		move = true;
 		x = -1;
 		y = 0;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		move = true;
-		x = 0;
-		y = -1;
-	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		move = true;
-		x = 0;
-		y = 1;
+		x = 1;
+		y = 0;
 	
 	}
 
@@ -138,6 +139,7 @@ void Game::handle_keys()
 		MoveCommand command = MoveCommand(m_game_engine.get(), x, y, uid);
 		command.execute();
 		m_isKeyPressed = true;
+		m_game_scene->update(*m_game_engine->getState().getList());
 	}
 	
 

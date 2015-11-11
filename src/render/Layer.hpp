@@ -2,7 +2,7 @@
 
 #include "../global.hpp"
 #include "../bootstrap/Bootstrap.hpp"
-#include "../state/LegacyElementList.hpp"
+#include "../state/ElementList.hpp"
 
 class Layer :
 	public sf::Drawable
@@ -13,7 +13,7 @@ public:
 	bool loadTileset(std::string Tilesetpath);
 	void resetVertices();
 	void clearVertices();
-	virtual void update(const LegacyElementList& list) = 0;
+	virtual void update(const ElementList& list) = 0;
 	
 
 protected:
