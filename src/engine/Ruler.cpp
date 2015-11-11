@@ -15,7 +15,7 @@ void Ruler::execute(Command* com, Etat* state)
 	switch (com->type)
 	{
 	case Move:
-		LOG(DEBUG) << "Executing Move Command";
+		LOG(DEBUG) << "Ruler : exec Move Command";
 		{
 			MoveCommand* move_com = dynamic_cast<MoveCommand*>(com);
 			// TODO Optimization
@@ -57,7 +57,10 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 	ElementList* liste = state->getList();
 	for (int i = 0; i < state->getSize(); i++)
 	{
-		if ((*liste)[i]->getX() == x && (*liste)[i]->getY() == y && (*liste)[i]->getD() > 0)
+		if ((*liste)[i]->getX() == x &&
+			(*liste)[i]->getY() == y && 
+			(*liste)[i]->getD() > 0  &&
+			(*liste)[i]->getKey() != "VOID_1")
 		{
 			LOG(DEBUG) << (*liste)[i]->getKey() << " is here";
 			return false;
