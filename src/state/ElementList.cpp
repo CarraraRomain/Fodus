@@ -22,11 +22,10 @@ size_t ElementList::size() const
 	return m_elements.size();
 }
 
-void ElementList::push_back(const Element& elt)
+void ElementList::push_back(Element& elt)
 {
 	std::unique_ptr<Element> ptr;
-	ptr.reset();
-	*ptr = elt;
+	ptr.reset(&elt);
 	m_elements.push_back(std::move(ptr));
 }
 
@@ -59,7 +58,7 @@ void ElementList::setAttribute(std::string attribut, std::string valeur, int uid
 
 int ElementList::getAttribute(std::string attribute, int uid)
 {
-	return m_elements[findUid(uid)]->getAttribute(attribute);
+	if(findUid(uid)>0) return m_elements[findUid(uid)]->getAttribute(attribute);
 }
 
 int ElementList::findUid(int uid) {

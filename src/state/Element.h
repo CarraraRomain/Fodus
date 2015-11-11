@@ -29,6 +29,7 @@ public:
 	virtual void setAttribute(std::string attribute, int valeur) = 0;
 	virtual void setAttribute(std::string attribute, std::string valeur) = 0;
 	virtual int getAttribute(std::string) = 0;
+	Element(int id): uid(id) {}
 
 protected:
 	std::string m_key;
