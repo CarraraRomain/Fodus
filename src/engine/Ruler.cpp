@@ -9,7 +9,9 @@ Ruler::Ruler(Etat& state): m_state(state)
 Ruler::~Ruler()
 {
 }
-
+/**
+ * Execute a command and generate an action against a state
+ */
 void Ruler::execute(Command* com, Etat* state)
 {
 	switch (com->type)
@@ -21,16 +23,17 @@ void Ruler::execute(Command* com, Etat* state)
 			// TODO Optimization
 			int x = move_com->posX + state->getAttribute("posX", move_com->Uid);
 			int y = move_com->posY + state->getAttribute("posY", move_com->Uid);
-			bool rc = checkMove(state, x, y, move_com->Uid);
-			if (rc)
+			if (checkMove(state, x, y, move_com->Uid))
 			{
 				MoveAction* action = new MoveAction(move_com->Uid, x, y, move_com->dir);
 				m_action_list->push_back(action);
 
-			}else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
+			}
+			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
 		break;
 	case Attack:
+		// TODO Implementation
 //		if (checkAttack(state, std::stoi(com->getPayload("UID1")),
 //			std::stoi(com->getPayload("UID"))))
 			//create ActionAttack;
@@ -39,7 +42,9 @@ void Ruler::execute(Command* com, Etat* state)
 	}
 	update();
 }
-
+/**
+ * Apply action on a state
+ */
 void Ruler::update()
 {
 	for (int i = 0; i < m_action_list->size();i++)
@@ -49,13 +54,16 @@ void Ruler::update()
 	}
 }
 
+/**
+ * Check movement legitimacy
+ */
 bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 {
 
-	// find elt in x, y to check its depth ; if d > 0 return false;
 	ElementList* liste = state->getList();
 	for (int i = 0; i < state->getSize(); i++)
 	{
+		// if elt is in X, Y, with depth > 0 and not void ("VOID_1" elt)
 		if ((*liste)[i]->getX() == x &&
 			(*liste)[i]->getY() == y && 
 			(*liste)[i]->getD() > 0  &&
@@ -65,12 +73,14 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 			return false;
 		}
 	}
-	if (x < 0 || x >= WIDTH) return false;
-	if (y < 0 || y >= HEIGHT) return false;
+	// if Elt would be out of window boundaries
+	return !(x < 0 || x >= WIDTH) && !(y < 0 || y >= HEIGHT);
 	//if ((x + y) >state->getAttribute("deplacement", uid)) return false;
-	return true;
 }
 
+/**
+ * Not used yet
+ */
 bool Ruler::checkAttack(Etat* state, int uid1, int uid2)
 {
 	ElementList* liste = state->getList();
@@ -81,6 +91,5 @@ bool Ruler::checkAttack(Etat* state, int uid1, int uid2)
 	if (x < 0) x = -x;
 	if (y < 0) y = -y;
 
-	if (x + y > state->getAttribute("portee", uid1))return false;
-	else return true;
+	return x + y <= state->getAttribute("portee", uid1);
 }

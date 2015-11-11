@@ -104,8 +104,9 @@ void Bootstrap::run()
 	command.execute();
 	LOG(DEBUG) << "Bootstrap ended";
 }
-
-
+/**
+ * TODO Implementation
+ */
 void Bootstrap::getConfig(const std::string&) const
 {
 }

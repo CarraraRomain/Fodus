@@ -12,6 +12,9 @@ ModeCommand::~ModeCommand()
 {
 }
 
+/**
+ * Command pattern exec method
+ */
 void ModeCommand::execute()
 {
 	m_command_receiver->handleCommand(this);

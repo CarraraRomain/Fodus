@@ -95,6 +95,9 @@ void Editor::new_level()
 
 }
 
+/**
+ * Loads elts of the level
+ */
 void Editor::load_elts()
 {
 	m_level_list.reset(new ElementList());
@@ -129,6 +132,9 @@ void Editor::load_elts()
 
 }
 
+/**
+ * Loads elts of the editor (ie all avalaibles tiles)
+ */
 void Editor::load_tiles()
 {
 	m_editor_list.reset(new ElementList());
@@ -233,6 +239,9 @@ void Editor::setElt(Case elt, int x, int y, int depth)
 
 }
 
+/**
+ * Get case at X,Y
+ */
 Case Editor::getElt(int x, int y, int depth)
 {
 
@@ -245,6 +254,9 @@ Case Editor::getElt(int x, int y, int depth)
 	throw std::domain_error("Bad Coord");
 }
 
+/**
+ * Save the level
+ */
 void Editor::save()
 {
 	rapidjson::StringBuffer s;
@@ -256,7 +268,9 @@ void Editor::save()
 	if (!of.good()) throw std::runtime_error("Can't write the JSON string to the file!");
 
 }
-
+/**
+ * Handle events of the level
+ */
 void Editor::level_event_loop()
 {
 	sf::Event event;
@@ -312,6 +326,9 @@ void Editor::level_event_loop()
 	}
 }
 
+/**
+ * Handle events of the editor
+ */
 void Editor::editor_event_loop()
 {
 	sf::Event event;

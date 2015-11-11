@@ -13,6 +13,9 @@ Game::~Game()
 {
 }
 
+/**
+ * Load the Game GUI
+ */
 void Game::load_gui()
 {
 	LOG(DEBUG) << "Loading GUI";
@@ -21,6 +24,9 @@ void Game::load_gui()
 		SIZE*HEIGHT), "Level", sf::Style::Titlebar | sf::Style::Close));
 }
 
+/**
+ * Global load method
+ */
 void Game::load()
 {
 	load_gui();
@@ -28,6 +34,9 @@ void Game::load()
 	TestGame::test_load_elt_list(m_game_engine->getState().getList(), m_boot);
 }
 
+/**
+ * Main entry point
+ */
 void Game::run()
 {
 	LOG(DEBUG) << "Game is running";
@@ -36,6 +45,7 @@ void Game::run()
 	
 	load();
 	LOG(DEBUG) << "Updating";
+	// Quick and dirty addition of a perso
 	Perso* elt = new Perso(42);
 	elt->setAttribute("deplacement", 10);
 	elt->setX(16);
@@ -44,9 +54,7 @@ void Game::run()
 	elt->setKey("MLP");
 	m_game_engine->getState().getList()->push_back(elt);
 	
-	sf::Clock frameClock;
 	
-	bool noKeyWasPressed = true;
 	m_game_scene->update(*m_game_engine->getState().getList());
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
@@ -63,7 +71,9 @@ void Game::run()
 	}
 	LOG(DEBUG) << "Game ended";
 }
-
+/**
+ * Handle keyboard commands
+ */
 void Game::handle_keys()
 {
 	bool move = false;
@@ -103,6 +113,8 @@ void Game::handle_keys()
 		MoveCommand command = MoveCommand(m_game_engine.get(), x, y, type, uid);
 		command.execute();
 		m_isKeyPressed = true;
+		// Call an updaye right after the command execution
+		// TODO the update should be called by the obs pattern instead
 		m_game_scene->update(*m_game_engine->getState().getList());
 	}
 	

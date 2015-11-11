@@ -1,6 +1,9 @@
 #pragma once
 class Command;
 
+/**
+ * Command Pattern Receiver Interface
+ */
 class CommandReceiver
 {
 public:

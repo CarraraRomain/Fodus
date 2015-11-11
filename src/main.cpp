@@ -1,8 +1,8 @@
 #include "main.hpp"
 
 /** Main entry point
-Where all shall begin
-*/
+ * Where all shall begin
+ */
 int main(int argc, char* argv[]) {
 	// Logger config
 	el::Configurations conf("../../res/config/logger.conf");

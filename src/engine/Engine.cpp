@@ -6,7 +6,9 @@ Engine::Engine()
 	m_ruler.reset(new Ruler(*state));
 	
 }
-
+/**
+ * Command pattern receiver method
+ */
 void Engine::handleCommand(Command* com)
 {
 	switch(com->type)
@@ -14,16 +16,17 @@ void Engine::handleCommand(Command* com)
 			m_ruler->execute(com, state.get());
 }
 
+/**
+ * Main entry point
+ */
 void Engine::run()
 {
-	while (1) {
-
 		/*if (liste.size != 0)
 		{
 			rule.execute(liste[0], state);
 			liste.remove[0];
 		}*/
-	}
+
 }
 
 Etat& Engine::getState()

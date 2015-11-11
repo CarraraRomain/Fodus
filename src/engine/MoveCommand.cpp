@@ -12,6 +12,9 @@ MoveCommand::~MoveCommand()
 {
 }
 
+/**
+ * Command pattern exec method
+ */
 void MoveCommand::execute()
 {
 	LOG(DEBUG) << "Exec Move";
