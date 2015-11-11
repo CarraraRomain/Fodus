@@ -37,6 +37,7 @@ void ElementLayer::update(const ElementList& list)
 			quad[1].texCoords = sf::Vector2f(tile->getX() + SIZE, tile->getY());
 			quad[2].texCoords = sf::Vector2f(tile->getX() + SIZE, tile->getY() + SIZE);
 			quad[3].texCoords = sf::Vector2f(tile->getX(), tile->getY() + SIZE);
+			delete tile;
 		}
 		
 	}
