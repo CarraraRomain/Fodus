@@ -11,6 +11,8 @@ int main(int argc, char* argv[]) {
 	LOG(INFO) << "***";
 	LOG(INFO) << "Fodus Started";
 	LOG(INFO) << FODUS_NAME << " version " << FODUS_VERSION_MAJOR << "." << FODUS_VERSION_MINOR;
+	
+	srand(time(NULL));
 
 	Bootstrap boot;
 	

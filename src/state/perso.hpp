@@ -31,10 +31,11 @@ private:
 	Classe type = Principal;
 
 public:
-	Perso() : Element(42), sante(100), defense(100), puissance(100),
+	Perso(int id) : Element(id, Mobile), sante(100), defense(100), puissance(100),
 		deplacement(2), corruption(10), status(1), portee(5),
 		santeCourante(100), limiteZombie(300), niveau(1), seuil(42)
 	{}
+	~Perso();
 	virtual bool isAllie() override;
 	virtual bool isEnnemy() override;
 	virtual bool isNeutral() override;

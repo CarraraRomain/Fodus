@@ -37,3 +37,7 @@ int Case::getAttribute(std::string attribute)
 	if (attribute == "piege") return piege;
 	if (attribute == "depart") return depart;
 }
+
+Case::~Case()
+{
+}
