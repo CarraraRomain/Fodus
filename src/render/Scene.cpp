@@ -36,7 +36,7 @@ void Scene::update(const LegacyElementList& list)
 	//*m_elt_list = *list;
 	for (Layer* layer : m_layers)
 	{
-		(*layer).update(list);
+		layer->update(list);
 	}
 }
 
@@ -44,7 +44,7 @@ void Scene::update()
 {
 	for (Layer* layer : m_layers)
 	{
-		(*layer).update(*m_elt_list);
+		layer->update(*m_elt_list);
 	}
 }
 
@@ -73,4 +73,16 @@ void Scene::setEltAt(LegacyElement& elt, int x, int y, int depth)
 		m_elt_list->push_back(elt);
 	}
 
+}
+
+void Scene::addSprite(AnimatedSprite& sprite)
+{
+	m_sprites[0] = &sprite;
+}
+
+const AnimatedSprite& Scene::getSprite(const int& uid)
+{
+	std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
+	if (it != m_sprites.end())
+		return *(it->second);
 }
