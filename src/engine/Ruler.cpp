@@ -63,6 +63,8 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 			return false;
 		}
 	}
+	if (x < 0 || x > WIDTH) return false;
+	if (y < 0 || y > HEIGHT) return false;
 	//if ((x + y) >state->getAttribute("deplacement", uid)) return false;
 	return true;
 }
