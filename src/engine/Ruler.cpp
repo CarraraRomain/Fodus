@@ -1,6 +1,14 @@
 #include "Ruler.hpp"
 
 
+Ruler::Ruler(Etat& state): m_state(state)
+{
+	m_action_list.reset(new ActionList);
+}
+
+Ruler::~Ruler()
+{
+}
 
 void Ruler::execute(Command* com, Etat* state)
 {

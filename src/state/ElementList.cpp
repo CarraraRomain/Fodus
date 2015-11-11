@@ -23,10 +23,9 @@ size_t ElementList::size() const
 	return m_elements.size();
 }
 
-void ElementList::push_back(Element& elt)
+void ElementList::push_back(Element* elt)
 {
-	std::unique_ptr<Element> ptr;
-	ptr.reset(&elt);
+	std::unique_ptr<Element> ptr(elt);
 	m_elements.push_back(std::move(ptr));
 }
 

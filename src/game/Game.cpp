@@ -35,12 +35,12 @@ void Game::run()
 	TestGame::test_load_elt_list(&list, m_boot);
 	load();
 	LOG(DEBUG) << "Updating";
-	Perso elt = Perso();
-	elt.setAttribute("deplacement", 10);
-	elt.setX(10);
-	elt.setY(10);
-	elt.setD(0);
-	elt.setKey("MLP");
+	Perso* elt = new Perso();
+	elt->setAttribute("deplacement", 10);
+	elt->setX(10);
+	elt->setY(10);
+	elt->setD(0);
+	elt->setKey("MLP");
 	m_game_engine->getState().getList()->push_back(elt);
 	// set up AnimatedSprite
 	AnimatedSprite animatedSprite(sf::seconds(0.2), true);

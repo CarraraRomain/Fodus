@@ -12,6 +12,8 @@ private:
 	ElementList liste;
 
 public:
+	Etat();
+	~Etat();
 	void setTaille(int newTaille);
 	int getTaille();
 	void setAttribute(std::string attribute, int valeur, int uid);

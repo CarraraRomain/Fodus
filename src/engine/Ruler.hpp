@@ -10,10 +10,8 @@ class Engine;
 class Ruler
 {
 public :
-	Ruler(Etat& state) : m_state(state)
-{
-	m_action_list.reset(new ActionList);
-}
+	Ruler(Etat& state);
+	~Ruler();
 	void execute(Command* com, Etat* state);
 	void update();
 	bool checkMove(Etat* state, int x, int y, int uid);

@@ -1,5 +1,13 @@
 #include "Etat.hpp"
 
+Etat::Etat()
+{
+}
+
+Etat::~Etat()
+{
+}
+
 void Etat::setTaille(int newTaille)
 {
 	taille = newTaille;
