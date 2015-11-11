@@ -108,35 +108,39 @@ void Game::handle_keys()
 {
 	bool move = false;
 	int x(0), y(0), uid(42);
+	AnimationType type = MoveForward;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		move = true;
 		x = 0;
 		y = -1;
+		type = MoveForward;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		move = true;
 		x = 0;
 		y = 1;
+		type = MoveBackward;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		move = true;
 		x = -1;
 		y = 0;
+		type = MoveLeft;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		move = true;
 		x = 1;
 		y = 0;
-	
+		type = MoveRight;
 	}
 
 	if (move && !m_isKeyPressed)
 	{
-		MoveCommand command = MoveCommand(m_game_engine.get(), x, y, uid);
+		MoveCommand command = MoveCommand(m_game_engine.get(), x, y, type, uid);
 		command.execute();
 		m_isKeyPressed = true;
 		m_game_scene->update(*m_game_engine->getState().getList());

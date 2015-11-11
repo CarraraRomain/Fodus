@@ -11,6 +11,7 @@ public:
 
 	void update(sf::Time deltaTime);
 	void setAnimation(int i);
+	void setType(AnimationType type);
 	void loadAnimation(int row);
 	void setFrameTime(sf::Time time);
 	void play();

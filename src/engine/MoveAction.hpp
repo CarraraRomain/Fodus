@@ -8,9 +8,10 @@ private:
 	int uid;
 	int posX;
 	int posY;
+	AnimationType dir;
 
 public:
 	virtual void execute(Etat& e) override;
-	MoveAction(int uid, int posX, int posY);
+	MoveAction(int uid, int posX, int posY, AnimationType type);
 	virtual ~MoveAction();
 };

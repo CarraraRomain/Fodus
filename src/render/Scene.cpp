@@ -50,16 +50,19 @@ void Scene::update(const ElementList& list)
 	{
 		if (list[i]->type == Mobile)
 		{
+			Perso* ptr = dynamic_cast<Perso*>(list[i].get());
 			std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
 			if (it == m_sprites.end())
 			{
 				addSprite(TestGame::m_animated_sprite);
 				m_sprites[uid]->setPosition(list[i]->getX()*SIZE,
 					list[i]->getY()*SIZE);
+				m_sprites[uid]->setType(ptr->getDir());
 			}else
 			{
 				it->second->setPosition(list[i]->getX()*SIZE,
 					list[i]->getY()*SIZE);
+				it->second->setType(ptr->getDir());
 				
 			}
 

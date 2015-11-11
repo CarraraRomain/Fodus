@@ -1,10 +1,11 @@
 #include "MoveCommand.h"
 
-MoveCommand::MoveCommand(CommandReceiver * receiver, int x , int y , int uid) : Command(receiver, Move)
+MoveCommand::MoveCommand(CommandReceiver * receiver, int x , int y , AnimationType type, int uid) : Command(receiver, Move)
 {
 	posX = x;
 	posY = y;
 	Uid = uid;
+	dir = type;
 }
 
 MoveCommand::~MoveCommand()

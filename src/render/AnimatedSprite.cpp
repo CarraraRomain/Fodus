@@ -26,6 +26,11 @@ void AnimatedSprite::setAnimation(int i)
 	setFrame(m_currentFrame);
 }
 
+void AnimatedSprite::setType(AnimationType type)
+{
+	m_type = type;
+}
+
 void AnimatedSprite::setFrameTime(sf::Time time)
 {
 	m_frameTime = time;
@@ -40,7 +45,7 @@ void AnimatedSprite::play(AnimationType type)
 {
 	int i = 0;
 	
-	switch(type)
+	switch(m_type)
 	{
 	case MoveForward:
 		i = 0;
@@ -55,8 +60,8 @@ void AnimatedSprite::play(AnimationType type)
 		i = 3;
 		break;
 	}
-	if( m_type != type ) setAnimation(i);
-	m_type = type;
+	 setAnimation(i);
+	
 	play();
 }
 

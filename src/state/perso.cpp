@@ -23,6 +23,11 @@ bool Perso::isGround()
 	return false;
 }
 
+AnimationType Perso::getDir()
+{
+	return direction;
+}
+
 void Perso::setAttribute(std::string attribute, int valeur)
 {
 	if (attribute == "sante") sante = valeur;
@@ -43,6 +48,12 @@ void Perso::setAttribute(std::string attribute, int valeur)
 void Perso::setAttribute(std::string attribute, std::string valeur)
 {
 	if (attribute == "nom")nom = valeur;
+	if (attribute == "direction") {
+		if (valeur == "Forward") direction = MoveForward;
+		else if (valeur == "Backward") direction = MoveBackward;
+		else if (valeur == "Left") direction = MoveLeft;
+		else if (valeur == "Right") direction = MoveRight;
+	}
 }
 
 int Perso::getAttribute(std::string attribute)

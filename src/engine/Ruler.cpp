@@ -25,7 +25,7 @@ void Ruler::execute(Command* com, Etat* state)
 			LOG(DEBUG) << "X:" << x << ", Y:" << y;
 			if (rc)
 			{
-				MoveAction* action = new MoveAction(move_com->Uid, x, y);
+				MoveAction* action = new MoveAction(move_com->Uid, x, y, move_com->dir);
 				m_action_list->push_back(action);
 
 			}else LOG(DEBUG) << move_com->Uid << " can't move here";
