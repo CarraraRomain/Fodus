@@ -8,1642 +8,962 @@
         [
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_LEFT"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CORNER_CAVE_BOT_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CORNER_CAVE_BOT_LEFT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CORNER_CAVE_BOT_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_2"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CORNER_CAVE_BOT_LEFT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_TOP_RIGHT"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
-                }
-            ]
-        ],
-        [
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_LEFT"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_MID"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "WALL_DUNGEON_TOP_RIGHT"
-                },
-                {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ]
         ],
         [
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_LEFT"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_LEFT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_2"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CORNER_CAVE_BOT_LEFT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_MID_2"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "DOOR_CAVE_TOP_4"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_LEFT"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_MID"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "WALL_DUNGEON_BOT_RIGHT"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
-                }
-            ]
-        ],
-        [
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ]
         ],
         [
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_LEFT_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "DOOR_CAVE_TOP_3"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_LEFT_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_BOT_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_RIGHT_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "DOOR_CAVE_BOT_4"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_LEFT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
-                }
-            ]
-        ],
-        [
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ]
         ],
         [
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_LEFT_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "DOOR_CAVE_BOT_3"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_LEFT_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_RIGHT_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_LEFT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
-                }
-            ]
-        ],
-        [
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ]
         ],
         [
             [
                 {
-                    "key": "FLOOR_STONE_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_LEFT_2"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "WALL_CAVE_BOT_MID_2"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "WALL_CAVE_BOT_MID_2"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "WALL_CAVE_BOT_RIGHT_2"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_RIGHT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_BOT_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_BOT_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CORNER_CAVE_BOT_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ],
             [
@@ -1651,1461 +971,2141 @@
                     "key": "VOID"
                 },
                 {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ]
-        ],
-        [
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ]
         ],
         [
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_TOP_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_2"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_LEFT_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_LEFT_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
-                }
-            ]
-        ],
-        [
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_TOP_MID_2"
                 }
             ]
         ],
         [
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_RIGHT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_LEFT_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_STONE_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_LEFT_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "VOID"
                 },
                 {
-                    "key": "VOID"
-                }
-            ]
-        ],
-        [
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_STONE_1"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
-                }
-            ],
-            [
-                {
-                    "key": "FLOOR_WOOD_2"
-                },
-                {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_MID_MID_2"
                 }
             ]
         ],
         [
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_RIGHT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_TOP_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_LEFT_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_2"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "WALL_CAVE_BOT_MID_2"
                 }
             ]
         ],
         [
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "CEIL_CAVE_MID_RIGHT"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_TOP_RIGHT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_TOP_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_TOP_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_TOP_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
-                    "key": "VOID"
+                    "key": "VOID_1"
                 }
             ],
             [
                 {
-                    "key": "FLOOR_WOOD_1"
+                    "key": "FLOOR_CAVE_BOT_LEFT"
                 },
                 {
+                    "key": "VOID_1"
+                }
+            ]
+        ],
+        [
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ]
+        ],
+        [
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_RIGHT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
                     "key": "VOID"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ]
+        ],
+        [
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_RIGHT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CORNER_CAVE_TOP_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_TOP_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_TOP_RIGHT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "VOID"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ]
+        ],
+        [
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "VOID"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ]
+        ],
+        [
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CORNER_CAVE_TOP_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "VOID"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ]
+        ],
+        [
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "VOID_1"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CORNER_CAVE_TOP_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CORNER_CAVE_TOP_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "VOID"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ]
+        ],
+        [
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CORNER_CAVE_TOP_RIGHT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_TOP_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CORNER_CAVE_TOP_LEFT"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "FLOOR_CAVE_BOT_LEFT"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
+                }
+            ],
+            [
+                {
+                    "key": "VOID"
+                },
+                {
+                    "key": "CEIL_CAVE_MID_MID"
                 }
             ]
         ]

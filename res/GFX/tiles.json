@@ -249,6 +249,26 @@
       "y": 34,
       "x": 4,
       "d": 1
+    },
+	"FLOOR_CAVE_TOP_LEFT": {
+      "x": 5,
+      "y": 32,
+      "d": 0
+    },
+	"FLOOR_CAVE_BOT_LEFT": {
+      "x": 5,
+      "y": 33,
+      "d": 0
+    },
+	 "FLOOR_CAVE_BOT_RIGHT": {
+      "x": 6,
+      "y": 33,
+      "d": 0
+    },
+	 "FLOOR_CAVE_TOP_RIGHT": {
+      "x": 6,
+      "y": 32,
+      "d": 0
     }
   },
   "header": {
