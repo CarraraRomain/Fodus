@@ -2,13 +2,16 @@
 //#include "CommandeListe.hpp"
 #include "Ruler.hpp"
 
-class Engine
+class Engine: public CommandReceiver
 {
-public :
+public:
+	Engine();
+	void handleCommand(Command*) override;
 	void run();
+	Etat& getState();
 
 private :
-	Etat state;
+	std::unique_ptr<Etat> state;
 	//CommandeListe liste;
-	Ruler rule;
+	std::unique_ptr<Ruler> m_ruler;
 };

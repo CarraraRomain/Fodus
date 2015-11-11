@@ -9,3 +9,11 @@ enum CommandType {
 	Mode,
 	Exit
 };
+
+enum AnimationType
+{
+	MoveForward,
+	MoveBackward,
+	MoveRight,
+	MoveLeft
+};

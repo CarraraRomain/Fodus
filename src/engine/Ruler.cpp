@@ -1,15 +1,27 @@
 #include "Ruler.hpp"
 
+
+
 void Ruler::execute(Command* com, Etat* state)
 {
 	switch (com->type)
 	{
 	case Move:
-//		if (checkMove(state, std::stoi(com->getPayload("X")),
-//			std::stoi(com->getPayload("Y")), std::stoi(com->getPayload("UID"))))
-//			LOG(DEBUG) << "Moving UID " + com->getPayload("UID");
-			//create action here
-			//ActionFactory.create("Move",CommandeUID,CommandeX,CommandeY);
+		LOG(DEBUG) << "Executing Move Command";
+		{
+			MoveCommand* move_com = dynamic_cast<MoveCommand*>(com);
+			// TODO Optimization
+			int x = move_com->posX + state->getAttribute("posX", move_com->Uid);
+			int y = move_com->posY + state->getAttribute("posY", move_com->Uid);
+			bool rc = checkMove(state, x, y, move_com->Uid);
+
+			if (rc)
+			{
+				MoveAction action = MoveAction(move_com->Uid, x, y);
+				m_action_list->push_back(action);
+
+			}else LOG(DEBUG) << move_com->Uid << " can't move here";
+		}
 		break;
 	case Attack:
 //		if (checkAttack(state, std::stoi(com->getPayload("UID1")),
@@ -18,21 +30,28 @@ void Ruler::execute(Command* com, Etat* state)
 //			LOG(DEBUG) << "Attacking UID1 " + com->getPayload("UID1");
 		break;
 	}
+	update();
 }
 
-bool Ruler::checkMove(Etat* state, int posX, int posY, int uid)
+void Ruler::update()
 {
-	int i = 0;
-	ElementList* liste = state->getList();
-	for (i = 0; i < state->getSize(); i++)
+	for (int i = 0; i < m_action_list->size();i++)
 	{
-		if ((*liste)[i]->getX() == posX && (*liste)[i]->getY() == posY && (*liste)[i]->getUid() != 0)
+		(*m_action_list)[i]->execute(m_state);
+		m_action_list->remove(i);
+	}
+}
+
+bool Ruler::checkMove(Etat* state, int x, int y, int uid)
+{
+
+	// find elt in x, y to check its depth ; if d > 0 return false;
+	ElementList* liste = state->getList();
+	for (int i = 0; i < state->getSize(); i++)
+	{
+		if ((*liste)[i]->getX() == x && (*liste)[i]->getY() == y && (*liste)[i]->getD() > 0)
 			return false;
 	}
-	int x = posX - state->getAttribute("posX",uid);
-	int y = posY - state->getAttribute("posY", uid);
-	if (x < 0) x = -x;
-	if (y < 0) y = -y;
 	if (x + y >state->getAttribute("deplacement", uid)) return false;
 	return true;
 }
