@@ -38,19 +38,14 @@ void Game::run()
 	LOG(DEBUG) << "Updating";
 	Perso* elt = new Perso(42);
 	elt->setAttribute("deplacement", 10);
-	elt->setX(10);
+	elt->setX(16);
 	elt->setY(10);
 	elt->setD(0);
 	elt->setKey("MLP");
 	m_game_engine->getState().getList()->push_back(elt);
-	// set up AnimatedSprite
-	AnimatedSprite animatedSprite(sf::seconds(0.2), true);
-	animatedSprite.setPosition(sf::Vector2f(float(SIZE*WIDTH / 2),
-		float(SIZE*HEIGHT / 2)));
-	m_game_scene->addSprite(animatedSprite);
+	
 	sf::Clock frameClock;
-	AnimationType type = MoveForward;
-	float speed = 80.f;
+	
 	bool noKeyWasPressed = true;
 	m_game_scene->update(*m_game_engine->getState().getList());
 	LOG(DEBUG) << "Loop";
@@ -59,46 +54,11 @@ void Game::run()
 		game_event_loop();
 		handle_keys();
 
-		sf::Time frameTime = frameClock.restart();
-//		// if a key was pressed set the correct animation and move correctly
-//		sf::Vector2f movement(0.f, 0.f);
-//		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-//		{
-//			type = MoveForward;
-//			movement.y = speed;
-//			noKeyWasPressed = false;
-//		}
-//		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-//		{
-//			type = MoveBackward;
-//			movement.y += speed;
-//			noKeyWasPressed = false;
-//		}
-//		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-//		{
-//			type = MoveLeft;
-//			movement.x -= speed;
-//			noKeyWasPressed = false;
-//		}
-//		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-//		{
-//			type = MoveRight;
-//			movement.x += speed;
-//			noKeyWasPressed = false;
-//		}
-//		animatedSprite.play(type);
-//		animatedSprite.move(movement * frameTime.asSeconds());
-//		if (noKeyWasPressed)
-//		{
-//			animatedSprite.stop();
-//		}
-//		noKeyWasPressed = true;
-//
-//		// update AnimatedSprite
-//		animatedSprite.update(frameTime);
+//		sf::Time frameTime = frameClock.restart();
+
 		m_game_window->clear();
 		m_game_window->draw(*m_game_scene);
-		//m_game_window->draw(animatedSprite);
+
 		m_game_window->display();
 	}
 	LOG(DEBUG) << "Game ended";
@@ -142,7 +102,7 @@ void Game::handle_keys()
 	{
 		MoveCommand command = MoveCommand(m_game_engine.get(), x, y, type, uid);
 		command.execute();
-		m_isKeyPressed = true;
+		//m_isKeyPressed = true;
 		m_game_scene->update(*m_game_engine->getState().getList());
 	}
 	
