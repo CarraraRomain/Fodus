@@ -13,5 +13,6 @@ MoveCommand::~MoveCommand()
 
 void MoveCommand::execute()
 {
+	LOG(DEBUG) << "Exec Move";
 	m_command_receiver->handleCommand(this);
 }

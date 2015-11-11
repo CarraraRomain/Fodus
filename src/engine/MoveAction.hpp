@@ -1,5 +1,6 @@
 #include "Action.hpp"
 #include <string>
+#include "../Enum.h"
 
 class MoveAction : public Action
 {
@@ -9,7 +10,7 @@ private:
 	int posY;
 
 public:
-	virtual void execute(Etat e) override;
+	virtual void execute(Etat& e) override;
 	MoveAction(int uid, int posX, int posY);
-	~MoveAction();
+	virtual ~MoveAction();
 };
