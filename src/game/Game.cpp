@@ -102,7 +102,7 @@ void Game::handle_keys()
 	{
 		MoveCommand command = MoveCommand(m_game_engine.get(), x, y, type, uid);
 		command.execute();
-		//m_isKeyPressed = true;
+		m_isKeyPressed = true;
 		m_game_scene->update(*m_game_engine->getState().getList());
 	}
 	
