@@ -4,7 +4,7 @@
 #include "../engine/MoveCommand.h"
 
 
-Game::Game(Bootstrap* boot) : m_boot(boot)
+Game::Game(Bootstrap* boot) : m_boot(boot), m_isKeyPressed(false)
 {
 }
 
@@ -111,7 +111,7 @@ void Game::handle_keys()
 	{
 		move = true;
 		x = 1;
-		y = 0;	
+		y = 0;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
@@ -130,12 +130,14 @@ void Game::handle_keys()
 		move = true;
 		x = 0;
 		y = 1;
+	
 	}
 
-	if (move)
+	if (move && !m_isKeyPressed)
 	{
 		MoveCommand command = MoveCommand(m_game_engine.get(), x, y, uid);
 		command.execute();
+		m_isKeyPressed = true;
 	}
 	
 
@@ -147,6 +149,10 @@ void Game::game_event_loop()
 	while (m_game_window->pollEvent(Event)) {
 		if (Event.type == sf::Event::Closed)
 			m_game_window->close();
+		if(Event.type == sf::Event::KeyReleased)
+		{
+			m_isKeyPressed = false;
+		}
 	}
 	
 

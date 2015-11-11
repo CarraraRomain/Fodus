@@ -22,12 +22,10 @@ size_t ActionList::size() const
 	return m_actions.size();
 }
 
-void ActionList::push_back(const Action& elt)
+void ActionList::push_back(Action* elt)
 {
-	std::unique_ptr<Action> ptr;
-	ptr.reset();
-	*ptr = elt;
-	m_actions.push_back(std::move(ptr));
+	std::unique_ptr<Action> act(elt);
+	m_actions.push_back(std::move(act));
 }
 
 void ActionList::clear()

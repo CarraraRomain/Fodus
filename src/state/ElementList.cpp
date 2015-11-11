@@ -1,4 +1,5 @@
 #include "ElementList.hpp"
+#include <iostream>
 
 
 ElementList::ElementList()
@@ -58,7 +59,7 @@ void ElementList::setAttribute(std::string attribut, std::string valeur, int uid
 
 int ElementList::getAttribute(std::string attribute, int uid)
 {
-	if(findUid(uid)>0) return m_elements[findUid(uid)]->getAttribute(attribute);
+	if(findUid(uid)>= 0) return m_elements[findUid(uid)]->getAttribute(attribute);
 }
 
 int ElementList::findUid(int uid) {
@@ -68,6 +69,7 @@ int ElementList::findUid(int uid) {
 	for (i = 0; i < m_elements.size(); i++)
 	{
 		if (m_elements[i]->getUid() == uid) {
+			
 			return i;
 		}
 	}

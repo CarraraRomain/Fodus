@@ -60,4 +60,5 @@ int Perso::getAttribute(std::string attribute)
 	if (attribute == "seuil") return seuil;
 	if (attribute == "posX") return m_x;
 	if (attribute == "posY") return m_y;
+	if (attribute == "uid") return uid;
 }

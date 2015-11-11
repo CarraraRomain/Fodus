@@ -13,7 +13,7 @@ public:
 	ActionList& operator=(ActionList&&);
 
 	size_t size() const;
-	void push_back(const Action& elt);
+	void push_back(Action*);
 	void clear();
 	void remove(int i);
 	std::unique_ptr<Action>& operator[](size_t i);

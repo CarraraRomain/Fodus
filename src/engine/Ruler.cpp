@@ -14,10 +14,10 @@ void Ruler::execute(Command* com, Etat* state)
 			int x = move_com->posX + state->getAttribute("posX", move_com->Uid);
 			int y = move_com->posY + state->getAttribute("posY", move_com->Uid);
 			bool rc = checkMove(state, x, y, move_com->Uid);
-
+			LOG(DEBUG) << "X:" << x << ", Y:" << y;
 			if (rc)
 			{
-				MoveAction action = MoveAction(move_com->Uid, x, y);
+				MoveAction* action = new MoveAction(move_com->Uid, x, y);
 				m_action_list->push_back(action);
 
 			}else LOG(DEBUG) << move_com->Uid << " can't move here";
@@ -50,9 +50,12 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 	for (int i = 0; i < state->getSize(); i++)
 	{
 		if ((*liste)[i]->getX() == x && (*liste)[i]->getY() == y && (*liste)[i]->getD() > 0)
+		{
+			LOG(DEBUG) << (*liste)[i]->getKey() << " is here";
 			return false;
+		}
 	}
-	if (x + y >state->getAttribute("deplacement", uid)) return false;
+	//if ((x + y) >state->getAttribute("deplacement", uid)) return false;
 	return true;
 }
 
