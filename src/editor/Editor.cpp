@@ -89,7 +89,7 @@ void Editor::new_level()
 	w.EndArray();
 	w.EndObject();
 	string json(s.GetString());
-	ofstream of("../../res/GFX/levels/" + m_file + ".json");
+	ofstream of("../../res/levels/" + m_file + ".json");
 	of << json;
 	if (!of.good()) throw std::runtime_error("Can't write the JSON string to the file!");
 
