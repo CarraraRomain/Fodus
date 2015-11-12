@@ -278,6 +278,120 @@
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_CZ72o35-EeWUXJp5yjAG7g" type="_0kgXMGwOEeWzo-fME0z-gw" association="_CZ7PkH5-EeWUXJp5yjAG7g"/>
   </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Le__AIlFEeWII_UxwgKZDQ" name="Game Engine">
+    <packagedElement xmi:type="uml:Class" xmi:id="_VeSSoIlFEeWII_UxwgKZDQ" name="Engine">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_U6_Q8IlIEeWII_UxwgKZDQ" name="ruler" type="_y8a5sIlHEeWII_UxwgKZDQ" association="_U61f8IlIEeWII_UxwgKZDQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_4Mgd0IlIEeWII_UxwgKZDQ" name="m_state *" type="_giW_YGXrEeWyXocPDeSk4g"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_9hGZYIlHEeWII_UxwgKZDQ" name="run"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="__ZwkIIlHEeWII_UxwgKZDQ" name="getState"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_J8IPUIlLEeWII_UxwgKZDQ" name="update"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ixBpIIlHEeWII_UxwgKZDQ" name="ActionList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_x8NH8YlJEeWII_UxwgKZDQ" name="actions" type="_stCw4IlIEeWII_UxwgKZDQ" aggregation="composite" association="_x8L50IlJEeWII_UxwgKZDQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_1tck8IlJEeWII_UxwgKZDQ" name="size"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_2hnz4IlJEeWII_UxwgKZDQ" name="push_back"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_36uU0IlJEeWII_UxwgKZDQ" name="clear"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_4uNnQIlJEeWII_UxwgKZDQ" name="remove"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_oB5F0IlHEeWII_UxwgKZDQ" name="MoveCommand">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_QQSm8IlJEeWII_UxwgKZDQ" name="posX">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_R2Nb4IlJEeWII_UxwgKZDQ" name="posY">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_TzEKIIlJEeWII_UxwgKZDQ" name="Uid">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_lN63cIlJEeWII_UxwgKZDQ" name="dir" type="_b8M0cIlJEeWII_UxwgKZDQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_uoNSgIlHEeWII_UxwgKZDQ" name="ModeCommand">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Lb9VQIlJEeWII_UxwgKZDQ" name="m_mode">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_y8a5sIlHEeWII_UxwgKZDQ" name="Ruler">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_YzlTIIlIEeWII_UxwgKZDQ" name="actionlist" type="_ixBpIIlHEeWII_UxwgKZDQ" association="_Yzjd8IlIEeWII_UxwgKZDQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_XnyHAIlLEeWII_UxwgKZDQ" name="m_state" type="_giW_YGXrEeWyXocPDeSk4g"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_HF37QIlIEeWII_UxwgKZDQ" name="execute">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Mz_UoIlIEeWII_UxwgKZDQ" name="com *" type="_o7MP4IlIEeWII_UxwgKZDQ"/>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Q07agIlIEeWII_UxwgKZDQ" name="state *" type="_giW_YGXrEeWyXocPDeSk4g"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_oryFcIlJEeWII_UxwgKZDQ" name="checkMove" visibility="private">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_t1CeQIlJEeWII_UxwgKZDQ" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_av1dEIlLEeWII_UxwgKZDQ" name="update"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1qpagIlHEeWII_UxwgKZDQ" name="MoveAction">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_DGaxMIlKEeWII_UxwgKZDQ" name="MoveAction">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GvH9QIlKEeWII_UxwgKZDQ" name="uid">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_IVW7QIlKEeWII_UxwgKZDQ" name="posX">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_J6z2IIlKEeWII_UxwgKZDQ" name="posY">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_MVK_wIlKEeWII_UxwgKZDQ" name="type" type="_b8M0cIlJEeWII_UxwgKZDQ"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_U61f8IlIEeWII_UxwgKZDQ" memberEnd="_U6_Q8IlIEeWII_UxwgKZDQ _U7AfEIlIEeWII_UxwgKZDQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_U65xYIlIEeWII_UxwgKZDQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_U66_gIlIEeWII_UxwgKZDQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_U7AfEIlIEeWII_UxwgKZDQ" type="_VeSSoIlFEeWII_UxwgKZDQ" association="_U61f8IlIEeWII_UxwgKZDQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Yzjd8IlIEeWII_UxwgKZDQ" memberEnd="_YzlTIIlIEeWII_UxwgKZDQ _Yzl6MIlIEeWII_UxwgKZDQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YzksEIlIEeWII_UxwgKZDQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YzksEYlIEeWII_UxwgKZDQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_Yzl6MIlIEeWII_UxwgKZDQ" type="_y8a5sIlHEeWII_UxwgKZDQ" association="_Yzjd8IlIEeWII_UxwgKZDQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_o7MP4IlIEeWII_UxwgKZDQ" name="Command">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_G1W9kIlJEeWII_UxwgKZDQ" name="m_command_receiver" type="_rNoMkIlIEeWII_UxwgKZDQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_FAMywIlJEeWII_UxwgKZDQ" name="execute" isAbstract="true"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_rNoMkIlIEeWII_UxwgKZDQ" name="CommandReceiver">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_VijVUIlKEeWII_UxwgKZDQ" name="handleCommand" isAbstract="true">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_bxKMoIlKEeWII_UxwgKZDQ" name="com" type="_o7MP4IlIEeWII_UxwgKZDQ"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_stCw4IlIEeWII_UxwgKZDQ" name="Action">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_A8B9QIlKEeWII_UxwgKZDQ" name="execute"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Realization" xmi:id="_vzN3oIlIEeWII_UxwgKZDQ" client="_uoNSgIlHEeWII_UxwgKZDQ" supplier="_o7MP4IlIEeWII_UxwgKZDQ"/>
+    <packagedElement xmi:type="uml:Realization" xmi:id="_wROCQIlIEeWII_UxwgKZDQ" client="_oB5F0IlHEeWII_UxwgKZDQ" supplier="_o7MP4IlIEeWII_UxwgKZDQ"/>
+    <packagedElement xmi:type="uml:Realization" xmi:id="_wwJZ8IlIEeWII_UxwgKZDQ" client="_VeSSoIlFEeWII_UxwgKZDQ" supplier="_rNoMkIlIEeWII_UxwgKZDQ"/>
+    <packagedElement xmi:type="uml:Realization" xmi:id="_xqe7QIlIEeWII_UxwgKZDQ" client="_1qpagIlHEeWII_UxwgKZDQ" supplier="_stCw4IlIEeWII_UxwgKZDQ"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_x8L50IlJEeWII_UxwgKZDQ" memberEnd="_x8NH8YlJEeWII_UxwgKZDQ _x8NvAIlJEeWII_UxwgKZDQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_x8Mg4IlJEeWII_UxwgKZDQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x8NH8IlJEeWII_UxwgKZDQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_x8NvAIlJEeWII_UxwgKZDQ" type="_ixBpIIlHEeWII_UxwgKZDQ" association="_x8L50IlJEeWII_UxwgKZDQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Enumeration" xmi:id="_nhIawIlKEeWII_UxwgKZDQ" name="CommandType">
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_pyMecIlKEeWII_UxwgKZDQ" name="Abstract"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_q3AKYIlKEeWII_UxwgKZDQ" name="Move"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_tDLuEIlKEeWII_UxwgKZDQ" name="Mode"/>
+      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_vvOdkIlKEeWII_UxwgKZDQ" name="Load"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CLoHcIlLEeWII_UxwgKZDQ" memberEnd="_CLp8oIlLEeWII_UxwgKZDQ _CLqjsIlLEeWII_UxwgKZDQ" navigableOwnedEnd="_CLp8oIlLEeWII_UxwgKZDQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CLpVkIlLEeWII_UxwgKZDQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CLpVkYlLEeWII_UxwgKZDQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CLp8oIlLEeWII_UxwgKZDQ" name="type" type="_nhIawIlKEeWII_UxwgKZDQ" association="_CLoHcIlLEeWII_UxwgKZDQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CLqjsIlLEeWII_UxwgKZDQ" type="_o7MP4IlIEeWII_UxwgKZDQ" association="_CLoHcIlLEeWII_UxwgKZDQ"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_b8M0cIlJEeWII_UxwgKZDQ" name="AnimationType">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_fjpcQIlJEeWII_UxwgKZDQ" name="MoveForward"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_hCA3sIlJEeWII_UxwgKZDQ" name="MoveBackward"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_iM2TIIlJEeWII_UxwgKZDQ" name="MoveLeft"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_jSo2gIlJEeWII_UxwgKZDQ" name="MoveRight"/>
+  </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_z92kMGXqEeWyXocPDeSk4g">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_z93yUGXqEeWyXocPDeSk4g" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
