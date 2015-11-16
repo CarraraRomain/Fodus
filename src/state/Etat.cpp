@@ -1,5 +1,6 @@
 #include "Etat.hpp"
 
+
 Etat::Etat(): taille(0)
 {
 }
@@ -87,6 +88,15 @@ std::vector<int> Etat::getGround()
 		}
 	}
 	return result;
+}
+
+void Etat::notify()
+{
+	for (auto obs : m_obs)
+	{
+		obs->update(ObsState);
+	}
+
 }
 
 int Etat::getSize()

@@ -9,9 +9,9 @@ public:
 	Subject();
 	~Subject();
 	void attach(Observer*);
-	void notify();
+	virtual void notify() = 0;
 
-private:
+protected:
 	std::vector<Observer*> m_obs;
 
 };

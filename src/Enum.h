@@ -23,3 +23,10 @@ enum ElementType
 	Mobile,
 	Fixed
 };
+
+enum ObsType
+{
+	ObsEngine,
+	ObsState,
+	ObsNetwork,
+};

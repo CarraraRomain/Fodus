@@ -20,7 +20,7 @@ public:
 	void load_gui();
 	void load();
 	void run();
-	void update() override;
+	void update(ObsType) override;
 
 private:
 	Bootstrap* m_boot;

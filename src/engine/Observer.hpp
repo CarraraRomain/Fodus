@@ -8,7 +8,7 @@ class Observer
 public:
 	Observer(Subject* sub);
 	~Observer();
-	virtual void update() = 0;
+	virtual void update(ObsType) = 0;
 protected:
 	Subject* getSubject();
 	Subject* m_sub;

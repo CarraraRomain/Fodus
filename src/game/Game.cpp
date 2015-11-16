@@ -48,7 +48,7 @@ void Game::run()
 	LOG(DEBUG) << "Updating";
 	
 	
-	update();
+	update(ObsState);
 	
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
@@ -66,9 +66,17 @@ void Game::run()
 	LOG(DEBUG) << "Game ended";
 }
 
-void Game::update()
+void Game::update(ObsType type)
 {
-	m_game_scene->update(*(static_cast<Etat*>(m_sub)->getList()));
+	switch (type)
+	{
+	case ObsEngine:
+		break;
+	case ObsState:
+		m_game_scene->update(*(static_cast<Etat*>(m_sub)->getList()));
+		break;
+	}
+	
 }
 
 /**

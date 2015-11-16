@@ -7,6 +7,7 @@
 
 
 #include "../engine/Subject.hpp"
+#include "../engine/Observer.hpp"
 
 class Etat: public Subject
 {
@@ -27,7 +28,7 @@ public:
 	std::vector<int> getAllies();
 	std::vector<int> getNeutral();
 	std::vector<int> getGround();
-
+	void notify() override;
 	int getSize();
 
 	ElementList* getList();
