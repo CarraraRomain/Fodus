@@ -28,9 +28,9 @@ void Ruler::execute(Command* com, Etat* state)
 			int y = move_com->posY + state->getAttribute("posY", move_com->Uid);
 			if (checkMove(state, x, y, move_com->Uid))
 			{
-				MoveAction* action = new MoveAction(move_com->Uid, x, y, move_com->dir);
-				m_action_list->push_back(action);
-
+				//MoveAction* action = new MoveAction(move_com->Uid, x, y, move_com->dir);
+				//m_action_list->push_back(action);
+				createMove(state, x, y, move_com->Uid);
 			}
 			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
@@ -50,7 +50,7 @@ void Ruler::execute(Command* com, Etat* state)
  */
 void Ruler::update()
 {
-	for (int i = 0; i < m_action_list->size();i++)
+	for (int i = m_action_list->size()-1; i >= 0;i--)
 	{
 		(*m_action_list)[i]->execute(m_state);
 		m_action_list->remove(i);
@@ -62,7 +62,7 @@ void Ruler::update()
  */
 bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 {
-	LOG(DEBUG) << "propagate with" << state->getAttribute("posX", uid) << state->getAttribute("posY", uid), state->getAttribute("deplacement", uid);
+	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", uid) << " Y:" << state->getAttribute("posY", uid) << " and move : " << state->getAttribute("deplacement", uid);
 	propagate(state->getAttribute("posX", uid), state->getAttribute("posY", uid), state->getAttribute("deplacement", uid));
 	LOG(DEBUG) << "propagate done";
 	if(mapCharacter[x][y] > 0) return true;
@@ -84,6 +84,60 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 	// if Elt would be out of window boundaries
 	return !(x < 0 || x >= WIDTH) && !(y < 0 || y >= HEIGHT);
 	//if ((x + y) >state->getAttribute("deplacement", uid)) return false;*/
+}
+
+bool Ruler::createMove(Etat * state, int x, int y, int uid)
+{
+	int i;
+	for (i = 0; i < HEIGHT + WIDTH; i++)
+	{
+		if (x > 0)
+		{
+			if (mapCharacter[x - 1][y] > mapCharacter[x][y])
+			{
+				MoveAction* action = new MoveAction(uid, x, y, MoveRight);
+				m_action_list->push_back(action);
+				x = x - 1;
+				LOG(DEBUG) << "Right";
+			}
+		}
+		if (y > 0)
+		{
+			if (mapCharacter[x][y - 1] > mapCharacter[x][y])
+			{
+				MoveAction* action = new MoveAction(uid, x, y, MoveBackward);
+				m_action_list->push_back(action);
+				y = y - 1;
+				LOG(DEBUG) << "BackWard";
+			}
+		}
+		if (x < WIDTH - 1)
+		{
+			if (mapCharacter[x + 1][y] > mapCharacter[x][y])
+			{
+				MoveAction* action = new MoveAction(uid, x, y, MoveLeft);
+				m_action_list->push_back(action);
+				x = x + 1;
+				LOG(DEBUG) << "Left";
+			}
+		}
+		if (y < HEIGHT - 1)
+		{
+			if (mapCharacter[x][y + 1] > mapCharacter[x][y])
+			{
+				MoveAction* action = new MoveAction(uid, x, y, MoveForward);
+				m_action_list->push_back(action);
+				y = y + 1;
+				LOG(DEBUG) << "ForWard";
+			}
+		}
+		if (mapCharacter[x][y] == state->getAttribute("deplacement", uid))
+		{
+			LOG(DEBUG) << "found";
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
