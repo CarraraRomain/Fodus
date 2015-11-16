@@ -14,6 +14,9 @@ Ruler::~Ruler()
  */
 void Ruler::execute(Command* com, Etat* state)
 {
+	LOG(DEBUG) << "before map";
+	createMap(state);
+	LOG(DEBUG) << "after map";
 	switch (com->type)
 	{
 	case Move:
@@ -59,8 +62,13 @@ void Ruler::update()
  */
 bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 {
+	LOG(DEBUG) << "propagate with" << state->getAttribute("posX", uid) << state->getAttribute("posY", uid), state->getAttribute("deplacement", uid);
+	propagate(state->getAttribute("posX", uid), state->getAttribute("posY", uid), state->getAttribute("deplacement", uid));
+	LOG(DEBUG) << "propagate done";
+	if(mapCharacter[x][y] > 0) return true;
+	else return false;
 
-	ElementList* liste = state->getList();
+	/*ElementList* liste = state->getList();
 	for (int i = 0; i < state->getSize(); i++)
 	{
 		// if elt is in X, Y, with depth > 0 and not void ("VOID_1" elt)
@@ -75,7 +83,7 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 	}
 	// if Elt would be out of window boundaries
 	return !(x < 0 || x >= WIDTH) && !(y < 0 || y >= HEIGHT);
-	//if ((x + y) >state->getAttribute("deplacement", uid)) return false;
+	//if ((x + y) >state->getAttribute("deplacement", uid)) return false;*/
 }
 
 /**
@@ -93,3 +101,49 @@ bool Ruler::checkAttack(Etat* state, int uid1, int uid2)
 
 	return x + y <= state->getAttribute("portee", uid1);
 }
+
+void Ruler::createMap(Etat * state)
+{
+	int i, j;
+
+	map.resize(WIDTH);
+	for (int i = 0; i < WIDTH; ++i)
+		map[i].resize(HEIGHT);
+
+	for (i = 0; i < WIDTH; i++)
+		for (j = 0; j < HEIGHT; j++) {
+			map[i][j] = 0;
+		}
+
+	mapCharacter.resize(WIDTH);
+	for (int i = 0; i < WIDTH; ++i)
+		mapCharacter[i].resize(HEIGHT);
+
+	for (i = 0; i < WIDTH; i++)
+		for (j = 0; j < HEIGHT; j++) {
+			mapCharacter[i][j] = 0;
+		}
+
+	ElementList* liste = state->getList();
+	for (int i = 0; i < state->getSize(); i++)
+	{
+		map[(*liste)[i]->getX()][(*liste)[i]->getY()] = (*liste)[i]->getD();
+	}
+}
+
+void Ruler::propagate(int posX, int posY, int value)
+{
+	mapCharacter[posX][posY] = value;
+	int i, j;
+	if (value > 1) {
+		for (i = -1 ; i <= 1 ; i++) {
+			for (j = -1; j <= 1; j++) {
+				if (posX + i > 0 && posX + 1 < WIDTH - 1 && posY + j > 0 && posY + j < HEIGHT - 1) {
+					if (map[posX + i][posY + j] > 0 && mapCharacter[posX + i][posY + j] < value) propagate(posX + i, posY + j, value - 1);
+				}
+			}
+		}
+	}
+}
+
+
