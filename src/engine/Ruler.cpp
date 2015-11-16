@@ -127,22 +127,22 @@ void Ruler::createMap(Etat * state)
 	ElementList* liste = state->getList();
 	for (int i = 0; i < state->getSize(); i++)
 	{
-		map[(*liste)[i]->getX()][(*liste)[i]->getY()] = (*liste)[i]->getD();
+		if((*liste)[i]->getKey() != "VOID_1") map[(*liste)[i]->getX()][(*liste)[i]->getY()] = (*liste)[i]->getD();
 	}
 }
 
 void Ruler::propagate(int posX, int posY, int value)
 {
 	mapCharacter[posX][posY] = value;
-	int i, j;
 	if (value > 1) {
-		for (i = -1 ; i <= 1 ; i++) {
-			for (j = -1; j <= 1; j++) {
-				if (posX + i > 0 && posX + 1 < WIDTH - 1 && posY + j > 0 && posY + j < HEIGHT - 1) {
-					if (map[posX + i][posY + j] > 0 && mapCharacter[posX + i][posY + j] < value) propagate(posX + i, posY + j, value - 1);
-				}
-			}
-		}
+		if(posX > 0)
+			if (map[posX - 1][posY] < 1 && mapCharacter[posX - 1][posY] < value) propagate(posX - 1, posY, value - 1);
+		if(posY > 0)
+			if (map[posX][posY - 1] < 1 && mapCharacter[posX][posY - 1] < value) propagate(posX, posY - 1, value - 1);
+		if (posY < HEIGHT - 1)
+			if (map[posX][posY + 1] < 1 && mapCharacter[posX][posY + 1] < value) propagate(posX, posY + 1, value - 1);
+		if (posX < WIDTH - 1)
+			if (map[posX + 1][posY] < 1 && mapCharacter[posX + 1][posY] < value) propagate(posX + 1, posY, value - 1);
 	}
 }
 
