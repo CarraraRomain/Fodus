@@ -10,20 +10,21 @@
 #include "../engine/Engine.hpp"
 
 #include "../test/game/TestGame.hpp"
+#include "../engine/Observer.hpp"
 
-class Game
+class Game: public Observer
 {
 public:
-	Game(Bootstrap*);
+	Game(Bootstrap*, Engine*);
 	~Game();
 	void load_gui();
 	void load();
 	void run();
-
+	void update() override;
 
 private:
 	Bootstrap* m_boot;
-	std::unique_ptr<Engine> m_game_engine;
+	Engine* m_game_engine;
 	std::unique_ptr<sf::RenderWindow> m_game_window;
 	std::unique_ptr<Scene> m_game_scene;
 

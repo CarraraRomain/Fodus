@@ -1,11 +1,14 @@
+#ifndef __Etat__
+#define __Etat__
+
 #include "ElementList.hpp"
 #include <vector>
 #include <string>
 
-#ifndef __Etat__
-#define __Etat__
 
-class Etat
+#include "../engine/Subject.hpp"
+
+class Etat: public Subject
 {
 private:
 	int taille;

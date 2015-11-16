@@ -4,7 +4,8 @@
 #include "../engine/MoveCommand.h"
 
 
-Game::Game(Bootstrap* boot) : m_boot(boot), m_isKeyPressed(false)
+Game::Game(Bootstrap* boot, Engine* eng) : Observer(&eng->getState()),
+m_boot(boot), m_game_engine(eng), m_isKeyPressed(false)
 {
 }
 
@@ -30,8 +31,8 @@ void Game::load_gui()
 void Game::load()
 {
 	load_gui();
-	m_game_engine.reset(new Engine);
-	TestGame::test_load_elt_list(m_game_engine->getState().getList(), m_boot);
+	//m_game_engine.reset(new Engine);
+	
 }
 
 /**
@@ -45,17 +46,10 @@ void Game::run()
 	
 	load();
 	LOG(DEBUG) << "Updating";
-	// Quick and dirty addition of a perso
-	Perso* elt = new Perso(42);
-	elt->setAttribute("deplacement", 10);
-	elt->setX(16);
-	elt->setY(10);
-	elt->setD(0);
-	elt->setKey("MLP");
-	m_game_engine->getState().getList()->push_back(elt);
 	
 	
-	m_game_scene->update(*m_game_engine->getState().getList());
+	update();
+	
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
@@ -71,6 +65,12 @@ void Game::run()
 	}
 	LOG(DEBUG) << "Game ended";
 }
+
+void Game::update()
+{
+	m_game_scene->update(*(static_cast<Etat*>(m_sub)->getList()));
+}
+
 /**
  * Handle keyboard commands
  */
@@ -110,7 +110,7 @@ void Game::handle_keys()
 
 	if (move && !m_isKeyPressed)
 	{
-		MoveCommand command = MoveCommand(m_game_engine.get(), x, y, type, uid);
+		MoveCommand command = MoveCommand(m_game_engine, x, y, type, uid);
 		command.execute();
 		m_isKeyPressed = true;
 		// Call an updaye right after the command execution

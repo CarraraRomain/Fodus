@@ -6,15 +6,11 @@
 class Observer
 {
 public:
-	Observer(Subject* sub): m_sub(sub)
-	{
-		m_sub->attach(this);
-	}
+	Observer(Subject* sub);
 	~Observer();
 	virtual void update() = 0;
 protected:
 	Subject* getSubject();
-private:
 	Subject* m_sub;
 
 };

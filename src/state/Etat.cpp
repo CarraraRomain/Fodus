@@ -1,6 +1,6 @@
 #include "Etat.hpp"
 
-Etat::Etat()
+Etat::Etat(): taille(0)
 {
 }
 

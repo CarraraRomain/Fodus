@@ -302,7 +302,19 @@ void Bootstrap::launch_editor()
 void Bootstrap::launch_game()
 {
 	LOG(DEBUG) << "Launching Game";
-	Game game(this);
+	Engine engine;
+	Game game(this, &engine);
+	TestGame::test_load_elt_list(engine.getState().getList(), this);
+	
+	// Quick and dirty addition of a perso
+	Perso* elt = new Perso(42);
+	elt->setAttribute("deplacement", 10);
+	elt->setX(16);
+	elt->setY(10);
+	elt->setD(0);
+	elt->setKey("MLP");
+	engine.getState().getList()->push_back(elt);
+	
 	game.run();
 }
 
