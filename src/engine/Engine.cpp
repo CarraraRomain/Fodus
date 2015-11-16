@@ -37,3 +37,27 @@ Etat& Engine::getState()
 {
 	return *state;
 }
+
+int Engine::registerPlayer(int client, int player)
+{
+	if (client == 0) return 403;
+	for(auto i : m_clients_players)
+	{
+		if (i.second == player) return 400;
+	}
+	m_clients_players[client] = player;
+	return 1;
+}
+
+int Engine::connect(int client)
+{
+	if (client == 0) return 403;
+	m_clients.push_back(client);
+	return 1;
+}
+
+int Engine::registerPlayer(int player)
+{
+	m_clients_players[0] = player;
+	return 1;
+}

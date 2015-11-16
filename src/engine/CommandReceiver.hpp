@@ -8,7 +8,7 @@ class CommandReceiver
 {
 public:
 	CommandReceiver();
-	~CommandReceiver();
+	virtual ~CommandReceiver();
 	virtual void handleCommand(Command*) = 0;
 };
 
