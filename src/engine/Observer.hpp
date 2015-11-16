@@ -1,6 +1,7 @@
 #pragma once
 #include "../global.hpp"
 #include "Subject.hpp"
+#include "../Enum.h"
 
 
 class Observer
@@ -14,4 +15,3 @@ protected:
 	Subject* m_sub;
 
 };
-

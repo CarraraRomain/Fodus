@@ -24,8 +24,13 @@ void Ruler::execute(Command* com, Etat* state)
 		{
 			MoveCommand* move_com = dynamic_cast<MoveCommand*>(com);
 			// TODO Optimization
-			int x = move_com->posX + state->getAttribute("posX", move_com->Uid);
-			int y = move_com->posY + state->getAttribute("posY", move_com->Uid);
+			int x, y;
+
+			if(move_com->posX > 50)x = move_com->posX - 100 + state->getAttribute("posX", move_com->Uid);
+			else x = move_com->posX;
+			if(move_com->posY > 50)y = move_com->posY - 100 + state->getAttribute("posY", move_com->Uid);
+			else y = move_com->posY;
+
 			if (checkMove(state, x, y, move_com->Uid))
 			{
 				//MoveAction* action = new MoveAction(move_com->Uid, x, y, move_com->dir);

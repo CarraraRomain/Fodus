@@ -55,6 +55,7 @@ void Game::run()
 	{
 		game_event_loop();
 		handle_keys();
+		handle_mouse();
 
 //		sf::Time frameTime = frameClock.restart();
 
@@ -90,29 +91,29 @@ void Game::handle_keys()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		move = true;
-		x = 0;
-		y = -1;
+		x = 100;
+		y = 99;
 		type = MoveForward;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		move = true;
-		x = 0;
-		y = 1;
+		x = 100;
+		y = 101;
 		type = MoveBackward;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		move = true;
-		x = -1;
-		y = 0;
+		x = 99;
+		y = 100;
 		type = MoveLeft;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		move = true;
-		x = 1;
-		y = 0;
+		x = 101;
+		y = 100;
 		type = MoveRight;
 	}
 
@@ -126,7 +127,26 @@ void Game::handle_keys()
 		//m_game_scene->update(*m_game_engine->getState().getList());
 	}
 	
+}
 
+void Game::handle_mouse()
+{
+	sf::Event event;
+
+	while (m_game_window->pollEvent(event)) {
+
+		bool move = false;
+		if (event.type == sf::Event::MouseButtonPressed)
+		{
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				move = true;
+				LOG(DEBUG) << "X: " << (int)(event.mouseButton.x/SIZE);
+				MoveCommand command = MoveCommand(m_game_engine, (event.mouseButton.x/SIZE) , event.mouseButton.y/SIZE, MoveRight, 42);
+				command.execute();
+			}
+		}
+	}
 }
 
 void Game::game_event_loop()
@@ -140,9 +160,5 @@ void Game::game_event_loop()
 			m_isKeyPressed = false;
 		}
 	}
-	
-
-	
-
 }
 
