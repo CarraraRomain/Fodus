@@ -30,7 +30,6 @@ private:
 
 	std::unique_ptr<rapidjson::Document> m_game_level;
 	bool m_isKeyPressed;
-	void handle_event();
 	void game_event_loop();
 };
 
