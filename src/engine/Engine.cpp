@@ -11,9 +11,13 @@ Engine::Engine()
  */
 void Engine::handleCommand(Command* com)
 {
-	switch(com->type)
-		case Move:
-			m_ruler->execute(com, state.get());
+	switch (com->type)
+	{
+	case Move:
+		m_ruler->execute(com, state.get());
+		break;
+	}
+	state->notify();
 }
 
 /**

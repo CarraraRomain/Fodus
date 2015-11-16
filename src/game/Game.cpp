@@ -115,7 +115,7 @@ void Game::handle_keys()
 		m_isKeyPressed = true;
 		// Call an updaye right after the command execution
 		// TODO the update should be called by the obs pattern instead
-		m_game_scene->update(*m_game_engine->getState().getList());
+		//m_game_scene->update(*m_game_engine->getState().getList());
 	}
 	
 
