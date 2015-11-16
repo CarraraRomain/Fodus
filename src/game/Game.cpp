@@ -54,8 +54,7 @@ void Game::run()
 	while(m_game_window->isOpen())
 	{
 		game_event_loop();
-		handle_keys();
-		handle_mouse();
+		handle_event();
 
 //		sf::Time frameTime = frameClock.restart();
 
@@ -83,70 +82,76 @@ void Game::update(ObsType type)
 /**
  * Handle keyboard commands
  */
-void Game::handle_keys()
-{
-	bool move = false;
-	int x(0), y(0), uid(42);
-	AnimationType type = MoveForward;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		move = true;
-		x = 100;
-		y = 99;
-		type = MoveForward;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		move = true;
-		x = 100;
-		y = 101;
-		type = MoveBackward;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		move = true;
-		x = 99;
-		y = 100;
-		type = MoveLeft;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		move = true;
-		x = 101;
-		y = 100;
-		type = MoveRight;
-	}
-
-	if (move && !m_isKeyPressed)
-	{
-		MoveCommand command = MoveCommand(m_game_engine, x, y, type, uid);
-		command.execute();
-		m_isKeyPressed = true;
-		// Call an updaye right after the command execution
-		// TODO the update should be called by the obs pattern instead
-		//m_game_scene->update(*m_game_engine->getState().getList());
-	}
-	
-}
-
-void Game::handle_mouse()
+void Game::handle_event()
 {
 	sf::Event event;
 
-	while (m_game_window->pollEvent(event)) {
+	int x(0), y(0), uid(42);
 
-		bool move = false;
+	//etrangement indispensable pour que la boucle fonctionne ...
+	LOG(DEBUG) << "";
+	
+	
+	bool move = false;
+
+	while (m_game_window->pollEvent(event)) 
+	{
+		
+		AnimationType type = MoveForward;
 		if (event.type == sf::Event::MouseButtonPressed)
 		{
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			if (event.mouseButton.button == (sf::Mouse::Left))
 			{
 				move = true;
-				LOG(DEBUG) << "X: " << (int)(event.mouseButton.x/SIZE);
-				MoveCommand command = MoveCommand(m_game_engine, (event.mouseButton.x/SIZE) , event.mouseButton.y/SIZE, MoveRight, 42);
+				LOG(DEBUG) << "X: " << (int)(event.mouseButton.x / SIZE);
+				MoveCommand command = MoveCommand(m_game_engine, (event.mouseButton.x / SIZE), event.mouseButton.y / SIZE, MoveRight, 42);
 				command.execute();
 			}
 		}
+
+		if (event.type == sf::Event::KeyPressed)
+		{
+			if (event.key.code == sf::Keyboard::Up)
+			{
+				move = true;
+				x = 100;
+				y = 99;
+				type = MoveForward;
+			}
+			if (event.key.code == sf::Keyboard::Down)
+			{
+				move = true;
+				x = 100;
+				y = 101;
+				type = MoveBackward;
+			}
+			if (event.key.code == sf::Keyboard::Left)
+			{
+				move = true;
+				x = 99;
+				y = 100;
+				type = MoveLeft;
+			}
+			if (event.key.code == sf::Keyboard::Right)
+			{
+				move = true;
+				x = 101;
+				y = 100;
+				type = MoveRight;
+			}
+
+			if (move && !m_isKeyPressed)
+			{
+				MoveCommand command = MoveCommand(m_game_engine, x, y, type, uid);
+				command.execute();
+				m_isKeyPressed = true;
+				// Call an updaye right after the command execution
+				// TODO the update should be called by the obs pattern instead
+				//m_game_scene->update(*m_game_engine->getState().getList());
+			}
+		}
 	}
+	
 }
 
 void Game::game_event_loop()
