@@ -211,23 +211,56 @@ void Game::test_hud()
 	sf::Vector2u vect = m_hud_window->getSize();
 	int width(vect.x), height(vect.y);
 
-	sf::Text text;
-
+	sf::Text text, move, attack;
+	sf::String m_string, a_string;
 	// select the font
 	text.setFont(m_font); // font is a sf::Font
+	move.setFont(m_font); // font is a sf::Font
+	attack.setFont(m_font); // font is a sf::Font
 
 						// set the string to display
 	text.setString("FODUS 2.2");
-
+	if (m_game_engine->getPlayer(m_player_id).hasMoved()) {
+		move.setString("Move done");
+		move.setColor(sf::Color::Red);
+	}
+	else
+	{
+		move.setString("Move possible");
+		move.setColor(sf::Color::Green);
+	} 
+	if (m_game_engine->getPlayer(m_player_id).hasAttacked()) {
+		attack.setString("Attack done");
+		attack.setColor(sf::Color::Red);
+	}
+	else
+	{
+		attack.setString("Attack possible");
+		attack.setColor(sf::Color::Green);
+	} 
 	// set the character size
 	text.setCharacterSize(24); // in pixels, not points!
+	attack.setCharacterSize(24); // in pixels, not points!
+	move.setCharacterSize(24); // in pixels, not points!
 
 							   // set the color
 	text.setColor(sf::Color::White);
 	sf::FloatRect bbox = text.getGlobalBounds();
 	text.setOrigin(bbox.width / 2, bbox.height / 2);
 	text.setPosition(width / 2, height/2);
+
+	// Attack left corner bot
+	bbox = attack.getGlobalBounds();
+	attack.setOrigin(0, bbox.height+20);
+	attack.setPosition(20, height);
+	// Move right corner bot
+	bbox = move.getGlobalBounds();
+	move.setOrigin(bbox.width, 20+bbox.height);
+	move.setPosition(width- 20, height);
+
 	m_hud_window->draw(text);
+	m_hud_window->draw(move);
+	m_hud_window->draw(attack);
 	t_turns.setString("Tour: " + std::to_string(m_turns));
 	m_hud_window->draw(t_turns);
 }

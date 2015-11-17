@@ -17,7 +17,6 @@ protected:
 	std::map<int, int> m_clients_players;
 	std::vector<int> m_clients;
 
-	std::vector<int> m_players;
 	int m_player_playing;
 	virtual int registerPlayer(int player) = 0;
 };

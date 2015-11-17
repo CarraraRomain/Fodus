@@ -49,7 +49,7 @@ int Engine::registerPlayer(int client, int player)
 		if (i.second == player) return 400;
 	}
 	m_clients_players[client] = player;
-	m_players.push_back(player);
+	m_players[player] = Player(player);
 	return 1;
 }
 
@@ -72,6 +72,11 @@ void Engine::start()
 	elt->setKey("MLP");
 	state->getList()->push_back(elt);
 
+}
+
+Player& Engine::getPlayer(int id)
+{
+	return m_players[id];
 }
 
 int Engine::registerPlayer(int player)

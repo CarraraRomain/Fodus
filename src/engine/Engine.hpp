@@ -3,7 +3,7 @@
 #include "Ruler.hpp"
 #include "AbstractEngine.hpp"
 #include "../test/game/TestGame.hpp"
-
+#include "Player.hpp"
 
 class Engine: public AbstractEngine
 {
@@ -15,6 +15,7 @@ public:
 	int registerPlayer(int client, int player) override;
 	int connect(int client) override;
 	void start() override;
+	Player& getPlayer(int);
 protected:
 	int registerPlayer(int player) override;
 
@@ -24,6 +25,7 @@ private :
 	//CommandeListe liste;
 	std::vector<int> m_has_played;
 	std::unique_ptr<Ruler> m_ruler;
+	std::map<int, Player> m_players;
 	void nextPlayer(int played);
 	void nextTurn();
 };
