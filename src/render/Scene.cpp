@@ -55,13 +55,13 @@ void Scene::update(const ElementList& list)
 			if (it == m_sprites.end())
 			{
 				addSprite(TestGame::m_animated_sprite);
-				m_sprites[uid]->setPosition(list[i]->getX()*SIZE,
-					list[i]->getY()*SIZE);
+				m_sprites[uid]->setPosition((OFFSET_X + list[i]->getX())*SIZE,
+					(OFFSET_Y + list[i]->getY())*SIZE);
 				m_sprites[uid]->setType(ptr->getDir());
 			}else
 			{
-				it->second->setPosition(list[i]->getX()*SIZE,
-					list[i]->getY()*SIZE);
+				it->second->setPosition((OFFSET_X +list[i]->getX())*SIZE,
+					(OFFSET_Y + list[i]->getY())*SIZE);
 				it->second->setType(ptr->getDir());
 				
 			}

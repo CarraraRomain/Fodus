@@ -30,6 +30,9 @@ Logging library. Has to be include at the top of the file
 #define SIZE 32
 #define WIDTH 24
 #define HEIGHT 16
+#define OFFSET_X 3
+#define OFFSET_Y 3
+#define OFFSET_BOT 5
 
 #include "Enum.h"
 

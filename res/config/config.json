@@ -16,6 +16,7 @@
 	"SFX":"../../SFX/",
     "tileset 0":"../../res/GFX/tileset0.png",
     "sprites":"../../res/GFX/Sprite2.png",
+    "dashboard":"../../res/GFX/dashboard.png",
 	"font":"../../res/fonts/Augusta.ttf"
   }
 }

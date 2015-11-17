@@ -33,10 +33,10 @@ void Layer::resetVertices()
 			// Pointer to the current quad
 			sf::Vertex* quad = &m_vertices[(i + j * WIDTH) * 4];
 
-			quad[0].position = sf::Vector2f(i * SIZE, j * SIZE);
-			quad[1].position = sf::Vector2f((i + 1) * SIZE, j * SIZE);
-			quad[2].position = sf::Vector2f((i + 1) * SIZE, (j + 1) * SIZE);
-			quad[3].position = sf::Vector2f(i * SIZE, (j + 1) * SIZE);
+			quad[0].position = sf::Vector2f(96+i * SIZE			, 96 + j * SIZE);
+			quad[1].position = sf::Vector2f(96+(i + 1) * SIZE	, 96 + j * SIZE);
+			quad[2].position = sf::Vector2f(96+(i + 1) * SIZE	, 96+ (j + 1) * SIZE);
+			quad[3].position = sf::Vector2f(96+i * SIZE			, 96+ (j + 1) * SIZE);
 
 			quad[0].texCoords = sf::Vector2f(0,0);
 			quad[1].texCoords = sf::Vector2f(SIZE,0);
@@ -53,10 +53,6 @@ void Layer::clearVertices()
 			// Pointer to the current quad
 			sf::Vertex* quad = &m_vertices[(i + j * WIDTH) * 4];
 
-			quad[0].position = sf::Vector2f(i * SIZE, j * SIZE);
-			quad[1].position = sf::Vector2f((i + 1) * SIZE, j * SIZE);
-			quad[2].position = sf::Vector2f((i + 1) * SIZE, (j + 1) * SIZE);
-			quad[3].position = sf::Vector2f(i * SIZE, (j + 1) * SIZE);
 
 			quad[0].texCoords = sf::Vector2f(3*SIZE, 0);
 			quad[1].texCoords = sf::Vector2f(4*SIZE, 0);

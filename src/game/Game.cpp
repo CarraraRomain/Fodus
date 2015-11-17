@@ -23,17 +23,21 @@ Game::~Game()
  */
 void Game::load_gui()
 {
+	int width = (2*OFFSET_X + WIDTH)*SIZE;
+	int height = (OFFSET_Y + HEIGHT + OFFSET_BOT)*SIZE;
 	LOG(DEBUG) << "Loading GUI";
 	m_game_scene.reset(new Scene(m_boot));
-	m_game_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
-		SIZE*HEIGHT), "Level", sf::Style::Titlebar | sf::Style::Close));
-	m_hud_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
-		200), "HUD", sf::Style::Titlebar ));
-	m_hud_window->setPosition(sf::Vector2i((sf::VideoMode::getDesktopMode().width  - SIZE*WIDTH) / 2, 0));
+	m_game_window.reset(new sf::RenderWindow(sf::VideoMode(width, height),
+		"Fodus", sf::Style::Titlebar | sf::Style::Close));
+	
 	if (!m_font.loadFromFile(m_boot->getPath("font"))) LOG(FATAL) << "Font not found";
+	if (!m_dashboard_texture.loadFromFile(m_boot->getPath("dashboard"),
+		sf::IntRect(0, 0, 960, 768))) LOG(FATAL) << "HUD not found";
 	t_turns.setFont(m_font);
 	t_turns.setColor(sf::Color::White);
 	t_turns.setCharacterSize(42);
+	m_dashboard.setSize(sf::Vector2f(960, 768));
+	m_dashboard.setTexture(&m_dashboard_texture);
 }
 
 /**
@@ -66,17 +70,15 @@ void Game::run()
 	while(m_game_window->isOpen())
 	{
 		game_event_loop();
-		hud_event_loop();
 		//handle_event();
 
 //		sf::Time frameTime = frameClock.restart();
 
 		m_game_window->clear();
-		m_hud_window->clear();
+		m_game_window->draw(m_dashboard);
 		m_game_window->draw(*m_game_scene);
 		test_hud();
 		m_game_window->display();
-		m_hud_window->display();
 	}
 	LOG(DEBUG) << "Game ended";
 }
@@ -115,15 +117,34 @@ void Game::game_event_loop()
 		// End global
 		
 		// Mouse events
+		
 		if (event.type == sf::Event::MouseButtonPressed)
 		{
-		
+			
 			if (event.mouseButton.button == (sf::Mouse::Left))
 			{
-				move = true;
-				LOG(DEBUG) << "X: " << int(event.mouseButton.x / SIZE);
-				MoveCommand command = MoveCommand(m_game_engine, (event.mouseButton.x / SIZE), event.mouseButton.y / SIZE, MoveRight, 1);
-				command.execute();
+				// Game area : X OFFSET_X to WIDTH /SIZE
+				//             Y OFFSET_Y to HEIGHT
+				int x = event.mouseButton.x;
+				int y = event.mouseButton.y;
+				if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH )*SIZE && 
+					y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
+				{
+					// This is the game area
+					move = true;
+					x -= OFFSET_X * SIZE;
+					y -= OFFSET_Y * SIZE;
+					LOG(DEBUG) << "X: " << int(x / SIZE);
+					LOG(DEBUG) << "Y: " << int(y / SIZE);
+					MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1);
+					command.execute();
+				}
+				else if(x >= 11*SIZE			&& x <19*SIZE		&& 
+						y >= SIZE*(6+HEIGHT)	&& y < SIZE*(8+HEIGHT))
+				{
+					// Next turn button 
+					endPlayerTurn();
+				}
 			}
 		}
 		// End mouse
@@ -160,6 +181,11 @@ void Game::game_event_loop()
 				y = 100;
 				type = MoveRight;
 			}
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				// End Turn
+				endPlayerTurn();
+			}
 
 			if (move && !m_isKeyPressed)
 			{
@@ -173,42 +199,10 @@ void Game::game_event_loop()
 	}
 }
 
-void Game::hud_event_loop()
-{
-	sf::Event event;
-	int x(0), y(0), uid(1);
-	bool move = false;
-
-	while (m_hud_window->pollEvent(event)) {
-		// Global events
-		if (event.type == sf::Event::Closed)
-			m_game_window->close();
-		if (event.type == sf::Event::KeyReleased)
-		{
-			m_isKeyPressed = false;
-		}
-		// End global
-
-		// Mouse events
-		if (event.type == sf::Event::MouseButtonPressed)
-		{
-
-			if (event.mouseButton.button == (sf::Mouse::Left))
-			{
-				move = true;
-				//LOG(DEBUG) << "X: " << (int)(event.mouseButton.x / SIZE);
-				EndTurnCommand command = EndTurnCommand(m_game_engine, 1);
-				command.execute();
-			}
-		}
-		// End mouse
-
-	}
-}
 
 void Game::test_hud()
 {
-	sf::Vector2u vect = m_hud_window->getSize();
+	sf::Vector2u vect = m_game_window->getSize();
 	int width(vect.x), height(vect.y);
 
 	sf::Text text, move, attack;
@@ -247,7 +241,7 @@ void Game::test_hud()
 	text.setColor(sf::Color::White);
 	sf::FloatRect bbox = text.getGlobalBounds();
 	text.setOrigin(bbox.width / 2, bbox.height / 2);
-	text.setPosition(width / 2, height/2);
+	text.setPosition(width / 2, 16);
 
 	// Attack left corner bot
 	bbox = attack.getGlobalBounds();
@@ -257,10 +251,20 @@ void Game::test_hud()
 	bbox = move.getGlobalBounds();
 	move.setOrigin(bbox.width, 20+bbox.height);
 	move.setPosition(width- 20, height);
+	// Turns
+	bbox = text.getGlobalBounds();
+	t_turns.setOrigin(bbox.width / 2, bbox.height / 2);
+	t_turns.setPosition(width / 2, height - 64);
 
-	m_hud_window->draw(text);
-	m_hud_window->draw(move);
-	m_hud_window->draw(attack);
+	m_game_window->draw(text);
+	m_game_window->draw(move);
+	m_game_window->draw(attack);
 	t_turns.setString("Tour: " + std::to_string(m_turns));
-	m_hud_window->draw(t_turns);
+	m_game_window->draw(t_turns);
+}
+
+void Game::endPlayerTurn()
+{
+	EndTurnCommand command = EndTurnCommand(m_game_engine, m_player_id);
+	command.execute();
 }
