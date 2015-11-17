@@ -10,6 +10,8 @@ public:
 	virtual Etat& getState() = 0;
 	virtual int registerPlayer(int client, int player) = 0;
 	virtual int connect(int client) = 0;
+	virtual void start() = 0;
+
 
 protected:
 	std::map<int, int> m_clients_players;

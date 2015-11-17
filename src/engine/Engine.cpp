@@ -1,6 +1,6 @@
 #include "Engine.hpp"
 
-Engine::Engine()
+Engine::Engine(Bootstrap* boot): m_boot(boot)
 {
 	state.reset(new Etat(0));
 	m_ruler.reset(new Ruler(*state));
@@ -56,6 +56,20 @@ int Engine::connect(int client)
 	if (client == 0) return 403;
 	m_clients.push_back(client);
 	return 1;
+}
+
+void Engine::start()
+{
+	TestGame::test_load_elt_list(state->getList(), m_boot);
+	// Quick and dirty addition of a perso
+	Perso* elt = new Perso(42);
+	elt->setAttribute("deplacement", 10);
+	elt->setX(16);
+	elt->setY(10);
+	elt->setD(0);
+	elt->setKey("MLP");
+	state->getList()->push_back(elt);
+
 }
 
 int Engine::registerPlayer(int player)
