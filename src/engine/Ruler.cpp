@@ -16,8 +16,6 @@ Ruler::~Ruler()
  */
 void Ruler::execute(Command* com, Etat* state)
 {
-	createMap(state);
-
 	switch (com->type)
 	{
 	case Move:
@@ -78,9 +76,7 @@ void Ruler::update()
 bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 {
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || m_engine->getPlayer(uid).hasMoved()) return false;
-	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", uid) << " Y:" << state->getAttribute("posY", uid) << " and move : " << state->getAttribute("move", uid);
-	propagate(state->getAttribute("posX", uid), state->getAttribute("posY", uid), state->getAttribute("move", uid));
-	LOG(DEBUG) << "propagate done";
+	
 	if(mapCharacter[x][y] > 0) return true;
 	else return false;
 }
@@ -215,10 +211,15 @@ void Ruler::propagate(int posX, int posY, int value)
 	}
 }
 
-void Ruler::nextPlayer(int played)
+void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 {
 	m_engine->getPlayer(played).resetMoved();
 	m_engine->getPlayer(played).resetAttacked();
+
+	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", toPlay) << " Y:" << state->getAttribute("posY", toPlay) << " and move : " << state->getAttribute("move", toPlay);
+	createMap(state);
+	propagate(state->getAttribute("posX", toPlay), state->getAttribute("posY", toPlay), state->getAttribute("move", toPlay));
+	LOG(DEBUG) << "propagate done";
 }
 
 

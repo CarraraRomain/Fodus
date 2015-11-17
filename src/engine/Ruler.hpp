@@ -24,7 +24,7 @@ public :
 	bool createAttack(Etat* state, int uid1, int uid2);
 	void createMap(Etat* state);
 	void propagate(int posX, int posY, int value);
-	void nextPlayer(int played);
+	void nextPlayer(int played, int toPlay, Etat* state);
 
 private:
 	Etat& m_state;

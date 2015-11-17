@@ -9,7 +9,7 @@ Game::Game(Bootstrap* boot, Engine* eng) : Observer(&eng->getState()),
 m_boot(boot), m_game_engine(eng), m_isKeyPressed(false)
 {
 	m_client_id = rand();
-	m_player_id = 42;
+	m_player_id = 1;
 	LOG(DEBUG) << "Client ID: " << m_client_id;
 }
 
@@ -101,7 +101,7 @@ void Game::update(ObsType type)
 void Game::game_event_loop()
 {
 	sf::Event event;
-	int x(0), y(0), uid(42);
+	int x(0), y(0), uid(1);
 	bool move = false;
 
 	while (m_game_window->pollEvent(event)) {
@@ -122,7 +122,7 @@ void Game::game_event_loop()
 			{
 				move = true;
 				LOG(DEBUG) << "X: " << int(event.mouseButton.x / SIZE);
-				MoveCommand command = MoveCommand(m_game_engine, (event.mouseButton.x / SIZE), event.mouseButton.y / SIZE, MoveRight, 42);
+				MoveCommand command = MoveCommand(m_game_engine, (event.mouseButton.x / SIZE), event.mouseButton.y / SIZE, MoveRight, 1);
 				command.execute();
 			}
 		}
@@ -176,7 +176,7 @@ void Game::game_event_loop()
 void Game::hud_event_loop()
 {
 	sf::Event event;
-	int x(0), y(0), uid(42);
+	int x(0), y(0), uid(1);
 	bool move = false;
 
 	while (m_hud_window->pollEvent(event)) {
@@ -197,7 +197,7 @@ void Game::hud_event_loop()
 			{
 				move = true;
 				//LOG(DEBUG) << "X: " << (int)(event.mouseButton.x / SIZE);
-				EndTurnCommand command = EndTurnCommand(m_game_engine, 42);
+				EndTurnCommand command = EndTurnCommand(m_game_engine, 1);
 				command.execute();
 			}
 		}

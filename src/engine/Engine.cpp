@@ -5,6 +5,7 @@ Engine::Engine(Bootstrap* boot): m_boot(boot)
 {
 	state.reset(new Etat(0));
 	m_ruler.reset(new Ruler(this,*state));
+	m_ruler->createMap(state.get());
 }
 /**
  * Command pattern receiver method
@@ -64,7 +65,7 @@ void Engine::start()
 {
 	TestGame::test_load_elt_list(state->getList(), m_boot);
 	// Quick and dirty addition of a perso
-	Perso* elt = new Perso(42);
+	Perso* elt = new Perso(1);
 	elt->setAttribute("move", 10);
 	elt->setX(16);
 	elt->setY(10);
@@ -87,9 +88,18 @@ int Engine::registerPlayer(int player)
 
 void Engine::nextPlayer(int played)
 {
+	int toPlay;
 	m_has_played.push_back(played);
-	if (m_players.size() == m_has_played.size()) m_has_played.resize(0);
-	m_ruler->nextPlayer(played);
+	if (m_players.size() == m_has_played.size()) {
+		m_has_played.resize(0);
+		toPlay = 1;
+	}
+	else toPlay = played + 1;
+
+	if (toPlay >= m_players.size()) toPlay = 1;
+	state.get();
+
+	m_ruler->nextPlayer(played, toPlay, state.get());
 	LOG(DEBUG) << "Next turn";
 	nextTurn();
 }

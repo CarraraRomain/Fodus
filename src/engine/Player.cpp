@@ -55,7 +55,5 @@ const int Player::getId()
 
 void Player::addMovement(int x, int y, AnimationType type)
 {
-	mouvements.push_back(x);
-	mouvements.push_back(y);
-	directions.push_back(type);
+	movements.push_back(Movement(x, y, type));
 }

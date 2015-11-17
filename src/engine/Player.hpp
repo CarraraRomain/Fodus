@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "../Enum.h"
+#include "Movement.hpp"
 
 class Player
 {
@@ -20,7 +21,6 @@ private:
 	int m_id;
 	bool m_moved;
 	bool m_attacked;
-	std::vector<int> mouvements;
-	std::vector<AnimationType> directions;
+	std::vector<Movement> movements;
 };
 
