@@ -72,7 +72,7 @@ void Engine::start()
 	elt->setD(0);
 	elt->setKey("MLP");
 	state->getList()->push_back(elt);
-
+	nextPlayer(0);
 }
 
 Player& Engine::getPlayer(int id)
