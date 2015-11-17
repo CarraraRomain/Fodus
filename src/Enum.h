@@ -6,6 +6,7 @@ enum CommandType {
 	Debug,
 	Move,
 	Attack,
+	Damage,
 	Load,
 	Mode,
 	Exit

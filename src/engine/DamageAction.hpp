@@ -1,16 +1,6 @@
 #pragma once
 #include "Action.hpp"
 
-/*class DamageAction : public Action
-{
-private:
-	int uid;
-	int value;
-
-public:
-	void execute(Etat* state);
-};*/
-
 class DamageAction : public Action
 {
 private:
@@ -22,4 +12,6 @@ private:
 
 public:
 	void execute(Etat* state);
+	DamageAction(int uid1, int uid2, int value);
+	~DamageAction();
 };
