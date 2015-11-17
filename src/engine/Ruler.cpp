@@ -36,6 +36,7 @@ void Ruler::execute(Command* com, Etat* state)
 				//MoveAction* action = new MoveAction(move_com->Uid, x, y, move_com->dir);
 				//m_action_list->push_back(action);
 				createMove(state, x, y, move_com->Uid);
+				moveDone = 1;
 			}
 			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
@@ -67,7 +68,7 @@ void Ruler::update()
  */
 bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 {
-	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT) return false;
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || moveDone > 0) return false;
 	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", uid) << " Y:" << state->getAttribute("posY", uid) << " and move : " << state->getAttribute("move", uid);
 	propagate(state->getAttribute("posX", uid), state->getAttribute("posY", uid), state->getAttribute("move", uid));
 	LOG(DEBUG) << "propagate done";
@@ -189,6 +190,12 @@ void Ruler::propagate(int posX, int posY, int value)
 		if (posX < WIDTH - 1)
 			if (map[posX + 1][posY] < 1 && mapCharacter[posX + 1][posY] < value) propagate(posX + 1, posY, value - 1);
 	}
+}
+
+void Ruler::nextPlayer()
+{
+	moveDone = 0;
+	attackDone = 0;
 }
 
 

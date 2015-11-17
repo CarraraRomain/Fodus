@@ -19,10 +19,15 @@ public :
 	bool checkAttack(Etat* state, int uid1, int uid2);
 	void createMap(Etat* state);
 	void propagate(int posX, int posY, int value);
+	void nextPlayer();
+
 private:
 	Etat& m_state;
 	std::unique_ptr<ActionList> m_action_list;
 	std::vector< std::vector<int> > map;
 	std::vector< std::vector<int> > mapCharacter;
+
+	int moveDone;
+	int attackDone;
 };
 
