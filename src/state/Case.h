@@ -4,8 +4,8 @@ class Case : public Element
 {
 private:
 	int occupation;
-	int piege;
-	int depart;
+	int trap;
+	int start;
 	
 public:
 	virtual bool isGround() override;

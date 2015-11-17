@@ -67,28 +67,12 @@ void Ruler::update()
  */
 bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 {
-	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", uid) << " Y:" << state->getAttribute("posY", uid) << " and move : " << state->getAttribute("deplacement", uid);
-	propagate(state->getAttribute("posX", uid), state->getAttribute("posY", uid), state->getAttribute("deplacement", uid));
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT) return false;
+	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", uid) << " Y:" << state->getAttribute("posY", uid) << " and move : " << state->getAttribute("move", uid);
+	propagate(state->getAttribute("posX", uid), state->getAttribute("posY", uid), state->getAttribute("move", uid));
 	LOG(DEBUG) << "propagate done";
 	if(mapCharacter[x][y] > 0) return true;
 	else return false;
-
-	/*ElementList* liste = state->getList();
-	for (int i = 0; i < state->getSize(); i++)
-	{
-		// if elt is in X, Y, with depth > 0 and not void ("VOID_1" elt)
-		if ((*liste)[i]->getX() == x &&
-			(*liste)[i]->getY() == y && 
-			(*liste)[i]->getD() > 0  &&
-			(*liste)[i]->getKey() != "VOID_1")
-		{
-			LOG(DEBUG) << (*liste)[i]->getKey() << " is here";
-			return false;
-		}
-	}
-	// if Elt would be out of window boundaries
-	return !(x < 0 || x >= WIDTH) && !(y < 0 || y >= HEIGHT);
-	//if ((x + y) >state->getAttribute("deplacement", uid)) return false;*/
 }
 
 bool Ruler::createMove(Etat * state, int x, int y, int uid)
@@ -136,7 +120,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 				LOG(DEBUG) << "ForWard";
 			}
 		}
-		if (mapCharacter[x][y] == state->getAttribute("deplacement", uid))
+		if (mapCharacter[x][y] == state->getAttribute("move", uid))
 		{
 			LOG(DEBUG) << "found";
 			return true;
@@ -158,7 +142,9 @@ bool Ruler::checkAttack(Etat* state, int uid1, int uid2)
 	if (x < 0) x = -x;
 	if (y < 0) y = -y;
 
-	return x + y <= state->getAttribute("portee", uid1);
+	if(state->getAttribute("currentHealth",uid2))
+
+	return x + y <= state->getAttribute("range", uid1);
 }
 
 void Ruler::createMap(Etat * state)

@@ -63,7 +63,7 @@ void Engine::start()
 	TestGame::test_load_elt_list(state->getList(), m_boot);
 	// Quick and dirty addition of a perso
 	Perso* elt = new Perso(42);
-	elt->setAttribute("deplacement", 10);
+	elt->setAttribute("move", 10);
 	elt->setX(16);
 	elt->setY(10);
 	elt->setD(0);

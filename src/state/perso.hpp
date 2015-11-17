@@ -15,26 +15,26 @@ private:
 	};
 
 	std::string nom;
-	int sante;
-	int defense;
-	int puissance;
-	int deplacement;
+	int health;
+	int defence;
+	int power;
+	int move;
 	int corruption;
 	int status;
-	int portee;
-	int santeCourante;
-	int limiteZombie;
-	int niveau;
-	int seuil;
+	int range;
+	int currentHealth;
+	int zombiLimit;
+	int level;
+	int conversion;
 	AnimationType direction;
 
 	std::vector<Competence> competences;
 	Classe type = Principal;
 
 public:
-	Perso(int id) : Element(id, Mobile), sante(100), defense(100), puissance(100),
-		deplacement(2), corruption(10), status(1), portee(5),
-		santeCourante(100), limiteZombie(300), niveau(1), seuil(42),
+	Perso(int id) : Element(id, Mobile), health(100), defence(100), power(100),
+		move(2), corruption(10), status(1), range(5),
+		currentHealth(100), zombiLimit(300), level(1), conversion(42),
 		direction(MoveForward)
 	{}
 	~Perso();

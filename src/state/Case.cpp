@@ -23,8 +23,8 @@ bool Case::isNeutral()
 void Case::setAttribute(std::string attribute, int valeur)
 {
 	if (attribute == "occupation")occupation = valeur;
-	if (attribute == "piege")piege = valeur;
-	if (attribute == "depart")depart = valeur;
+	if (attribute == "trap")trap = valeur;
+	if (attribute == "start")start = valeur;
 }
 
 void Case::setAttribute(std::string attribute, std::string valeur)
@@ -34,8 +34,8 @@ void Case::setAttribute(std::string attribute, std::string valeur)
 int Case::getAttribute(std::string attribute)
 {
 	if (attribute == "occupation") return occupation;
-	if (attribute == "piege") return piege;
-	if (attribute == "depart") return depart;
+	if (attribute == "trap") return trap;
+	if (attribute == "start") return start;
 }
 
 Case::~Case()
