@@ -14,6 +14,8 @@
 	"levels_path":"../../res/levels/",
 	"GFX":"../../GFX/",
 	"SFX":"../../SFX/",
-    "tileset 0":"../../res/GFX/tileset0.png"
+    "tileset 0":"../../res/GFX/tileset0.png",
+    "sprites":"../../res/GFX/Sprite2.png",
+	"font":"../../res/fonts/Augusta.ttf"
   }
 }

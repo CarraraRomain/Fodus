@@ -1,4 +1,5 @@
 #include "Engine.hpp"
+#include "EndTurnCommand.hpp"
 
 Engine::Engine(Bootstrap* boot): m_boot(boot)
 {
@@ -16,7 +17,7 @@ void Engine::handleCommand(Command* com)
 		m_ruler->execute(com, state.get());
 		break;
 	case EndTurn:
-		state->nextTurn();
+		nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
 		break;
 	}
 	state->notify();
@@ -48,6 +49,7 @@ int Engine::registerPlayer(int client, int player)
 		if (i.second == player) return 400;
 	}
 	m_clients_players[client] = player;
+	m_players.push_back(player);
 	return 1;
 }
 
@@ -76,4 +78,18 @@ int Engine::registerPlayer(int player)
 {
 	m_clients_players[0] = player;
 	return 1;
+}
+
+void Engine::nextPlayer(int played)
+{
+	m_has_played.push_back(played);
+	if (m_players.size() == m_has_played.size()) m_has_played.resize(0);
+	m_ruler->nextPlayer();
+	LOG(DEBUG) << "Next turn";
+	nextTurn();
+}
+
+void Engine::nextTurn()
+{
+	state->nextTurn();
 }

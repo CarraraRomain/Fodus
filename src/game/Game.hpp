@@ -33,6 +33,8 @@ private:
 	bool m_isKeyPressed;
 	int m_turns;
 	sf::Text t_turns;
+	int m_client_id;
+	int m_player_id;
 	void game_event_loop();
 	void hud_event_loop();
 	void test_hud();

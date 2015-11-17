@@ -8,6 +8,9 @@
 Game::Game(Bootstrap* boot, Engine* eng) : Observer(&eng->getState()),
 m_boot(boot), m_game_engine(eng), m_isKeyPressed(false)
 {
+	m_client_id = rand();
+	m_player_id = 42;
+	LOG(DEBUG) << "Client ID: " << m_client_id;
 }
 
 
@@ -27,7 +30,7 @@ void Game::load_gui()
 	m_hud_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
 		200), "HUD", sf::Style::Titlebar ));
 	m_hud_window->setPosition(sf::Vector2i((sf::VideoMode::getDesktopMode().width  - SIZE*WIDTH) / 2, 0));
-	if (!m_font.loadFromFile("../../res/fonts/Augusta.ttf")) LOG(FATAL) << "Font not found";
+	if (!m_font.loadFromFile(m_boot->getPath("font"))) LOG(FATAL) << "Font not found";
 	t_turns.setFont(m_font);
 	t_turns.setColor(sf::Color::White);
 	t_turns.setCharacterSize(42);
@@ -40,7 +43,11 @@ void Game::load()
 {
 	load_gui();
 	//m_game_engine.reset(new Engine);
-	
+	int rc = m_game_engine->connect(m_client_id);
+	if(rc>= 400) LOG(FATAL) << "Cannot connect to engine: " << rc;
+	rc = m_game_engine->registerPlayer(m_client_id, m_player_id);
+	if (rc >= 400) LOG(FATAL) << "Cannot register player in engine: " << rc;
+	LOG(DEBUG) << "Connected to local, CID: " << m_client_id << ", PID: " << m_player_id;
 }
 
 /**
@@ -50,11 +57,8 @@ void Game::run()
 {
 	LOG(DEBUG) << "Game is running";
 	
-	ElementList list;
 	
 	load();
-	LOG(DEBUG) << "Updating";
-	
 	// Force update
 	update(ObsState);
 	
@@ -117,7 +121,7 @@ void Game::game_event_loop()
 			if (event.mouseButton.button == (sf::Mouse::Left))
 			{
 				move = true;
-				LOG(DEBUG) << "X: " << (int)(event.mouseButton.x / SIZE);
+				LOG(DEBUG) << "X: " << int(event.mouseButton.x / SIZE);
 				MoveCommand command = MoveCommand(m_game_engine, (event.mouseButton.x / SIZE), event.mouseButton.y / SIZE, MoveRight, 42);
 				command.execute();
 			}

@@ -24,4 +24,6 @@ private :
 	//CommandeListe liste;
 	std::vector<int> m_has_played;
 	std::unique_ptr<Ruler> m_ruler;
+	void nextPlayer(int played);
+	void nextTurn();
 };
