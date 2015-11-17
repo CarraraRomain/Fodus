@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../state/Etat.hpp"
 //#include "CommandeListe.hpp"
 #include "Ruler.hpp"

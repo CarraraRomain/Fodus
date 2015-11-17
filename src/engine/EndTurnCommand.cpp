@@ -4,7 +4,7 @@
 
 
 EndTurnCommand::EndTurnCommand(CommandReceiver* receiver, int player) :
-	Command(receiver, EndTurn)
+	Command(receiver, EndTurn), m_player(player)
 {
 }
 

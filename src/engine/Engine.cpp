@@ -4,7 +4,7 @@
 Engine::Engine(Bootstrap* boot): m_boot(boot)
 {
 	state.reset(new Etat(0));
-	m_ruler.reset(new Ruler(*state));
+	m_ruler.reset(new Ruler(this,*state));
 }
 /**
  * Command pattern receiver method
@@ -89,7 +89,7 @@ void Engine::nextPlayer(int played)
 {
 	m_has_played.push_back(played);
 	if (m_players.size() == m_has_played.size()) m_has_played.resize(0);
-	m_ruler->nextPlayer();
+	m_ruler->nextPlayer(played);
 	LOG(DEBUG) << "Next turn";
 	nextTurn();
 }

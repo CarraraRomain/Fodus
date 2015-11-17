@@ -1,3 +1,5 @@
+#pragma once 
+
 #include "../state/Etat.hpp"
 #include "../state/ElementList.hpp"
 #include "Command.hpp"
@@ -11,7 +13,7 @@ class Engine;
 class Ruler
 {
 public :
-	Ruler(Etat& state);
+	Ruler(Engine* e, Etat& state);
 	~Ruler();
 	void execute(Command* com, Etat* state);
 	void update();
@@ -21,7 +23,7 @@ public :
 	bool createAttack(Etat* state, int uid1, int uid2);
 	void createMap(Etat* state);
 	void propagate(int posX, int posY, int value);
-	void nextPlayer();
+	void nextPlayer(int played);
 
 private:
 	Etat& m_state;
@@ -29,7 +31,6 @@ private:
 	std::vector< std::vector<int> > map;
 	std::vector< std::vector<int> > mapCharacter;
 
-	int moveDone;
-	int attackDone;
+	Engine* m_engine;
 };
 

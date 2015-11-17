@@ -1,7 +1,9 @@
 #include "Ruler.hpp"
 
+#include "Engine.hpp"
 
-Ruler::Ruler(Etat& state): m_state(state)
+
+Ruler::Ruler(Engine* e, Etat& state): m_state(state), m_engine(e)
 {
 	m_action_list.reset(new ActionList);
 }
@@ -36,7 +38,7 @@ void Ruler::execute(Command* com, Etat* state)
 				//MoveAction* action = new MoveAction(move_com->Uid, x, y, move_com->dir);
 				//m_action_list->push_back(action);
 				createMove(state, x, y, move_com->Uid);
-				moveDone = 1;
+				m_engine->getPlayer(move_com->Uid).moved();
 			}
 			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
@@ -79,7 +81,7 @@ void Ruler::update()
  */
 bool Ruler::checkMove(Etat* state, int x, int y, int uid)
 {
-	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || moveDone > 0) return false;
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || m_engine->getPlayer(uid).hasMoved()) return false;
 	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", uid) << " Y:" << state->getAttribute("posY", uid) << " and move : " << state->getAttribute("move", uid);
 	propagate(state->getAttribute("posX", uid), state->getAttribute("posY", uid), state->getAttribute("move", uid));
 	LOG(DEBUG) << "propagate done";
@@ -143,7 +145,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 
 bool Ruler::checkAttack(Etat* state, int uid1, int uid2)
 {
-	if (attackDone > 0) return false;
+	if (m_engine->getPlayer(uid1).hasAttacked()) return false;
 	
 	int x = state->getAttribute("posX", uid1) - state->getAttribute("posX", uid2);
 	int y = state->getAttribute("posY", uid1) - state->getAttribute("posX", uid2);
@@ -210,10 +212,10 @@ void Ruler::propagate(int posX, int posY, int value)
 	}
 }
 
-void Ruler::nextPlayer()
+void Ruler::nextPlayer(int played)
 {
-	moveDone = 0;
-	attackDone = 0;
+	m_engine->getPlayer(played).resetMoved();
+	m_engine->getPlayer(played).resetAttacked();
 }
 
 
