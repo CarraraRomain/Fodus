@@ -3,6 +3,7 @@
 #include "Command.hpp"
 #include "MoveCommand.h"
 #include "MoveAction.hpp"
+#include "DamageAction.hpp"
 #include "ActionList.hpp"
 
 class Engine;
@@ -17,6 +18,7 @@ public :
 	bool checkMove(Etat* state, int x, int y, int uid);
 	bool createMove(Etat* state, int x, int y, int uid);
 	bool checkAttack(Etat* state, int uid1, int uid2);
+	bool createAttack(Etat* state, int uid1, int uid2);
 	void createMap(Etat* state);
 	void propagate(int posX, int posY, int value);
 	void nextPlayer();

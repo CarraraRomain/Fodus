@@ -1,17 +1,16 @@
 #include "DamageAction.hpp"
 
-void DamageAction::execute(Etat* state)
+void DamageAction::execute(Etat& state)
 {
-	damage = state->getAttribute("currentHealth", uid1) - damage;
+	damage = state.getAttribute("currentHealth", uid) - damage;
 	if (damage < 0 ) damage = 0;
-	state->setAttribute("currentHealth",damage,uid2);
+	state.setAttribute("currentHealth",damage,uid);
 }
 
-DamageAction::DamageAction(int newUid1, int newUid2, int value) 
+DamageAction::DamageAction(int newUid, int value) 
 	: Action(Damage)
 {
-	uid1 = newUid1;
-	uid2 = newUid2;
+	uid = newUid;
 	damage = value;
 }
 

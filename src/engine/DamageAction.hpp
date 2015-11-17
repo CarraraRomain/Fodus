@@ -4,14 +4,11 @@
 class DamageAction : public Action
 {
 private:
-	int uid1, uid2;
-	int power1;
-	int defence2;
-	int currentHealth2;
+	int uid;
 	int damage;
 
 public:
-	void execute(Etat* state);
-	DamageAction(int uid1, int uid2, int value);
+	virtual void execute(Etat& state) override;
+	DamageAction(int uid, int value);
 	~DamageAction();
 };

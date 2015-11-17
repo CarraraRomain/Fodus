@@ -42,11 +42,22 @@ void Ruler::execute(Command* com, Etat* state)
 		}
 		break;
 	case Attack:
-		// TODO Implementation
-//		if (checkAttack(state, std::stoi(com->getPayload("UID1")),
-//			std::stoi(com->getPayload("UID"))))
-			//create ActionAttack;
-//			LOG(DEBUG) << "Attacking UID1 " + com->getPayload("UID1");
+		LOG(DEBUG) << "Ruler : exec Attack Command";
+		{
+			/*AttackCommand* attack_com = dynamic_cast<AttackCommand*>(com);
+			// TODO Optimization
+			int uid1, uid2;
+
+			uid1 = attack_com->uid1;
+			uid2 = attack_com->uid2;
+
+			if (checkAttack(state, attack_com->uid1, uid2 = attack_com->uid2))
+			{
+				createAttack(state, attack_com->uid1, uid2 = attack_com->uid2);
+				attackDone = 1;
+			}
+			else LOG(DEBUG) << attack_com->uid1 << " can't attack " << attack_com->uid2;*/
+		}
 		break;
 	}
 	update();
@@ -130,12 +141,9 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 	return false;
 }
 
-/**
- * Not used yet
- */
 bool Ruler::checkAttack(Etat* state, int uid1, int uid2)
 {
-	ElementList* liste = state->getList();
+	if (attackDone > 0) return false;
 	
 	int x = state->getAttribute("posX", uid1) - state->getAttribute("posX", uid2);
 	int y = state->getAttribute("posY", uid1) - state->getAttribute("posX", uid2);
@@ -144,8 +152,18 @@ bool Ruler::checkAttack(Etat* state, int uid1, int uid2)
 	if (y < 0) y = -y;
 
 	if(state->getAttribute("currentHealth",uid2))
-
 	return x + y <= state->getAttribute("range", uid1);
+
+	return false;
+}
+
+bool Ruler::createAttack(Etat * state, int uid1, int uid2)
+{
+	int power = state->getAttribute("power", uid1);
+	power = power - state->getAttribute("defence", uid2);
+	if (power < 1) power = 1;
+	DamageAction* damageA = new DamageAction(uid1, power);
+	return true;
 }
 
 void Ruler::createMap(Etat * state)
