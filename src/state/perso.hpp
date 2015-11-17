@@ -15,16 +15,16 @@ private:
 	};
 
 	std::string nom;
-	int sante;
-	int defense;
-	int puissance;
-	int deplacement;
+	int health;
+	int defence;
+	int power;
+	int movement;
 	int corruption;
 	int status;
-	int portee;
-	int santeCourante;
-	int limiteZombie;
-	int niveau;
+	int scope;
+	int currentHealth;
+	int limitZombie;
+	int level;
 	int seuil;
 	AnimationType direction;
 
@@ -32,9 +32,9 @@ private:
 	Classe type = Principal;
 
 public:
-	Perso(int id) : Element(id, Mobile), sante(100), defense(100), puissance(100),
-		deplacement(2), corruption(10), status(1), portee(5),
-		santeCourante(100), limiteZombie(300), niveau(1), seuil(42),
+	Perso(int id) : Element(id, Mobile), health(100), defence(5), power(10),
+		movement(2), corruption(10), status(1), scope(5),
+		currentHealth(100), limitZombie(300), level(1), seuil(42),
 		direction(MoveForward)
 	{}
 	~Perso();
