@@ -19,5 +19,6 @@ protected:
 private :
 	std::unique_ptr<Etat> state;
 	//CommandeListe liste;
+	std::vector<int> m_has_played;
 	std::unique_ptr<Ruler> m_ruler;
 };

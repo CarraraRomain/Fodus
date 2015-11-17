@@ -2,9 +2,8 @@
 
 Engine::Engine()
 {
-	state.reset(new Etat);
+	state.reset(new Etat(0));
 	m_ruler.reset(new Ruler(*state));
-	
 }
 /**
  * Command pattern receiver method
@@ -15,6 +14,9 @@ void Engine::handleCommand(Command* com)
 	{
 	case Move:
 		m_ruler->execute(com, state.get());
+		break;
+	case EndTurn:
+		state->nextTurn();
 		break;
 	}
 	state->notify();

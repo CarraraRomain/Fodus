@@ -14,9 +14,9 @@ Ruler::~Ruler()
  */
 void Ruler::execute(Command* com, Etat* state)
 {
-	LOG(DEBUG) << "before map";
+	//LOG(DEBUG) << "before map";
 	createMap(state);
-	LOG(DEBUG) << "after map";
+	//LOG(DEBUG) << "after map";
 	switch (com->type)
 	{
 	case Move:

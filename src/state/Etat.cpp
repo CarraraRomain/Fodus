@@ -1,7 +1,7 @@
 #include "Etat.hpp"
 
 
-Etat::Etat(): taille(0)
+Etat::Etat(int i): turnsCount(i), taille(0)
 {
 }
 
@@ -32,6 +32,16 @@ void Etat::setAttribute(std::string attribute, std::string valeur, int uid)
 int Etat::getAttribute(std::string attribute, int uid)
 {
 	return liste.getAttribute(attribute, uid);
+}
+
+const int Etat::getTurn()
+{
+	return turnsCount;
+}
+
+void Etat::nextTurn()
+{
+	turnsCount++;
 }
 
 std::vector<int> Etat::getEnnemies()

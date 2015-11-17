@@ -26,10 +26,15 @@ private:
 	Bootstrap* m_boot;
 	Engine* m_game_engine;
 	std::unique_ptr<sf::RenderWindow> m_game_window;
+	std::unique_ptr<sf::RenderWindow> m_hud_window;
 	std::unique_ptr<Scene> m_game_scene;
-
+	sf::Font m_font;
 	std::unique_ptr<rapidjson::Document> m_game_level;
 	bool m_isKeyPressed;
+	int m_turns;
+	sf::Text t_turns;
 	void game_event_loop();
+	void hud_event_loop();
+	void test_hud();
 };
 
