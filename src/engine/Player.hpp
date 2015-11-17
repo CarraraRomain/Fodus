@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+#include "../Enum.h"
+
 class Player
 {
 public:
@@ -12,9 +15,12 @@ public:
 	void resetMoved();
 	void resetAttacked();
 	const int getId();
+	void addMovement(int x, int y, AnimationType type);
 private:
 	int m_id;
 	bool m_moved;
 	bool m_attacked;
+	std::vector<int> mouvements;
+	std::vector<AnimationType> directions;
 };
 

@@ -7,6 +7,7 @@
 #include "MoveAction.hpp"
 #include "DamageAction.hpp"
 #include "ActionList.hpp"
+#include "AttackCommand.h"
 
 class Engine;
 

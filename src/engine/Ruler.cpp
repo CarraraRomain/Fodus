@@ -16,9 +16,8 @@ Ruler::~Ruler()
  */
 void Ruler::execute(Command* com, Etat* state)
 {
-	//LOG(DEBUG) << "before map";
 	createMap(state);
-	//LOG(DEBUG) << "after map";
+
 	switch (com->type)
 	{
 	case Move:
@@ -43,22 +42,19 @@ void Ruler::execute(Command* com, Etat* state)
 			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
 		break;
+
 	case Attack:
+
 		LOG(DEBUG) << "Ruler : exec Attack Command";
 		{
-			/*AttackCommand* attack_com = dynamic_cast<AttackCommand*>(com);
-			// TODO Optimization
-			int uid1, uid2;
+			AttackCommand* attack_com = dynamic_cast<AttackCommand*>(com);
 
-			uid1 = attack_com->uid1;
-			uid2 = attack_com->uid2;
-
-			if (checkAttack(state, attack_com->uid1, uid2 = attack_com->uid2))
+			if (checkAttack(state, attack_com->uid1, attack_com->uid2))
 			{
-				createAttack(state, attack_com->uid1, uid2 = attack_com->uid2);
-				attackDone = 1;
+				createAttack(state, attack_com->uid1, attack_com->uid2);
+				m_engine->getPlayer(attack_com->uid1).attacked();
 			}
-			else LOG(DEBUG) << attack_com->uid1 << " can't attack " << attack_com->uid2;*/
+			else LOG(DEBUG) << attack_com->uid1 << " can't attack " << attack_com->uid2;
 		}
 		break;
 	}
@@ -100,6 +96,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveRight);
 				m_action_list->push_back(action);
+				m_engine->getPlayer(uid).addMovement(x, y, MoveRight);
 				x = x - 1;
 				LOG(DEBUG) << "Right";
 			}
@@ -110,6 +107,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveBackward);
 				m_action_list->push_back(action);
+				m_engine->getPlayer(uid).addMovement(x, y, MoveBackward);
 				y = y - 1;
 				LOG(DEBUG) << "BackWard";
 			}
@@ -120,6 +118,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveLeft);
 				m_action_list->push_back(action);
+				m_engine->getPlayer(uid).addMovement(x, y, MoveLeft);
 				x = x + 1;
 				LOG(DEBUG) << "Left";
 			}
@@ -130,6 +129,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveForward);
 				m_action_list->push_back(action);
+				m_engine->getPlayer(uid).addMovement(x, y, MoveForward);
 				y = y + 1;
 				LOG(DEBUG) << "ForWard";
 			}
@@ -164,7 +164,10 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 	int power = state->getAttribute("power", uid1);
 	power = power - state->getAttribute("defence", uid2);
 	if (power < 1) power = 1;
-	DamageAction* damageA = new DamageAction(uid1, power);
+
+	DamageAction* action = new DamageAction(uid2, power);
+	m_action_list->push_back(action);
+
 	return true;
 }
 
