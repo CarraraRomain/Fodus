@@ -48,13 +48,16 @@ void Scene::update(const ElementList& list)
 	}
 	for (int i = 0; i < list.size();i++)
 	{
+		std::cout << std::to_string(i) << std::endl;
 		if (list[i]->type == Mobile)
 		{
 			Perso* ptr = dynamic_cast<Perso*>(list[i].get());
+			uid = ptr->getUid();
 			std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
 			if (it == m_sprites.end())
 			{
-				addSprite(TestGame::m_animated_sprite);
+				if(ptr->getUid()== 1) addSprite(TestGame::m_animated_sprite, ptr->getUid());
+				else addSprite(TestGame::m_animated_sprite2, ptr->getUid());
 				m_sprites[uid]->setPosition((OFFSET_X + list[i]->getX())*SIZE,
 					(OFFSET_Y + list[i]->getY())*SIZE);
 				m_sprites[uid]->setType(ptr->getDir());
@@ -112,9 +115,9 @@ void Scene::setEltAt(Element& elt, int x, int y, int depth)
 
 }
 
-void Scene::addSprite(AnimatedSprite& sprite)
+void Scene::addSprite(AnimatedSprite& sprite, int id)
 {
-	m_sprites[42] = &sprite;
+	m_sprites[id] = &sprite;
 }
 
 const AnimatedSprite& Scene::getSprite(const int& uid)

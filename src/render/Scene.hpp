@@ -14,7 +14,7 @@ public:
 	void update();
 	Element* getEltAt(int x, int y, int depth=0);
 	void setEltAt(Element& elt, int x, int y, int depth = 0);
-	void addSprite(AnimatedSprite& sprite);
+	void addSprite(AnimatedSprite& sprite, int id);
 	const AnimatedSprite& getSprite(const int& uid);
 private:
 	Bootstrap* m_boot;

@@ -7,7 +7,7 @@ class AnimatedSprite: public sf::Drawable, public sf::Transformable
 public:
 	~AnimatedSprite();
 	explicit AnimatedSprite(sf::Time frameTime = sf::seconds(0.2f),
-		bool paused = false);
+		bool paused = false, int row = 42);
 
 	void update(sf::Time deltaTime);
 	void setAnimation(int i);

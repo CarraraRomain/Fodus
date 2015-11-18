@@ -72,6 +72,13 @@ void Engine::start()
 	elt->setD(0);
 	elt->setKey("MLP");
 	state->getList()->push_back(elt);
+	Perso* foe = new Perso(89);
+	foe->setAttribute("move", 3);
+	foe->setX(8);
+	foe->setY(7);
+	foe->setD(0);
+	foe->setKey("FOE");
+	state->getList()->push_back(foe);
 	nextPlayer(0);
 }
 

@@ -5,7 +5,7 @@ AnimatedSprite::~AnimatedSprite()
 {
 }
 
-AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused) :
+AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused, int row) :
 	m_frameTime(frameTime), m_currentFrame(0), m_isPaused(paused)
 {
 	sf::Image image;
@@ -16,7 +16,7 @@ AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused) :
 	}
 	image.createMaskFromColor(sf::Color::Black);
 	m_texture.loadFromImage(image);
-	loadAnimation(59);
+	loadAnimation(row);
 }
 
 void AnimatedSprite::setAnimation(int i)
