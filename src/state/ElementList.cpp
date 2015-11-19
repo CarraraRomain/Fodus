@@ -74,3 +74,9 @@ int ElementList::findUid(int uid) {
 	}
 	return -1;
 }
+
+void ElementList::erase(int uid)
+{
+	int i = findUid(uid);
+	m_elements.erase(m_elements.begin()+i);
+}

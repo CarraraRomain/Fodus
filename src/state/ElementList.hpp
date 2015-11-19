@@ -31,6 +31,8 @@ public:
 
 	int findUid(int uid);
 
+	void erase(int uid);
+
 private:
 	std::vector<std::unique_ptr<Element> > m_elements;
 };

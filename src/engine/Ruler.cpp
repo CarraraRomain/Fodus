@@ -1,6 +1,7 @@
 #include "Ruler.hpp"
 
 #include "Engine.hpp"
+#include "../state/ElementList.hpp"
 
 
 Ruler::Ruler(Engine* e, Etat& state): m_state(state), m_engine(e)
@@ -165,6 +166,14 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 
 	DamageAction* action = new DamageAction(uid2, power);
 	m_action_list->push_back(action);
+
+	if (state->getAttribute("currentHealth", uid2) - power <= 0)
+	{
+		ElementList* liste = state->getList();
+		//liste->erase(uid2);
+		//m_engine->getPlayer(liste[liste->findUid(uid2)]->getOwner());
+
+	}
 
 	LOG(DEBUG)<< "Attack succeded with " << power << " damages";
 
