@@ -214,15 +214,17 @@ void Game::test_hud()
 	sf::Vector2u vect = m_game_window->getSize();
 	int width(vect.x), height(vect.y);
 
-	sf::Text text, move, attack;
+	sf::Text text, move, attack, command;
 	sf::String m_string, a_string;
 	// select the font
 	text.setFont(m_font); // font is a sf::Font
 	move.setFont(m_font); // font is a sf::Font
 	attack.setFont(m_font); // font is a sf::Font
+	command.setFont(m_font); // font is a sf::Font
 
 						// set the string to display
 	text.setString("FODUS 2.2");
+	command.setString("Echap (twice): Next Turn | Space: Attack | Mouse: Move");
 	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
 		move.setString("Move done");
 		move.setColor(sf::Color::Red);
@@ -245,9 +247,12 @@ void Game::test_hud()
 	text.setCharacterSize(24); // in pixels, not points!
 	attack.setCharacterSize(24); // in pixels, not points!
 	move.setCharacterSize(24); // in pixels, not points!
+	command.setCharacterSize(30); // in pixels, not points!
 
 							   // set the color
 	text.setColor(sf::Color::White);
+	command.setColor(sf::Color::White);
+
 	sf::FloatRect bbox = text.getGlobalBounds();
 	text.setOrigin(bbox.width / 2, bbox.height / 2);
 	text.setPosition(width / 2, 16);
@@ -264,10 +269,15 @@ void Game::test_hud()
 	bbox = text.getGlobalBounds();
 	t_turns.setOrigin(bbox.width / 2, bbox.height / 2);
 	t_turns.setPosition(width / 2, height - 64);
+	// Commands
+	bbox = command.getGlobalBounds();
+	command.setOrigin(bbox.width / 2, bbox.height / 2);
+	command.setPosition(width / 2, height - 128);
 
 	m_game_window->draw(text);
 	m_game_window->draw(move);
 	m_game_window->draw(attack);
+	m_game_window->draw(command);
 	t_turns.setString("Tour: " + std::to_string(m_turns));
 	m_game_window->draw(t_turns);
 }
