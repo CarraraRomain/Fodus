@@ -221,7 +221,7 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	if (played != 0)
 	{
 		m_engine->getPlayer(played).resetMoves();
-		m_engine->getPlayer(played).resetAttacks();
+		m_engine->getPlayer(played).resetAttack(played);
 	} 
 	
 	//int id = m_engine->getPlayer(toPlay).getId();
