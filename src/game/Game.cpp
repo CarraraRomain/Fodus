@@ -93,7 +93,12 @@ void Game::update(ObsType type)
 		
 		break;
 	case ObsState:
-		m_turns = static_cast<Etat*>(m_sub)->getTurn();
+		if(static_cast<Etat*>(m_sub)->getTurn() != m_turns)
+		{
+			LOG(DEBUG) << "New Turn!";
+			m_turns = static_cast<Etat*>(m_sub)->getTurn();
+			for (auto it : m_move_watcher) m_move_watcher[it.first] = false;
+		}
 		watchMovements();
 		m_game_scene->update(*(static_cast<Etat*>(m_sub)->getList()));
 		
@@ -302,28 +307,19 @@ void Game::watchMovements()
 		// check move for each unit
 		for (int i = 1; i <= pl.second.numberPersos();i++)
 		{
-			LOG(DEBUG) << pl.second.getId() << " is moving";
 			if(pl.second.hasMoved(i))
 			{
 				// Player has moved, request an animation
 				LOG(DEBUG) << "Move asked";
-				m_game_scene->addPendingMovement(pl.second.getId(), pl.second.getMove(pl.second.getId()));
-
+				if(!m_move_watcher[pl.second.getId()] )
+				{
+					m_game_scene->addPendingMovement(pl.second.getId(), pl.second.getMove(pl.second.getId()));
+					m_move_watcher[pl.second.getId()] = true;
+				}
+				
 			}
 		}
 
 	}
 
-
-/*	for (std::map<int, AnimatedSprite*>::iterator it = m_game_scene->m_sprites.begin();
-	it != m_game_scene->m_sprites.end(); ++it)
-	{
-	
-		if(m_game_engine->getPlayer(it->first).hasMoved(it->second))
-		{
-			// Player has moved, request an animation
-			LOG(DEBUG) << "Move asked";
-			m_game_scene->addPendingMovement(it->first, m_game_engine->getPlayer(it->first).getMoves());
-		}
-	}*/
 }

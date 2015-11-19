@@ -32,6 +32,7 @@ private:
 	std::unique_ptr<rapidjson::Document> m_game_level;
 	bool m_isKeyPressed;
 	int m_turns;
+	std::map<int, bool> m_move_watcher;
 	sf::Text t_turns;
 	sf::Texture m_dashboard_texture;
 	sf::RectangleShape m_dashboard;
