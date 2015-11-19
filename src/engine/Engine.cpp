@@ -17,6 +17,9 @@ void Engine::handleCommand(Command* com)
 	case Move:
 		m_ruler->execute(com, state.get());
 		break;
+	case Attack:
+		m_ruler->execute(com, state.get());
+		break;
 	case EndTurn:
 		nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
 		break;

@@ -3,6 +3,7 @@
 #include "../render/AnimatedSprite.hpp"
 #include "../engine/MoveCommand.h"
 #include "../engine/EndTurnCommand.hpp"
+#include "../engine/AttackCommand.h"
 
 
 Game::Game(Bootstrap* boot, Engine* eng) : Observer(&eng->getState()),
@@ -187,6 +188,11 @@ void Game::game_event_loop()
 			{
 				// End Turn
 				endPlayerTurn();
+			}
+			if (event.key.code == sf::Keyboard::Space)
+			{
+				AttackCommand commandA = AttackCommand(m_game_engine,1, 89);
+				commandA.execute();
 			}
 
 			if (move && !m_isKeyPressed)

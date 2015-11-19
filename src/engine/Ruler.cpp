@@ -149,8 +149,10 @@ bool Ruler::checkAttack(Etat* state, int uid1, int uid2, int player)
 	if (x < 0) x = -x;
 	if (y < 0) y = -y;
 
-	if(state->getAttribute("currentHealth",uid2))
-	return x + y <= state->getAttribute("range", uid1);
+	if (state->getAttribute("currentHealth", uid2))
+	{
+		return x + y <= state->getAttribute("range", uid1);
+	}
 
 	return false;
 }
@@ -163,6 +165,8 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 
 	DamageAction* action = new DamageAction(uid2, power);
 	m_action_list->push_back(action);
+
+	LOG(DEBUG)<< "Attack succeded with " << power << " damages";
 
 	return true;
 }
