@@ -283,8 +283,6 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_U6_Q8IlIEeWII_UxwgKZDQ" name="ruler" type="_y8a5sIlHEeWII_UxwgKZDQ" association="_U61f8IlIEeWII_UxwgKZDQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_4Mgd0IlIEeWII_UxwgKZDQ" name="m_state *" type="_giW_YGXrEeWyXocPDeSk4g"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_9hGZYIlHEeWII_UxwgKZDQ" name="run"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="__ZwkIIlHEeWII_UxwgKZDQ" name="getState"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_J8IPUIlLEeWII_UxwgKZDQ" name="update"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_ixBpIIlHEeWII_UxwgKZDQ" name="ActionList">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_x8NH8YlJEeWII_UxwgKZDQ" name="actions" type="_stCw4IlIEeWII_UxwgKZDQ" aggregation="composite" association="_x8L50IlJEeWII_UxwgKZDQ"/>
@@ -384,6 +382,10 @@
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_CLp8oIlLEeWII_UxwgKZDQ" name="type" type="_nhIawIlKEeWII_UxwgKZDQ" association="_CLoHcIlLEeWII_UxwgKZDQ"/>
       <ownedEnd xmi:type="uml:Property" xmi:id="_CLqjsIlLEeWII_UxwgKZDQ" type="_o7MP4IlIEeWII_UxwgKZDQ" association="_CLoHcIlLEeWII_UxwgKZDQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_nC_JUI70EeWBeYmw9yMCAw" name="AbstractEngine">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_tMrEYI70EeWBeYmw9yMCAw" name="start"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_uKdiUI70EeWBeYmw9yMCAw" name="connect"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="_b8M0cIlJEeWII_UxwgKZDQ" name="AnimationType">

@@ -1549,14 +1549,6 @@
           <element xmi:type="uml:Operation" href="Fodus.uml#_9hGZYIlHEeWII_UxwgKZDQ"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_9hQKYYlHEeWII_UxwgKZDQ"/>
         </children>
-        <children xmi:type="notation:Shape" xmi:id="__Z9_gIlHEeWII_UxwgKZDQ" type="3013">
-          <element xmi:type="uml:Operation" href="Fodus.uml#__ZwkIIlHEeWII_UxwgKZDQ"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="__Z9_gYlHEeWII_UxwgKZDQ"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_J8VqsIlLEeWII_UxwgKZDQ" type="3013">
-          <element xmi:type="uml:Operation" href="Fodus.uml#_J8IPUIlLEeWII_UxwgKZDQ"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_J8VqsYlLEeWII_UxwgKZDQ"/>
-        </children>
         <styles xmi:type="notation:TitleStyle" xmi:id="_VeaOcYlFEeWII_UxwgKZDQ"/>
         <styles xmi:type="notation:SortingStyle" xmi:id="_VeaOcolFEeWII_UxwgKZDQ"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_VeaOc4lFEeWII_UxwgKZDQ"/>
@@ -1881,6 +1873,40 @@
       </children>
       <element xmi:type="uml:Enumeration" href="Fodus.uml#_nhIawIlKEeWII_UxwgKZDQ"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nhKP8YlKEeWII_UxwgKZDQ" x="76" y="-74"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_nDNLwI70EeWBeYmw9yMCAw" type="2004">
+      <children xmi:type="notation:DecorationNode" xmi:id="_nDPoAI70EeWBeYmw9yMCAw" type="5011"/>
+      <children xmi:type="notation:DecorationNode" xmi:id="_nDPoAY70EeWBeYmw9yMCAw" type="8507">
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_nDPoAo70EeWBeYmw9yMCAw" y="5"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_nDQPEI70EeWBeYmw9yMCAw" type="7006">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_nDQPEY70EeWBeYmw9yMCAw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_nDQPEo70EeWBeYmw9yMCAw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_nDQPE470EeWBeYmw9yMCAw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nDQPFI70EeWBeYmw9yMCAw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_nDQPFY70EeWBeYmw9yMCAw" type="7007">
+        <children xmi:type="notation:Shape" xmi:id="_tNRhUI70EeWBeYmw9yMCAw" type="3007">
+          <element xmi:type="uml:Operation" href="Fodus.uml#_tMrEYI70EeWBeYmw9yMCAw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_tNRhUY70EeWBeYmw9yMCAw"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_uLCKEI70EeWBeYmw9yMCAw" type="3007">
+          <element xmi:type="uml:Operation" href="Fodus.uml#_uKdiUI70EeWBeYmw9yMCAw"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_uLCKEY70EeWBeYmw9yMCAw"/>
+        </children>
+        <styles xmi:type="notation:TitleStyle" xmi:id="_nDQPFo70EeWBeYmw9yMCAw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_nDQPF470EeWBeYmw9yMCAw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_nDQPGI70EeWBeYmw9yMCAw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nDQPGY70EeWBeYmw9yMCAw"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_nDQPGo70EeWBeYmw9yMCAw" type="7008">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_nDQPG470EeWBeYmw9yMCAw"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_nDQPHI70EeWBeYmw9yMCAw"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_nDQPHY70EeWBeYmw9yMCAw"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nDQPHo70EeWBeYmw9yMCAw"/>
+      </children>
+      <element xmi:type="uml:Interface" href="Fodus.uml#_nC_JUI70EeWBeYmw9yMCAw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nDNLwY70EeWBeYmw9yMCAw" x="880" y="-28"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_R4IEQYlFEeWII_UxwgKZDQ" name="diagram_compatibility_version" stringValue="1.1.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_R4IEQolFEeWII_UxwgKZDQ"/>
