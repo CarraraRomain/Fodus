@@ -36,7 +36,7 @@ private:
 	sf::Texture m_texture;
 	sf::Vertex m_vertices[4];
 	bool m_isPaused;
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 };
 

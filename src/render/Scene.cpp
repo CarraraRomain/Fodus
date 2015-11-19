@@ -31,7 +31,6 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	std::map<int, AnimatedSprite*>::const_iterator it;
 	for (it = m_sprites.begin(); it != m_sprites.end(); ++it)
 	{
-		//it->second->play(MoveForward);
 		target.draw(*it->second, states);
 	}
 }
@@ -63,13 +62,6 @@ void Scene::update(const ElementList& list)
 				m_sprites[uid]->setPosition((OFFSET_X + list[i]->getX())*SIZE,
 					(OFFSET_Y + list[i]->getY())*SIZE);
 				m_sprites[uid]->setType(ptr->getDir());
-			}else
-			{
-				
-				//it->second->setPosition((OFFSET_X +list[i]->getX())*SIZE,
-				//	(OFFSET_Y + list[i]->getY())*SIZE);
-				//it->second->setType(ptr->getDir());
-				
 			}
 
 		
@@ -88,7 +80,7 @@ void Scene::update()
 
 void Scene::updateAnims()
 {
-	if (frameClock.getElapsedTime().asMilliseconds() <= 10) return;
+	if (frameClock.getElapsedTime().asMilliseconds() <= 20) return;
 	handleMoves();
 	
 	frameTime = frameClock.restart();
@@ -190,21 +182,21 @@ void Scene::executeMoves(int id)
 	switch (move.getDir())
 		{
 		case MoveForward:
-			sprite->move(0, -1*SIZE / 10);
+			sprite->move(0, -1*SIZE / 8);
 		break;
 		case MoveBackward:
-			sprite->move(0, 1 * SIZE / 10);
+			sprite->move(0, 1 * SIZE / 8);
 		break;
 		case MoveLeft:
-			sprite->move(-1 * SIZE / 10, 0);
+			sprite->move(-1 * SIZE / 8, 0);
 		break;
 		case MoveRight:
-			sprite->move(1 * SIZE / 10, 0);
+			sprite->move(1 * SIZE / 8, 0);
 		break;
 		}
-	if (m_animations_progress[id] == 10) {
+	if (m_animations_progress[id] == 7) {
 		m_pending_moves[id].pop_back();
-		m_animations_progress[id] = 1;
+		m_animations_progress[id] = 0;
 	}
 	else {
 		m_animations_progress[id]++;
