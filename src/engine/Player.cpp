@@ -41,14 +41,14 @@ void Player::resetMoves()
 	for(auto it: m_moved)
 	{
 		m_moved[it.first] = false;
-		//m_movements[it.first].clear();
+		m_movements[it.first].clear();
 	}
 }
 
 void Player::resetMove(int perso)
 {
 	m_moved[perso] = false;
-	//m_movements[perso].resize(0);
+	m_movements[perso].resize(0);
 }
 
 void Player::resetAttack(int perso)

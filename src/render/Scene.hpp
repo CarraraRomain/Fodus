@@ -30,6 +30,8 @@ private:
 	std::vector<Layer*> m_layers;
 	
 	std::map<int, std::vector<Movement>> m_pending_moves;
+	std::map<int, bool> m_animations_done;
+	std::map<int, int> m_animations_progress;
 	ElementList* m_elt_list;
 	void handleMoves();
 	void executeMoves(int id);

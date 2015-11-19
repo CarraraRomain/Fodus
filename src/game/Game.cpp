@@ -85,9 +85,11 @@ void Game::run()
 
 void Game::update(ObsType type)
 {
+	m_has_played = m_game_engine->hasPlayed(m_player_id);
 	switch (type)
 	{
 	case ObsEngine:
+		
 		break;
 	case ObsState:
 		m_turns = static_cast<Etat*>(m_sub)->getTurn();
@@ -125,23 +127,28 @@ void Game::game_event_loop()
 			
 			if (event.mouseButton.button == (sf::Mouse::Left))
 			{
-				// Game area : X OFFSET_X to WIDTH /SIZE
-				//             Y OFFSET_Y to HEIGHT
 				int x = event.mouseButton.x;
 				int y = event.mouseButton.y;
-				if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH )*SIZE && 
-					y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
-				{
-					// This is the game area
-					move = true;
-					x -= OFFSET_X * SIZE;
-					y -= OFFSET_Y * SIZE;
-					LOG(DEBUG) << "X: " << int(x / SIZE);
-					LOG(DEBUG) << "Y: " << int(y / SIZE);
-					MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
-					command.execute();
+				// if has already played, disabled
+				if (!m_has_played) {
+					// Game area : X OFFSET_X to WIDTH /SIZE
+					//             Y OFFSET_Y to HEIGHT
+					
+					if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH)*SIZE &&
+						y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
+					{
+						// This is the game area
+						move = true;
+						x -= OFFSET_X * SIZE;
+						y -= OFFSET_Y * SIZE;
+						LOG(DEBUG) << "X: " << int(x / SIZE);
+						LOG(DEBUG) << "Y: " << int(y / SIZE);
+						MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
+						command.execute();
+					}
 				}
-				else if(x >= 11*SIZE			&& x <19*SIZE		&& 
+				else LOG(DEBUG) << "You have already played!";
+				if(x >= 11*SIZE			&& x <19*SIZE		&& 
 						y >= SIZE*(6+HEIGHT)	&& y < SIZE*(8+HEIGHT))
 				{
 					// Next turn button 
@@ -216,7 +223,7 @@ void Game::test_hud()
 
 						// set the string to display
 	text.setString("FODUS 2.2");
-	if (m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
+	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
 		move.setString("Move done");
 		move.setColor(sf::Color::Red);
 	}
@@ -225,7 +232,7 @@ void Game::test_hud()
 		move.setString("Move possible");
 		move.setColor(sf::Color::Green);
 	} 
-	if (m_game_engine->getPlayer(m_player_id).hasAttacked(1)) {
+	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasAttacked(1)) {
 		attack.setString("Attack done");
 		attack.setColor(sf::Color::Red);
 	}

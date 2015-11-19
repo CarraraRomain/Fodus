@@ -4,6 +4,7 @@
 class Movement
 {
 public:
+	Movement();
 	Movement(int x,int y,AnimationType type);
 	~Movement();
 	const int getX();

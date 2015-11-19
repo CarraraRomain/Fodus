@@ -16,6 +16,7 @@ Ruler::~Ruler()
  */
 void Ruler::execute(Command* com, Etat* state)
 {
+	bool success = false;
 	switch (com->type)
 	{
 	case Move:
@@ -36,6 +37,7 @@ void Ruler::execute(Command* com, Etat* state)
 				//m_action_list->push_back(action);
 				createMove(state, x, y, move_com->Uid, move_com->player);
 				m_engine->getPlayer(move_com->player).move(move_com->Uid);
+				success = true;
 			}
 			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
@@ -51,12 +53,14 @@ void Ruler::execute(Command* com, Etat* state)
 			{
 				createAttack(state, attack_com->uid1, attack_com->uid2);
 				m_engine->getPlayer(attack_com->player).attack(attack_com->uid1);
+				success = true;
 			}
 			else LOG(DEBUG) << attack_com->uid1 << " can't attack " << attack_com->uid2;
 		}
 		break;
 	}
-	update();
+	if(success) update();
+	else throw std::logic_error("Bad Command");
 }
 /**
  * Apply action on a state
