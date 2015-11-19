@@ -70,7 +70,7 @@ void Engine::start()
 	elt->setAttribute("move", 10);
 	elt->setX(16);
 	elt->setY(10);
-	elt->setD(0);
+	elt->setD(3);
 	elt->setKey("MLP");
 	state->getList()->push_back(elt);
 	// Elt index is size-1
@@ -81,7 +81,7 @@ void Engine::start()
 	foe->setAttribute("move", 3);
 	foe->setX(8);
 	foe->setY(7);
-	foe->setD(0);
+	foe->setD(3);
 	foe->setKey("FOE");
 	state->getList()->push_back(foe);
 	
