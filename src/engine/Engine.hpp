@@ -13,6 +13,7 @@ public:
 	Engine(Bootstrap*);
 	void handleCommand(Command*) override;
 	void run();
+	bool hasPlayed(int player);
 	Etat& getState() override;
 	int registerPlayer(int client, int player) override;
 	int connect(int client) override;

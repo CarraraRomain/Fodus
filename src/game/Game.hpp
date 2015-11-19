@@ -25,6 +25,7 @@ public:
 private:
 	Bootstrap* m_boot;
 	Engine* m_game_engine;
+	bool m_has_played;
 	std::unique_ptr<sf::RenderWindow> m_game_window;
 	std::unique_ptr<Scene> m_game_scene;
 	sf::Font m_font;

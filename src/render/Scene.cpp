@@ -31,7 +31,6 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	std::map<int, AnimatedSprite*>::const_iterator it;
 	for (it = m_sprites.begin(); it != m_sprites.end(); ++it)
 	{
-		it->second->play(MoveForward);
 		target.draw(*it->second, states);
 	}
 }
@@ -63,13 +62,6 @@ void Scene::update(const ElementList& list)
 				m_sprites[uid]->setPosition((OFFSET_X + list[i]->getX())*SIZE,
 					(OFFSET_Y + list[i]->getY())*SIZE);
 				m_sprites[uid]->setType(ptr->getDir());
-			}else
-			{
-				//handleMoves();
-				it->second->setPosition((OFFSET_X +list[i]->getX())*SIZE,
-					(OFFSET_Y + list[i]->getY())*SIZE);
-				it->second->setType(ptr->getDir());
-				
 			}
 
 		
@@ -88,10 +80,14 @@ void Scene::update()
 
 void Scene::updateAnims()
 {
+	if (frameClock.getElapsedTime().asMilliseconds() <= 20) return;
+	handleMoves();
+	
 	frameTime = frameClock.restart();
+
 	for (auto sprite:m_sprites)
 	{
-		sprite.second->update(frameTime);
+		if(!m_animations_done[sprite.first]) sprite.second->update(frameTime);
 	}
 }
 
@@ -156,14 +152,22 @@ std::map<int, AnimatedSprite*> Scene::getSprites()
 
 void Scene::handleMoves()
 {
-	LOG(DEBUG) << "Handling moves";
-	std::cout << m_pending_moves.size();
+	//LOG(DEBUG) << "Handling moves";
 		if (m_pending_moves.size() == 0) return ;
 	for (auto it: m_pending_moves)
 	{
-		LOG(DEBUG) << "Pending move " << it.first;
-		if (it.second.size() != 0) executeMoves(it.first);
-		if (it.second.size() == 0) m_pending_moves.erase(it.first);
+		//LOG(DEBUG) << "Pending move " << it.first;
+		if (it.second.size() != 0)
+		{
+
+			executeMoves(it.first);
+			m_animations_done[it.first] = false;
+		}
+		if (it.second.size() == 0)
+		{
+			m_pending_moves.erase(it.first);
+			m_animations_done[it.first] = true;
+		}
 		if (m_pending_moves.size() == 0) break;
 	}
 }
@@ -172,22 +176,32 @@ void Scene::executeMoves(int id)
 {
 	AnimatedSprite* sprite = m_sprites[id];
 	Movement move = m_pending_moves[id].back();
-	LOG(DEBUG) << "Moving " << move.getDir();
+	//LOG(DEBUG) << "Moving " << move.getDir();
+	sprite->play(move.getDir());
+	//sprite->setType(move.getDir());
 	switch (move.getDir())
 		{
 		case MoveForward:
-			sprite->move(0, 1*SIZE*frameTime.asSeconds());
+			sprite->move(0, -1*SIZE / 8);
 		break;
 		case MoveBackward:
-			sprite->move(0, -1 * SIZE*frameTime.asSeconds());
+			sprite->move(0, 1 * SIZE / 8);
 		break;
 		case MoveLeft:
-			sprite->move(-1 * SIZE*frameTime.asSeconds(), 0);
+			sprite->move(-1 * SIZE / 8, 0);
 		break;
 		case MoveRight:
-			sprite->move(1 * SIZE*frameTime.asSeconds(), 0);
+			sprite->move(1 * SIZE / 8, 0);
 		break;
 		}
-	sprite->play(move.getDir());
-	m_pending_moves[id].pop_back();
+	if (m_animations_progress[id] == 7) {
+		m_pending_moves[id].pop_back();
+		m_animations_progress[id] = 0;
+	}
+	else {
+		m_animations_progress[id]++;
+	}
+	
+	
+	
 }

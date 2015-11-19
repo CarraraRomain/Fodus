@@ -86,9 +86,11 @@ void Game::run()
 
 void Game::update(ObsType type)
 {
+	m_has_played = m_game_engine->hasPlayed(m_player_id);
 	switch (type)
 	{
 	case ObsEngine:
+		
 		break;
 	case ObsState:
 		m_turns = static_cast<Etat*>(m_sub)->getTurn();
@@ -126,23 +128,28 @@ void Game::game_event_loop()
 			
 			if (event.mouseButton.button == (sf::Mouse::Left))
 			{
-				// Game area : X OFFSET_X to WIDTH /SIZE
-				//             Y OFFSET_Y to HEIGHT
 				int x = event.mouseButton.x;
 				int y = event.mouseButton.y;
-				if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH )*SIZE && 
-					y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
-				{
-					// This is the game area
-					move = true;
-					x -= OFFSET_X * SIZE;
-					y -= OFFSET_Y * SIZE;
-					LOG(DEBUG) << "X: " << int(x / SIZE);
-					LOG(DEBUG) << "Y: " << int(y / SIZE);
-					MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
-					command.execute();
+				// if has already played, disabled
+				if (!m_has_played) {
+					// Game area : X OFFSET_X to WIDTH /SIZE
+					//             Y OFFSET_Y to HEIGHT
+					
+					if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH)*SIZE &&
+						y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
+					{
+						// This is the game area
+						move = true;
+						x -= OFFSET_X * SIZE;
+						y -= OFFSET_Y * SIZE;
+						LOG(DEBUG) << "X: " << int(x / SIZE);
+						LOG(DEBUG) << "Y: " << int(y / SIZE);
+						MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
+						command.execute();
+					}
 				}
-				else if(x >= 11*SIZE			&& x <19*SIZE		&& 
+				else LOG(DEBUG) << "You have already played!";
+				if(x >= 11*SIZE			&& x <19*SIZE		&& 
 						y >= SIZE*(6+HEIGHT)	&& y < SIZE*(8+HEIGHT))
 				{
 					// Next turn button 
@@ -213,16 +220,18 @@ void Game::test_hud()
 	sf::Vector2u vect = m_game_window->getSize();
 	int width(vect.x), height(vect.y);
 
-	sf::Text text, move, attack;
+	sf::Text text, move, attack, command;
 	sf::String m_string, a_string;
 	// select the font
 	text.setFont(m_font); // font is a sf::Font
 	move.setFont(m_font); // font is a sf::Font
 	attack.setFont(m_font); // font is a sf::Font
+	command.setFont(m_font); // font is a sf::Font
 
 						// set the string to display
 	text.setString("FODUS 2.2");
-	if (m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
+	command.setString("Echap (twice): Next Turn | Space: Attack | Mouse: Move");
+	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
 		move.setString("Move done");
 		move.setColor(sf::Color::Red);
 	}
@@ -231,7 +240,7 @@ void Game::test_hud()
 		move.setString("Move possible");
 		move.setColor(sf::Color::Green);
 	} 
-	if (m_game_engine->getPlayer(m_player_id).hasAttacked(1)) {
+	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasAttacked(1)) {
 		attack.setString("Attack done");
 		attack.setColor(sf::Color::Red);
 	}
@@ -244,9 +253,12 @@ void Game::test_hud()
 	text.setCharacterSize(24); // in pixels, not points!
 	attack.setCharacterSize(24); // in pixels, not points!
 	move.setCharacterSize(24); // in pixels, not points!
+	command.setCharacterSize(30); // in pixels, not points!
 
 							   // set the color
 	text.setColor(sf::Color::White);
+	command.setColor(sf::Color::White);
+
 	sf::FloatRect bbox = text.getGlobalBounds();
 	text.setOrigin(bbox.width / 2, bbox.height / 2);
 	text.setPosition(width / 2, 16);
@@ -263,10 +275,15 @@ void Game::test_hud()
 	bbox = text.getGlobalBounds();
 	t_turns.setOrigin(bbox.width / 2, bbox.height / 2);
 	t_turns.setPosition(width / 2, height - 64);
+	// Commands
+	bbox = command.getGlobalBounds();
+	command.setOrigin(bbox.width / 2, bbox.height / 2);
+	command.setPosition(width / 2, height - 128);
 
 	m_game_window->draw(text);
 	m_game_window->draw(move);
 	m_game_window->draw(attack);
+	m_game_window->draw(command);
 	t_turns.setString("Tour: " + std::to_string(m_turns));
 	m_game_window->draw(t_turns);
 }

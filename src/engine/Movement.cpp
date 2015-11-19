@@ -1,6 +1,9 @@
 #include "Movement.hpp"
 
 
+Movement::Movement()
+{
+}
 
 Movement::Movement(int newx, int newy, AnimationType newtype)
 {

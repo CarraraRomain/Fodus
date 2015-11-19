@@ -26,6 +26,7 @@ public:
 	void setFrame(std::size_t newFrame, bool resetTime = true);
 
 private:
+	bool init;
 	Animation m_animation;
 	AnimationType m_type;
 	std::unique_ptr<Animation> m_animations[4];
@@ -35,7 +36,7 @@ private:
 	sf::Texture m_texture;
 	sf::Vertex m_vertices[4];
 	bool m_isPaused;
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 };
 

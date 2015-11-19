@@ -12,19 +12,22 @@ Engine::Engine(Bootstrap* boot): m_boot(boot)
  */
 void Engine::handleCommand(Command* com)
 {
-	switch (com->type)
+	try {
+		switch (com->type)
+		{
+		case Move:
+			m_ruler->execute(com, state.get());
+			break;
+		case EndTurn:
+			nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
+			break;
+		}
+		state->notify();
+	} catch (std::logic_error e)
 	{
-	case Move:
-		m_ruler->execute(com, state.get());
-		break;
-	case Attack:
-		m_ruler->execute(com, state.get());
-		break;
-	case EndTurn:
-		nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
-		break;
+		LOG(DEBUG) << e.what();
 	}
-	state->notify();
+	
 }
 
 /**
@@ -38,6 +41,15 @@ void Engine::run()
 			liste.remove[0];
 		}*/
 
+}
+
+bool Engine::hasPlayed(int player)
+{
+	for(auto pl: m_has_played)
+	{
+		if (player == pl) return true;
+	}
+	return false;
 }
 
 Etat& Engine::getState()
