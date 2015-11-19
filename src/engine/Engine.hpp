@@ -18,6 +18,7 @@ public:
 	int connect(int client) override;
 	void start() override;
 	Player& getPlayer(int);
+	std::map<int, Player> getPlayers() const;
 protected:
 	int registerPlayer(int player) override;
 

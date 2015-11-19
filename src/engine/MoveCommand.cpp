@@ -1,6 +1,6 @@
 #include "MoveCommand.h"
 
-MoveCommand::MoveCommand(CommandReceiver * receiver, int x , int y , AnimationType type, int uid) : Command(receiver, Move)
+MoveCommand::MoveCommand(CommandReceiver * receiver, int x , int y , AnimationType type, int uid, int player) : Command(receiver, Move, player)
 {
 	posX = x;
 	posY = y;

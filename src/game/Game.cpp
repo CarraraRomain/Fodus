@@ -71,7 +71,7 @@ void Game::run()
 	{
 		game_event_loop();
 		//handle_event();
-
+		m_game_scene->updateAnims();
 //		sf::Time frameTime = frameClock.restart();
 
 		m_game_window->clear();
@@ -91,7 +91,9 @@ void Game::update(ObsType type)
 		break;
 	case ObsState:
 		m_turns = static_cast<Etat*>(m_sub)->getTurn();
+		watchMovements();
 		m_game_scene->update(*(static_cast<Etat*>(m_sub)->getList()));
+		
 		break;
 	}
 	
@@ -136,7 +138,7 @@ void Game::game_event_loop()
 					y -= OFFSET_Y * SIZE;
 					LOG(DEBUG) << "X: " << int(x / SIZE);
 					LOG(DEBUG) << "Y: " << int(y / SIZE);
-					MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1);
+					MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
 					command.execute();
 				}
 				else if(x >= 11*SIZE			&& x <19*SIZE		&& 
@@ -189,7 +191,7 @@ void Game::game_event_loop()
 
 			if (move && !m_isKeyPressed)
 			{
-				MoveCommand command = MoveCommand(m_game_engine, x, y, type, uid);
+				MoveCommand command = MoveCommand(m_game_engine, x, y, type, uid, m_player_id);
 				command.execute();
 				m_isKeyPressed = true;
 
@@ -214,7 +216,7 @@ void Game::test_hud()
 
 						// set the string to display
 	text.setString("FODUS 2.2");
-	if (m_game_engine->getPlayer(m_player_id).hasMoved()) {
+	if (m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
 		move.setString("Move done");
 		move.setColor(sf::Color::Red);
 	}
@@ -223,7 +225,7 @@ void Game::test_hud()
 		move.setString("Move possible");
 		move.setColor(sf::Color::Green);
 	} 
-	if (m_game_engine->getPlayer(m_player_id).hasAttacked()) {
+	if (m_game_engine->getPlayer(m_player_id).hasAttacked(1)) {
 		attack.setString("Attack done");
 		attack.setColor(sf::Color::Red);
 	}
@@ -267,4 +269,38 @@ void Game::endPlayerTurn()
 {
 	EndTurnCommand command = EndTurnCommand(m_game_engine, m_player_id);
 	command.execute();
+}
+
+void Game::watchMovements()
+{
+	// Check moves for each player
+	for(auto pl: m_game_engine->getPlayers())
+	{
+		// check move for each unit
+		for (int i = 1; i <= pl.second.numberPersos();i++)
+		{
+			LOG(DEBUG) << pl.second.getId() << " is moving";
+			if(pl.second.hasMoved(i))
+			{
+				// Player has moved, request an animation
+				LOG(DEBUG) << "Move asked";
+				m_game_scene->addPendingMovement(pl.second.getId(), pl.second.getMove(pl.second.getId()));
+
+			}
+		}
+
+	}
+
+
+/*	for (std::map<int, AnimatedSprite*>::iterator it = m_game_scene->m_sprites.begin();
+	it != m_game_scene->m_sprites.end(); ++it)
+	{
+	
+		if(m_game_engine->getPlayer(it->first).hasMoved(it->second))
+		{
+			// Player has moved, request an animation
+			LOG(DEBUG) << "Move asked";
+			m_game_scene->addPendingMovement(it->first, m_game_engine->getPlayer(it->first).getMoves());
+		}
+	}*/
 }

@@ -12,3 +12,8 @@ Movement::Movement(int newx, int newy, AnimationType newtype)
 Movement::~Movement()
 {
 }
+
+const AnimationType Movement::getDir()
+{
+	return type;
+}

@@ -39,5 +39,6 @@ private:
 	void game_event_loop();
 	void test_hud();
 	void endPlayerTurn();
+	void watchMovements();
 };
 

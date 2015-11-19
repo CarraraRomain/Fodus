@@ -1,5 +1,9 @@
 #include "perso.hpp"
 
+Perso::~Perso()
+{
+}
+
 bool Perso::isAllie()
 {
 	if (type == Principal || type == Zombie) return true;
@@ -26,6 +30,11 @@ bool Perso::isGround()
 AnimationType Perso::getDir()
 {
 	return direction;
+}
+
+const int Perso::getOwner() const
+{
+	return owner;
 }
 
 void Perso::setAttribute(std::string attribute, int valeur)

@@ -2,6 +2,7 @@
 
 #include "ElementLayer.hpp"
 #include "AnimatedSprite.hpp"
+#include "../engine/Movement.hpp"
 
 class Scene :
 	public sf::Drawable
@@ -12,15 +13,27 @@ public:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void update(const ElementList& list);
 	void update();
+	void updateAnims();
 	Element* getEltAt(int x, int y, int depth=0);
 	void setEltAt(Element& elt, int x, int y, int depth = 0);
 	void addSprite(AnimatedSprite& sprite, int id);
-	const AnimatedSprite& getSprite(const int& uid);
+	AnimatedSprite* getSprite(const int& uid);
+	void addPendingMovement(int sprite_id, std::vector<Movement> moves);
+	const int getSpritesNumber();
+	std::map<int, AnimatedSprite*> getSprites();
+	std::map<int, AnimatedSprite*> m_sprites;
 private:
+	sf::Time frameTime;
+	sf::Clock frameClock;
+	float speed = 80.f;
 	Bootstrap* m_boot;
 	std::vector<Layer*> m_layers;
-	std::map<int, AnimatedSprite*> m_sprites;
+	
+	std::map<int, std::vector<Movement>> m_pending_moves;
 	ElementList* m_elt_list;
+	void handleMoves();
+	void executeMoves(int id);
+	void executeMove(int id, int i);
 
 };
 

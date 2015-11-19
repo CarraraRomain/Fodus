@@ -46,9 +46,10 @@ void Scene::update(const ElementList& list)
 	{
 		layer->update(list);
 	}
+
+
 	for (int i = 0; i < list.size();i++)
 	{
-		std::cout << std::to_string(i) << std::endl;
 		if (list[i]->type == Mobile)
 		{
 			Perso* ptr = dynamic_cast<Perso*>(list[i].get());
@@ -56,6 +57,7 @@ void Scene::update(const ElementList& list)
 			std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
 			if (it == m_sprites.end())
 			{
+				// if not found, add it
 				if(ptr->getUid()== 1) addSprite(TestGame::m_animated_sprite, ptr->getUid());
 				else addSprite(TestGame::m_animated_sprite2, ptr->getUid());
 				m_sprites[uid]->setPosition((OFFSET_X + list[i]->getX())*SIZE,
@@ -63,6 +65,7 @@ void Scene::update(const ElementList& list)
 				m_sprites[uid]->setType(ptr->getDir());
 			}else
 			{
+				//handleMoves();
 				it->second->setPosition((OFFSET_X +list[i]->getX())*SIZE,
 					(OFFSET_Y + list[i]->getY())*SIZE);
 				it->second->setType(ptr->getDir());
@@ -83,6 +86,14 @@ void Scene::update()
 	}
 }
 
+void Scene::updateAnims()
+{
+	frameTime = frameClock.restart();
+	for (auto sprite:m_sprites)
+	{
+		sprite.second->update(frameTime);
+	}
+}
 
 void Scene::setEltAt(Element& elt, int x, int y, int depth)
 {
@@ -120,10 +131,63 @@ void Scene::addSprite(AnimatedSprite& sprite, int id)
 	m_sprites[id] = &sprite;
 }
 
-const AnimatedSprite& Scene::getSprite(const int& uid)
+AnimatedSprite* Scene::getSprite(const int& uid)
 {
 	std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
 	if (it != m_sprites.end())
-		return *(it->second);
+		return it->second;
 	throw std::invalid_argument("Not found");
+}
+
+void Scene::addPendingMovement(int sprite_id, std::vector<Movement> moves)
+{
+	m_pending_moves[sprite_id] = moves;
+}
+
+const int Scene::getSpritesNumber()
+{
+	return m_sprites.size();
+}
+
+std::map<int, AnimatedSprite*> Scene::getSprites()
+{
+	return m_sprites;
+}
+
+void Scene::handleMoves()
+{
+	LOG(DEBUG) << "Handling moves";
+	std::cout << m_pending_moves.size();
+		if (m_pending_moves.size() == 0) return ;
+	for (auto it: m_pending_moves)
+	{
+		LOG(DEBUG) << "Pending move " << it.first;
+		if (it.second.size() != 0) executeMoves(it.first);
+		if (it.second.size() == 0) m_pending_moves.erase(it.first);
+		if (m_pending_moves.size() == 0) break;
+	}
+}
+
+void Scene::executeMoves(int id)
+{
+	AnimatedSprite* sprite = m_sprites[id];
+	Movement move = m_pending_moves[id].back();
+	LOG(DEBUG) << "Moving " << move.getDir();
+	switch (move.getDir())
+		{
+		case MoveForward:
+			sprite->move(0, 1*SIZE*frameTime.asSeconds());
+		break;
+		case MoveBackward:
+			sprite->move(0, -1 * SIZE*frameTime.asSeconds());
+		break;
+		case MoveLeft:
+			sprite->move(-1 * SIZE*frameTime.asSeconds(), 0);
+		break;
+		case MoveRight:
+			sprite->move(1 * SIZE*frameTime.asSeconds(), 0);
+		break;
+		}
+	sprite->play(move.getDir());
+	m_pending_moves[id].pop_back();
 }

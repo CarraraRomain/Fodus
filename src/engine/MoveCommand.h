@@ -4,7 +4,7 @@
 class MoveCommand : public Command
 {
 public:
-	MoveCommand(CommandReceiver* receiver, int x, int y , AnimationType type, int uid);
+	MoveCommand(CommandReceiver* receiver, int x, int y , AnimationType type, int uid, int player);
 	~MoveCommand();
 	virtual void execute() override;
 	

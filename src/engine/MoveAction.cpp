@@ -21,7 +21,7 @@ void MoveAction::execute(Etat& e)
 		break;
 
 	}
-	//LOG(DEBUG) << uid << " is now at X:" << posX << ", Y:" << posY;
+	LOG(DEBUG) << uid << " is now at X:" << posX << ", Y:" << posY << ", Dir" << dir ;
 }
 
 MoveAction::MoveAction(int newUid, int newPosX, int newPosY, AnimationType type)

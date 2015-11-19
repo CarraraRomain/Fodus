@@ -50,7 +50,7 @@ int Engine::registerPlayer(int client, int player)
 		if (i.second == player) return 400;
 	}
 	m_clients_players[client] = player;
-	m_players[player] = Player(player);
+//	m_players[player] = Player(player);
 	return 1;
 }
 
@@ -64,27 +64,40 @@ int Engine::connect(int client)
 void Engine::start()
 {
 	TestGame::test_load_elt_list(state->getList(), m_boot);
+	m_players.erase(0);
 	// Quick and dirty addition of a perso
-	Perso* elt = new Perso(1);
+	Perso* elt = new Perso(1, 1);
 	elt->setAttribute("move", 10);
 	elt->setX(16);
 	elt->setY(10);
 	elt->setD(0);
 	elt->setKey("MLP");
 	state->getList()->push_back(elt);
-	Perso* foe = new Perso(89);
+	// Elt index is size-1
+	m_players[1] = Player(1);
+	m_players[1].addOwnedPerso(state->getList()->size() - 1);
+
+	Perso* foe = new Perso(89, 2);
 	foe->setAttribute("move", 3);
 	foe->setX(8);
 	foe->setY(7);
 	foe->setD(0);
 	foe->setKey("FOE");
 	state->getList()->push_back(foe);
+	
+	m_players[2] = Player(89);
+	m_players[2].addOwnedPerso(state->getList()->size() - 1);
 	nextPlayer(0);
 }
 
 Player& Engine::getPlayer(int id)
 {
 	return m_players[id];
+}
+
+std::map<int, Player> Engine::getPlayers() const
+{
+	return m_players;
 }
 
 int Engine::registerPlayer(int player)
@@ -96,19 +109,19 @@ int Engine::registerPlayer(int player)
 void Engine::nextPlayer(int played)
 {
 	int toPlay;
-	m_has_played.push_back(played);
+	if(played != 0) m_has_played.push_back(played);
 	if (m_players.size() == m_has_played.size()) {
-		m_has_played.resize(0);
+		m_has_played.clear();
 		toPlay = 1;
+		LOG(DEBUG) << "Next turn";
+		nextTurn();
 	}
 	else toPlay = played + 1;
 
 	if (toPlay >= m_players.size()) toPlay = 1;
-	state.get();
 
 	m_ruler->nextPlayer(played, toPlay, state.get());
-	LOG(DEBUG) << "Next turn";
-	nextTurn();
+
 }
 
 void Engine::nextTurn()

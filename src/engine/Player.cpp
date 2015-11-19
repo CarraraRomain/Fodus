@@ -4,48 +4,65 @@
 
 Player::Player(int id): m_id(id)
 {
-	m_attacked = false;
-	m_moved = false;
+	
 }
 
 Player::Player()
 {
-	m_attacked = false;
-	m_moved = false;
-}
 
+}
 Player::~Player()
 {
+
 }
 
-const bool Player::hasMoved()
+const bool Player::hasMoved(int perso)
 {
-	return m_moved;
+	return m_moved[perso];
 }
 
-const bool Player::hasAttacked()
+const bool Player::hasAttacked(int perso)
 {
-	return m_attacked;
+	return m_attacked[perso];
 }
 
-void Player::moved()
+void Player::move(int perso)
 {
-	m_moved = true;
+	m_moved[perso] = true;
 }
 
-void Player::attacked()
+void Player::attack(int perso)
 {
-	m_attacked = true;
+	m_attacked[perso] = true;
 }
 
-void Player::resetMoved()
+void Player::resetMoves()
 {
-	m_moved = false;
+	for(auto it: m_moved)
+	{
+		m_moved[it.first] = false;
+		//m_movements[it.first].clear();
+	}
 }
 
-void Player::resetAttacked()
+void Player::resetMove(int perso)
 {
-	m_attacked = false;
+	m_moved[perso] = false;
+	//m_movements[perso].resize(0);
+}
+
+void Player::resetAttack(int perso)
+{
+	m_attacked[perso] = false;
+}
+
+void Player::resetAttacks()
+{
+	for (auto it : m_attacked)
+	{
+		it.second = false;
+	}
+	
 }
 
 const int Player::getId()
@@ -53,7 +70,33 @@ const int Player::getId()
 	return m_id;
 }
 
-void Player::addMovement(int x, int y, AnimationType type)
+
+void Player::addOwnedPerso(int elt)
 {
-	movements.push_back(Movement(x, y, type));
+	m_owned_persos.push_back(elt);
+}
+
+int& Player::operator[](size_t i)
+{
+	return m_owned_persos[i];
+}
+
+const int& Player::operator[](size_t i) const
+{
+	return m_owned_persos[i];
+}
+
+int Player::numberPersos() const
+{
+	return m_owned_persos.size();
+}
+
+void Player::addMove(int perso, int x, int y, AnimationType type)
+{
+	m_movements[perso].push_back(Movement(x, y, type));
+}
+
+std::vector<Movement>& Player::getMove(int perso)
+{
+	return m_movements[perso];
 }

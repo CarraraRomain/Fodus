@@ -30,12 +30,12 @@ void Ruler::execute(Command* com, Etat* state)
 			if(move_com->posY > 50)y = move_com->posY - 100 + state->getAttribute("posY", move_com->Uid);
 			else y = move_com->posY;
 
-			if (checkMove(state, x, y, move_com->Uid))
+			if (checkMove(state, x, y, move_com->Uid, move_com->player))
 			{
 				//MoveAction* action = new MoveAction(move_com->Uid, x, y, move_com->dir);
 				//m_action_list->push_back(action);
-				createMove(state, x, y, move_com->Uid);
-				m_engine->getPlayer(move_com->Uid).moved();
+				createMove(state, x, y, move_com->Uid, move_com->player);
+				m_engine->getPlayer(move_com->player).move(move_com->Uid);
 			}
 			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
@@ -47,10 +47,10 @@ void Ruler::execute(Command* com, Etat* state)
 		{
 			AttackCommand* attack_com = dynamic_cast<AttackCommand*>(com);
 
-			if (checkAttack(state, attack_com->uid1, attack_com->uid2))
+			if (checkAttack(state, attack_com->uid1, attack_com->uid2, attack_com->player))
 			{
 				createAttack(state, attack_com->uid1, attack_com->uid2);
-				m_engine->getPlayer(attack_com->uid1).attacked();
+				m_engine->getPlayer(attack_com->player).attack(attack_com->uid1);
 			}
 			else LOG(DEBUG) << attack_com->uid1 << " can't attack " << attack_com->uid2;
 		}
@@ -73,15 +73,15 @@ void Ruler::update()
 /**
  * Check movement legitimacy
  */
-bool Ruler::checkMove(Etat* state, int x, int y, int uid)
+bool Ruler::checkMove(Etat* state, int x, int y, int uid, int player)
 {
-	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || m_engine->getPlayer(uid).hasMoved()) return false;
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || m_engine->getPlayer(player).hasMoved(uid)) return false;
 	
 	if(mapCharacter[x][y] > 0) return true;
 	else return false;
 }
 
-bool Ruler::createMove(Etat * state, int x, int y, int uid)
+bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 {
 	int i;
 	for (i = 0; i < HEIGHT + WIDTH; i++)
@@ -92,7 +92,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveRight);
 				m_action_list->push_back(action);
-				m_engine->getPlayer(uid).addMovement(x, y, MoveRight);
+				m_engine->getPlayer(player).addMove(uid, x, y, MoveRight);
 				x = x - 1;
 				LOG(DEBUG) << "Right";
 			}
@@ -103,7 +103,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveBackward);
 				m_action_list->push_back(action);
-				m_engine->getPlayer(uid).addMovement(x, y, MoveBackward);
+				m_engine->getPlayer(player).addMove(uid, x, y, MoveBackward);
 				y = y - 1;
 				LOG(DEBUG) << "BackWard";
 			}
@@ -114,7 +114,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveLeft);
 				m_action_list->push_back(action);
-				m_engine->getPlayer(uid).addMovement(x, y, MoveLeft);
+				m_engine->getPlayer(player).addMove(uid, x, y, MoveLeft);
 				x = x + 1;
 				LOG(DEBUG) << "Left";
 			}
@@ -125,7 +125,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveForward);
 				m_action_list->push_back(action);
-				m_engine->getPlayer(uid).addMovement(x, y, MoveForward);
+				m_engine->getPlayer(player).addMove(uid, x, y, MoveForward);
 				y = y + 1;
 				LOG(DEBUG) << "ForWard";
 			}
@@ -139,9 +139,9 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid)
 	return false;
 }
 
-bool Ruler::checkAttack(Etat* state, int uid1, int uid2)
+bool Ruler::checkAttack(Etat* state, int uid1, int uid2, int player)
 {
-	if (m_engine->getPlayer(uid1).hasAttacked()) return false;
+	if (m_engine->getPlayer(player).hasAttacked(uid1)) return false;
 	
 	int x = state->getAttribute("posX", uid1) - state->getAttribute("posX", uid2);
 	int y = state->getAttribute("posY", uid1) - state->getAttribute("posX", uid2);
@@ -198,6 +198,7 @@ void Ruler::createMap(Etat * state)
 
 void Ruler::propagate(int posX, int posY, int value)
 {
+	
 	mapCharacter[posX][posY] = value;
 	if (value > 1) {
 		if(posX > 0)
@@ -213,12 +214,17 @@ void Ruler::propagate(int posX, int posY, int value)
 
 void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 {
-	m_engine->getPlayer(played).resetMoved();
-	m_engine->getPlayer(played).resetAttacked();
-
-	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", toPlay) << " Y:" << state->getAttribute("posY", toPlay) << " and move : " << state->getAttribute("move", toPlay);
+	if (played != 0)
+	{
+		m_engine->getPlayer(played).resetMoves();
+		m_engine->getPlayer(played).resetAttacks();
+	} 
+	
+	//int id = m_engine->getPlayer(toPlay).getId();
+	int id = 1;
+	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
 	createMap(state);
-	propagate(state->getAttribute("posX", toPlay), state->getAttribute("posY", toPlay), state->getAttribute("move", toPlay));
+	propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id));
 	LOG(DEBUG) << "propagate done";
 }
 
