@@ -164,7 +164,7 @@ void Scene::handleMoves()
 		if (m_pending_moves.size() == 0) return ;
 	for (auto it: m_pending_moves)
 	{
-		LOG(DEBUG) << "Pending move " << it.first;
+		//LOG(DEBUG) << "Pending move " << it.first;
 		if (it.second.size() != 0)
 		{
 
@@ -184,9 +184,9 @@ void Scene::executeMoves(int id)
 {
 	AnimatedSprite* sprite = m_sprites[id];
 	Movement move = m_pending_moves[id].back();
-	LOG(DEBUG) << "Moving " << move.getDir();
+	//LOG(DEBUG) << "Moving " << move.getDir();
 	sprite->play(move.getDir());
-	sprite->setType(move.getDir());
+	//sprite->setType(move.getDir());
 	switch (move.getDir())
 		{
 		case MoveForward:

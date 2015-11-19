@@ -7,9 +7,9 @@ TestGame::TestGame()
 
 }
 
-AnimatedSprite TestGame::m_animated_sprite(sf::seconds(0.2), true, 59);
+AnimatedSprite TestGame::m_animated_sprite(sf::milliseconds(100), true, 59);
 
-AnimatedSprite TestGame::m_animated_sprite2(sf::seconds(0.2), true, 89);
+AnimatedSprite TestGame::m_animated_sprite2(sf::milliseconds(100), true, 89);
 
 TestGame::~TestGame()
 {

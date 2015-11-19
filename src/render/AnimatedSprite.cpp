@@ -6,7 +6,7 @@ AnimatedSprite::~AnimatedSprite()
 }
 
 AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused, int row) :
-	m_frameTime(frameTime), m_currentFrame(0), m_isPaused(paused)
+	m_frameTime(frameTime), m_currentFrame(0), m_isPaused(paused), init(false)
 {
 	sf::Image image;
 	if (!image.loadFromFile("../../res/GFX/Sprites2.png"))
@@ -45,7 +45,7 @@ void AnimatedSprite::play(AnimationType type)
 {
 	int i = 0;
 	
-	switch(m_type)
+	switch(type)
 	{
 	case MoveForward:
 		i = 0;
@@ -60,8 +60,12 @@ void AnimatedSprite::play(AnimationType type)
 		i = 3;
 		break;
 	}
-	 setAnimation(i);
-	
+	if (m_type != type) setAnimation(i);
+	if (!init) {
+		setAnimation(i);
+		init = true;
+	}
+	m_type = type;
 	play();
 }
 

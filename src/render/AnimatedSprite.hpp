@@ -26,6 +26,7 @@ public:
 	void setFrame(std::size_t newFrame, bool resetTime = true);
 
 private:
+	bool init;
 	Animation m_animation;
 	AnimationType m_type;
 	std::unique_ptr<Animation> m_animations[4];
