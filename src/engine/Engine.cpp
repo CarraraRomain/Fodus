@@ -92,8 +92,8 @@ void Engine::start()
 	elt->setKey("MLP");
 	state->getList()->push_back(elt);
 	// Elt index is size-1
-	m_players[1] = Player(1);
-	m_players[1].addOwnedPerso(state->getList()->size() - 1);
+	m_players[1] = Player(1,0);
+	m_players[1].addOwnedPerso(elt->getUid());
 
 	Perso* foe = new Perso(89, 2);
 	foe->setAttribute("move", 3);
@@ -103,8 +103,8 @@ void Engine::start()
 	foe->setKey("FOE");
 	state->getList()->push_back(foe);
 	
-	m_players[2] = Player(89);
-	m_players[2].addOwnedPerso(state->getList()->size() - 1);
+	m_players[2] = Player(89,1);
+	m_players[2].addOwnedPerso(foe->getUid());
 	nextPlayer(0);
 }
 
@@ -124,6 +124,11 @@ int Engine::registerPlayer(int player)
 	return 1;
 }
 
+int Engine::getCurrentPlayer()
+{
+	return current_player_uid;
+}
+
 void Engine::nextPlayer(int played)
 {
 	int toPlay;
@@ -136,9 +141,11 @@ void Engine::nextPlayer(int played)
 	}
 	else toPlay = played + 1;
 
-	if (toPlay >= m_players.size()) toPlay = 1;
+	if (toPlay > m_players.size()) toPlay = 1;
 
 	m_ruler->nextPlayer(played, toPlay, state.get());
+
+	current_player_uid = toPlay;
 
 }
 

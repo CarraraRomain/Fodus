@@ -12,6 +12,8 @@
 #include "../test/game/TestGame.hpp"
 #include "../engine/Observer.hpp"
 
+#include "../AI/Ai.hpp"
+
 class Game: public Observer
 {
 public:

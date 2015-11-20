@@ -2,7 +2,7 @@
 
 
 
-Player::Player(int id): m_id(id)
+Player::Player(int id, int control): m_id(id), controlType(control)
 {
 	
 }
@@ -99,4 +99,10 @@ void Player::addMove(int perso, int x, int y, AnimationType type)
 std::vector<Movement>& Player::getMove(int perso)
 {
 	return m_movements[perso];
+}
+
+bool Player::isHuman()
+{
+	if (controlType == 0)return true;
+	else return false;
 }

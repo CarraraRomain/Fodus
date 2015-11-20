@@ -70,7 +70,13 @@ void Game::run()
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
-		game_event_loop();
+		m_player_id = m_game_engine->getCurrentPlayer();
+
+		if (m_game_engine->getPlayer(m_player_id).isHuman())
+			game_event_loop();
+		else {
+			Ai::execute(m_player_id,m_game_engine);
+		}
 		//handle_event();
 		m_game_scene->updateAnims();
 //		sf::Time frameTime = frameClock.restart();
@@ -101,7 +107,7 @@ void Game::update(ObsType type)
 		}
 		watchMovements();
 		m_game_scene->update(*(static_cast<Etat*>(m_sub)->getList()));
-		
+
 		break;
 	}
 	

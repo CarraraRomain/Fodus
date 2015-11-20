@@ -57,15 +57,12 @@ void Scene::update(const ElementList& list)
 			if (it == m_sprites.end())
 			{
 				// if not found, add it
-				if(ptr->getUid()== 1) addSprite(TestGame::m_animated_sprite, ptr->getUid());
+				if (ptr->getUid() == 1) addSprite(TestGame::m_animated_sprite, ptr->getUid());
 				else addSprite(TestGame::m_animated_sprite2, ptr->getUid());
 				m_sprites[uid]->setPosition((OFFSET_X + list[i]->getX())*SIZE,
 					(OFFSET_Y + list[i]->getY())*SIZE);
 				m_sprites[uid]->setType(ptr->getDir());
 			}
-
-		
-
 		}
 	}
 }

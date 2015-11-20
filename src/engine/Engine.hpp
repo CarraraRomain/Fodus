@@ -13,6 +13,7 @@ public:
 	Engine(Bootstrap*);
 	void handleCommand(Command*) override;
 	void run();
+	int getCurrentPlayer();
 	bool hasPlayed(int player);
 	Etat& getState() override;
 	int registerPlayer(int client, int player) override;
@@ -32,4 +33,5 @@ private :
 	std::map<int, Player> m_players;
 	void nextPlayer(int played);
 	void nextTurn();
+	int current_player_uid;
 };

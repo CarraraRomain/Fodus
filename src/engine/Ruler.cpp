@@ -237,12 +237,13 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 		m_engine->getPlayer(played).resetAttack(played);
 	} 
 	
-	//int id = m_engine->getPlayer(toPlay).getId();
-	int id = 1;
+	int id = m_engine->getPlayer(toPlay)[0];
 	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
 	createMap(state);
 	propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id));
 	LOG(DEBUG) << "propagate done";
+
+	LOG(DEBUG) << "played : " << played << "     toPlay : " << toPlay;
 }
 
 

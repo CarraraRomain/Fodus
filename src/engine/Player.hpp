@@ -8,7 +8,7 @@
 class Player
 {
 public:
-	Player(int);
+	Player(int, int);
 	Player();
 	~Player();
 	const bool hasMoved(int perso);
@@ -27,6 +27,8 @@ public:
 	int numberPersos() const;
 	void addMove(int perso, int x, int y, AnimationType type);
 	std::vector<Movement>& getMove(int perso);
+	bool isHuman();
+
 private:
 	int m_id;
 	std::map<int, bool> m_moved;
@@ -34,4 +36,6 @@ private:
 	std::vector<int> m_owned_persos;
 	//std::vector<Movement> movements;
 	std::map<int, std::vector<Movement>> m_movements;
+
+	int controlType;
 };
