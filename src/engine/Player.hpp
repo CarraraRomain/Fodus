@@ -11,14 +11,17 @@ public:
 	Player(int, int);
 	Player();
 	~Player();
-	const bool hasMoved(int perso);
-	const bool hasAttacked(int perso);
+	const bool hasMoved(int);
+	const bool hasAttacked(int);
 	void move(int perso);
 	void attack(int perso);
 	void resetMoves();
 	void resetMove(int perso);
 	void resetAttack(int perso);
 	void resetAttacks();
+	std::map<int,bool>::iterator getMovedBegin();
+	std::map<int, bool>::iterator getMovedEnd();
+
 	const int getId();
 	std::vector<Movement>& getMoves();
 	void addOwnedPerso(int elt);

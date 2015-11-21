@@ -311,9 +311,10 @@ void Game::watchMovements()
 	for(auto pl: m_game_engine->getPlayers())
 	{
 		// check move for each unit
-		for (int i = 1; i <= pl.second.numberPersos();i++)
+		for (std::map<int, bool>::iterator it = pl.second.getMovedBegin(); 
+				it != pl.second.getMovedEnd();++it)
 		{
-			if(pl.second.hasMoved(i))
+			if(pl.second.hasMoved(it->first))
 			{
 				// Player has moved, request an animation
 				LOG(DEBUG) << "Move asked";

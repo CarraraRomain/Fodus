@@ -65,6 +65,16 @@ void Player::resetAttacks()
 	
 }
 
+std::map<int, bool>::iterator Player::getMovedBegin()
+{
+	return m_moved.begin();
+}
+
+std::map<int, bool>::iterator Player::getMovedEnd()
+{
+	return m_moved.end();
+}
+
 const int Player::getId()
 {
 	return m_id;
