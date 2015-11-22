@@ -1,6 +1,6 @@
 #include "AttackCommand.h"
 
-AttackCommand::AttackCommand(CommandReceiver * receiver, int a, int b):Command(receiver, Attack, a)
+AttackCommand::AttackCommand(CommandReceiver * receiver, int a, int b, int player):Command(receiver, Attack, player)
 {
 	uid1 = a;
 	uid2 = b;

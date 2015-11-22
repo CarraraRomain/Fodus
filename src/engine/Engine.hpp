@@ -21,6 +21,8 @@ public:
 	void start() override;
 	Player& getPlayer(int);
 	std::map<int, Player> getPlayers() const;
+	int getMapValue(int x, int y);
+
 protected:
 	int registerPlayer(int player) override;
 

@@ -97,13 +97,15 @@ void Engine::start()
 
 	Perso* foe = new Perso(89, 2);
 	foe->setAttribute("move", 3);
+	foe->setAttribute("range", 2);
 	foe->setX(8);
 	foe->setY(7);
 	foe->setD(3);
 	foe->setKey("FOE");
 	state->getList()->push_back(foe);
 	
-	m_players[2] = Player(89,1);
+	m_players[0] = Player(89, 1);
+	m_players[2] = Player(89, 1);
 	m_players[2].addOwnedPerso(foe->getUid());
 	nextPlayer(0);
 }
@@ -116,6 +118,11 @@ Player& Engine::getPlayer(int id)
 std::map<int, Player> Engine::getPlayers() const
 {
 	return m_players;
+}
+
+int Engine::getMapValue(int x, int y)
+{
+	return m_ruler->getMapValue(x, y);;
 }
 
 int Engine::registerPlayer(int player)
@@ -133,7 +140,7 @@ void Engine::nextPlayer(int played)
 {
 	int toPlay;
 	if(played != 0) m_has_played.push_back(played);
-	if (m_players.size() == m_has_played.size()) {
+	if (m_players.size()-1 <= m_has_played.size()) {
 		m_has_played.clear();
 		toPlay = 1;
 		LOG(DEBUG) << "Next turn";
@@ -143,10 +150,11 @@ void Engine::nextPlayer(int played)
 
 	if (toPlay > m_players.size()) toPlay = 1;
 
+	LOG(DEBUG) << "played : " << played << "     toPlay : " << toPlay;
+
 	m_ruler->nextPlayer(played, toPlay, state.get());
 
 	current_player_uid = toPlay;
-
 }
 
 void Engine::nextTurn()
