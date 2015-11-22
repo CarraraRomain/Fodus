@@ -4,7 +4,7 @@
 class AttackCommand : public Command
 {
 public:
-	AttackCommand(CommandReceiver* receiver, int a, int b, int player);
+	AttackCommand(CommandReceiver* receiver, int a, int b);
 	~AttackCommand();
 	virtual void execute() override;
 
