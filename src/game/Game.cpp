@@ -209,7 +209,7 @@ void Game::game_event_loop()
 			}
 			if (event.key.code == sf::Keyboard::Space)
 			{
-				AttackCommand commandA = AttackCommand(m_game_engine,1, 89);
+				AttackCommand commandA = AttackCommand(m_game_engine,1, 89,1);
 				commandA.execute();
 			}
 

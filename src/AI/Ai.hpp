@@ -6,6 +6,7 @@
 #include "../engine/Command.hpp"
 #include "../engine/Engine.hpp"
 #include "../state/Etat.hpp"
+#include "../state/ElementList.hpp"
 
 class Ai
 {
@@ -14,5 +15,6 @@ public:
 	Ai();
 	~Ai();
 	static void execute(int player_uid, Engine* engine);
+	static void recherche1(ElementList*,int,int,Engine*);
 };
 

@@ -242,8 +242,9 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	createMap(state);
 	propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id));
 	LOG(DEBUG) << "propagate done";
-
-	LOG(DEBUG) << "played : " << played << "     toPlay : " << toPlay;
 }
 
-
+int Ruler::getMapValue(int x, int y)
+{
+	return mapCharacter[x][y];
+}

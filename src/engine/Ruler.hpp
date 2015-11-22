@@ -25,6 +25,7 @@ public :
 	void createMap(Etat* state);
 	void propagate(int posX, int posY, int value);
 	void nextPlayer(int played, int toPlay, Etat* state);
+	int getMapValue(int x, int y);
 
 private:
 	Etat& m_state;
