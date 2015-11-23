@@ -147,9 +147,9 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 bool Ruler::checkAttack(Etat* state, int uid1, int uid2, int player)
 {
 	if (m_engine->getPlayer(player).hasAttacked(uid1)) return false;
-	
+
 	int x = state->getAttribute("posX", uid1) - state->getAttribute("posX", uid2);
-	int y = state->getAttribute("posY", uid1) - state->getAttribute("posX", uid2);
+	int y = state->getAttribute("posY", uid1) - state->getAttribute("posY", uid2);
 
 	if (x < 0) x = -x;
 	if (y < 0) y = -y;
@@ -179,7 +179,7 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 
 	}
 
-	LOG(DEBUG)<< "Attack succeded with " << power << " damages";
+	LOG(DEBUG)<< "Attack succeded from " << uid1 << " to " << uid2 << " for " << power << " damages";
 
 	return true;
 }
@@ -234,7 +234,7 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	if (played != 0)
 	{
 		m_engine->getPlayer(played).resetMoves();
-		m_engine->getPlayer(played).resetAttack(played);
+		m_engine->getPlayer(played).resetAttack(m_engine->getPlayer(played)[0]);
 	} 
 	
 	int id = m_engine->getPlayer(toPlay)[0];

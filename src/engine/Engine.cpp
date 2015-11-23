@@ -90,6 +90,7 @@ void Engine::start()
 	elt->setY(10);
 	elt->setD(3);
 	elt->setKey("MLP");
+	elt->setAttribute("santeCourante", 10);
 	state->getList()->push_back(elt);
 	// Elt index is size-1
 	m_players[1] = Player(1,0);
