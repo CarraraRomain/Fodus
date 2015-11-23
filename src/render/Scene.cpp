@@ -10,14 +10,14 @@ Scene::Scene(Bootstrap* boot): m_boot(boot)
 	ElementLayer* eltLayerUp = new ElementLayer(m_boot,1);
 	eltLayerUp->clearVertices();
 	AnimationLayer* animLayer = new AnimationLayer(m_boot);
-	InfoLayer* infoLayer = new InfoLayer(m_boot);
-	
+	InfoLayer* infoLayer = new InfoLayer(m_boot, this);
 	m_layers.push_back(eltLayer);
 	m_layers.push_back(eltLayerUp);
 	m_layers.push_back(animLayer);
 	m_layers.push_back(infoLayer);
 	
 	m_anims = animLayer;
+	attach(infoLayer);
 	m_elt_list = new ElementList;
 	
 	LOG(DEBUG) << "Scene ready";
@@ -29,6 +29,14 @@ Scene::~Scene()
 	for (Layer* layer : m_layers) delete layer;
 	
 	delete m_elt_list;
+}
+
+void Scene::notify()
+{
+	for (auto obs : m_obs)
+	{
+		obs->update(ObsAnimation);
+	}
 }
 
 void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -64,6 +72,7 @@ void Scene::update()
 void Scene::updateAnims()
 {
 	m_anims->updateAnims();
+	notify();
 }
 
 void Scene::setEltAt(Element& elt, int x, int y, int depth)
@@ -105,4 +114,9 @@ void Scene::addPendingMovement(int sprite_id, std::vector<Movement> moves)
 bool Scene::isAnimationRunning()
 {
 	return m_anims->isAnimationRunning();
-}	
+}
+
+AnimationLayer* Scene::getAnims() const
+{
+	return m_anims;
+}

@@ -28,6 +28,7 @@ void AnimationLayer::updateAnims()
 	}
 }
 
+
 void AnimationLayer::update(const ElementList& list)
 {
 	int uid(0);
@@ -47,6 +48,7 @@ void AnimationLayer::update(const ElementList& list)
 					(OFFSET_Y + list[i]->getY())*SIZE);
 				m_sprites[uid]->setType(ptr->getDir());
 				m_found_sprites[uid] = true;
+				m_animations_done[uid] = true;
 			}
 			else
 			{
@@ -98,6 +100,11 @@ std::map<int, AnimatedSprite*> AnimationLayer::getSprites()
 bool AnimationLayer::isAnimationRunning()
 {
 	return m_animation_running;
+}
+
+bool AnimationLayer::isAnimationRunning(int id)
+{
+	return !m_animations_done[id];
 }
 
 void AnimationLayer::reflowSprites()

@@ -32,4 +32,5 @@ enum ObsType
 	ObsEngine,
 	ObsState,
 	ObsNetwork,
+	ObsAnimation
 };

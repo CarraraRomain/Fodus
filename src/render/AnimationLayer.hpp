@@ -10,6 +10,7 @@ public:
 	AnimationLayer(Bootstrap* boot);
 	~AnimationLayer();
 	void updateAnims();
+	
 	virtual void update(const ElementList& list) override;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void addSprite(AnimatedSprite& sprite, int id);
@@ -20,6 +21,7 @@ public:
 	std::map<int, AnimatedSprite*> m_sprites;
 	std::map<int, bool> m_found_sprites;
 	bool isAnimationRunning();
+	bool isAnimationRunning(int id);
 	void reflowSprites();
 
 private:

@@ -8,11 +8,13 @@
 
 
 class Scene :
-	public sf::Drawable
+	public sf::Drawable,
+	public Subject
 {
 public:
 	Scene(Bootstrap*);
 	~Scene();	
+	virtual void notify();
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void update(const ElementList& list);
 	void update();
@@ -21,6 +23,7 @@ public:
 	void setEltAt(Element& elt, int x, int y, int depth = 0);
 	void addPendingMovement(int sprite_id, std::vector<Movement> moves);
 	bool isAnimationRunning();
+	AnimationLayer* getAnims() const;
 private:
 	Bootstrap* m_boot;
 	std::vector<Layer*> m_layers;

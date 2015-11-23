@@ -31,9 +31,9 @@ void Game::load_gui()
 	m_game_window.reset(new sf::RenderWindow(sf::VideoMode(width, height),
 		"Fodus", sf::Style::Titlebar | sf::Style::Close));
 	
-	m_filter.setPosition(OFFSET_X*SIZE, OFFSET_Y*SIZE);
-	m_filter.setSize(sf::Vector2f(WIDTH*SIZE, HEIGHT *SIZE));
-	m_filter.setFillColor(sf::Color(0,0,0,142));
+	//m_filter.setPosition(OFFSET_X*SIZE, OFFSET_Y*SIZE);
+	//m_filter.setSize(sf::Vector2f(WIDTH*SIZE, HEIGHT *SIZE));
+	//m_filter.setFillColor(sf::Color(0,0,0,142));
 	
 }
 
@@ -63,7 +63,9 @@ void Game::run()
 	load();
 	// Force update
 	update(ObsState);
-	
+	m_game_scene->notify();
+
+
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
@@ -85,10 +87,9 @@ void Game::run()
 
 		m_game_window->clear();
 		m_game_window->draw(m_hud);
-		//m_game_window->draw(m_dashboard);
+		
 		m_game_window->draw(*m_game_scene);
-		if (m_disable_actions) m_game_window->draw(m_filter);
-		//test_hud();
+		//if (m_disable_actions) m_game_window->draw(m_filter);
 		m_game_window->display();
 	}
 	LOG(DEBUG) << "Game ended";
