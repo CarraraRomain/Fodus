@@ -77,6 +77,7 @@ void Scene::update()
 
 void Scene::updateAnims()
 {
+	m_animation_running = !(m_pending_moves.size() == 0);
 	if (frameClock.getElapsedTime().asMilliseconds() <= 20) return;
 	handleMoves();
 	
@@ -84,7 +85,10 @@ void Scene::updateAnims()
 
 	for (auto sprite:m_sprites)
 	{
-		if(!m_animations_done[sprite.first]) sprite.second->update(frameTime);
+		if (!m_animations_done[sprite.first]) {
+			sprite.second->update(frameTime);
+			
+		}
 	}
 }
 
@@ -145,6 +149,11 @@ const int Scene::getSpritesNumber()
 std::map<int, AnimatedSprite*> Scene::getSprites()
 {
 	return m_sprites;
+}
+
+bool Scene::isAnimationRunning()
+{
+	return m_animation_running;
 }
 
 void Scene::handleMoves()

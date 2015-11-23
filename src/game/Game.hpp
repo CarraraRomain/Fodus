@@ -13,6 +13,7 @@
 #include "../engine/Observer.hpp"
 
 #include "../AI/Ai.hpp"
+#include "HUD.hpp"
 
 class Game: public Observer
 {
@@ -27,7 +28,9 @@ public:
 private:
 	Bootstrap* m_boot;
 	Engine* m_game_engine;
+	HUD m_hud;
 	bool m_has_played;
+	bool is_playing;
 	std::unique_ptr<sf::RenderWindow> m_game_window;
 	std::unique_ptr<Scene> m_game_scene;
 	sf::Font m_font;
@@ -38,11 +41,15 @@ private:
 	sf::Text t_turns;
 	sf::Texture m_dashboard_texture;
 	sf::RectangleShape m_dashboard;
+	sf::RectangleShape m_filter;
 	int m_client_id;
 	int m_player_id;
+	bool m_disable_actions;
 	void game_event_loop();
-	void test_hud();
+	void updateHUD();
 	void endPlayerTurn();
 	void watchMovements();
+	void disableActions();
+	void enableActions();
 };
 

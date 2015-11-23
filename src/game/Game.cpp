@@ -7,7 +7,7 @@
 
 
 Game::Game(Bootstrap* boot, Engine* eng) : Observer(&eng->getState()),
-m_boot(boot), m_game_engine(eng), m_isKeyPressed(false)
+m_boot(boot), m_game_engine(eng), m_hud(boot), m_isKeyPressed(false)
 {
 	m_client_id = rand();
 	m_player_id = 1;
@@ -31,14 +31,10 @@ void Game::load_gui()
 	m_game_window.reset(new sf::RenderWindow(sf::VideoMode(width, height),
 		"Fodus", sf::Style::Titlebar | sf::Style::Close));
 	
-	if (!m_font.loadFromFile(m_boot->getPath("font"))) LOG(FATAL) << "Font not found";
-	if (!m_dashboard_texture.loadFromFile(m_boot->getPath("dashboard"),
-		sf::IntRect(0, 0, 960, 768))) LOG(FATAL) << "HUD not found";
-	t_turns.setFont(m_font);
-	t_turns.setColor(sf::Color::White);
-	t_turns.setCharacterSize(42);
-	m_dashboard.setSize(sf::Vector2f(960, 768));
-	m_dashboard.setTexture(&m_dashboard_texture);
+	m_filter.setPosition(OFFSET_X*SIZE, OFFSET_Y*SIZE);
+	m_filter.setSize(sf::Vector2f(WIDTH*SIZE, HEIGHT *SIZE));
+	m_filter.setFillColor(sf::Color(0,0,0,142));
+	
 }
 
 /**
@@ -47,6 +43,7 @@ void Game::load_gui()
 void Game::load()
 {
 	load_gui();
+	m_hud.load(m_game_window->getSize());
 	//m_game_engine.reset(new Engine);
 	int rc = m_game_engine->connect(m_client_id);
 	if(rc>= 400) LOG(FATAL) << "Cannot connect to engine: " << rc;
@@ -80,12 +77,18 @@ void Game::run()
 		m_game_engine->run();
 		//handle_event();
 		m_game_scene->updateAnims();
+		if (!m_game_scene->isAnimationRunning() && is_playing ) {
+			enableActions();
+		}
+		
 //		sf::Time frameTime = frameClock.restart();
 
 		m_game_window->clear();
-		m_game_window->draw(m_dashboard);
+		m_game_window->draw(m_hud);
+		//m_game_window->draw(m_dashboard);
 		m_game_window->draw(*m_game_scene);
-		test_hud();
+		if (m_disable_actions) m_game_window->draw(m_filter);
+		//test_hud();
 		m_game_window->display();
 	}
 	LOG(DEBUG) << "Game ended";
@@ -104,6 +107,8 @@ void Game::update(ObsType type)
 		{
 			LOG(DEBUG) << "New Turn!";
 			m_turns = static_cast<Etat*>(m_sub)->getTurn();
+			m_hud.updateTurns(m_turns);
+			is_playing = true;
 			for (auto it : m_move_watcher) m_move_watcher[it.first] = false;
 		}
 		watchMovements();
@@ -111,7 +116,7 @@ void Game::update(ObsType type)
 
 		break;
 	}
-	
+	updateHUD();
 }
 
 /**
@@ -124,184 +129,141 @@ void Game::game_event_loop()
 	bool move = false;
 
 	while (m_game_window->pollEvent(event)) {
-		// Global events
-		if (event.type == sf::Event::Closed)
-			m_game_window->close();
-		if(event.type == sf::Event::KeyReleased)
-		{
-			m_isKeyPressed = false;
-		}
-		// End global
-		
-		// Mouse events
-		
-		if (event.type == sf::Event::MouseButtonPressed)
-		{
-			
-			if (event.mouseButton.button == (sf::Mouse::Left))
+		try {
+			// Global events
+			if (event.type == sf::Event::Closed)
+				m_game_window->close();
+			if (event.type == sf::Event::KeyReleased)
 			{
-				int x = event.mouseButton.x;
-				int y = event.mouseButton.y;
-				// if has already played, disabled
-				if (!m_has_played) {
-					// Game area : X OFFSET_X to WIDTH /SIZE
-					//             Y OFFSET_Y to HEIGHT
-					
-					if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH)*SIZE &&
-						y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
+				m_isKeyPressed = false;
+			}
+			// End global
+
+			// Mouse events
+
+			if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (m_disable_actions) throw std::logic_error("Action disabled");
+				if (event.mouseButton.button == (sf::Mouse::Left))
+				{
+					int x = event.mouseButton.x;
+					int y = event.mouseButton.y;
+					// if has already played, disabled
+					if (!m_has_played) {
+						// Game area : X OFFSET_X to WIDTH /SIZE
+						//             Y OFFSET_Y to HEIGHT
+
+						if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH)*SIZE &&
+							y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
+						{
+							// This is the game area
+							move = true;
+							x -= OFFSET_X * SIZE;
+							y -= OFFSET_Y * SIZE;
+							LOG(DEBUG) << "X: " << int(x / SIZE);
+							LOG(DEBUG) << "Y: " << int(y / SIZE);
+							MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
+							command.execute();
+							disableActions();
+						}
+					}
+					else LOG(DEBUG) << "You have already played!";
+					if (x >= 11 * SIZE			&& x < 19 * SIZE		&&
+						y >= SIZE*(6 + HEIGHT) && y < SIZE*(8 + HEIGHT))
 					{
-						// This is the game area
-						move = true;
-						x -= OFFSET_X * SIZE;
-						y -= OFFSET_Y * SIZE;
-						LOG(DEBUG) << "X: " << int(x / SIZE);
-						LOG(DEBUG) << "Y: " << int(y / SIZE);
-						MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
-						command.execute();
+						// Next turn button 
+						endPlayerTurn();
 					}
 				}
-				else LOG(DEBUG) << "You have already played!";
-				if(x >= 11*SIZE			&& x <19*SIZE		&& 
-						y >= SIZE*(6+HEIGHT)	&& y < SIZE*(8+HEIGHT))
+			}
+			// End mouse
+
+			// Keyboard events
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (m_disable_actions) throw std::logic_error("Action disabled");
+				AnimationType type = MoveForward;
+				if (event.key.code == sf::Keyboard::Up)
 				{
-					// Next turn button 
+					move = true;
+					x = 100;
+					y = 99;
+					type = MoveForward;
+				}
+				if (event.key.code == sf::Keyboard::Down)
+				{
+					move = true;
+					x = 100;
+					y = 101;
+					type = MoveBackward;
+				}
+				if (event.key.code == sf::Keyboard::Left)
+				{
+					move = true;
+					x = 99;
+					y = 100;
+					type = MoveLeft;
+				}
+				if (event.key.code == sf::Keyboard::Right)
+				{
+					move = true;
+					x = 101;
+					y = 100;
+					type = MoveRight;
+				}
+				if (event.key.code == sf::Keyboard::Escape)
+				{
+					// End Turn
 					endPlayerTurn();
 				}
-			}
-		}
-		// End mouse
+				if (event.key.code == sf::Keyboard::Space)
+				{
+					AttackCommand commandA = AttackCommand(m_game_engine, 1, 89, 1);
+					commandA.execute();
+				}
 
-		// Keyboard events
-		if (event.type == sf::Event::KeyPressed)
+				if (move && !m_isKeyPressed)
+				{
+					MoveCommand command = MoveCommand(m_game_engine, x, y, type, uid, m_player_id);
+					command.execute();
+					disableActions();
+					m_isKeyPressed = true;
+
+				}
+			}
+			// End Keyboard
+		}catch(std::logic_error e)
 		{
-			AnimationType type = MoveForward;
-			if (event.key.code == sf::Keyboard::Up)
-			{
-				move = true;
-				x = 100;
-				y = 99;
-				type = MoveForward;
-			}
-			if (event.key.code == sf::Keyboard::Down)
-			{
-				move = true;
-				x = 100;
-				y = 101;
-				type = MoveBackward;
-			}
-			if (event.key.code == sf::Keyboard::Left)
-			{
-				move = true;
-				x = 99;
-				y = 100;
-				type = MoveLeft;
-			}
-			if (event.key.code == sf::Keyboard::Right)
-			{
-				move = true;
-				x = 101;
-				y = 100;
-				type = MoveRight;
-			}
-			if (event.key.code == sf::Keyboard::Escape)
-			{
-				// End Turn
-				endPlayerTurn();
-			}
-			if (event.key.code == sf::Keyboard::Space)
-			{
-				AttackCommand commandA = AttackCommand(m_game_engine,1, 89,1);
-				commandA.execute();
-			}
-
-			if (move && !m_isKeyPressed)
-			{
-				MoveCommand command = MoveCommand(m_game_engine, x, y, type, uid, m_player_id);
-				command.execute();
-				m_isKeyPressed = true;
-
-			}
+			LOG(DEBUG) << e.what();
 		}
-		// End Keyboard
 	}
 }
 
 
-void Game::test_hud()
+void Game::updateHUD()
 {
-	sf::Vector2u vect = m_game_window->getSize();
-	int width(vect.x), height(vect.y);
-
-	sf::Text text, move, attack, command;
-	sf::String m_string, a_string;
-	// select the font
-	text.setFont(m_font); // font is a sf::Font
-	move.setFont(m_font); // font is a sf::Font
-	attack.setFont(m_font); // font is a sf::Font
-	command.setFont(m_font); // font is a sf::Font
-
-						// set the string to display
-	text.setString("FODUS 2.2");
-	command.setString("Echap (twice): Next Turn | Space: Attack | Mouse: Move");
+	
 	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
-		move.setString("Move done");
-		move.setColor(sf::Color::Red);
+		m_hud.updateMoveCapa(false);
 	}
 	else
 	{
-		move.setString("Move possible");
-		move.setColor(sf::Color::Green);
+		m_hud.updateMoveCapa(true);
 	} 
 	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasAttacked(1)) {
-		attack.setString("Attack done");
-		attack.setColor(sf::Color::Red);
+		m_hud.updateAttackCapa(false);
 	}
 	else
 	{
-		attack.setString("Attack possible");
-		attack.setColor(sf::Color::Green);
-	} 
-	// set the character size
-	text.setCharacterSize(24); // in pixels, not points!
-	attack.setCharacterSize(24); // in pixels, not points!
-	move.setCharacterSize(24); // in pixels, not points!
-	command.setCharacterSize(30); // in pixels, not points!
+		m_hud.updateAttackCapa(true);
+	}
 
-							   // set the color
-	text.setColor(sf::Color::White);
-	command.setColor(sf::Color::White);
-
-	sf::FloatRect bbox = text.getGlobalBounds();
-	text.setOrigin(bbox.width / 2, bbox.height / 2);
-	text.setPosition(width / 2, 16);
-
-	// Attack left corner bot
-	bbox = attack.getGlobalBounds();
-	attack.setOrigin(0, bbox.height+20);
-	attack.setPosition(20, height);
-	// Move right corner bot
-	bbox = move.getGlobalBounds();
-	move.setOrigin(bbox.width, 20+bbox.height);
-	move.setPosition(width- 20, height);
-	// Turns
-	bbox = text.getGlobalBounds();
-	t_turns.setOrigin(bbox.width / 2, bbox.height / 2);
-	t_turns.setPosition(width / 2, height - 64);
-	// Commands
-	bbox = command.getGlobalBounds();
-	command.setOrigin(bbox.width / 2, bbox.height / 2);
-	command.setPosition(width / 2, height - 128);
-
-	m_game_window->draw(text);
-	m_game_window->draw(move);
-	m_game_window->draw(attack);
-	m_game_window->draw(command);
-	t_turns.setString("Tour: " + std::to_string(m_turns));
-	m_game_window->draw(t_turns);
 }
 
 void Game::endPlayerTurn()
 {
+	disableActions();
+	is_playing = false;
 	EndTurnCommand command = EndTurnCommand(m_game_engine, m_player_id);
 	command.execute();
 }
@@ -323,6 +285,7 @@ void Game::watchMovements()
 				{
 					m_game_scene->addPendingMovement(pl.second.getId(), pl.second.getMove(pl.second.getId()));
 					m_move_watcher[pl.second.getId()] = true;
+					disableActions();
 				}
 				
 			}
@@ -330,4 +293,17 @@ void Game::watchMovements()
 
 	}
 
+}
+
+void Game::disableActions()
+{
+	m_disable_actions = true;
+	m_hud.actionsDisabled();
+}
+
+void Game::enableActions()
+{
+	m_disable_actions = false;
+	m_hud.actionsEnabled();
+	
 }

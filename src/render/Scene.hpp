@@ -22,6 +22,7 @@ public:
 	const int getSpritesNumber();
 	std::map<int, AnimatedSprite*> getSprites();
 	std::map<int, AnimatedSprite*> m_sprites;
+	bool isAnimationRunning();
 private:
 	sf::Time frameTime;
 	sf::Clock frameClock;
@@ -30,6 +31,7 @@ private:
 	std::vector<Layer*> m_layers;
 	
 	std::map<int, std::vector<Movement>> m_pending_moves;
+	bool m_animation_running;
 	std::map<int, bool> m_animations_done;
 	std::map<int, int> m_animations_progress;
 	ElementList* m_elt_list;
