@@ -10,6 +10,9 @@
 class ElementList
 {
 public:
+	typedef std::vector<std::unique_ptr<Element>>::iterator iterator;
+	typedef std::vector<std::unique_ptr<Element>>::const_iterator const_iterator;
+
 	ElementList();
 	ElementList(const ElementList&);
 	ElementList& operator=(const ElementList&);
@@ -32,6 +35,13 @@ public:
 	int findUid(int uid);
 
 	void erase(int uid);
+
+	iterator begin();
+	iterator end();
+	const_iterator begin() const;
+	const_iterator cbegin() const;
+	const_iterator end() const ;
+	const_iterator cend() const ;
 
 private:
 	std::vector<std::unique_ptr<Element> > m_elements;

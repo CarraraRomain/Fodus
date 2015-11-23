@@ -80,3 +80,33 @@ void ElementList::erase(int uid)
 	int i = findUid(uid);
 	m_elements.erase(m_elements.begin()+i);
 }
+
+ElementList::iterator ElementList::begin()
+{
+	return m_elements.begin();
+}
+
+ElementList::iterator ElementList::end()
+{
+	return m_elements.end();
+}
+
+ElementList::const_iterator ElementList::begin() const
+{
+	return m_elements.begin();
+}
+
+ElementList::const_iterator ElementList::cbegin() const
+{
+	return m_elements.cbegin();
+}
+
+ElementList::const_iterator ElementList::end() const
+{
+	return m_elements.end();
+}
+
+ElementList::const_iterator ElementList::cend() const
+{
+	return m_elements.cend();
+}

@@ -1,8 +1,11 @@
 #pragma once
 
 #include "ElementLayer.hpp"
+#include "InfoLayer.hpp"
 #include "AnimatedSprite.hpp"
 #include "../engine/Movement.hpp"
+#include "AnimationLayer.hpp"
+
 
 class Scene :
 	public sf::Drawable
@@ -16,28 +19,13 @@ public:
 	void updateAnims();
 	Element* getEltAt(int x, int y, int depth=0);
 	void setEltAt(Element& elt, int x, int y, int depth = 0);
-	void addSprite(AnimatedSprite& sprite, int id);
-	AnimatedSprite* getSprite(const int& uid);
 	void addPendingMovement(int sprite_id, std::vector<Movement> moves);
-	const int getSpritesNumber();
-	std::map<int, AnimatedSprite*> getSprites();
-	std::map<int, AnimatedSprite*> m_sprites;
 	bool isAnimationRunning();
 private:
-	sf::Time frameTime;
-	sf::Clock frameClock;
-	float speed = 80.f;
 	Bootstrap* m_boot;
 	std::vector<Layer*> m_layers;
-	
-	std::map<int, std::vector<Movement>> m_pending_moves;
-	bool m_animation_running;
-	std::map<int, bool> m_animations_done;
-	std::map<int, int> m_animations_progress;
+	AnimationLayer* m_anims;
 	ElementList* m_elt_list;
-	void handleMoves();
-	void executeMoves(int id);
-	void executeMove(int id, int i);
 
 };
 

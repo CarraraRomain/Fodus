@@ -9,9 +9,17 @@ Scene::Scene(Bootstrap* boot): m_boot(boot)
 	ElementLayer* eltLayer = new ElementLayer(m_boot,0);
 	ElementLayer* eltLayerUp = new ElementLayer(m_boot,1);
 	eltLayerUp->clearVertices();
+	AnimationLayer* animLayer = new AnimationLayer(m_boot);
+	InfoLayer* infoLayer = new InfoLayer(m_boot);
+	
 	m_layers.push_back(eltLayer);
 	m_layers.push_back(eltLayerUp);
+	m_layers.push_back(animLayer);
+	m_layers.push_back(infoLayer);
+	
+	m_anims = animLayer;
 	m_elt_list = new ElementList;
+	
 	LOG(DEBUG) << "Scene ready";
 }
 
@@ -19,6 +27,7 @@ Scene::Scene(Bootstrap* boot): m_boot(boot)
 Scene::~Scene()
 {
 	for (Layer* layer : m_layers) delete layer;
+	
 	delete m_elt_list;
 }
 
@@ -28,43 +37,20 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		target.draw(*layer, states);
 	}
-	std::map<int, AnimatedSprite*>::const_iterator it;
-	for (it = m_sprites.begin(); it != m_sprites.end(); ++it)
-	{
-		target.draw(*it->second, states);
-	}
+	
 }
 
 void Scene::update(const ElementList& list)
 {
 	LOG(DEBUG) << "Updating scene";
-	int uid(42);
 	// saving EltList is disabled for now
 	//*m_elt_list = *list;
 	for (Layer* layer : m_layers)
 	{
 		layer->update(list);
 	}
+	
 
-
-	for (int i = 0; i < list.size();i++)
-	{
-		if (list[i]->type == Mobile)
-		{
-			Perso* ptr = dynamic_cast<Perso*>(list[i].get());
-			uid = ptr->getUid();
-			std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
-			if (it == m_sprites.end())
-			{
-				// if not found, add it
-				if (ptr->getUid() == 1) addSprite(TestGame::m_animated_sprite, ptr->getUid());
-				else addSprite(TestGame::m_animated_sprite2, ptr->getUid());
-				m_sprites[uid]->setPosition((OFFSET_X + list[i]->getX())*SIZE,
-					(OFFSET_Y + list[i]->getY())*SIZE);
-				m_sprites[uid]->setType(ptr->getDir());
-			}
-		}
-	}
 }
 
 void Scene::update()
@@ -77,19 +63,7 @@ void Scene::update()
 
 void Scene::updateAnims()
 {
-	m_animation_running = !(m_pending_moves.size() == 0);
-	if (frameClock.getElapsedTime().asMilliseconds() <= 20) return;
-	handleMoves();
-	
-	frameTime = frameClock.restart();
-
-	for (auto sprite:m_sprites)
-	{
-		if (!m_animations_done[sprite.first]) {
-			sprite.second->update(frameTime);
-			
-		}
-	}
+	m_anims->updateAnims();
 }
 
 void Scene::setEltAt(Element& elt, int x, int y, int depth)
@@ -123,91 +97,12 @@ void Scene::setEltAt(Element& elt, int x, int y, int depth)
 
 }
 
-void Scene::addSprite(AnimatedSprite& sprite, int id)
-{
-	m_sprites[id] = &sprite;
-}
-
-AnimatedSprite* Scene::getSprite(const int& uid)
-{
-	std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
-	if (it != m_sprites.end())
-		return it->second;
-	throw std::invalid_argument("Not found");
-}
-
 void Scene::addPendingMovement(int sprite_id, std::vector<Movement> moves)
 {
-	m_pending_moves[sprite_id] = moves;
-}
-
-const int Scene::getSpritesNumber()
-{
-	return m_sprites.size();
-}
-
-std::map<int, AnimatedSprite*> Scene::getSprites()
-{
-	return m_sprites;
+	m_anims->addPendingMovement(sprite_id, moves);
 }
 
 bool Scene::isAnimationRunning()
 {
-	return m_animation_running;
-}
-
-void Scene::handleMoves()
-{
-	//LOG(DEBUG) << "Handling moves";
-		if (m_pending_moves.size() == 0) return ;
-	for (auto it: m_pending_moves)
-	{
-		//LOG(DEBUG) << "Pending move " << it.first;
-		if (it.second.size() != 0)
-		{
-
-			executeMoves(it.first);
-			m_animations_done[it.first] = false;
-		}
-		if (it.second.size() == 0)
-		{
-			m_pending_moves.erase(it.first);
-			m_animations_done[it.first] = true;
-		}
-		if (m_pending_moves.size() == 0) break;
-	}
-}
-
-void Scene::executeMoves(int id)
-{
-	AnimatedSprite* sprite = m_sprites[id];
-	Movement move = m_pending_moves[id].back();
-	//LOG(DEBUG) << "Moving " << move.getDir();
-	sprite->play(move.getDir());
-	//sprite->setType(move.getDir());
-	switch (move.getDir())
-		{
-		case MoveForward:
-			sprite->move(0, -1*SIZE / 8);
-		break;
-		case MoveBackward:
-			sprite->move(0, 1 * SIZE / 8);
-		break;
-		case MoveLeft:
-			sprite->move(-1 * SIZE / 8, 0);
-		break;
-		case MoveRight:
-			sprite->move(1 * SIZE / 8, 0);
-		break;
-		}
-	if (m_animations_progress[id] == 7) {
-		m_pending_moves[id].pop_back();
-		m_animations_progress[id] = 0;
-	}
-	else {
-		m_animations_progress[id]++;
-	}
-	
-	
-	
-}
+	return m_anims->isAnimationRunning();
+}	
