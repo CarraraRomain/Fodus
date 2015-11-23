@@ -94,7 +94,7 @@ void Ai::recherche1(ElementList* liste,int playerUid, int uid, Engine* engine)
 		if (attaqueDistance > 0)
 		{
 			AttackCommand commandA = AttackCommand(engine, uid, proche,playerUid);
-			//commandA.execute();
+			commandA.execute();
 		}
 	}
 }
