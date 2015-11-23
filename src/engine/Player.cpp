@@ -58,9 +58,9 @@ void Player::resetAttack(int perso)
 
 void Player::resetAttacks()
 {
-	for (auto it : m_attacked)
+	for (auto it : m_moved)
 	{
-		it.second = false;
+		m_attacked[it.first] = false;
 	}
 	
 }
@@ -115,4 +115,15 @@ bool Player::isHuman()
 {
 	if (controlType == 0)return true;
 	else return false;
+}
+
+void Player::removePerso(int uid)
+{
+	int i,suppr = -1;
+	for (i = 0; i < m_owned_persos.size(); i++)
+	{
+		if (m_owned_persos[i] == uid) suppr = i;
+	}
+	if (suppr >= 0)
+		m_owned_persos.erase(m_owned_persos.begin() + suppr);
 }

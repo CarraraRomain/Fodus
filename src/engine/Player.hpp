@@ -31,6 +31,7 @@ public:
 	void addMove(int perso, int x, int y, AnimationType type);
 	std::vector<Movement>& getMove(int perso);
 	bool isHuman();
+	void removePerso(int uid);
 
 private:
 	int m_id;

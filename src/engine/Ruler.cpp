@@ -234,12 +234,13 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	if (played != 0)
 	{
 		m_engine->getPlayer(played).resetMoves();
-		m_engine->getPlayer(played).resetAttack(m_engine->getPlayer(played)[0]);
+		m_engine->getPlayer(played).resetAttacks();
 	} 
-	
+	createMap(state);
+	if (m_engine->getPlayer(toPlay).numberPersos() <= 0) return;
+
 	int id = m_engine->getPlayer(toPlay)[0];
 	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
-	createMap(state);
 	propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id));
 	LOG(DEBUG) << "propagate done";
 }
@@ -247,4 +248,25 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 int Ruler::getMapValue(int x, int y)
 {
 	return mapCharacter[x][y];
+}
+
+void Ruler::checkRule(Etat * state)
+{
+	ElementList* liste = state->getList();
+	int i;
+
+	for (i = 0; i < liste->size(); i++)
+	{
+		if ((*liste)[i]->getD() >= 3)
+		{
+			int test = (*liste)[i]->getUid();
+			if ((*liste)[i]->getAttribute("currentHealth") <= 0 && (*liste)[i]->getAttribute("status") >= 0)
+			{
+				DeadAction* actionD =new  DeadAction((*liste)[i]->getUid());
+				m_engine->death((*liste)[i]->getUid());
+				m_action_list->push_back(actionD);
+				update();
+			}
+		}
+	}
 }

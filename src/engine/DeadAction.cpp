@@ -1,11 +1,18 @@
 #include "DeadAction.h"
 
-void DeadAction::execute(Etat* state)
+DeadAction::DeadAction(int newUid) : Action(Dead)
 {
-	value = state->getAttribute("currentHealth", uid);
-	if (value <= 0)
-	{
-		state->setAttribute("status", -1, uid);
-		LOG(DEBUG) << uid << "is dead";
-	}
+	uid = newUid;
+}
+
+void DeadAction::execute(Etat& state)
+{
+	int own = state.getAttribute("owner", uid);
+	state.setAttribute("status", -1, uid);
+	state.getList()->erase(uid);
+	LOG(DEBUG) << uid << " is dead";
+}
+
+DeadAction::~DeadAction()
+{
 }

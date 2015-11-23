@@ -22,6 +22,7 @@ public:
 	Player& getPlayer(int);
 	std::map<int, Player> getPlayers() const;
 	int getMapValue(int x, int y);
+	void death(int uid);
 
 protected:
 	int registerPlayer(int player) override;

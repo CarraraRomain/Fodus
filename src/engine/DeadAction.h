@@ -8,5 +8,7 @@ private:
 	int value;
 
 public:
-	void execute(Etat* state);
+	DeadAction(int newUid);
+	virtual void execute(Etat& state) override;
+	virtual ~DeadAction();
 };

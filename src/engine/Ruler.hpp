@@ -5,6 +5,7 @@
 #include "Command.hpp"
 #include "MoveCommand.h"
 #include "MoveAction.hpp"
+#include "DeadAction.h"
 #include "DamageAction.hpp"
 #include "ActionList.hpp"
 #include "AttackCommand.h"
@@ -26,6 +27,7 @@ public :
 	void propagate(int posX, int posY, int value);
 	void nextPlayer(int played, int toPlay, Etat* state);
 	int getMapValue(int x, int y);
+	void checkRule(Etat* state);
 
 private:
 	Etat& m_state;

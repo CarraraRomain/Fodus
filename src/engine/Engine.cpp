@@ -38,12 +38,7 @@ void Engine::handleCommand(Command* com)
  */
 void Engine::run()
 {
-		/*if (liste.size != 0)
-		{
-			rule.execute(liste[0], state);
-			liste.remove[0];
-		}*/
-
+	m_ruler->checkRule(state.get());
 }
 
 bool Engine::hasPlayed(int player)
@@ -90,7 +85,8 @@ void Engine::start()
 	elt->setY(10);
 	elt->setD(3);
 	elt->setKey("MLP");
-	elt->setAttribute("santeCourante", 10);
+	elt->setAttribute("currentHealth", 100);
+	elt->setAttribute("power", 5292);
 	state->getList()->push_back(elt);
 	// Elt index is size-1
 	m_players[1] = Player(1,0);
@@ -103,6 +99,9 @@ void Engine::start()
 	foe->setY(7);
 	foe->setD(3);
 	foe->setKey("FOE");
+	foe->setAttribute("currentHealth", 10);
+	foe->setAttribute("defence", 10);
+	foe->setAttribute("status",1);
 	state->getList()->push_back(foe);
 	
 	m_players[0] = Player(89, 1);
@@ -124,6 +123,12 @@ std::map<int, Player> Engine::getPlayers() const
 int Engine::getMapValue(int x, int y)
 {
 	return m_ruler->getMapValue(x, y);;
+}
+
+void Engine::death(int uid)
+{
+	int own = state->getAttribute("owner", uid);
+	m_players[own].removePerso(uid);
 }
 
 int Engine::registerPlayer(int player)

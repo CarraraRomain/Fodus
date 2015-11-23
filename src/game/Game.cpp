@@ -77,6 +77,7 @@ void Game::run()
 		else {
 			Ai::execute(m_player_id,m_game_engine);
 		}
+		m_game_engine->run();
 		//handle_event();
 		m_game_scene->updateAnims();
 //		sf::Time frameTime = frameClock.restart();
