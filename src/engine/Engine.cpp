@@ -130,7 +130,7 @@ void Engine::start()
 	// Quick and dirty addition of a perso
 	Perso* elt = new Perso(1, 1);
 	elt->setAttribute("move", 10);
-	elt->setX(16);
+	elt->setX(17);
 	elt->setY(10);
 	elt->setD(3);
 	elt->setKey("MLP");
