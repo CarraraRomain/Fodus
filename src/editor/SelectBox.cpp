@@ -89,8 +89,8 @@ void SelectBox::setBox()
 	draw_x = (m_current.x < 0) ? m_start.x + 1 : m_start.x;
 	draw_y = (m_current.y < 0) ? m_start.y + 1 : m_start.y;
 
-	m_box.setSize(sf::Vector2f(float(m_current.x*SIZE), float(m_current.y*SIZE)));
-	m_box.setPosition(draw_x*SIZE, draw_y*SIZE);
+	m_box.setSize(sf::Vector2f(float((m_current.x)*SIZE), float((m_current.y)*SIZE)));
+	m_box.setPosition((draw_x+OFFSET_X)*SIZE, (draw_y+OFFSET_Y)*SIZE);
 }
 
 sf::Vector2i SelectBox::checkBoundaries(sf::Vector2i& vect)

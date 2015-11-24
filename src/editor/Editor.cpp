@@ -18,15 +18,17 @@ Editor::~Editor()
  */
 void Editor::load_gui()
 {
+	int width = (2 * OFFSET_X + WIDTH)*SIZE;
+	int height = (OFFSET_Y + HEIGHT + OFFSET_BOT)*SIZE;
 	LOG(DEBUG) << "Loading GUI";
 	m_level_scene.reset(new Scene(m_boot));
 	m_editor_scene.reset(new Scene(m_boot));
-	m_level_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
-		SIZE*HEIGHT), "Level", sf::Style::Titlebar | sf::Style::Close));
+	m_level_window.reset(new sf::RenderWindow(sf::VideoMode(width, height),
+			"Level", sf::Style::Titlebar | sf::Style::Close));
 	m_level_window->setPosition(sf::Vector2i(0, 0));
 
-	m_editor_window.reset(new sf::RenderWindow(sf::VideoMode(SIZE*WIDTH,
-		SIZE*HEIGHT), "Tiles", sf::Style::Titlebar | sf::Style::Close));
+	m_editor_window.reset(new sf::RenderWindow(sf::VideoMode(width, height),
+			"Tiles", sf::Style::Titlebar | sf::Style::Close));
 	m_editor_window->setPosition(sf::Vector2i((sf::VideoMode::getDesktopMode().width) / 2, 0));
 	m_box.reset(new SelectBox());
 
@@ -276,6 +278,17 @@ void Editor::level_event_loop()
 	sf::Event event;
 	// Main window event loop
 	while (m_level_window->pollEvent(event)) {
+		int x = event.mouseButton.x;
+		int y = event.mouseButton.y;
+		// Game area : X OFFSET_X to WIDTH /SIZE
+		//             Y OFFSET_Y to HEIGHT
+		if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH)*SIZE &&
+			y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
+		{
+			// This is the game area
+			x -= OFFSET_X * SIZE;
+			y -= OFFSET_Y * SIZE;
+		}
 		switch (event.type)
 		{
 		case sf::Event::Closed:
@@ -286,24 +299,22 @@ void Editor::level_event_loop()
 		case sf::Event::MouseButtonPressed:
 			if (m_selected_elt)
 			{
-				m_box->setStart(sf::Vector2i(event.mouseButton.x / SIZE,
-					event.mouseButton.y / SIZE));
+				std::cout << "Pressed @ X: " << x / SIZE << ",Y: " << y / SIZE << std::endl;
+				m_box->setStart(sf::Vector2i(x / SIZE, y / SIZE));
 			}
 			break;
 		case sf::Event::MouseButtonReleased:
 			if (m_selected_elt)
 			{
 				m_box->inactive();
-				m_box->setEnd(sf::Vector2i(event.mouseButton.x / SIZE,
-					event.mouseButton.y / SIZE));
-
-
+				m_box->setEnd(sf::Vector2i(x / SIZE, y / SIZE));
 
 				for (int k = m_box->getStart().y; k <= m_box->getEnd().y; k++)
 				{
 					for (int i = m_box->getStart().x; i <= m_box->getEnd().x; i++)
 					{
-						setElt(*m_selected_elt, i, k);
+						std::cout << "X: " << m_box->getStart().x << "Y: " << m_box->getStart().y << std::endl;
+						if(x>=0 && y >= 0) setElt(*m_selected_elt, i, k);
 					}
 				}
 				m_level_scene->update(*m_level_list);
@@ -312,8 +323,8 @@ void Editor::level_event_loop()
 		case sf::Event::MouseMoved:
 			if (m_selected_elt && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
-				m_box->setCurrent(sf::Vector2i(event.mouseMove.x / SIZE,
-					event.mouseMove.y / SIZE));
+				m_box->setCurrent(sf::Vector2i(- OFFSET_X + event.mouseMove.x / SIZE,
+					- OFFSET_Y + event.mouseMove.y / SIZE));
 				m_box->setBox();
 				m_box->active();
 			}
@@ -342,17 +353,28 @@ void Editor::editor_event_loop()
 			save();
 			break;
 		case sf::Event::MouseButtonPressed:
-			std::cout << "Button was pressed" << std::endl;
-			std::cout << "mouse x: " << event.mouseButton.x / SIZE << std::endl;
-			std::cout << "mouse y: " << event.mouseButton.y / SIZE << std::endl;
-			try{
-				m_selected_elt.reset(new Case(getElt(event.mouseButton.x / SIZE,
-														event.mouseButton.y / SIZE, 0)));
-				LOG(INFO) << "Elt: " << m_selected_elt->getKey();
-				LOG(INFO) << "Elt Depth: " << m_selected_elt->getD();
-			}catch (const std::domain_error& e){
-				LOG(WARNING) << "No Elt here";
+			int x = event.mouseButton.x;
+			int y = event.mouseButton.y;
+				// Game area : X OFFSET_X to WIDTH /SIZE
+				//             Y OFFSET_Y to HEIGHT
+			if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH)*SIZE &&
+				y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
+			{
+				// This is the game area
+				x -= OFFSET_X * SIZE;
+				y -= OFFSET_Y * SIZE;
+				std::cout << "Button was pressed" << std::endl;
+				std::cout << "mouse x: " << x / SIZE << std::endl;
+				std::cout << "mouse y: " << x / SIZE << std::endl;
+				try {
+					m_selected_elt.reset(new Case(getElt(x / SIZE, y / SIZE, 0)));
+					LOG(INFO) << "Elt: " << m_selected_elt->getKey();
+					LOG(INFO) << "Elt Depth: " << m_selected_elt->getD();
 				}
+				catch (const std::domain_error& e) {
+					LOG(WARNING) << "No Elt here";
+				}
+			}
 			break;
 
 		}
