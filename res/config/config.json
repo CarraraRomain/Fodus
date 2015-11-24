@@ -10,6 +10,7 @@
   "resources": 
   {
 	"tiles_index":"../../res/GFX/tiles.json",
+	"sprites_index":"../../res/GFX/sprites.json",
 	"levels_index":"../../res/config/levels_index.json",
 	"levels_path":"../../res/levels/",
 	"GFX":"../../GFX/",

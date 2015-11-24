@@ -2,6 +2,7 @@
 #include "Layer.hpp"
 #include "../engine/Movement.hpp"
 #include "AnimatedSprite.hpp"
+#include "SpriteFactory.hpp"
 
 class AnimationLayer :
 	public Layer
@@ -25,6 +26,7 @@ public:
 	void reflowSprites();
 
 private:
+	SpriteFactory m_factory;
 	sf::Time frameTime;
 	sf::Clock frameClock;
 	float speed = 80.f;

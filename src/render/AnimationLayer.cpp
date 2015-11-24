@@ -2,7 +2,7 @@
 #include "../test/game/TestGame.hpp"
 
 
-AnimationLayer::AnimationLayer(Bootstrap* boot): Layer(boot), m_animation_running(false)
+AnimationLayer::AnimationLayer(Bootstrap* boot): Layer(boot), m_animation_running(false), m_factory(boot)
 {
 }
 
@@ -42,8 +42,8 @@ void AnimationLayer::update(const ElementList& list)
 			if (it == m_sprites.end())
 			{
 				// if not found, add it
-				if (ptr->getUid() == 1) addSprite(TestGame::m_animated_sprite, ptr->getUid());
-				else addSprite(TestGame::m_animated_sprite2, ptr->getUid());
+				AnimatedSprite* sp = m_factory.buildSprite(ptr->getKey());
+				addSprite(*sp, ptr->getUid());
 				m_sprites[uid]->setPosition((OFFSET_X + list[i]->getX())*SIZE,
 					(OFFSET_Y + list[i]->getY())*SIZE);
 				m_sprites[uid]->setType(ptr->getDir());
@@ -117,7 +117,10 @@ void AnimationLayer::reflowSprites()
 		if (m_found_sprites[sp.first]) continue;
 		else to_delete.push_back(sp.first);
 	}
-	for (int i : to_delete) m_sprites.erase(i);
+	for (int i : to_delete) {
+		delete m_sprites[i];
+		m_sprites.erase(i);
+	}
 	m_found_sprites.clear();
 }
 

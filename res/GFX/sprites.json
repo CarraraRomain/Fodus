@@ -1,0 +1,10 @@
+{
+  "sprites": {
+    "MLP": 101,
+    "FOE": 180
+    },
+  "header": {
+    "version": "0.2",
+    "name": "Default Tileset"
+  }
+}
