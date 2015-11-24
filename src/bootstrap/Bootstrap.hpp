@@ -21,6 +21,8 @@ public:
 	void loadConf();
 	void loadLevelIndex();
 	void start();
+	void listLevels();
+	std::string chooseLevel();
 	void run();
 	void poolCommands();
 	void getConfig(const std::string&) const;
@@ -39,7 +41,7 @@ private:
 	void loadFile(const std::string& name);
 	void loadLevel(const std::string& name);
 	bool checkNode(const std::string&) const;
-	bool checkLevelNode(const std::string&) const;
+	bool checkLevelNode(const std::string&);
 	void launch_editor();
 	void launch_game();
 };

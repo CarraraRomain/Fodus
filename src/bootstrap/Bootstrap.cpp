@@ -75,7 +75,31 @@ void Bootstrap::start()
 {
 	LOG(DEBUG) << "Bootstrap is starting";
 	loadConf();
+	loadLevelIndex();
 	
+}
+
+void Bootstrap::listLevels()
+{
+ 
+ rapidjson::Document& index = 	*m_docs["levels_index"];
+ rapidjson::Value::ConstMemberIterator it;
+ for (it = index["levels"].MemberBegin(); it != index["levels"].MemberEnd();++it)
+ {
+	 std::cout << "| "<< it->name.GetString() << " : " << it->value["desc"].GetString() << std::endl;
+ }
+}
+
+std::string Bootstrap::chooseLevel()
+{
+	std::string level;
+	std::cout << "Choose a level to play:" << std::endl;
+	do {
+		listLevels();
+		std::cout << "Your choice: ";
+		std::cin >> level;
+	} while (!checkLevelNode(level));
+	return level;
 }
 
 /**
@@ -90,8 +114,7 @@ void Bootstrap::run()
 	std::string type;
 	ModeCommand command = ModeCommand(this, type);
 	if (m_argc > 1) type = m_argv[1];
-
-
+	
 	if (type == "editor" || type == "game") command.mode = type;
 	else {
 		do
@@ -247,8 +270,13 @@ bool Bootstrap::checkNode(const std::string& name) const
 /**
  * TODO Implementation
  */
-bool Bootstrap::checkLevelNode(const std::string& name) const
+bool Bootstrap::checkLevelNode(const std::string& name)
 {
+	rapidjson::Document& index = *m_docs["levels_index"];
+	if (!index["levels"].HasMember(name)) {
+		LOG(ERROR) << "No such level " << name;
+		return false;
+	}
 	return true;
 }
 
@@ -302,9 +330,11 @@ void Bootstrap::launch_editor()
 void Bootstrap::launch_game()
 {
 	LOG(DEBUG) << "Launching Game";
+	
 	Engine engine(this);
 	Game game(this, &engine);
-	
+
+	engine.loadLevel(chooseLevel());
 	engine.start();
 	
 	game.run();

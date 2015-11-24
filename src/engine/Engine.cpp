@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "EndTurnCommand.hpp"
+#include "../state/Case.h"
 
 Engine::Engine(Bootstrap* boot): m_boot(boot)
 {
@@ -7,6 +8,54 @@ Engine::Engine(Bootstrap* boot): m_boot(boot)
 	m_ruler.reset(new Ruler(this,*state));
 	m_ruler->createMap(state.get());
 }
+
+void Engine::loadLevel(const std::string level)
+{
+	LOG(DEBUG) << "Loading level " << level << std::endl;
+	// loading a level from ../../res/GFX/level.json
+	std::shared_ptr<rapidjson::Document> doc;
+	try
+	{
+		doc = m_boot->getLevel(level);
+	}
+	catch (std::invalid_argument e) 
+	{
+		LOG(FATAL) << e.what();
+	}
+	LOG(DEBUG) << "Done";
+
+	//std::cout << level["header"].GetString();
+	//cout << level["level"][0][0][0..Depth]["key"].GetString();
+
+	const rapidjson::Value& b = (*doc)["level"];
+	int posX = 0;
+	for (rapidjson::SizeType i = 0; i < b.Size(); i++)
+	{
+		const rapidjson::Value& c = b[i];
+		//cout << c[0][0..Depth]["key"].GetString();
+
+		for (rapidjson::SizeType j = 0; j < c.Size(); j++)
+		{
+			// X = j | Y = i
+			// e : [0..Depth]["key"]
+			const rapidjson::Value& e = c[j];
+
+			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
+				Case* ptr_case = new Case(rand());
+				ptr_case->setKey(e[k]["key"].GetString());
+				ptr_case->setX(posX);
+				ptr_case->setY(i);
+				ptr_case->setD(k);
+				state->getList()->push_back(ptr_case);
+			}
+			posX++;
+		}
+		posX = 0;
+	}
+
+	LOG(DEBUG) << "Load OK";
+}
+
 /**
  * Command pattern receiver method
  */
@@ -76,7 +125,7 @@ int Engine::connect(int client)
 
 void Engine::start()
 {
-	TestGame::test_load_elt_list(state->getList(), m_boot);
+	//TestGame::test_load_elt_list(state->getList(), m_boot);
 	m_players.erase(0);
 	// Quick and dirty addition of a perso
 	Perso* elt = new Perso(1, 1);

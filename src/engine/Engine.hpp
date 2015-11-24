@@ -11,6 +11,7 @@ class Engine: public AbstractEngine
 {
 public:
 	Engine(Bootstrap*);
+	void loadLevel(const std::string);
 	void handleCommand(Command*) override;
 	void run();
 	int getCurrentPlayer();
