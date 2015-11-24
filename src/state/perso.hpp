@@ -1,20 +1,13 @@
 #pragma once
 #include "Element.h"
 #include "Competence.hpp"
-#include <vector>
+#include "../global.hpp"
 
 class Perso : public Element
 {
 private:
 
-	enum Classe {
-		Principal,
-		Zombie,
-		Monstre,
-		Guerrier,
-		Mage
-	};
-
+	
 	std::string nom;
 	int health;
 	int defence;
@@ -45,6 +38,8 @@ public:
 	virtual bool isGround() override;
 	AnimationType getDir();
 	const int getOwner() const; 
+	const Classe getClass() const;
+	void setClass(Classe);
 	virtual void setAttribute(std::string attribute, int valeur) override;
 	virtual void setAttribute(std::string attribute, std::string valeur) override;
 	virtual int getAttribute(std::string attribute) override;

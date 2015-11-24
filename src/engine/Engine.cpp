@@ -142,6 +142,7 @@ void Engine::start()
 	m_players[1].addOwnedPerso(elt->getUid());
 
 	Perso* foe = new Perso(89, 2);
+	foe->setClass(Monstre);
 	foe->setAttribute("move", 3);
 	foe->setAttribute("range", 2);
 	foe->setX(8);

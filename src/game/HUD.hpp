@@ -1,6 +1,7 @@
 #pragma once
 #include "../global.hpp"
 #include "../bootstrap/Bootstrap.hpp"
+#include "../engine/Subject.hpp"
 
 class HUD :
 	public sf::Drawable

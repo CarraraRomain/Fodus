@@ -28,6 +28,7 @@ void Game::load_gui()
 	int height = (OFFSET_Y + HEIGHT + OFFSET_BOT)*SIZE;
 	LOG(DEBUG) << "Loading GUI";
 	m_game_scene.reset(new Scene(m_boot));
+	
 	m_game_window.reset(new sf::RenderWindow(sf::VideoMode(width, height),
 		"Fodus", sf::Style::Titlebar | sf::Style::Close));
 	
@@ -300,11 +301,13 @@ void Game::disableActions()
 {
 	m_disable_actions = true;
 	m_hud.actionsDisabled();
+	m_game_scene->getInfos()->disable();
 }
 
 void Game::enableActions()
 {
 	m_disable_actions = false;
 	m_hud.actionsEnabled();
+	m_game_scene->getInfos()->enable();
 	
 }

@@ -14,7 +14,7 @@ class Scene :
 public:
 	Scene(Bootstrap*);
 	~Scene();	
-	virtual void notify();
+	virtual void notify() override;
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	void update(const ElementList& list);
 	void update();
@@ -24,10 +24,12 @@ public:
 	void addPendingMovement(int sprite_id, std::vector<Movement> moves);
 	bool isAnimationRunning();
 	AnimationLayer* getAnims() const;
+	InfoLayer* getInfos() const;
 private:
 	Bootstrap* m_boot;
 	std::vector<Layer*> m_layers;
 	AnimationLayer* m_anims;
+	InfoLayer* m_infos;
 	ElementList* m_elt_list;
 
 };

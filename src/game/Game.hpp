@@ -14,6 +14,7 @@
 
 #include "../AI/Ai.hpp"
 #include "HUD.hpp"
+#include "Coord.hpp"
 
 class Game: public Observer
 {

@@ -37,6 +37,16 @@ const int Perso::getOwner() const
 	return owner;
 }
 
+const Classe Perso::getClass() const
+{
+	return type;
+}
+
+void Perso::setClass(Classe c)
+{
+	type = c;
+}
+
 void Perso::setAttribute(std::string attribute, int valeur)
 {
 	if (attribute == "health") health = valeur;

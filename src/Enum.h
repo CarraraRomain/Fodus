@@ -32,5 +32,14 @@ enum ObsType
 	ObsEngine,
 	ObsState,
 	ObsNetwork,
-	ObsAnimation
+	ObsAnimation,
+	ObsHUD
+};
+
+enum Classe {
+	Principal,
+	Zombie,
+	Monstre,
+	Guerrier,
+	Mage
 };

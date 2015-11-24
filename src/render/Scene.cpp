@@ -17,6 +17,7 @@ Scene::Scene(Bootstrap* boot): m_boot(boot)
 	m_layers.push_back(infoLayer);
 	
 	m_anims = animLayer;
+	m_infos = infoLayer;
 	attach(infoLayer);
 	m_elt_list = new ElementList;
 	
@@ -119,4 +120,9 @@ bool Scene::isAnimationRunning()
 AnimationLayer* Scene::getAnims() const
 {
 	return m_anims;
+}
+
+InfoLayer* Scene::getInfos() const
+{
+	return m_infos;
 }
