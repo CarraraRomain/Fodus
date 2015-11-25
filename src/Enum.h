@@ -41,5 +41,6 @@ enum Classe {
 	Zombie,
 	Monstre,
 	Guerrier,
-	Mage
+	Mage,
+	Sol
 };

@@ -36,6 +36,8 @@ void Ai::recherche1(ElementList* liste,int playerUid, int uid, Engine* engine)
 	int attaqueDistance = 0;
 	int okX = 0, okY = 0;
 
+	engine->propagate(liste->getAttribute("posX", uid), liste->getAttribute("posY", uid), liste->getAttribute("move", uid), uid);
+
 	for (i = 0; i < liste->size(); i++)
 	{
 		if ((*liste)[i]->getD() == 3 && liste->getAttribute("side",uid) != (*liste)[i]->getAttribute("side"))
@@ -59,7 +61,7 @@ void Ai::recherche1(ElementList* liste,int playerUid, int uid, Engine* engine)
 		{
 			for (j = 0; j < HEIGHT; j++)
 			{
-				if (engine->getMapValue(i, j,uid) > 0)
+				if (engine->getMapValue(i, j, uid) > 0)
 				{
 					x = i - liste->getAttribute("posX", proche);
 					y = j - liste->getAttribute("posY", proche);

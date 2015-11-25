@@ -15,6 +15,8 @@ private:
 	int taille;
 	ElementList liste;
 	int turnsCount;
+	bool gameEnded;
+	bool gameResult;
 
 public:
 	explicit Etat(int);
@@ -32,6 +34,10 @@ public:
 	std::vector<int> getGround();
 	void notify() override;
 	int getSize();
+
+	void setResult(bool);
+	bool hasWin();
+	bool hasEnded();
 
 	ElementList* getList();
 };

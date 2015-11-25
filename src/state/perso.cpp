@@ -27,6 +27,11 @@ bool Perso::isGround()
 	return false;
 }
 
+Classe Perso::getType()
+{
+	return type;
+}
+
 AnimationType Perso::getDir()
 {
 	return direction;

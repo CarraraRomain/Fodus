@@ -37,6 +37,7 @@ public:
 	virtual bool isEnnemy() override;
 	virtual bool isNeutral() override;
 	virtual bool isGround() override;
+	virtual Classe getType() override;
 	AnimationType getDir();
 	const int getOwner() const; 
 	const Classe getClass() const;

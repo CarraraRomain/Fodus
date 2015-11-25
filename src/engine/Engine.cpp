@@ -205,6 +205,13 @@ void Engine::death(int uid)
 	m_players[own].removePerso(uid);
 }
 
+void Engine::propagate(int x, int y, int valeur, int uid)
+{
+	m_ruler->createMap(state.get());
+	m_ruler->createMapCharacter(uid);
+	m_ruler->propagate(x, y, valeur, uid);
+}
+
 int Engine::registerPlayer(int player)
 {
 	m_clients_players[0] = player;

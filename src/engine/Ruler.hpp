@@ -7,6 +7,7 @@
 #include "MoveAction.hpp"
 #include "DeadAction.h"
 #include "DamageAction.hpp"
+#include "EndGameAction.hpp"
 #include "ActionList.hpp"
 #include "AttackCommand.h"
 
@@ -24,7 +25,7 @@ public :
 	bool checkAttack(Etat* state, int uid1, int uid2, int player);
 	bool createAttack(Etat* state, int uid1, int uid2);
 	void createMap(Etat* state);
-	void Ruler::createMapCharacter(Etat * state, int uid);
+	void Ruler::createMapCharacter(int uid);
 	void propagate(int posX, int posY, int value, int uid);
 	void nextPlayer(int played, int toPlay, Etat* state);
 	int getMapValue(int x, int y, int uid);

@@ -25,6 +25,7 @@ public:
 	int getMapValue(int x, int y, int uid);
 	std::vector< std::vector<int> > getMap(int uid);
 	void death(int uid);
+	void propagate(int x, int y, int valeur, int uid);
 
 protected:
 	int registerPlayer(int player) override;

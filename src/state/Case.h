@@ -16,6 +16,7 @@ public:
 	virtual void setAttribute(std::string attribute, int valeur) override;
 	virtual void setAttribute(std::string attribute, std::string valeur) override;
 	virtual int getAttribute(std::string attribute);
+	virtual Classe getType() override;
 	Case(int id): Element(id, Fixed) {}
 	~Case();
 };

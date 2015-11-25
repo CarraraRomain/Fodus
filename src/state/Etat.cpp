@@ -114,6 +114,22 @@ int Etat::getSize()
 	return liste.size();
 }
 
+void Etat::setResult(bool result)
+{
+	gameEnded = true;
+	gameResult = result;
+}
+
+bool Etat::hasWin()
+{
+	return gameResult;
+}
+
+bool Etat::hasEnded()
+{
+	return gameEnded;
+}
+
 ElementList* Etat::getList()
 {
 	return &liste;

@@ -205,7 +205,7 @@ void Ruler::createMap(Etat * state)
 	}
 }
 
-void Ruler::createMapCharacter(Etat * state, int uid)
+void Ruler::createMapCharacter(int uid)
 {
 	int i,j;
 		mapCharacter[uid].resize(WIDTH);
@@ -249,7 +249,7 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	for (i = 0; i < m_engine->getPlayer(toPlay).numberPersos(); i++)
 	{
 		int id = m_engine->getPlayer(toPlay)[i];
-		createMapCharacter(state, id);
+		createMapCharacter(id);
 		LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
 		propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id), id);
 		LOG(DEBUG) << "propagate done";
@@ -278,9 +278,10 @@ void Ruler::checkRule(Etat * state)
 			int test = (*liste)[i]->getUid();
 			if ((*liste)[i]->getAttribute("currentHealth") <= 0 && (*liste)[i]->getAttribute("status") >= 0)
 			{
-				if ((*liste)[i])
+				if ((*liste)[i]->getType() == Principal)
 				{
-
+					EndGameAction* actionE = new EndGameAction(false);
+					m_action_list->push_back(actionE);
 				}
 				DeadAction* actionD =new  DeadAction(test);
 				m_engine->death(test);

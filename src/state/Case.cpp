@@ -38,6 +38,11 @@ int Case::getAttribute(std::string attribute)
 	if (attribute == "start") return start;
 }
 
+Classe Case::getType()
+{
+	return Sol;
+}
+
 Case::~Case()
 {
 }

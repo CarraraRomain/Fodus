@@ -25,10 +25,11 @@ public:
 	virtual bool isAllie() = 0;
 	virtual bool isNeutral() = 0;
 	virtual bool isEnnemy() = 0;
-
+	
 	virtual void setAttribute(std::string attribute, int valeur) = 0;
 	virtual void setAttribute(std::string attribute, std::string valeur) = 0;
 	virtual int getAttribute(std::string) = 0;
+	virtual Classe getType() = 0;
 	Element(int id, ElementType type): type(type), uid(id) {}
 
 protected:
