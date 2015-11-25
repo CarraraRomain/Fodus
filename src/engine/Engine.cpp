@@ -179,6 +179,11 @@ int Engine::getMapValue(int x, int y)
 	return m_ruler->getMapValue(x, y);;
 }
 
+std::vector<std::vector<int>> Engine::getMap()
+{
+	return m_ruler->getMap();
+}
+
 void Engine::death(int uid)
 {
 	int own = state->getAttribute("owner", uid);

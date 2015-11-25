@@ -23,6 +23,7 @@ public:
 	Player& getPlayer(int);
 	std::map<int, Player> getPlayers() const;
 	int getMapValue(int x, int y);
+	std::vector< std::vector<int> > getMap();
 	void death(int uid);
 
 protected:

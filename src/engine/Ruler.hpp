@@ -27,6 +27,7 @@ public :
 	void propagate(int posX, int posY, int value);
 	void nextPlayer(int played, int toPlay, Etat* state);
 	int getMapValue(int x, int y);
+	std::vector< std::vector<int> > getMap();
 	void checkRule(Etat* state);
 
 private:

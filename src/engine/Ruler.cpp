@@ -250,6 +250,11 @@ int Ruler::getMapValue(int x, int y)
 	return mapCharacter[x][y];
 }
 
+std::vector<std::vector<int>> Ruler::getMap()
+{
+	return mapCharacter;
+}
+
 void Ruler::checkRule(Etat * state)
 {
 	ElementList* liste = state->getList();
