@@ -80,8 +80,8 @@ void InfoLayer::update(const ElementList& list)
 			else m_coords[index]->setNotAttackable();
 		}
 	}
-	
-	ford(m_player.x, m_player.y);
+	syncMoveMap();
+	//ford(m_player.x, m_player.y);
 	updateVertices();
 }
 
@@ -103,7 +103,7 @@ void InfoLayer::updateVertices()
 	{
 		
 		sf::Vertex* quad = &m_vertices[(c->x + c->y*WIDTH)*4];
-		sf::Color col = (c->canMoveTo() && m_coords[c->x + c->y*WIDTH]->move_weight < move_qty) ?
+		sf::Color col = (m_coords[c->x + c->y*WIDTH]->move_weight > 0) ?
 			sf::Color(0,255,0,42): sf::Color(255, 0, 0, 0);
 		col = (c->isAttackable()) ? sf::Color(255, 0, 0, 42): col;
 		quad[0].color = col;
@@ -179,4 +179,26 @@ void InfoLayer::disable()
 void InfoLayer::enable()
 {
 	m_disable_actions = false;
+}
+
+void InfoLayer::syncMoveMap()
+{
+	for (int i = 0; i < m_map.size(); i++)
+	{
+		for (int j = 0; j < m_map[i].size(); j++)
+		{
+			int index = i + j*WIDTH;
+			m_coords[index]->move_weight = m_map[i][j];
+		}
+	}
+}
+
+void InfoLayer::syncMoveMap(std::vector<std::vector<int>>& map)
+{
+	m_map = map;
+}
+
+void InfoLayer::resetMoveMap()
+{
+	for (auto c : m_coords) c->move_weight = 999;
 }

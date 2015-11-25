@@ -114,6 +114,8 @@ void Game::update(ObsType type)
 			for (auto it : m_move_watcher) m_move_watcher[it.first] = false;
 		}
 		watchMovements();
+		if(is_playing) m_game_scene->getInfos()->syncMoveMap(m_game_engine->getMap());
+		else m_game_scene->getInfos()->resetMoveMap();
 		m_game_scene->update(*(static_cast<Etat*>(m_sub)->getList()));
 
 		break;
