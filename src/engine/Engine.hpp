@@ -22,8 +22,8 @@ public:
 	void start() override;
 	Player& getPlayer(int);
 	std::map<int, Player> getPlayers() const;
-	int getMapValue(int x, int y);
-	std::vector< std::vector<int> > getMap();
+	int getMapValue(int x, int y, int uid);
+	std::vector< std::vector<int> > getMap(int uid);
 	void death(int uid);
 
 protected:

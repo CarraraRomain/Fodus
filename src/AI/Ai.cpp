@@ -59,7 +59,7 @@ void Ai::recherche1(ElementList* liste,int playerUid, int uid, Engine* engine)
 		{
 			for (j = 0; j < HEIGHT; j++)
 			{
-				if (engine->getMapValue(i, j) > 0)
+				if (engine->getMapValue(i, j,uid) > 0)
 				{
 					x = i - liste->getAttribute("posX", proche);
 					y = j - liste->getAttribute("posY", proche);
@@ -68,9 +68,9 @@ void Ai::recherche1(ElementList* liste,int playerUid, int uid, Engine* engine)
 					
 					if (x + y <= liste->getAttribute("range", uid))
 					{
-						if (engine->getMapValue(i, j) > attaqueDistance)
+						if (engine->getMapValue(i, j,uid) > attaqueDistance)
 						{
-							attaqueDistance = engine->getMapValue(i, j);
+							attaqueDistance = engine->getMapValue(i, j, uid);
 							okX = i;
 							okY = j;
 						}

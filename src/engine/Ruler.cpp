@@ -82,7 +82,7 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid, int player)
 {
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || m_engine->getPlayer(player).hasMoved(uid)) return false;
 	
-	if(mapCharacter[x][y] > 0) return true;
+	if(mapCharacter[uid][x][y] > 0) return true;
 	else return false;
 }
 
@@ -93,7 +93,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 	{
 		if (x > 0)
 		{
-			if (mapCharacter[x - 1][y] > mapCharacter[x][y])
+			if (mapCharacter[uid][x - 1][y] > mapCharacter[uid][x][y])
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveRight);
 				m_action_list->push_back(action);
@@ -104,7 +104,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 		}
 		if (y > 0)
 		{
-			if (mapCharacter[x][y - 1] > mapCharacter[x][y])
+			if (mapCharacter[uid][x][y - 1] > mapCharacter[uid][x][y])
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveBackward);
 				m_action_list->push_back(action);
@@ -115,7 +115,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 		}
 		if (x < WIDTH - 1)
 		{
-			if (mapCharacter[x + 1][y] > mapCharacter[x][y])
+			if (mapCharacter[uid][x + 1][y] > mapCharacter[uid][x][y])
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveLeft);
 				m_action_list->push_back(action);
@@ -126,7 +126,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 		}
 		if (y < HEIGHT - 1)
 		{
-			if (mapCharacter[x][y + 1] > mapCharacter[x][y])
+			if (mapCharacter[uid][x][y + 1] > mapCharacter[uid][x][y])
 			{
 				MoveAction* action = new MoveAction(uid, x, y, MoveForward);
 				m_action_list->push_back(action);
@@ -135,7 +135,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 				LOG(DEBUG) << "ForWard";
 			}
 		}
-		if (mapCharacter[x][y] == state->getAttribute("move", uid))
+		if (mapCharacter[uid][x][y] == state->getAttribute("move", uid))
 		{
 			LOG(DEBUG) << "found";
 			return true;
@@ -197,35 +197,40 @@ void Ruler::createMap(Etat * state)
 			map[i][j] = 0;
 		}
 
-	mapCharacter.resize(WIDTH);
-	for (int i = 0; i < WIDTH; ++i)
-		mapCharacter[i].resize(HEIGHT);
-
-	for (i = 0; i < WIDTH; i++)
-		for (j = 0; j < HEIGHT; j++) {
-			mapCharacter[i][j] = 0;
-		}
-
 	ElementList* liste = state->getList();
+	LOG(DEBUG) << state->getSize();
 	for (int i = 0; i < state->getSize(); i++)
 	{
 		if((*liste)[i]->getKey() != "VOID_1") map[(*liste)[i]->getX()][(*liste)[i]->getY()] = (*liste)[i]->getD();
 	}
 }
 
-void Ruler::propagate(int posX, int posY, int value)
+void Ruler::createMapCharacter(Etat * state, int uid)
+{
+	int i,j;
+		mapCharacter[uid].resize(WIDTH);
+		for (int i = 0; i < WIDTH; ++i)
+			mapCharacter[uid][i].resize(HEIGHT);
+
+		for (i = 0; i < WIDTH; i++)
+			for (j = 0; j < HEIGHT; j++) {
+				mapCharacter[uid][i][j] = 0;
+			}
+}
+
+void Ruler::propagate(int posX, int posY, int value, int uid)
 {
 	
-	mapCharacter[posX][posY] = value;
+	mapCharacter[uid][posX][posY] = value;
 	if (value > 1) {
 		if(posX > 0)
-			if (map[posX - 1][posY] < 1 && mapCharacter[posX - 1][posY] < value) propagate(posX - 1, posY, value - 1);
+			if (map[posX - 1][posY] < 1 && mapCharacter[uid][posX - 1][posY] < value) propagate(posX - 1, posY, value - 1, uid);
 		if(posY > 0)
-			if (map[posX][posY - 1] < 1 && mapCharacter[posX][posY - 1] < value) propagate(posX, posY - 1, value - 1);
+			if (map[posX][posY - 1] < 1 && mapCharacter[uid][posX][posY - 1] < value) propagate(posX, posY - 1, value - 1, uid);
 		if (posY < HEIGHT - 1)
-			if (map[posX][posY + 1] < 1 && mapCharacter[posX][posY + 1] < value) propagate(posX, posY + 1, value - 1);
+			if (map[posX][posY + 1] < 1 && mapCharacter[uid][posX][posY + 1] < value) propagate(posX, posY + 1, value - 1, uid);
 		if (posX < WIDTH - 1)
-			if (map[posX + 1][posY] < 1 && mapCharacter[posX + 1][posY] < value) propagate(posX + 1, posY, value - 1);
+			if (map[posX + 1][posY] < 1 && mapCharacter[uid][posX + 1][posY] < value) propagate(posX + 1, posY, value - 1, uid);
 	}
 }
 
@@ -239,20 +244,26 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	createMap(state);
 	if (m_engine->getPlayer(toPlay).numberPersos() <= 0) return;
 
-	int id = m_engine->getPlayer(toPlay)[0];
-	LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
-	propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id));
-	LOG(DEBUG) << "propagate done";
+	int i;
+
+	for (i = 0; i < m_engine->getPlayer(toPlay).numberPersos(); i++)
+	{
+		int id = m_engine->getPlayer(toPlay)[i];
+		createMapCharacter(state, id);
+		LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
+		propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id), id);
+		LOG(DEBUG) << "propagate done";
+	}
 }
 
-int Ruler::getMapValue(int x, int y)
+int Ruler::getMapValue(int x, int y, int uid)
 {
-	return mapCharacter[x][y];
+	return mapCharacter[uid][x][y];
 }
 
-std::vector<std::vector<int>> Ruler::getMap()
+std::vector<std::vector<int>> Ruler::getMap(int uid)
 {
-	return mapCharacter;
+	return mapCharacter[uid];
 }
 
 void Ruler::checkRule(Etat * state)
@@ -267,8 +278,12 @@ void Ruler::checkRule(Etat * state)
 			int test = (*liste)[i]->getUid();
 			if ((*liste)[i]->getAttribute("currentHealth") <= 0 && (*liste)[i]->getAttribute("status") >= 0)
 			{
-				DeadAction* actionD =new  DeadAction((*liste)[i]->getUid());
-				m_engine->death((*liste)[i]->getUid());
+				if ((*liste)[i])
+				{
+
+				}
+				DeadAction* actionD =new  DeadAction(test);
+				m_engine->death(test);
 				m_action_list->push_back(actionD);
 				update();
 			}

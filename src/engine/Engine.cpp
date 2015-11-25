@@ -156,9 +156,24 @@ void Engine::start()
 	foe->setAttribute("side", 2);
 	state->getList()->push_back(foe);
 	
+	Perso* foe2 = new Perso(55, 2);
+	foe2->setClass(Monstre);
+	foe2->setAttribute("move", 3);
+	foe2->setAttribute("range", 2);
+	foe2->setX(5);
+	foe2->setY(5);
+	foe2->setD(3);
+	foe2->setKey("FOE");
+	foe2->setAttribute("currentHealth", 10);
+	foe2->setAttribute("defence", 10);
+	foe2->setAttribute("status", 1);
+	foe2->setAttribute("side", 2);
+	state->getList()->push_back(foe2);
+
 	m_players[0] = Player(1, 1);
 	m_players[2] = Player(89, 1);
 	m_players[2].addOwnedPerso(foe->getUid());
+	m_players[2].addOwnedPerso(foe2->getUid());
 	nextPlayer(0);
 
 	m_players[3] = Player(3,1);
@@ -174,14 +189,14 @@ std::map<int, Player> Engine::getPlayers() const
 	return m_players;
 }
 
-int Engine::getMapValue(int x, int y)
+int Engine::getMapValue(int x, int y, int uid)
 {
-	return m_ruler->getMapValue(x, y);;
+	return m_ruler->getMapValue(x, y, uid);;
 }
 
-std::vector<std::vector<int>> Engine::getMap()
+std::vector<std::vector<int>> Engine::getMap(int uid)
 {
-	return m_ruler->getMap();
+	return m_ruler->getMap(uid);
 }
 
 void Engine::death(int uid)
