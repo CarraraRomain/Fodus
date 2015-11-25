@@ -114,7 +114,8 @@ void Game::update(ObsType type)
 			for (auto it : m_move_watcher) m_move_watcher[it.first] = false;
 		}
 		watchMovements();
-		if(is_playing) m_game_scene->getInfos()->syncMoveMap(m_game_engine->getMap());
+		std::vector<std::vector<int>> map = m_game_engine->getMap(1);
+		if(is_playing) m_game_scene->getInfos()->syncMoveMap(map);
 		else m_game_scene->getInfos()->resetMoveMap();
 		m_game_scene->update(*(static_cast<Etat*>(m_sub)->getList()));
 
@@ -249,7 +250,6 @@ void Game::updateHUD()
 	
 	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
 		m_hud.updateMoveCapa(false);
-		m_game_scene->getInfos()->disable();
 	}
 	else
 	{
@@ -286,6 +286,7 @@ void Game::watchMovements()
 			{
 				// Player has moved, request an animation
 				LOG(DEBUG) << "Move asked";
+				std::cout << m_move_watcher[pl.second.getId()];
 				if(!m_move_watcher[pl.second.getId()] )
 				{
 					m_game_scene->addPendingMovement(pl.second.getId(), pl.second.getMove(pl.second.getId()));
