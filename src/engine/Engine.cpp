@@ -136,6 +136,7 @@ void Engine::start()
 	elt->setKey("MLP");
 	elt->setAttribute("currentHealth", 100);
 	elt->setAttribute("power", 5292);
+	elt->setAttribute("side", 1);
 	state->getList()->push_back(elt);
 	// Elt index is size-1
 	m_players[1] = Player(1,0);
@@ -152,12 +153,15 @@ void Engine::start()
 	foe->setAttribute("currentHealth", 10);
 	foe->setAttribute("defence", 10);
 	foe->setAttribute("status",1);
+	foe->setAttribute("side", 2);
 	state->getList()->push_back(foe);
 	
-	m_players[0] = Player(89, 1);
+	m_players[0] = Player(1, 1);
 	m_players[2] = Player(89, 1);
 	m_players[2].addOwnedPerso(foe->getUid());
 	nextPlayer(0);
+
+	m_players[3] = Player(3,1);
 }
 
 Player& Engine::getPlayer(int id)

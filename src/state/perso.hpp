@@ -9,6 +9,7 @@ private:
 
 	
 	std::string nom;
+	int side;
 	int health;
 	int defence;
 	int power;
@@ -26,7 +27,7 @@ private:
 	Classe type = Principal;
 
 public:
-	Perso(int id, int player) : Element(id, Mobile), health(100), defence(100), power(100),
+	Perso(int id, int player) : Element(id, Mobile), side(0), health(100), defence(100), power(100),
 		move(2), corruption(10), status(1), range(5),
 		currentHealth(100), zombiLimit(300), level(1), conversion(42),
 		direction(MoveForward), owner(player)

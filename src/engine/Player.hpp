@@ -19,6 +19,7 @@ public:
 	void resetMove(int perso);
 	void resetAttack(int perso);
 	void resetAttacks();
+	int side;
 	std::map<int,bool>::iterator getMovedBegin();
 	std::map<int, bool>::iterator getMovedEnd();
 

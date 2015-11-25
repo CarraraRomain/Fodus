@@ -63,6 +63,7 @@ void Perso::setAttribute(std::string attribute, int valeur)
 	if (attribute == "posX") m_x = valeur;
 	if (attribute == "posY") m_y = valeur;
 	if (attribute == "owner") owner = valeur;
+	if (attribute == "side") side = valeur;
 }
 
 void Perso::setAttribute(std::string attribute, std::string valeur)
@@ -93,4 +94,5 @@ int Perso::getAttribute(std::string attribute)
 	if (attribute == "posY") return m_y;
 	if (attribute == "uid") return uid;
 	if (attribute == "owner") return owner;
+	if (attribute == "side") return side;
 }

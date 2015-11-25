@@ -38,7 +38,7 @@ void Ai::recherche1(ElementList* liste,int playerUid, int uid, Engine* engine)
 
 	for (i = 0; i < liste->size(); i++)
 	{
-		if ((*liste)[i]->getD() == 3)
+		if ((*liste)[i]->getD() == 3 && liste->getAttribute("side",uid) != (*liste)[i]->getAttribute("side"))
 		{
 			x = liste->getAttribute("posX", uid) - liste->getAttribute("posX", (*liste)[i]->getUid());
 			y = liste->getAttribute("posY", uid) - liste->getAttribute("posY", (*liste)[i]->getUid());
