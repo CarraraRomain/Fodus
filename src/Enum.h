@@ -8,6 +8,7 @@ enum CommandType {
 	Attack,
 	Dead,
 	Damage,
+	FireBall
 	Load,
 	Mode,
 	Exit

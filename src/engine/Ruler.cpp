@@ -59,6 +59,24 @@ void Ruler::execute(Command* com, Etat* state)
 			else LOG(DEBUG) << attack_com->uid1 << " can't attack " << attack_com->uid2;
 		}
 		break;
+
+		/*
+		case Skill:
+		LOG(DEBUG) << "Ruler : exec Skill Command";
+		{
+		SkillCommand* skill_com = dynamic_cast<SkillCommand*>(com);
+
+		if (checkSkill(state, skill_com->uid1, skill_com->uid2, skill_com->player))
+		{
+		createSkill(state, skill_com->uid1, skill_com->uid2);
+		m_engine->getPlayer(skill_com->player).skill(skill_com->uid1);
+		success = true;
+		}
+		else LOG(DEBUG) << skill_com->uid1 << " can't use skill to " << skill_com->uid2;
+		}
+		break;
+		*/
+
 	}
 	if(success) update();
 	else throw std::logic_error("Bad Command");
@@ -183,6 +201,53 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 
 	return true;
 }
+
+
+/*
+bool Ruler::checkSkill(Etat* state, int uid1, int uid2, int player)
+{
+if (m_engine->getPlayer(player).hasAttacked(uid1)) return false;
+
+int x = state->getAttribute("posX", uid1) - state->getAttribute("posX", uid2);
+int y = state->getAttribute("posY", uid1) - state->getAttribute("posY", uid2);
+
+if (x < 0) x = -x;
+if (y < 0) y = -y;
+
+if (state->getAttribute("currentHealth", uid2))
+{
+if (state->getAttribute("power", uid1)>10) // if we have more than 10 power, then we can use a skill
+return x + y <= state->getAttribute("range", uid1);
+}
+
+return false;
+}
+
+bool Ruler::createSkill(Command * com, Etat * state, int uid1, int uid2)
+{
+switch (com->type)
+{
+case FireBall:
+int power = state->getAttribute("power", uid1);
+int currentHealth = state->getAttribute("currentHealth", uid2);
+Action* action = new FireBallAction(uid1, power, uid2, currentHealth);
+m_action_list->push_back(action);
+
+if (state->getAttribute("currentHealth", uid2) - power <= 0)
+{
+ElementList* liste = state->getList();
+}
+
+LOG(DEBUG) << "FireBall skill succeded from " << uid1 << " to " << uid2 << " for "  << "10 damages";
+
+return true;
+break;
+}
+
+
+return false;
+}
+*/
 
 void Ruler::createMap(Etat * state)
 {
