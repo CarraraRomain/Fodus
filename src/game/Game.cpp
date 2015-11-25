@@ -247,6 +247,7 @@ void Game::updateHUD()
 	
 	if (m_has_played || m_game_engine->getPlayer(m_player_id).hasMoved(1)) {
 		m_hud.updateMoveCapa(false);
+		m_game_scene->getInfos()->disable();
 	}
 	else
 	{

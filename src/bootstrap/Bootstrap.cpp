@@ -338,5 +338,6 @@ void Bootstrap::launch_game()
 	engine.start();
 	
 	game.run();
+	launch_game();
 }
 

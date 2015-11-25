@@ -121,7 +121,7 @@ void InfoLayer::setPlayer(int x, int y)
 
 int InfoLayer::relax(int x, int y, int vx, int vy)
 {
-	if (vx<0 || vx > WIDTH || vy < 0 || vy > HEIGHT) return 0;
+	if (vx<0 || vx >= WIDTH || vy < 0 || vy >= HEIGHT) return 0;
 	int index = x + y*WIDTH;
 	int vindex = vx + vy*WIDTH;
 

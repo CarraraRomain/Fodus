@@ -1,7 +1,9 @@
 {
   "sprites": {
     "MLP": 101,
-    "FOE": 180
+    "FOE": 180,
+	"COW" : 106,
+	"SHEEP" : 108
     },
   "header": {
     "version": "0.2",
