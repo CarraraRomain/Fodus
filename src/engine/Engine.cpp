@@ -212,6 +212,16 @@ void Engine::propagate(int x, int y, int valeur, int uid)
 	m_ruler->propagate(x, y, valeur, uid);
 }
 
+ElementList Engine::syncRequest()
+{
+	return *(state->getList());
+}
+
+int Engine::whoIsPlaying()
+{
+	return m_player_playing;
+}
+
 int Engine::registerPlayer(int player)
 {
 	m_clients_players[0] = player;

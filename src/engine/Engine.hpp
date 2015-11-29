@@ -21,12 +21,13 @@ public:
 	int connect(int client) override;
 	void start() override;
 	Player& getPlayer(int);
-	std::map<int, Player> getPlayers() const;
+	std::map<int, Player> getPlayers() const override;
 	int getMapValue(int x, int y, int uid);
-	std::vector< std::vector<int> > getMap(int uid);
+	std::vector< std::vector<int> > getMap(int uid) override;
 	void death(int uid);
 	void propagate(int x, int y, int valeur, int uid);
-
+	ElementList syncRequest() override;
+	int whoIsPlaying() override;
 protected:
 	int registerPlayer(int player) override;
 

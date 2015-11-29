@@ -332,7 +332,7 @@ void Bootstrap::launch_game()
 	LOG(DEBUG) << "Launching Game";
 	
 	Engine engine(this);
-	Game game(this, &engine);
+	Game game(this, &engine, rand());
 
 	engine.loadLevel(chooseLevel());
 	engine.start();

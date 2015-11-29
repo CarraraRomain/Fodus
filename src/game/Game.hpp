@@ -9,43 +9,51 @@
 #include "../render/Scene.hpp"
 #include "../engine/Engine.hpp"
 
-#include "../test/game/TestGame.hpp"
 #include "../engine/Observer.hpp"
 
 #include "../AI/Ai.hpp"
 #include "HUD.hpp"
 #include "Coord.hpp"
+#include "IGame.hpp"
 
-class Game: public Observer
+class Game: public IGame
 {
 public:
-	Game(Bootstrap*, Engine*);
+	Game(Bootstrap*, AbstractEngine* engine, int cid);
 	~Game();
 	void load_gui();
 	void load();
 	void run();
+	void syncRequest() override;
+	void whoIsPlaying() override;
 	void update(ObsType) override;
-
+	void updateGlobal()	 override;
+	void updateElement(Element* el) override;
+	void updateTurn(int turn)  override;
+	void updateNowPlaying(int pid)  override;
+	void canPlay(int pid) 	 override;
+	void hasPlayed(int pid) override;
+	void sync(ElementList list) override;
 private:
-	Bootstrap* m_boot;
-	Engine* m_game_engine;
-	HUD m_hud;
-	bool m_has_played;
-	bool is_playing;
+	
+	// Graphics
 	std::unique_ptr<sf::RenderWindow> m_game_window;
-	std::unique_ptr<Scene> m_game_scene;
-	sf::Font m_font;
+	HUD m_hud;
+	Scene m_game_scene;
+	//
+
 	std::unique_ptr<rapidjson::Document> m_game_level;
+	
+	Perso* m_selected_perso;
+
+	int m_client_id;
+	// old
 	bool m_isKeyPressed;
 	int m_turns;
 	std::map<int, bool> m_move_watcher;
-	sf::Text t_turns;
-	sf::Texture m_dashboard_texture;
-	sf::RectangleShape m_dashboard;
-	sf::RectangleShape m_filter;
-	int m_client_id;
-	int m_player_id;
-	bool m_disable_actions;
+
+	bool m_has_played;
+	bool is_playing;
 	void game_event_loop();
 	void updateHUD();
 	void endPlayerTurn();
