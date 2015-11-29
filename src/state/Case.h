@@ -18,5 +18,6 @@ public:
 	virtual int getAttribute(std::string attribute);
 	virtual Classe getType() override;
 	Case(int id): Element(id, Fixed) {}
+	virtual Element* clone() override;
 	~Case();
 };

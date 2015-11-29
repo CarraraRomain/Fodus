@@ -43,6 +43,11 @@ Classe Case::getType()
 	return Sol;
 }
 
+Element* Case::clone()
+{
+	return new Case(*this);
+}
+
 Case::~Case()
 {
 }

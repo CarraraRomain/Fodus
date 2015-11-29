@@ -31,7 +31,7 @@ public:
 	virtual int getAttribute(std::string) = 0;
 	virtual Classe getType() = 0;
 	Element(int id, ElementType type): type(type), uid(id) {}
-
+	virtual Element* clone() = 0;
 protected:
 	std::string m_key;
 	

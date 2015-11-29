@@ -32,6 +32,7 @@ public:
 		currentHealth(100), zombiLimit(300), level(1), conversion(42),
 		direction(MoveForward), owner(player)
 	{}
+	Element* clone() override;
 	~Perso();
 	virtual bool isAllie() override;
 	virtual bool isEnnemy() override;

@@ -1,11 +1,28 @@
 #include "ElementList.hpp"
 #include <iostream>
+#include "Case.h"
 
 
 ElementList::ElementList()
 {
 	
 }
+
+ElementList::ElementList(const ElementList&)
+{
+}
+
+ElementList& ElementList::operator=(const ElementList& list)
+{
+	for (int i = 0; i < list.size(); i++)
+	{
+		std::unique_ptr<Element> ptr;
+		ptr.reset(list[i]->clone());
+		m_elements.push_back(std::move(ptr));
+	}
+	return *this;
+}
+
 /*
 
 ElementList::ElementList(const ElementList& list) : m_elements(std::move(list.m_elements))
@@ -13,6 +30,17 @@ ElementList::ElementList(const ElementList& list) : m_elements(std::move(list.m_
 	
 }
 */
+
+ElementList& ElementList::operator=(ElementList&& list)
+{
+	for (int i = 0; i < list.size(); i++)
+	{
+		std::unique_ptr<Element> ptr;
+			ptr.reset(list[i]->clone());
+		m_elements.push_back(std::move(ptr));
+	}
+	return *this;
+}
 
 ElementList::~ElementList()
 {

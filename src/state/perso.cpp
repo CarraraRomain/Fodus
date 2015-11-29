@@ -1,5 +1,10 @@
 #include "perso.hpp"
 
+Element* Perso::clone()
+{
+	return new Perso(*this);
+}
+
 Perso::~Perso()
 {
 }
