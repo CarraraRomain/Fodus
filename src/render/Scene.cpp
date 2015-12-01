@@ -51,7 +51,7 @@ void Scene::update(const ElementList& list)
 {
 	LOG(DEBUG) << "Updating scene";
 	// saving EltList is disabled for now
-	m_elt_list.clear();
+	
 	m_elt_list = list;
 	for (Layer* layer : m_layers)
 	{

@@ -159,7 +159,7 @@ void Game::updateGlobal(Etat& e)
 	std::vector<std::vector<int>> map = getEngine()->getMap(1);
 	if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
 	else m_game_scene.getInfos()->resetMoveMap();
-	m_game_scene.update(m_list);
+	m_game_scene.update(*e.getList());
 	updateHUD();
 }
 

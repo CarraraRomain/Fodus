@@ -26,6 +26,7 @@ ElementList::ElementList(ElementList&& list)
 
 ElementList& ElementList::operator=(const ElementList& list)
 {
+	m_elements.resize(0);
 	for (int i = 0; i < list.size(); i++)
 	{
 		std::unique_ptr<Element> ptr;
@@ -38,6 +39,7 @@ ElementList& ElementList::operator=(const ElementList& list)
 
 ElementList& ElementList::operator=(ElementList&& list)
 {
+	m_elements.resize(0);
 	for (int i = 0; i < list.size(); i++)
 	{
 		m_elements.push_back(std::move(list[i]));
