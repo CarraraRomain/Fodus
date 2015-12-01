@@ -47,19 +47,6 @@ void Game::load()
 	load_gui();
 	m_hud.load(m_game_window->getSize());
 
-	// This Client has Player 1 (Human) and player 2 (IA)
-	m_players_id.push_back(1);
-	m_players_id.push_back(2);
-
-	// register to the engine to receive update
-	for(int pl:m_players_id)
-	{
-		int rc = getEngine()->connect(pl);
-		if (rc >= 400) LOG(FATAL) << "Cannot connect to engine: " << rc;
-	}
-
-	
-	LOG(DEBUG) << "Connected to local, CID: " << m_client_id << ", PID: " << m_players_id[0];
 }
 
 /**
@@ -76,15 +63,15 @@ void Game::run()
 	// Request a full update
 	syncRequest();
 	//m_game_scene.notify();
-
-
+	update(ObsState);
+	m_player_playing = 1;
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
 	
 
 		if (m_player_playing == 1) game_event_loop();
-		//else Ai::execute(m_players_id[1],getEngine());
+		else Ai::execute(m_players_id[1],getEngine());
 		
 		getEngine()->run();
 		//handle_event();
@@ -105,8 +92,31 @@ void Game::run()
 	LOG(DEBUG) << "Game ended";
 }
 
+void Game::start()
+{
+	// This Client has Player 1 (Human) and player 2 (IA)
+	m_players_id.push_back(1);
+	m_players_id.push_back(2);	
+	//m_players_id.push_back(3);
+
+	// register to the engine to receive update
+	for (int pl : m_players_id)
+	{
+		int rc = getEngine()->connect(pl);
+		if (rc >= 400) LOG(FATAL) << "Cannot connect to engine: " << rc;
+		rc = getEngine()->registerPlayer(pl, this);
+		if (rc >= 400) LOG(FATAL) << "Cannot register to engine: " << rc;
+
+	}
+
+
+	LOG(DEBUG) << "Connected to local, CID: " << m_client_id << ", PID: " << m_players_id[0];
+
+}
+
 void Game::update(ObsType type)
 {
+	LOG(WARNING) << "DEPRECATED UPDATE";
 	//m_has_played = getEngine()->hasPlayed(m_player_id);
 	switch (type)
 	{
@@ -134,11 +144,26 @@ void Game::update(ObsType type)
 	updateHUD();
 }
 
-void Game::updateGlobal()
+void Game::updateGlobal(Etat& e)
 {
+	LOG(INFO) << "UPDATE : GLOBAL";
+	if (e.getTurn() != m_turns)
+	{
+		LOG(DEBUG) << "New Turn!";
+		m_turns = e.getTurn();
+		m_hud.updateTurns(m_turns);
+		is_playing = true;
+		for (auto it : m_move_watcher) m_move_watcher[it.first] = false;
+	}
+	watchMovements();
+	std::vector<std::vector<int>> map = getEngine()->getMap(1);
+	if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
+	else m_game_scene.getInfos()->resetMoveMap();
+	m_game_scene.update(m_list);
+	updateHUD();
 }
 
-void Game::updateElement(Element* el)
+void Game::updateElement(Element& el)
 {
 }
 

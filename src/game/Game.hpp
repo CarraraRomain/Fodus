@@ -24,11 +24,12 @@ public:
 	void load_gui();
 	void load();
 	void run();
+	void start();
 	void syncRequest() override;
 	void whoIsPlaying() override;
 	void update(ObsType) override;
-	void updateGlobal()	 override;
-	void updateElement(Element* el) override;
+	void updateGlobal(Etat& e)	 override;
+	void updateElement(Element& el) override;
 	void updateTurn(int turn)  override;
 	void updateNowPlaying(int pid)  override;
 	void canPlay(int pid) 	 override;
