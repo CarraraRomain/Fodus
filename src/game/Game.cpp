@@ -72,7 +72,6 @@ void Game::run()
 
 
 		if (m_player_playing == 1) game_event_loop();
-		else Ai::execute(m_players_id[1],getEngine());
 		
 		getEngine()->run();
 		//handle_event();

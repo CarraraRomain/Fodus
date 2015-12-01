@@ -11,7 +11,6 @@
 
 #include "../engine/Observer.hpp"
 
-#include "../AI/Ai.hpp"
 #include "HUD.hpp"
 #include "Coord.hpp"
 #include "IGame.hpp"
