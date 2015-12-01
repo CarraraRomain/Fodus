@@ -185,18 +185,13 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 {
 	int power = state->getAttribute("power", uid1);
 	power = power - state->getAttribute("defence", uid2);
+
 	if (power < 1) power = 1;
+
+	if (power >= 5) power = 0.8*power + rand() % (power / 5);
 
 	DamageAction* action = new DamageAction(uid2, power);
 	m_action_list->push_back(action);
-
-	if (state->getAttribute("currentHealth", uid2) - power <= 0)
-	{
-		ElementList* liste = state->getList();
-		//liste->erase(uid2);
-		//m_engine->getPlayer(liste[liste->findUid(uid2)]->getOwner());
-
-	}
 
 	LOG(DEBUG)<< "Attack succeded from " << uid1 << " to " << uid2 << " for " << power << " damages";
 
@@ -249,6 +244,8 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 	{
 	case Fireball:
 		int damage = skill->damage * liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
+		if(damage >= 5)damage = 0.8*damage + rand() % (damage / 5);
+
 		DamageAction* action = new DamageAction(target, damage);
 		m_action_list->push_back(action);
 		LOG(DEBUG) << "Fireball succeded from " << uid << " to " << target << " for " << damage << " damages";
@@ -357,6 +354,7 @@ void Ruler::checkRule(Etat * state)
 				{
 					EndGameAction* actionE = new EndGameAction(false);
 					m_action_list->push_back(actionE);
+					LOG(INFO) << "============ YOU LOST !!! ============ ";
 				}
 				DeadAction* actionD =new  DeadAction(test);
 				m_engine->death(test);

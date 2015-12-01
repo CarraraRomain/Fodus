@@ -19,6 +19,11 @@ enum SkillType {
 	Fireball,
 	ZombieSpawn
 };
+
+enum AiBehavior {
+	Aggression,
+	Fear
+};
 	
 enum AnimationType
 {

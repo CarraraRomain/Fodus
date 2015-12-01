@@ -93,6 +93,12 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 
 	engine->propagate(liste->getAttribute("posX", c.UID), liste->getAttribute("posY", c.UID), liste->getAttribute("move", c.UID), c.UID);
 
+	if (liste->getAttribute("currentHealth", uid) < liste->getAttribute("health", uid) / 2)
+	{
+		behavior = Fear;
+	}
+	else behavior = Aggression;
+
 	for (i = 0; i < liste->size(); i++)
 	{
 		if ((*liste)[i]->getD() == 3 && liste->getAttribute("side", c.UID) != (*liste)[i]->getAttribute("side"))
@@ -123,7 +129,8 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 					if (x < 0)x = -x;
 					if (y < 0)y = -y;
 
-					if (x + y <= liste->getAttribute("range", c.UID))
+					if (x + y <= liste->getAttribute("range", c.UID) && behavior == Aggression)
+
 					{
 						if (engine->getMapValue(i, j, c.UID) > attaqueDistance)
 						{
@@ -134,7 +141,7 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 					}
 					else
 					{
-						if (x + y < distanceMin && attaqueDistance < 1)
+						if ((x + y < distanceMin && behavior != Fear) || (x + y > distanceMin && behavior == Fear) && attaqueDistance < 1)
 						{
 							distanceMin = x + y;
 							okX = i;
