@@ -30,7 +30,7 @@ private:
 	std::vector<Layer*> m_layers;
 	AnimationLayer* m_anims;
 	InfoLayer* m_infos;
-	ElementList* m_elt_list;
+	ElementList m_elt_list;
 
 };
 
