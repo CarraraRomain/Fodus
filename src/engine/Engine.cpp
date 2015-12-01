@@ -70,6 +70,9 @@ void Engine::handleCommand(Command* com)
 		case Attack:
 			m_ruler->execute(com, state.get());
 			break;
+		case Skill:
+			m_ruler->execute(com, state.get());
+			break;
 		case EndTurn:
 			nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
 			break;
@@ -138,6 +141,10 @@ void Engine::start()
 	elt->setAttribute("power", 5292);
 	elt->setAttribute("side", 1);
 	state->getList()->push_back(elt);
+
+	Competence* fireball = new Competence(Fireball,100,2,10);
+	elt->addSkill(fireball);
+
 	// Elt index is size-1
 	m_players[1] = Player(1,0);
 	m_players[1].addOwnedPerso(elt->getUid());
@@ -146,7 +153,7 @@ void Engine::start()
 	foe->setClass(Monstre);
 	foe->setAttribute("move", 3);
 	foe->setAttribute("range", 2);
-	foe->setX(8);
+	foe->setX(12);
 	foe->setY(7);
 	foe->setD(3);
 	foe->setKey("FOE");

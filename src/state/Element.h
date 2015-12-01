@@ -4,6 +4,7 @@
 
 #include <string>
 #include "../global.hpp"
+#include "Competence.hpp"
 class Element
 {
 public:
@@ -29,6 +30,7 @@ public:
 	virtual void setAttribute(std::string attribute, int valeur) = 0;
 	virtual void setAttribute(std::string attribute, std::string valeur) = 0;
 	virtual int getAttribute(std::string) = 0;
+	virtual Competence* getSkill(int index) = 0;
 	virtual Classe getType() = 0;
 	Element(int id, ElementType type): type(type), uid(id) {}
 

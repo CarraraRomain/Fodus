@@ -60,22 +60,23 @@ void Ruler::execute(Command* com, Etat* state)
 		}
 		break;
 
-		/*
-		case Skill:
+		
+	case Skill:
 		LOG(DEBUG) << "Ruler : exec Skill Command";
 		{
-		SkillCommand* skill_com = dynamic_cast<SkillCommand*>(com);
+			SkillCommand* skill_com = dynamic_cast<SkillCommand*>(com);
 
-		if (checkSkill(state, skill_com->uid1, skill_com->uid2, skill_com->player))
-		{
-		createSkill(state, skill_com->uid1, skill_com->uid2);
-		m_engine->getPlayer(skill_com->player).skill(skill_com->uid1);
-		success = true;
-		}
-		else LOG(DEBUG) << skill_com->uid1 << " can't use skill to " << skill_com->uid2;
+			int found;
+
+			if (found = checkSkill(state, skill_com->posX, skill_com->posY, skill_com->uid, skill_com->skillIndex, skill_com->player))
+			{
+				createSkill(state, skill_com->uid, skill_com->skillIndex, skill_com->posX, skill_com->posY, found);
+				success = true;
+			}
+			else LOG(DEBUG) << skill_com->uid << " can't use skill";
 		}
 		break;
-		*/
+		
 
 	}
 	if(success) update();
@@ -203,51 +204,60 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 }
 
 
-/*
-bool Ruler::checkSkill(Etat* state, int uid1, int uid2, int player)
+
+int Ruler::checkSkill(Etat* state, int posX, int posY, int uid, int skillIndex, int player)
 {
-if (m_engine->getPlayer(player).hasAttacked(uid1)) return false;
+	createMap(state);
+	
+	if (m_engine->getPlayer(player).hasAttacked(uid)) return false;
 
-int x = state->getAttribute("posX", uid1) - state->getAttribute("posX", uid2);
-int y = state->getAttribute("posY", uid1) - state->getAttribute("posY", uid2);
+	int found = 0;
+	int i;
+	ElementList* liste = state->getList();
+	Competence* skill = liste->getSkill(uid, skillIndex);
 
-if (x < 0) x = -x;
-if (y < 0) y = -y;
+	if (skill == NULL) return false;
 
-if (state->getAttribute("currentHealth", uid2))
-{
-if (state->getAttribute("power", uid1)>10) // if we have more than 10 power, then we can use a skill
-return x + y <= state->getAttribute("range", uid1);
+	for (i = 0; i < liste->size(); i++) {
+		if ((*liste)[i]->getD() == 3)
+		{
+			if (liste->getAttribute("posX", (*liste)[i]->getUid()) == posX && liste->getAttribute("posY", (*liste)[i]->getUid()) == posY) found = (*liste)[i]->getUid();
+		}
+	}
+
+	if (skill->target == 0 && (found != 0 || map[posX][posY] != 0)) return false;
+	if (found == 0 && skill->target != 0) return false;
+	if (liste->getAttribute("side", uid) != liste->getAttribute("side", found) && skill->target == 1) return false;
+	if (liste->getAttribute("side", uid) == liste->getAttribute("side", found) && skill->target == 2) return false;
+
+	int x = state->getAttribute("posX", uid) - posX;
+	int y = state->getAttribute("posY", uid) - posY;
+	if (x < 0) x = -x;
+	if (y < 0) y = -y;
+	
+	if (x + y <= skill->range) return found;
+	
+	return false;
 }
+
+bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int target)
+{
+	ElementList* liste = state->getList();
+	Competence* skill = liste->getSkill(uid, index);
+
+	switch (skill->type)
+	{
+	case Fireball:
+		int damage = skill->damage * liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
+		DamageAction* action = new DamageAction(target, damage);
+		m_action_list->push_back(action);
+		LOG(DEBUG) << "Fireball succeded from " << uid << " to " << target << " for " << damage << " damages";
+		break;
+	}
 
 return false;
 }
 
-bool Ruler::createSkill(Command * com, Etat * state, int uid1, int uid2)
-{
-switch (com->type)
-{
-case FireBall:
-int power = state->getAttribute("power", uid1);
-int currentHealth = state->getAttribute("currentHealth", uid2);
-Action* action = new FireBallAction(uid1, power, uid2, currentHealth);
-m_action_list->push_back(action);
-
-if (state->getAttribute("currentHealth", uid2) - power <= 0)
-{
-ElementList* liste = state->getList();
-}
-
-LOG(DEBUG) << "FireBall skill succeded from " << uid1 << " to " << uid2 << " for "  << "10 damages";
-
-return true;
-break;
-}
-
-
-return false;
-}
-*/
 
 void Ruler::createMap(Etat * state)
 {
@@ -266,7 +276,7 @@ void Ruler::createMap(Etat * state)
 	LOG(DEBUG) << state->getSize();
 	for (int i = 0; i < state->getSize(); i++)
 	{
-		if((*liste)[i]->getKey() != "VOID_1") map[(*liste)[i]->getX()][(*liste)[i]->getY()] = (*liste)[i]->getD();
+		if ((*liste)[i]->getKey() != "VOID_1") map[(*liste)[i]->getX()][(*liste)[i]->getY()] = (*liste)[i]->getD();
 	}
 }
 

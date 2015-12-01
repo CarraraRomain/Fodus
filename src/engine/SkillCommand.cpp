@@ -1,9 +1,11 @@
 #include "SkillCommand.hpp"
 
-SkillCommand::SkillCommand(CommandReceiver * receiver, int a, int b, int player) :Command(receiver, Attack, player)
+SkillCommand::SkillCommand(CommandReceiver * receiver, int x, int y, int newuid, int skill, int player) :Command(receiver, Skill, player)
 {
-	uid1 = a;
-	uid2 = b;
+	uid = newuid;
+	posX = x;
+	posY = y;
+	skillIndex = skill;
 }
 
 SkillCommand::~SkillCommand()

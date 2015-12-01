@@ -2,6 +2,7 @@
 
 #include "../state/Etat.hpp"
 #include "../Enum.h"
+#include "../global.hpp"
 
 class Action
 {

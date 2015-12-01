@@ -101,3 +101,19 @@ int Perso::getAttribute(std::string attribute)
 	if (attribute == "owner") return owner;
 	if (attribute == "side") return side;
 }
+
+Competence* Perso::getSkill(int i)
+{
+	if(i < competences.size() && i >= 0) return competences[i];
+	else return NULL;
+}
+
+void Perso::addSkill(Competence * skill)
+{
+	competences.push_back(skill);
+}
+
+int Perso::nbrSkill()
+{
+	return competences.size();
+}
