@@ -245,11 +245,11 @@ void Game::game_event_loop()
 							LOG(DEBUG) << "Y: " << int(y / SIZE);
 
 							if (skillMode == 0) {
-								MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
+								MoveCommand command = MoveCommand(getEngine(), (x / SIZE), y / SIZE, MoveRight, 1, m_player_playing);
 							command.execute();
 							}
 							else {
-								SkillCommand command = SkillCommand(m_game_engine, (x / SIZE), y / SIZE, 1, 0, m_player_id);
+								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, 0, m_player_playing);
 								command.execute();
 								skillMode = 0;
 							}

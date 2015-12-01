@@ -11,8 +11,6 @@
 #include "ActionList.hpp"
 #include "AttackCommand.h"
 #include "SkillCommand.hpp"
-#include "FireBallAction.hpp"
-
 class Engine;
 
 class Ruler
