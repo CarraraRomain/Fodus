@@ -149,6 +149,7 @@ Player &Player::operator=(Player &&player) {
 	for(auto const & ch: player.m_chars){
 		m_chars[ch.first].reset(new Character(*ch.second));
 	}
+	return *this;
 }
 
 Player::Player(const Player &player) {
@@ -163,25 +164,25 @@ Player::Player(const Player &player) {
 }
 
 Player::iterator Player::begin() {
-	return std::_Rb_tree_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+	return m_chars.begin();
 }
 
 Player::iterator Player::end() {
-	return std::_Rb_tree_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+	return m_chars.end();
 }
 
 Player::const_iterator Player::begin() const {
-	return std::_Rb_tree_const_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+	return m_chars.begin();
 }
 
 Player::const_iterator Player::cbegin() const {
-	return std::_Rb_tree_const_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+	return m_chars.cbegin();
 }
 
 Player::const_iterator Player::cend() const {
-	return std::_Rb_tree_const_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+	return m_chars.cend();
 }
 
 Player::const_iterator Player::end() const {
-	return std::_Rb_tree_const_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+	return m_chars.end();
 }
