@@ -7,10 +7,11 @@ Player::Player(int id, int control): m_id(id), controlType(control)
 	
 }
 
-Player::Player()
-{
+
+Player::Player() {
 
 }
+
 Player::~Player()
 {
 
@@ -42,10 +43,10 @@ void Player::attack(int perso)
 
 void Player::resetMoves()
 {
-	//for(auto const &it: m_chars)
+	for(auto const &it: m_chars)
 	{
-		//m_moved[it.first] = false;
-		//m_chars[it.first]->resetMoves();
+		m_moved[it.first] = false;
+		m_chars[it.first]->resetMoves();
 	}
 }
 
@@ -54,7 +55,7 @@ void Player::resetMove(int perso)
 {
 	LOG(WARNING) << "Deprecated Call : Player::resetMove";		
 	m_moved[perso] = false;
-	m_chars[perso]->resetMoves();
+//	m_chars[perso]->resetMoves();
 }
 
 // DEPRECATED
@@ -91,14 +92,15 @@ const int Player::getId()
 
 void Player::addOwnedPerso(int elt)
 {
-	std::unique_ptr<Character> ptr(new Character(elt));
-	m_chars[elt] = std::move(ptr);
+	m_chars[elt].reset(new Character(elt));
 }
+
 
 const Character& Player::operator[](size_t i)
 {
 	return *(m_chars[i]);
 }
+
 
 int Player::numberPersos() const
 {
@@ -122,6 +124,64 @@ bool Player::isHuman()
 
 void Player::removePerso(int uid)
 {
-	m_chars.erase(uid);
+//	m_chars.erase(uid);
 
+}
+
+Player &Player::operator=(const Player &player) {
+	m_id = player.m_id;
+	m_moved.clear();
+	m_moved = player.m_moved;
+	controlType = player.controlType;
+	m_chars.clear();
+	for(auto const &ch: player.m_chars){
+		m_chars[ch.first].reset(new Character(*ch.second));
+	}
+	return *this;
+}
+
+Player &Player::operator=(Player &&player) {
+	m_id = player.m_id;
+	m_moved.clear();
+	m_moved = player.m_moved;
+	controlType = player.controlType;
+	m_chars.clear();
+	for(auto const & ch: player.m_chars){
+		m_chars[ch.first].reset(new Character(*ch.second));
+	}
+}
+
+Player::Player(const Player &player) {
+	m_id = player.m_id;
+	m_moved.clear();
+	m_moved = player.m_moved;
+	controlType = player.controlType;
+	m_chars.clear();
+	for(auto const & ch: player.m_chars){
+		m_chars[ch.first].reset(new Character(*ch.second));
+	}
+}
+
+Player::iterator Player::begin() {
+	return std::_Rb_tree_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+}
+
+Player::iterator Player::end() {
+	return std::_Rb_tree_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+}
+
+Player::const_iterator Player::begin() const {
+	return std::_Rb_tree_const_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+}
+
+Player::const_iterator Player::cbegin() const {
+	return std::_Rb_tree_const_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+}
+
+Player::const_iterator Player::cend() const {
+	return std::_Rb_tree_const_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
+}
+
+Player::const_iterator Player::end() const {
+	return std::_Rb_tree_const_iterator<std::_Rb_tree<int, std::pair<const int, std::unique_ptr<Character>>, std::_Select1st<std::pair<const int, std::unique_ptr<Character>>>, std::less<int>>::value_type>();
 }

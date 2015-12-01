@@ -27,7 +27,7 @@ public :
 	int checkSkill(Etat* state, int posX, int posY, int uid, int skillIndex, int player);
 	bool createSkill(Etat* state, int uid, int index, int posX, int posY, int target);
 	void createMap(Etat* state);
-	void Ruler::createMapCharacter(int uid);
+	void createMapCharacter(int uid);
 	void propagate(int posX, int posY, int value, int uid);
 	void nextPlayer(int played, int toPlay, Etat* state);
 	int getMapValue(int x, int y, int uid);

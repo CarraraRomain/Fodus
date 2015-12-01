@@ -9,14 +9,27 @@
 class Player
 {
 public:
+	typedef std::map<int, std::unique_ptr<Character>>::iterator iterator;
+	typedef std::map<int, std::unique_ptr<Character>>::const_iterator const_iterator;
+
 	Player(int, int);
 	Player();
+	Player(const Player&);
 	~Player();
 
 	int side;
 	const int getId();
 	bool isHuman();
+
+	Player& operator=(const Player&);
+	Player&operator=(Player&&);
 	const Character& operator[](size_t i);
+	iterator begin();
+	iterator end();
+	const_iterator begin() const;
+	const_iterator cbegin() const;
+	const_iterator end() const ;
+	const_iterator cend() const ;
 	//////////////////////////
 	// PERSOS
 	void addOwnedPerso(int elt);
@@ -47,6 +60,6 @@ private:
 	//std::vector<int> m_owned_persos;
 	//std::vector<Movement> movements;
 	//std::map<int, std::vector<Movement>> m_movements;
-	std::map<int, std::unique_ptr<Character>> m_chars;
+	std::map<int, std::unique_ptr<Character> > m_chars;
 	int controlType;
 };

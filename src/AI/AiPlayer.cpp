@@ -16,8 +16,8 @@ void AiPlayer::run()
 	int i;
 	for (i = 0; i < getEngine()->getPlayer(m_player_playing).numberPersos(); i++)
 	{
-		Character ch = getEngine()->getPlayer(m_player_playing)[i];
-		recherche1(getEngine()->getState().getList(), m_player_playing, ch, getEngine());
+//		Character ch = getEngine()->getPlayer(m_player_playing)[i];
+//		recherche1(getEngine()->getState().getList(), m_player_playing, ch, getEngine());
 	}
 
 	EndTurnCommand commandE = EndTurnCommand(getEngine(), m_player_playing);
@@ -93,7 +93,7 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 
 	engine->propagate(liste->getAttribute("posX", c.UID), liste->getAttribute("posY", c.UID), liste->getAttribute("move", c.UID), c.UID);
 
-	if (liste->getAttribute("currentHealth", uid) < liste->getAttribute("health", uid) / 2)
+	if (liste->getAttribute("currentHealth", c.UID) < liste->getAttribute("health", c.UID) / 2)
 	{
 		behavior = Fear;
 	}

@@ -6,6 +6,7 @@ class Character
 {
 public:
 	Character(int id);
+	Character();
 	~Character();
 	const int UID;
 	void addMove(Movement m);

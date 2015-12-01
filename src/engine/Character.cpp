@@ -31,3 +31,7 @@ void Character::resetAttacks()
 {
 	m_attacked = false;
 }
+
+Character::Character(): UID(0) {
+
+}

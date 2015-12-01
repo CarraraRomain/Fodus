@@ -100,7 +100,7 @@ void Ruler::update()
 bool Ruler::checkMove(Etat* state, int x, int y, int uid, int player)
 {
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || m_engine->getPlayer(player).hasMoved(uid)) return false;
-	
+	LOG(DEBUG) << "check";
 	if(mapCharacter[uid][x][y] > 0) return true;
 	else return false;
 }
@@ -318,9 +318,9 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 
 	int i;
 
-	for (i = 0; i < m_engine->getPlayer(toPlay).numberPersos(); i++)
+	for (auto const &ch: m_engine->getPlayer(toPlay))
 	{
-		int id = m_engine->getPlayer(toPlay)[i].UID;
+		int id = ch.second->UID;
 		createMapCharacter(id);
 		//LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
 		propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id), id);
