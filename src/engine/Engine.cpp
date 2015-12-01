@@ -140,7 +140,7 @@ void Engine::start()
 	elt->setD(3);
 	elt->setKey("MLP");
 	elt->setAttribute("currentHealth", 100);
-	elt->setAttribute("power", 5292);
+	elt->setAttribute("power", 1);
 	elt->setAttribute("side", 1);
 	state->getList()->push_back(elt);
 
@@ -159,8 +159,9 @@ void Engine::start()
 	foe->setY(7);
 	foe->setD(3);
 	foe->setKey("FOE");
+	foe->setAttribute("health", 10);
 	foe->setAttribute("currentHealth", 10);
-	foe->setAttribute("defence", 10);
+	foe->setAttribute("defence", 14);
 	foe->setAttribute("status",1);
 	foe->setAttribute("side", 2);
 	state->getList()->push_back(foe);
@@ -174,7 +175,7 @@ void Engine::start()
 	foe2->setD(3);
 	foe2->setKey("FOE");
 	foe2->setAttribute("currentHealth", 10);
-	foe2->setAttribute("defence", 10);
+	foe2->setAttribute("defence", 17);
 	foe2->setAttribute("status", 1);
 	foe2->setAttribute("side", 2);
 //	state->getList()->push_back(foe2);

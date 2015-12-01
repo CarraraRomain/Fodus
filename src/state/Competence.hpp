@@ -11,6 +11,7 @@ public:
 	int interest;
 	int target; // 0 -> empty tile    1 -> same side    2 -> other side
 	int range;
+	int cooldown;
 	Competence(SkillType newType, int newDamage, int newTarget, int newRange);
 	~Competence();
 };

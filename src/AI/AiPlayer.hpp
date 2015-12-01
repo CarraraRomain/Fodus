@@ -26,4 +26,7 @@ public:
 	virtual void sync(ElementList list) override;
 
 	void recherche1(ElementList* liste, int playerUid, int uid, AbstractEngine* engine);
+
+private:
+	AiBehavior behavior;
 };

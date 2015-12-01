@@ -248,7 +248,7 @@ void Game::game_event_loop()
 								MoveCommand command = MoveCommand(getEngine(), (x / SIZE), y / SIZE, MoveRight, 1, m_player_playing);
 							command.execute();
 							}
-							else {
+							else if(skillMode == 1){
 								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, 0, m_player_playing);
 								command.execute();
 								skillMode = 0;

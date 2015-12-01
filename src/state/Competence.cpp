@@ -6,6 +6,7 @@ Competence::Competence(SkillType newType, int newDamage, int newTarget, int newR
 	damage = newDamage;
 	target = newTarget;
 	range = newRange;
+	cooldown = 0;
 }
 
 Competence::~Competence()
