@@ -15,8 +15,8 @@ public:
 
 	ElementList();
 	ElementList(const ElementList&);
+	ElementList(ElementList&&);
 	ElementList& operator=(const ElementList&);
-	ElementList(ElementList&&) noexcept;
 	ElementList& operator=(ElementList&&);
 	~ElementList();
 	

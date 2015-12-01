@@ -8,8 +8,20 @@ ElementList::ElementList()
 	
 }
 
-ElementList::ElementList(const ElementList&)
+ElementList::ElementList(const ElementList& list)
 {
+	for (int i = 0; i < list.size(); i++)
+	{
+		std::unique_ptr<Element> ptr;
+		ptr.reset(list[i]->clone());
+		m_elements.push_back(std::move(ptr));
+	}
+	
+}
+
+ElementList::ElementList(ElementList&& list)
+{
+	m_elements = std::move(list.m_elements);
 }
 
 ElementList& ElementList::operator=(const ElementList& list)
@@ -23,21 +35,12 @@ ElementList& ElementList::operator=(const ElementList& list)
 	return *this;
 }
 
-/*
-
-ElementList::ElementList(const ElementList& list) : m_elements(std::move(list.m_elements))
-{
-	
-}
-*/
 
 ElementList& ElementList::operator=(ElementList&& list)
 {
 	for (int i = 0; i < list.size(); i++)
 	{
-		std::unique_ptr<Element> ptr;
-			ptr.reset(list[i]->clone());
-		m_elements.push_back(std::move(ptr));
+		m_elements.push_back(std::move(list[i]));
 	}
 	return *this;
 }
