@@ -97,7 +97,7 @@ void Game::start()
 {
 	// This Client has Player 1 (Human) and player 2 (IA)
 	m_players_id.push_back(1);
-	m_players_id.push_back(2);	
+	//m_players_id.push_back(2);	
 	//m_players_id.push_back(3);
 
 	// register to the engine to receive update

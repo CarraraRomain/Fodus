@@ -13,7 +13,7 @@ public:
 	~IGame();
 	void connect(int pid);
 	virtual void syncRequest() = 0;
-	virtual void whoIsPlaying() = 0;;
+	virtual void whoIsPlaying() = 0;
 protected:
 	// Misc
 	Bootstrap* m_boot;

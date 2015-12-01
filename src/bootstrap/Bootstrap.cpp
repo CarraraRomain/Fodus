@@ -2,6 +2,7 @@
 
 #include "../editor/Editor.hpp"
 #include "../game/Game.hpp"
+#include "../AI/AiPlayer.hpp"
 
 void Bootstrap::handleCommand(Command* com)
 {
@@ -333,12 +334,17 @@ void Bootstrap::launch_game()
 	
 	Engine engine(this);
 	Game game(this, &engine, rand());
-
+	AiPlayer aiP(this, &engine, rand());
 	engine.loadLevel(chooseLevel());
 	game.start();
+
+	aiP.start();
 	engine.start();
 	
-	game.run();
+	game.run(); 
+
+	//aiP.run();
+
 	launch_game();
 }
 
