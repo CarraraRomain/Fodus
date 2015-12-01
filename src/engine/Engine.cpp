@@ -74,7 +74,9 @@ void Engine::handleCommand(Command* com)
 			nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
 			break;
 		}
-		state->notify();
+		//state->notify();
+		LOG(DEBUG) << "Notify : Global";
+		notifyGlobal();
 	} catch (std::logic_error e)
 	{
 		LOG(DEBUG) << e.what();
@@ -104,14 +106,14 @@ Etat& Engine::getState()
 	return *state;
 }
 
-int Engine::registerPlayer(int client, int player)
+int Engine::registerPlayer(int player, EngineObserver* obs)
 {
-	if (client == 0) return 403;
-	for(auto i : m_clients_players)
+	if (obs == nullptr) return 403;
+	for(auto i : m_players_obs)
 	{
-		if (i.second == player) return 400;
+		if (i.first == player) return 400;
 	}
-	m_clients_players[client] = player;
+	m_players_obs[player] = obs;
 //	m_players[player] = Player(player);
 	return 1;
 }
@@ -168,15 +170,15 @@ void Engine::start()
 	foe2->setAttribute("defence", 10);
 	foe2->setAttribute("status", 1);
 	foe2->setAttribute("side", 2);
-	state->getList()->push_back(foe2);
+//	state->getList()->push_back(foe2);
 
 	m_players[0] = Player(1, 1);
 	m_players[2] = Player(89, 1);
 	m_players[2].addOwnedPerso(foe->getUid());
-	m_players[2].addOwnedPerso(foe2->getUid());
+	//m_players[2].addOwnedPerso(foe2->getUid());
 	nextPlayer(0);
 
-	m_players[3] = Player(3,1);
+	//m_players[3] = Player(3,1);
 }
 
 Player& Engine::getPlayer(int id)
@@ -214,7 +216,8 @@ void Engine::propagate(int x, int y, int valeur, int uid)
 
 ElementList Engine::syncRequest()
 {
-	return *(state->getList());
+	ElementList list = *(state->getList());
+	return list;
 }
 
 int Engine::whoIsPlaying()
@@ -250,7 +253,8 @@ void Engine::nextPlayer(int played)
 	LOG(DEBUG) << "played : " << played << "     toPlay : " << toPlay;
 
 	m_ruler->nextPlayer(played, toPlay, state.get());
-
+	notifyNowPlaying(toPlay);
+	notifyCanPlay(toPlay);
 	current_player_uid = toPlay;
 }
 

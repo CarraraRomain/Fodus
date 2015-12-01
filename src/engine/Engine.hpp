@@ -17,15 +17,15 @@ public:
 	int getCurrentPlayer();
 	bool hasPlayed(int player);
 	Etat& getState() override;
-	int registerPlayer(int client, int player) override;
+	int registerPlayer(int player, EngineObserver* obs) override;
 	int connect(int client) override;
 	void start() override;
-	Player& getPlayer(int);
+	Player& getPlayer(int) override;
 	std::map<int, Player> getPlayers() const override;
-	int getMapValue(int x, int y, int uid);
+	int getMapValue(int x, int y, int uid) override;
 	std::vector< std::vector<int> > getMap(int uid) override;
 	void death(int uid);
-	void propagate(int x, int y, int valeur, int uid);
+	void propagate(int x, int y, int valeur, int uid) override;
 	ElementList syncRequest() override;
 	int whoIsPlaying() override;
 protected:
