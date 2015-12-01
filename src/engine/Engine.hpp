@@ -21,7 +21,7 @@ public:
 	int connect(int client) override;
 	void start() override;
 	Player& getPlayer(int) override;
-	std::map<int, Player> getPlayers() const override;
+	std::map<int, Player>& getPlayers() override;
 	int getMapValue(int x, int y, int uid) override;
 	std::vector< std::vector<int> > getMap(int uid) override;
 	void death(int uid);

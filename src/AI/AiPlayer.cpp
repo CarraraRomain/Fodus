@@ -16,7 +16,8 @@ void AiPlayer::run()
 	int i;
 	for (i = 0; i < getEngine()->getPlayer(m_player_playing).numberPersos(); i++)
 	{
-		recherche1(getEngine()->getState().getList(), m_player_playing, getEngine()->getPlayer(m_player_playing)[i], getEngine());
+		Character ch = getEngine()->getPlayer(m_player_playing)[i];
+		recherche1(getEngine()->getState().getList(), m_player_playing, ch, getEngine());
 	}
 
 	EndTurnCommand commandE = EndTurnCommand(getEngine(), m_player_playing);
@@ -82,7 +83,7 @@ void AiPlayer::sync(ElementList list)
 {
 }
 
-void AiPlayer::recherche1(ElementList* liste, int playerUid, int uid, AbstractEngine* engine)
+void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, AbstractEngine* engine)
 {
 	int i, j, x, y;
 	int distanceMin = 0;
@@ -90,14 +91,14 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, int uid, AbstractEn
 	int attaqueDistance = 0;
 	int okX = 0, okY = 0;
 
-	engine->propagate(liste->getAttribute("posX", uid), liste->getAttribute("posY", uid), liste->getAttribute("move", uid), uid);
+	engine->propagate(liste->getAttribute("posX", c.UID), liste->getAttribute("posY", c.UID), liste->getAttribute("move", c.UID), c.UID);
 
 	for (i = 0; i < liste->size(); i++)
 	{
-		if ((*liste)[i]->getD() == 3 && liste->getAttribute("side", uid) != (*liste)[i]->getAttribute("side"))
+		if ((*liste)[i]->getD() == 3 && liste->getAttribute("side", c.UID) != (*liste)[i]->getAttribute("side"))
 		{
-			x = liste->getAttribute("posX", uid) - liste->getAttribute("posX", (*liste)[i]->getUid());
-			y = liste->getAttribute("posY", uid) - liste->getAttribute("posY", (*liste)[i]->getUid());
+			x = liste->getAttribute("posX", c.UID) - liste->getAttribute("posX", (*liste)[i]->getUid());
+			y = liste->getAttribute("posY", c.UID) - liste->getAttribute("posY", (*liste)[i]->getUid());
 			if (x < 0)x = -x;
 			if (y < 0)y = -y;
 
@@ -115,18 +116,18 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, int uid, AbstractEn
 		{
 			for (j = 0; j < HEIGHT; j++)
 			{
-				if (engine->getMapValue(i, j, uid) > 0)
+				if (engine->getMapValue(i, j, c.UID) > 0)
 				{
 					x = i - liste->getAttribute("posX", proche);
 					y = j - liste->getAttribute("posY", proche);
 					if (x < 0)x = -x;
 					if (y < 0)y = -y;
 
-					if (x + y <= liste->getAttribute("range", uid))
+					if (x + y <= liste->getAttribute("range", c.UID))
 					{
-						if (engine->getMapValue(i, j, uid) > attaqueDistance)
+						if (engine->getMapValue(i, j, c.UID) > attaqueDistance)
 						{
-							attaqueDistance = engine->getMapValue(i, j, uid);
+							attaqueDistance = engine->getMapValue(i, j, c.UID);
 							okX = i;
 							okY = j;
 						}
@@ -144,12 +145,12 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, int uid, AbstractEn
 			}
 		}
 		if (okX > 0 || okY > 0) {
-			MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, uid, playerUid);
+			MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
 			commandM.execute();
 		}
 		if (attaqueDistance > 0)
 		{
-			AttackCommand commandA = AttackCommand(engine, uid, proche, playerUid);
+			AttackCommand commandA = AttackCommand(engine, c.UID, proche, playerUid);
 			commandA.execute();
 		}
 	}

@@ -21,7 +21,7 @@ void Ai::execute(int player_uid, AbstractEngine * engine)
 		int y = engine->getState().getAttribute("posY", engine->getPlayer(player_uid)[i]);
 		MoveCommand commandM = MoveCommand(engine, x + 1, y + 1, MoveForward, engine->getPlayer(player_uid)[i], player_uid);
 		commandM.execute();*/
-		recherche1(engine->getState().getList(), player_uid, engine->getPlayer(player_uid)[i] , engine);
+	//	recherche1(engine->getState().getList(), player_uid, engine->getPlayer(player_uid)[i] , engine);
 	}
 
 	EndTurnCommand commandE = EndTurnCommand(engine, player_uid);

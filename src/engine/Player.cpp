@@ -18,41 +18,49 @@ Player::~Player()
 
 const bool Player::hasMoved(int perso)
 {
+	LOG(WARNING) << "Deprecated Call : Player::hasMoved";
 	return m_moved[perso];
 }
 
 const bool Player::hasAttacked(int perso)
 {
+	LOG(WARNING) << "Deprecated Call : Player::hasAttacked";
 	return m_attacked[perso];
 }
 
 void Player::move(int perso)
 {
+	LOG(WARNING) << "Deprecated Call : Player::move";
 	m_moved[perso] = true;
 }
 
 void Player::attack(int perso)
 {
+	LOG(WARNING) << "Deprecated Call : Player::attack";
 	m_attacked[perso] = true;
 }
 
 void Player::resetMoves()
 {
-	for(auto it: m_moved)
+	//for(auto const &it: m_chars)
 	{
-		m_moved[it.first] = false;
-		m_movements[it.first].clear();
+		//m_moved[it.first] = false;
+		//m_chars[it.first]->resetMoves();
 	}
 }
 
+// DEPRECATED
 void Player::resetMove(int perso)
 {
+	LOG(WARNING) << "Deprecated Call : Player::resetMove";		
 	m_moved[perso] = false;
-	m_movements[perso].resize(0);
+	m_chars[perso]->resetMoves();
 }
 
+// DEPRECATED
 void Player::resetAttack(int perso)
 {
+	LOG(WARNING) << "Deprecated Call : Player::resetAttack";
 	m_attacked[perso] = false;
 }
 
@@ -83,47 +91,37 @@ const int Player::getId()
 
 void Player::addOwnedPerso(int elt)
 {
-	m_owned_persos.push_back(elt);
+	std::unique_ptr<Character> ptr(new Character(elt));
+	m_chars[elt] = std::move(ptr);
 }
 
-int& Player::operator[](size_t i)
+const Character& Player::operator[](size_t i)
 {
-	return m_owned_persos[i];
-}
-
-const int& Player::operator[](size_t i) const
-{
-	return m_owned_persos[i];
+	return *(m_chars[i]);
 }
 
 int Player::numberPersos() const
 {
-	return m_owned_persos.size();
+	return m_chars.size();
 }
 
 void Player::addMove(int perso, int x, int y, AnimationType type)
 {
-	m_movements[perso].push_back(Movement(x, y, type));
+	m_chars[perso]->addMove(Movement(x, y, type));
 }
 
 std::vector<Movement>& Player::getMove(int perso)
 {
-	return m_movements[perso];
+	return m_chars[perso]->getMoves();
 }
 
 bool Player::isHuman()
 {
-	if (controlType == 0)return true;
-	else return false;
+	return (controlType == 0);
 }
 
 void Player::removePerso(int uid)
 {
-	int i,suppr = -1;
-	for (i = 0; i < m_owned_persos.size(); i++)
-	{
-		if (m_owned_persos[i] == uid) suppr = i;
-	}
-	if (suppr >= 0)
-		m_owned_persos.erase(m_owned_persos.begin() + suppr);
+	m_chars.erase(uid);
+
 }

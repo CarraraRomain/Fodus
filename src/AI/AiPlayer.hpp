@@ -3,7 +3,7 @@
 #include "../engine/EndTurnCommand.hpp"
 #include "../engine/MoveCommand.h"
 #include "../engine/AttackCommand.h"
-
+#include "../engine/Character.hpp"
 
 class AiPlayer : public IGame
 {
@@ -25,5 +25,5 @@ public:
 	virtual void hasPlayed(int pid) override;
 	virtual void sync(ElementList list) override;
 
-	void recherche1(ElementList* liste, int playerUid, int uid, AbstractEngine* engine);
+	void recherche1(ElementList* liste, int playerUid, Character& c, AbstractEngine* engine);
 };

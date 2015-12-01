@@ -323,7 +323,7 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 
 	for (i = 0; i < m_engine->getPlayer(toPlay).numberPersos(); i++)
 	{
-		int id = m_engine->getPlayer(toPlay)[i];
+		int id = m_engine->getPlayer(toPlay)[i].UID;
 		createMapCharacter(id);
 		//LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
 		propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id), id);

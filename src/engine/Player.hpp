@@ -4,6 +4,7 @@
 #include "Movement.hpp"
 
 #include "../state/perso.hpp"
+#include "Character.hpp"
 
 class Player
 {
@@ -11,36 +12,41 @@ public:
 	Player(int, int);
 	Player();
 	~Player();
-	const bool hasMoved(int);
-	const bool hasAttacked(int);
-	void move(int perso);
-	void attack(int perso);
-	void resetMoves();
-	void resetMove(int perso);
-	void resetAttack(int perso);
-	void resetAttacks();
-	int side;
-	std::map<int,bool>::iterator getMovedBegin();
-	std::map<int, bool>::iterator getMovedEnd();
 
+	int side;
 	const int getId();
-	std::vector<Movement>& getMoves();
+	bool isHuman();
+	const Character& operator[](size_t i);
+	//////////////////////////
+	// PERSOS
 	void addOwnedPerso(int elt);
-	int& operator[](size_t i);
-	const int& operator[](size_t i) const;
+	void removePerso(int uid);
 	int numberPersos() const;
+	/////////////////////////
+	// MOVES
+	const bool hasMoved(int);
+	void move(int perso);
 	void addMove(int perso, int x, int y, AnimationType type);
 	std::vector<Movement>& getMove(int perso);
-	bool isHuman();
-	void removePerso(int uid);
+	std::map<int, bool>::iterator getMovedBegin();
+	std::map<int, bool>::iterator getMovedEnd();
+	//std::vector<Movement>& getMoves();
+	void resetMoves();
+	void resetMove(int perso);
+	/////////////////////////
+	// ATTACKS
+	void attack(int perso);
+	const bool hasAttacked(int);
+	void resetAttack(int perso);
+	void resetAttacks();
 
 private:
 	int m_id;
 	std::map<int, bool> m_moved;
 	std::map<int, bool> m_attacked;
-	std::vector<int> m_owned_persos;
+	//std::vector<int> m_owned_persos;
 	//std::vector<Movement> movements;
-	std::map<int, std::vector<Movement>> m_movements;
-
+	//std::map<int, std::vector<Movement>> m_movements;
+	std::map<int, std::unique_ptr<Character>> m_chars;
 	int controlType;
 };

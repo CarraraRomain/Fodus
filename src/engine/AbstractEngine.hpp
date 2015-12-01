@@ -19,7 +19,7 @@ public:
 	virtual ElementList syncRequest() = 0;
 	virtual int whoIsPlaying() = 0;
 	virtual std::vector< std::vector<int> > getMap(int uid) = 0;
-	virtual std::map<int, Player> getPlayers() const = 0;
+	virtual std::map<int, Player>& getPlayers() = 0;
 	////////////////////////////////
 	// backward compatibility methods
 	// TODO TO REMOVE

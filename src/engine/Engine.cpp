@@ -193,7 +193,7 @@ Player& Engine::getPlayer(int id)
 	return m_players[id];
 }
 
-std::map<int, Player> Engine::getPlayers() const
+std::map<int, Player>& Engine::getPlayers()
 {
 	return m_players;
 }
@@ -205,6 +205,7 @@ int Engine::getMapValue(int x, int y, int uid)
 
 std::vector<std::vector<int>> Engine::getMap(int uid)
 {
+	
 	return m_ruler->getMap(uid);
 }
 
@@ -267,5 +268,6 @@ void Engine::nextPlayer(int played)
 
 void Engine::nextTurn()
 {
+
 	state->nextTurn();
 }
