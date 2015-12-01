@@ -117,7 +117,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 				m_action_list->push_back(action);
 				m_engine->getPlayer(player).addMove(uid, x, y, MoveRight);
 				x = x - 1;
-				LOG(DEBUG) << "Right";
+				//LOG(DEBUG) << "Right";
 			}
 		}
 		if (y > 0)
@@ -128,7 +128,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 				m_action_list->push_back(action);
 				m_engine->getPlayer(player).addMove(uid, x, y, MoveBackward);
 				y = y - 1;
-				LOG(DEBUG) << "BackWard";
+				//LOG(DEBUG) << "BackWard";
 			}
 		}
 		if (x < WIDTH - 1)
@@ -139,7 +139,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 				m_action_list->push_back(action);
 				m_engine->getPlayer(player).addMove(uid, x, y, MoveLeft);
 				x = x + 1;
-				LOG(DEBUG) << "Left";
+				//LOG(DEBUG) << "Left";
 			}
 		}
 		if (y < HEIGHT - 1)
@@ -150,7 +150,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 				m_action_list->push_back(action);
 				m_engine->getPlayer(player).addMove(uid, x, y, MoveForward);
 				y = y + 1;
-				LOG(DEBUG) << "ForWard";
+			//	LOG(DEBUG) << "ForWard";
 			}
 		}
 		if (mapCharacter[uid][x][y] == state->getAttribute("move", uid))
@@ -315,9 +315,9 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	{
 		int id = m_engine->getPlayer(toPlay)[i];
 		createMapCharacter(id);
-		LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
+		//LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
 		propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id), id);
-		LOG(DEBUG) << "propagate done";
+		//LOG(DEBUG) << "propagate done";
 	}
 }
 

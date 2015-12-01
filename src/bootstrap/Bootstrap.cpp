@@ -335,6 +335,7 @@ void Bootstrap::launch_game()
 	Game game(this, &engine, rand());
 
 	engine.loadLevel(chooseLevel());
+	game.start();
 	engine.start();
 	
 	game.run();
