@@ -38,6 +38,11 @@ int Case::getAttribute(std::string attribute)
 	if (attribute == "start") return start;
 }
 
+Competence * Case::getSkill(int index)
+{
+	return NULL;
+}
+
 Classe Case::getType()
 {
 	return Sol;

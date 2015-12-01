@@ -94,6 +94,11 @@ int ElementList::getAttribute(std::string attribute, int uid)
 	if(findUid(uid)>= 0) return m_elements[findUid(uid)]->getAttribute(attribute);
 }
 
+Competence * ElementList::getSkill(int uid, int index)
+{
+	if (findUid(uid) >= 0) return m_elements[findUid(uid)]->getSkill(index);
+}
+
 int ElementList::findUid(int uid) {
 
 	int i;

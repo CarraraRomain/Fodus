@@ -1,5 +1,5 @@
 #include "MoveAction.hpp"
-#include "../global.hpp"
+
 
 void MoveAction::execute(Etat& e)
 {

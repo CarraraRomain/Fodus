@@ -1,13 +1,16 @@
+#pragma once
+
 #include <string>
+#include "../global.hpp"
 
 class Competence
 {
-private:
-	std::string name;
-	int damage;
-	int zone;
-	int interest;
-	int target;
-
 public:
+	SkillType type;
+	int damage;
+	int interest;
+	int target; // 0 -> empty tile    1 -> same side    2 -> other side
+	int range;
+	Competence(SkillType newType, int newDamage, int newTarget, int newRange);
+	~Competence();
 };

@@ -23,7 +23,7 @@ private:
 	int conversion;
 	AnimationType direction;
 	int owner;
-	std::vector<Competence> competences;
+	std::vector<Competence*> competences;
 	Classe type = Principal;
 
 public:
@@ -46,4 +46,7 @@ public:
 	virtual void setAttribute(std::string attribute, int valeur) override;
 	virtual void setAttribute(std::string attribute, std::string valeur) override;
 	virtual int getAttribute(std::string attribute) override;
+	virtual Competence* getSkill(int i) override;
+	void addSkill(Competence* skill);
+	int nbrSkill();
 };

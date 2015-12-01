@@ -56,6 +56,7 @@ void Game::run()
 {
 	LOG(DEBUG) << "Game is running";
 	
+	skillMode = 0;
 	
 	load();
 	// Force update
@@ -68,7 +69,7 @@ void Game::run()
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
-	
+
 
 		if (m_player_playing == 1) game_event_loop();
 		else Ai::execute(m_players_id[1],getEngine());
@@ -242,8 +243,18 @@ void Game::game_event_loop()
 							y -= OFFSET_Y * SIZE;
 							LOG(DEBUG) << "X: " << int(x / SIZE);
 							LOG(DEBUG) << "Y: " << int(y / SIZE);
-							MoveCommand command = MoveCommand(getEngine(), (x / SIZE), y / SIZE, MoveRight, 1, m_players_id[0]);
+
+							if (skillMode == 0) {
+								MoveCommand command = MoveCommand(m_game_engine, (x / SIZE), y / SIZE, MoveRight, 1, m_player_id);
 							command.execute();
+							}
+							else {
+								SkillCommand command = SkillCommand(m_game_engine, (x / SIZE), y / SIZE, 1, 0, m_player_id);
+								command.execute();
+								skillMode = 0;
+							}
+
+							
 							disableActions();
 						}
 					}
@@ -300,6 +311,10 @@ void Game::game_event_loop()
 				{
 					AttackCommand commandA = AttackCommand(getEngine(), 1, 89, 1);
 					commandA.execute();
+				}
+				if (event.key.code == sf::Keyboard::A)
+				{
+					skillMode = 1;
 				}
 
 				if (move && !m_isKeyPressed)

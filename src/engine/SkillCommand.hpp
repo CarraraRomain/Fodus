@@ -4,10 +4,12 @@
 class SkillCommand : public Command
 {
 public:
-	SkillCommand(CommandReceiver* receiver, int a, int b, int player);
+	SkillCommand(CommandReceiver* receiver, int x, int y, int uid, int skillIndex, int player);
 	~SkillCommand();
 	virtual void execute() override;
 
-	int uid1;
-	int uid2;
+	int uid;
+	int posX;
+	int posY;
+	int skillIndex;
 };

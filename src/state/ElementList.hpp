@@ -32,6 +32,8 @@ public:
 
 	int getAttribute(std::string attribute, int uid);
 
+	Competence* getSkill(int uid, int index);
+
 	int findUid(int uid);
 
 	void erase(int uid);

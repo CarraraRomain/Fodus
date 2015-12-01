@@ -7,13 +7,19 @@ enum CommandType {
 	Move,
 	Attack,
 	Dead,
+	Skill,
 	Damage,
-	FireBall,
+	Spawn,
 	Load,
 	Mode,
 	Exit
 };
 
+enum SkillType {
+	Fireball,
+	ZombieSpawn
+};
+	
 enum AnimationType
 {
 	MoveForward,

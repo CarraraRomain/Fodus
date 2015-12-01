@@ -61,5 +61,7 @@ private:
 	void watchMovements();
 	void disableActions();
 	void enableActions();
+
+	int skillMode;
 };
 
