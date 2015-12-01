@@ -14,7 +14,7 @@ class Ai
 public:
 	Ai();
 	~Ai();
-	static void execute(int player_uid, Engine* engine);
-	static void recherche1(ElementList*,int,int,Engine*);
+	static void execute(int player_uid, AbstractEngine* engine);
+	static void recherche1(ElementList*,int,int, AbstractEngine*);
 };
 

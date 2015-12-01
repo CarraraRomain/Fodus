@@ -11,7 +11,7 @@ Ai::~Ai()
 {
 }
 
-void Ai::execute(int player_uid, Engine * engine)
+void Ai::execute(int player_uid, AbstractEngine * engine)
 {
 
 	int i;
@@ -28,7 +28,7 @@ void Ai::execute(int player_uid, Engine * engine)
 	commandE.execute();
 }
 
-void Ai::recherche1(ElementList* liste,int playerUid, int uid, Engine* engine)
+void Ai::recherche1(ElementList* liste,int playerUid, int uid, AbstractEngine* engine)
 {
 	int i,j,x,y;
 	int distanceMin = 0;
