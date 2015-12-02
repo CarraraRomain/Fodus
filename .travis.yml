@@ -9,6 +9,14 @@ addons:
     packages:
     - g++-5
     - cmake
+    - libglew-dev
+    - libsndfile1-dev
+    - libopenal-dev
+    - libfreetype6-dev
+    - libx11-xcb-dev
+    - udev
+    - libudev-dev
+	
 cache:
   apt: true
   directories:
