@@ -30,6 +30,7 @@ public:
 	void updateGlobal(Etat& e)	 override;
 	void updateElement(Element& el) override;
 	void updateTurn(int turn)  override;
+	void updatePlayer(Player pl) override;
 	void updateNowPlaying(int pid)  override;
 	void canPlay(int pid) 	 override;
 	void hasPlayed(int pid) override;

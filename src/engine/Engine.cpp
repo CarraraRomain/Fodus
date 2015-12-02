@@ -178,12 +178,12 @@ void Engine::start()
 	foe2->setAttribute("defence", 17);
 	foe2->setAttribute("status", 1);
 	foe2->setAttribute("side", 2);
-//	state->getList()->push_back(foe2);
+	state->getList()->push_back(foe2);
 
-	m_players[0] = Player(1, 1);
+	//m_players[0] = Player(1, 1);
 	m_players[2] = Player(89, 1);
 	m_players[2].addOwnedPerso(foe->getUid());
-	//m_players[2].addOwnedPerso(foe2->getUid());
+	m_players[2].addOwnedPerso(foe2->getUid());
 	nextPlayer(0);
 
 	//m_players[3] = Player(3,1);
@@ -249,7 +249,8 @@ void Engine::nextPlayer(int played)
 {
 	int toPlay;
 	if(played != 0) m_has_played.push_back(played);
-	if (m_players.size()-1 <= m_has_played.size()) {
+	if (played == 0) nextTurn();
+	if (m_players.size() <= m_has_played.size()) {
 		m_has_played.clear();
 		toPlay = 1;
 		LOG(DEBUG) << "Next turn";
@@ -258,13 +259,16 @@ void Engine::nextPlayer(int played)
 	else toPlay = played + 1;
 
 	if (toPlay > m_players.size()) toPlay = 1;
-
+	current_player_uid = toPlay;
 	LOG(DEBUG) << "played : " << played << "     toPlay : " << toPlay;
 
+	LOG(DEBUG) << "=== TURN " << state->getTurn() << " Player :" << current_player_uid;
+
 	m_ruler->nextPlayer(played, toPlay, state.get());
+
 	notifyNowPlaying(toPlay);
 	notifyCanPlay(toPlay);
-	current_player_uid = toPlay;
+
 }
 
 void Engine::nextTurn()

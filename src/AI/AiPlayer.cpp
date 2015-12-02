@@ -16,7 +16,7 @@ void AiPlayer::run()
 	int i;
 	for (auto const& ch: getEngine()->getPlayer(m_player_playing))
 	{
-		recherche1(getEngine()->getState().getList(), m_player_playing, *ch.second, getEngine());
+		recherche1(getEngine()->getState().getList(), m_players_id[0], *ch.second, getEngine());
 	}
 
 	EndTurnCommand commandE = EndTurnCommand(getEngine(), m_player_playing);
@@ -61,6 +61,10 @@ void AiPlayer::updateElement(Element & e1)
 }
 
 void AiPlayer::updateTurn(int turn)
+{
+}
+
+void AiPlayer::updatePlayer(Player pl)
 {
 }
 

@@ -155,7 +155,7 @@ void Game::updateGlobal(Etat& e)
 		is_playing = true;
 		for (auto it : m_move_watcher) m_move_watcher[it.first] = false;
 	}
-	watchMovements();
+	
 	std::vector<std::vector<int>> map = getEngine()->getMap(1);
 	if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
 	else m_game_scene.getInfos()->resetMoveMap();
@@ -169,6 +169,13 @@ void Game::updateElement(Element& el)
 
 void Game::updateTurn(int turn)
 {
+}
+
+void Game::updatePlayer(Player pl)
+{
+	LOG(DEBUG) << "Update: Player " << pl.getId();
+	m_players[pl.getId()] = pl;
+	watchMovements();
 }
 
 void Game::updateNowPlaying(int pid)
@@ -367,7 +374,7 @@ void Game::endPlayerTurn()
 void Game::watchMovements()
 {
 	// Check moves for each player
-	for(auto pl: getEngine()->getPlayers())
+	for(auto pl: m_players)
 	{
 		// check move for each unit
 		for (std::map<int, bool>::iterator it = pl.second.getMovedBegin(); 

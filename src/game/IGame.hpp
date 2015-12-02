@@ -18,6 +18,7 @@ protected:
 	// Misc
 	Bootstrap* m_boot;
 	ElementList m_list;
+	std::map<int, Player> m_players;
 	std::vector<int> m_players_id;
 	int m_player_playing;
 	bool m_disable_actions;

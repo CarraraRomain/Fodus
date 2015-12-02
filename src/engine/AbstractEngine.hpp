@@ -31,13 +31,16 @@ protected:
 	std::map<int, int> m_clients_players;
 	std::vector<int> m_clients;
 	std::map<int, EngineObserver*> m_players_obs;
+	std::map<int, Player> m_players; 
 	int m_player_playing;
+	int current_player_uid;
 	virtual int registerPlayer(int player) = 0;
 	virtual void notifyGlobal();
 	virtual void notifyElement(Element& el);
 	virtual void notifyTurn(int turn);
 	virtual void notifyNowPlaying(int pid);
 	virtual void notifyCanPlay(int pid);
+	virtual void notifyPlayer(Player pl);
 	virtual void notifyHasPlayed(int pid);
 
 };

@@ -20,6 +20,7 @@ public:
 	virtual void updateGlobal(Etat& e) override;
 	virtual void updateElement(Element& e1) override;
 	virtual void updateTurn(int turn) override;
+	virtual void updatePlayer(Player pl) override;
 	virtual void updateNowPlaying(int pid) override;
 	virtual void canPlay(int pid) override;
 	virtual void hasPlayed(int pid) override;
