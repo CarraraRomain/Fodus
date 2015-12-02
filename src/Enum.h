@@ -9,6 +9,7 @@ enum CommandType {
 	Dead,
 	Skill,
 	Damage,
+	Restore,
 	Spawn,
 	Load,
 	Mode,
