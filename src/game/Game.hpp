@@ -23,6 +23,7 @@ public:
 	void load_gui();
 	void load();
 	void run();
+	void draw();
 	void start();
 	void syncRequest() override;
 	void whoIsPlaying() override;

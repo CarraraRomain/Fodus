@@ -132,7 +132,7 @@ void AnimationLayer::handleMoves()
 		if (m_pending_moves.size() == 0) return;
 	for (auto it : m_pending_moves)
 	{
-		LOG(DEBUG) << "Pending move " << it.first;
+		//LOG(DEBUG) << "Pending move " << it.first;
 		if (it.second.size() != 0)
 		{
 

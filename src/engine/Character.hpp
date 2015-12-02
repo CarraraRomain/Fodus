@@ -16,6 +16,7 @@ public:
 	void attack();
 	void moveWatched();
 	const bool hasMoved();
+	const bool hasAttacked();
 	void move();
 	bool hasMoveWatch();
 private:

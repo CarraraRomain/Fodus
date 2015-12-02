@@ -78,18 +78,25 @@ void Game::run()
 		m_game_scene.updateAnims();
 		if (!m_game_scene.isAnimationRunning() && is_playing ) {
 			enableActions();
+		}else
+		{
+			disableActions();
 		}
 		
 //		sf::Time frameTime = frameClock.restart();
-
-		m_game_window->clear();
-		m_game_window->draw(m_hud);
-		
-		m_game_window->draw(m_game_scene);
-		//if (m_disable_actions) m_game_window->draw(m_filter);
-		m_game_window->display();
+		draw();
 	}
 	LOG(DEBUG) << "Game ended";
+}
+
+void Game::draw()
+{
+	m_game_window->clear();
+	m_game_window->draw(m_hud);
+
+	m_game_window->draw(m_game_scene);
+	//if (m_disable_actions) m_game_window->draw(m_filter);
+	m_game_window->display();
 }
 
 void Game::start()
@@ -356,17 +363,17 @@ void Game::game_event_loop()
 
 void Game::updateHUD()
 {
-	
-	//if (m_has_played || getEngine()->getPlayer(m_player_id).hasMoved(1)) {
-	if(m_has_played){
+	Character ch = getEngine()->getPlayer(m_players_id[0])[1];
+	if (m_has_played || ch.hasMoved()) {
+	//if(m_has_played){
 		m_hud.updateMoveCapa(false);
 	}
 	else
 	{
 		m_hud.updateMoveCapa(true);
 	} 
-	if (m_has_played) {
-	//if (m_has_played || getEngine()->getPlayer(m_player_id).hasAttacked(1)) {
+	//if (m_has_played) {
+	if (m_has_played || ch.hasAttacked()) {
 		m_hud.updateAttackCapa(false);
 	}
 	else
@@ -378,8 +385,9 @@ void Game::updateHUD()
 
 void Game::endPlayerTurn()
 {
-	disableActions();
 	is_playing = false;
+	disableActions();
+	
 	for (auto it : m_move_watcher)
 	{
 		LOG(DEBUG) << "Watcher: " << it.first << " : " << m_game_scene.isAnimationRunning(it.first);
@@ -388,8 +396,10 @@ void Game::endPlayerTurn()
 			m_move_watcher[it.first] = false;
 		}
 	}
+	draw();
 	EndTurnCommand command = EndTurnCommand(getEngine(), m_players_id[0]);
 	command.execute();
+
 }
 
 void Game::watchMovements(int pid)
@@ -433,6 +443,8 @@ void Game::watchMovements(int pid)
 
 void Game::disableActions()
 {
+	if (m_disable_actions) return;
+	LOG(INFO) << "Disabling actions";
 	m_disable_actions = true;
 	m_hud.actionsDisabled();
 	m_game_scene.getInfos()->disable();
@@ -440,6 +452,8 @@ void Game::disableActions()
 
 void Game::enableActions()
 {
+	if (!m_disable_actions) return;
+	LOG(INFO) << "Enabling actions";
 	m_disable_actions = false;
 	m_hud.actionsEnabled();
 	m_game_scene.getInfos()->enable();

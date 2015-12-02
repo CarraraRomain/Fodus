@@ -34,6 +34,11 @@ void Character::resetAttacks()
 	m_attacked = false;
 }
 
+void Character::attack()
+{
+	m_attacked = true;
+}
+
 void Character::moveWatched()
 {
 	m_move_watch = true;
@@ -42,6 +47,11 @@ void Character::moveWatched()
 const bool Character::hasMoved()
 {
 	return m_moved;
+}
+
+const bool Character::hasAttacked()
+{
+	return m_attacked;
 }
 
 void Character::move()
