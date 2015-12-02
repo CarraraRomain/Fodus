@@ -127,8 +127,7 @@ bool Player::isHuman()
 
 void Player::removePerso(int uid)
 {
-//	m_chars.erase(uid);
-
+	m_chars.erase(uid);
 }
 
 Player &Player::operator=(const Player &player) {
