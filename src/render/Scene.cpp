@@ -121,6 +121,16 @@ bool Scene::isAnimationRunning(int i)
 	return m_anims->isAnimationRunning(i);
 }
 
+void Scene::hideMoveMap()
+{
+	m_infos->hideMoveMap();
+}
+
+void Scene::showMoveMap()
+{
+	m_infos->showMoveMap();
+}
+
 AnimationLayer* Scene::getAnims() const
 {
 	return m_anims;

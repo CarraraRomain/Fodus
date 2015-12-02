@@ -24,6 +24,8 @@ public:
 	void addPendingMovement(int sprite_id, std::vector<Movement> moves);
 	bool isAnimationRunning();
 	bool isAnimationRunning(int);
+	void hideMoveMap();
+	void showMoveMap();
 	AnimationLayer* getAnims() const;
 	InfoLayer* getInfos() const;
 	int getAnimsLeft(int sprite_id);

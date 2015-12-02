@@ -367,10 +367,12 @@ void Game::updateHUD()
 	if (m_has_played || ch.hasMoved()) {
 	//if(m_has_played){
 		m_hud.updateMoveCapa(false);
+		m_game_scene.hideMoveMap();
 	}
 	else
 	{
 		m_hud.updateMoveCapa(true);
+		m_game_scene.showMoveMap();
 	} 
 	//if (m_has_played) {
 	if (m_has_played || ch.hasAttacked()) {

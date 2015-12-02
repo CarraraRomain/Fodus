@@ -19,9 +19,12 @@ public:
 	void ford(int x, int y);
 	void disable();
 	void enable();
+	void hideMoveMap();
+	void showMoveMap();
 	void syncMoveMap();
 	void syncMoveMap(std::vector<std::vector<int>>& map);
 	void resetMoveMap();
+
 private:
 	std::map<int, sf::Text> m_perso_texts;
 	sf::Font m_font;
@@ -31,6 +34,6 @@ private:
 	bool m_disable_actions;
 	std::vector<Coord*> m_coords;
 	std::vector<std::vector<int>> m_map;
-
+	bool m_show_map;
 };
 

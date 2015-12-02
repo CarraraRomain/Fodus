@@ -103,7 +103,7 @@ void InfoLayer::updateVertices()
 	{
 		
 		sf::Vertex* quad = &m_vertices[(c->x + c->y*WIDTH)*4];
-		sf::Color col = (m_coords[c->x + c->y*WIDTH]->move_weight > 0) ?
+		sf::Color col = (m_coords[c->x + c->y*WIDTH]->move_weight > 0 && m_show_map) ?
 			sf::Color(0,255,0,42): sf::Color(255, 0, 0, 0);
 		col = (c->isAttackable()) ? sf::Color(255, 0, 0, 42): col;
 		quad[0].color = col;
@@ -179,6 +179,18 @@ void InfoLayer::disable()
 void InfoLayer::enable()
 {
 	m_disable_actions = false;
+}
+
+void InfoLayer::hideMoveMap()
+{
+	m_show_map = false;
+	clearVertices();
+	updateVertices();
+}
+
+void InfoLayer::showMoveMap()
+{
+	m_show_map = true;
 }
 
 void InfoLayer::syncMoveMap()
