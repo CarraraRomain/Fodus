@@ -15,7 +15,11 @@ addons:
     - libfreetype6-dev
     - libx11-xcb-dev
     - udev
-    - libudev-dev
+    - libudev1-dev
+    - libxcb-image0
+    - libxcb-image0-dev
+    - libxcb-randr0
+    - libxcb-randr0-dev
 cache:
   apt: true
   directories:
