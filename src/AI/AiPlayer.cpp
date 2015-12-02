@@ -133,7 +133,6 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 					if (y < 0)y = -y;
 
 					if (x + y <= liste->getAttribute("range", c.UID) && behavior == Aggression)
-
 					{
 						if (engine->getMapValue(i, j, c.UID) > attaqueDistance)
 						{

@@ -244,11 +244,16 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 	{
 	case Fireball:
 		int damage = skill->damage * liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
-		if(damage >= 5)damage = 0.8*damage + rand() % (damage / 5);
+		if (damage >= 5)damage = 0.8*damage + rand() % (damage / 5);
 
 		DamageAction* action = new DamageAction(target, damage);
+		StatusAction* actionS = new StatusAction(target, 1);
 		m_action_list->push_back(action);
+		m_action_list->push_back(actionS);
 		LOG(DEBUG) << "Fireball succeded from " << uid << " to " << target << " for " << damage << " damages";
+		break;
+	case Heal:
+
 		break;
 	}
 
@@ -312,6 +317,7 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	{
 		m_engine->getPlayer(played).resetMoves();
 		m_engine->getPlayer(played).resetAttacks();
+		EndTurnRule(played, state);
 	} 
 	createMap(state);
 	if (m_engine->getPlayer(toPlay).numberPersos() <= 0) return;
@@ -348,6 +354,7 @@ void Ruler::checkRule(Etat * state)
 		if ((*liste)[i]->getD() >= 3)
 		{
 			int test = (*liste)[i]->getUid();
+
 			if ((*liste)[i]->getAttribute("currentHealth") <= 0 && (*liste)[i]->getAttribute("status") >= 0)
 			{
 				if ((*liste)[i]->getType() == Principal)
@@ -359,8 +366,26 @@ void Ruler::checkRule(Etat * state)
 				DeadAction* actionD =new  DeadAction(test);
 				m_engine->death(test);
 				m_action_list->push_back(actionD);
-				update();
 			}
+		}
+	}
+	update();
+}
+
+void Ruler::EndTurnRule(int played, Etat * state)
+{
+	int uid;
+	for (auto const &ch : m_engine->getPlayer(played))
+	{
+		uid = ch.second->UID;
+
+		if (state->getAttribute("status", uid) == 1)
+		{
+			int damage = state->getAttribute("health", uid) / 20;
+			if (damage < 1) damage = 1;
+			DamageAction* action = new DamageAction(uid, damage);
+			m_action_list->push_back(action);
+			LOG(DEBUG) << "burn for " << uid << ", and for " << damage << " dégâts";
 		}
 	}
 }

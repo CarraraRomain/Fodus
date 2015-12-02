@@ -8,6 +8,7 @@
 #include "DeadAction.h"
 #include "DamageAction.hpp"
 #include "EndGameAction.hpp"
+#include "StatusAction.hpp"
 #include "ActionList.hpp"
 #include "AttackCommand.h"
 #include "SkillCommand.hpp"
@@ -33,6 +34,7 @@ public :
 	int getMapValue(int x, int y, int uid);
 	std::vector< std::vector<int> > getMap(int uid);
 	void checkRule(Etat* state);
+	void EndTurnRule(int played, Etat* state);
 
 private:
 	Etat& m_state;

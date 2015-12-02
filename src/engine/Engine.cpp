@@ -142,10 +142,13 @@ void Engine::start()
 	elt->setAttribute("currentHealth", 100);
 	elt->setAttribute("power", 100);
 	elt->setAttribute("side", 1);
+	elt->setAttribute("status", 0);
 	state->getList()->push_back(elt);
 
-	Competence* fireball = new Competence(Fireball,100,3,10);
+	Competence* fireball = new Competence(Fireball,20,3,10);
 	elt->addSkill(fireball);
+	Competence* heal = new Competence(Heal, 20, 3, 15);
+	elt->addSkill(heal);
 
 	// Elt index is size-1
 	m_players[1] = Player(1,0);
@@ -162,7 +165,7 @@ void Engine::start()
 	foe->setAttribute("health", 100);
 	foe->setAttribute("currentHealth", 100);
 	foe->setAttribute("defence", 70);
-	foe->setAttribute("status",1);
+	foe->setAttribute("status",0);
 	foe->setAttribute("side", 2);
 	state->getList()->push_back(foe);
 	
@@ -174,9 +177,10 @@ void Engine::start()
 	foe2->setY(5);
 	foe2->setD(3);
 	foe2->setKey("FOE");
-	foe2->setAttribute("currentHealth", 10);
+	foe2->setAttribute("health", 100);
+	foe2->setAttribute("currentHealth", 100);
 	foe2->setAttribute("defence", 17);
-	foe2->setAttribute("status", 1);
+	foe2->setAttribute("status", 0);
 	foe2->setAttribute("side", 2);
 	state->getList()->push_back(foe2);
 
