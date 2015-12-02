@@ -256,7 +256,7 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 
 	case Rejuvenate:
 		{
-			int restore = skill->damage * liste->getAttribute("power", uid);
+			int restore = skill->damage * 0.02 * liste->getAttribute("power", uid);
 			if (restore >= 5) restore = 0.8 * restore + rand() % (restore / 5);
 			RestoreAction* actionR = new RestoreAction(target, restore);
 			m_action_list->push_back(actionR);

@@ -179,7 +179,7 @@ void Engine::start()
 	foe2->setKey("FOE");
 	foe2->setAttribute("health", 100);
 	foe2->setAttribute("currentHealth", 100);
-	foe2->setAttribute("defence", 17);
+	foe2->setAttribute("defence", 70);
 	foe2->setAttribute("status", 0);
 	foe2->setAttribute("side", 2);
 	state->getList()->push_back(foe2);

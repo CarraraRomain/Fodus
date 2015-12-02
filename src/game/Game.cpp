@@ -259,6 +259,11 @@ void Game::game_event_loop()
 							command.execute();
 							}
 							else if(skillMode == 1){
+								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, 0, m_player_playing);
+								command.execute();
+								skillMode = 0;
+							}
+							else if (skillMode == 2) {
 								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, 1, m_player_playing);
 								command.execute();
 								skillMode = 0;
@@ -325,6 +330,10 @@ void Game::game_event_loop()
 				if (event.key.code == sf::Keyboard::A)
 				{
 					skillMode = 1;
+				}
+				if (event.key.code == sf::Keyboard::Z)
+				{
+					skillMode = 2;
 				}
 
 				if (move && !m_isKeyPressed)

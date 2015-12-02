@@ -6,7 +6,8 @@ void RestoreAction::execute(Etat & state)
 	health = state.getAttribute("health", uid);
 	if (restore > health)
 		state.setAttribute("currentHealth", health, uid);
-	state.setAttribute("currentHealth", restore, uid);
+	else 
+		state.setAttribute("currentHealth", restore, uid);
 }
 
 RestoreAction::RestoreAction(int newUid, int restoreValue)
