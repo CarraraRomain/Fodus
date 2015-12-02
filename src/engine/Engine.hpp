@@ -27,6 +27,7 @@ public:
 	void death(int uid);
 	void propagate(int x, int y, int valeur, int uid) override;
 	ElementList syncRequest() override;
+	void syncFull(int) override;
 	int whoIsPlaying() override;
 protected:
 	int registerPlayer(int player) override;

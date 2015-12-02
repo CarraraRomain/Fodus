@@ -116,6 +116,11 @@ bool Scene::isAnimationRunning()
 	return m_anims->isAnimationRunning();
 }
 
+bool Scene::isAnimationRunning(int i)
+{
+	return m_anims->isAnimationRunning(i);
+}
+
 AnimationLayer* Scene::getAnims() const
 {
 	return m_anims;

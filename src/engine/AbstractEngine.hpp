@@ -17,6 +17,7 @@ public:
 	virtual void start() = 0;
 	virtual void run() = 0;
 	virtual ElementList syncRequest() = 0;
+	virtual void syncFull(int pid) = 0;
 	virtual int whoIsPlaying() = 0;
 	virtual std::vector< std::vector<int> > getMap(int uid) = 0;
 	virtual std::map<int, Player>& getPlayers() = 0;
@@ -36,6 +37,7 @@ protected:
 	int current_player_uid;
 	virtual int registerPlayer(int player) = 0;
 	virtual void notifyGlobal();
+	virtual void notifySingle(int pid);
 	virtual void notifyElement(Element& el);
 	virtual void notifyTurn(int turn);
 	virtual void notifyNowPlaying(int pid);

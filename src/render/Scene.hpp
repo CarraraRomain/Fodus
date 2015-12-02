@@ -23,8 +23,10 @@ public:
 	void setEltAt(Element& elt, int x, int y, int depth = 0);
 	void addPendingMovement(int sprite_id, std::vector<Movement> moves);
 	bool isAnimationRunning();
+	bool isAnimationRunning(int);
 	AnimationLayer* getAnims() const;
 	InfoLayer* getInfos() const;
+	int getAnimsLeft(int sprite_id);
 private:
 	Bootstrap* m_boot;
 	std::vector<Layer*> m_layers;

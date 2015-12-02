@@ -44,7 +44,7 @@ const bool Character::hasMoved()
 	return m_moved;
 }
 
-void Character::move(int perso)
+void Character::move()
 {
 	m_moved = true;
 }

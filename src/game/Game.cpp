@@ -64,7 +64,7 @@ void Game::run()
 	// Request a full update
 	syncRequest();
 	//m_game_scene.notify();
-	update(ObsState);
+	//update(ObsState);
 	m_player_playing = 1;
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
@@ -116,6 +116,7 @@ void Game::start()
 
 void Game::update(ObsType type)
 {
+	return;
 	LOG(WARNING) << "DEPRECATED UPDATE";
 	//m_has_played = getEngine()->hasPlayed(m_player_id);
 	switch (type)
@@ -153,9 +154,9 @@ void Game::updateGlobal(Etat& e)
 		m_turns = e.getTurn();
 		m_hud.updateTurns(m_turns);
 		is_playing = true;
-		for (auto it : m_move_watcher) m_move_watcher[it.first] = false;
+		
 	}
-	
+
 	std::vector<std::vector<int>> map = getEngine()->getMap(1);
 	if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
 	else m_game_scene.getInfos()->resetMoveMap();
@@ -176,6 +177,7 @@ void Game::updatePlayer(Player pl)
 	LOG(DEBUG) << "Update: Player " << pl.getId();
 	m_players.erase(pl.getId());
 	m_players[pl.getId()] = pl;
+
 	watchMovements(pl.getId());
 }
 
@@ -199,7 +201,8 @@ void Game::sync(ElementList list)
 
 void Game::syncRequest()
 {
-	m_list = getEngine()->syncRequest();
+	//m_list = getEngine()->syncRequest();
+	getEngine()->syncFull(m_players_id[0]);
 }
 
 void Game::whoIsPlaying()
@@ -374,6 +377,15 @@ void Game::endPlayerTurn()
 
 void Game::watchMovements(int pid)
 {
+	for (auto it : m_move_watcher)
+	{
+		LOG(DEBUG) << "Watcher: " << it.first << " : " << m_game_scene.isAnimationRunning(it.first);
+		if (!m_game_scene.isAnimationRunning(it.first))
+		{
+			m_move_watcher[it.first] = false;
+		}
+	}
+	LOG(DEBUG) << "Watching moves for pl " << pid;
 	// Check moves for each player
 	//for(auto pl: m_players)
 	//{
@@ -381,6 +393,8 @@ void Game::watchMovements(int pid)
 		// check move for each unit
 		for (auto const &ch: pl)
 		{
+			LOG(DEBUG) << "Char " << ch.second->UID;
+			LOG(DEBUG) << "Moved : " << ch.second->hasMoved();
 			if(ch.second->hasMoved())
 			{
 				// Player has moved, request an animation
@@ -389,7 +403,7 @@ void Game::watchMovements(int pid)
 				if(!m_move_watcher[ch.second->UID])
 				//if(!(ch.second->hasMoveWatch()))
 				{
-					m_game_scene.addPendingMovement(pl.getId(), pl.getMove(pl.getId()));
+					m_game_scene.addPendingMovement(ch.second->UID, ch.second->getMoves());
 					//ch.second->moveWatched();
 					m_move_watcher[ch.second->UID] = true;
 					disableActions();
@@ -397,7 +411,11 @@ void Game::watchMovements(int pid)
 				
 			}
 		}
-
+		for (auto it : m_move_watcher)
+		{
+			LOG(DEBUG) << "END Watcher: " << it.first << " : " << m_game_scene.isAnimationRunning(it.first);
+		
+		}
 	//}
 
 }

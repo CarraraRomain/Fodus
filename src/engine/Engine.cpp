@@ -233,6 +233,11 @@ ElementList Engine::syncRequest()
 	return list;
 }
 
+void Engine::syncFull(int pid)
+{
+	notifySingle(pid);
+}
+
 int Engine::whoIsPlaying()
 {
 	return m_player_playing;

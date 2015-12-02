@@ -16,7 +16,7 @@ public:
 	void attack();
 	void moveWatched();
 	const bool hasMoved();
-	void move(int perso);
+	void move();
 	bool hasMoveWatch();
 private:
 	bool m_attacked;

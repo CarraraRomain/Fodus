@@ -20,7 +20,7 @@ Player::~Player()
 const bool Player::hasMoved(int perso)
 {
 	LOG(WARNING) << "Deprecated Call : Player::hasMoved";
-	return m_moved[perso];
+	return m_chars[perso]->hasMoved();
 }
 
 const bool Player::hasAttacked(int perso)
@@ -32,7 +32,10 @@ const bool Player::hasAttacked(int perso)
 void Player::move(int perso)
 {
 	LOG(WARNING) << "Deprecated Call : Player::move";
-	m_moved[perso] = true;
+	m_chars[perso]->move();
+	//for(auto& ch:m_chars)
+	
+
 }
 
 void Player::attack(int perso)

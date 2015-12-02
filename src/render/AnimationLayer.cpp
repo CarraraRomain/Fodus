@@ -84,6 +84,7 @@ AnimatedSprite* AnimationLayer::getSprite(const int& uid)
 
 void AnimationLayer::addPendingMovement(int sprite_id, std::vector<Movement> moves)
 {
+	m_animations_done[sprite_id] = false;
 	m_pending_moves[sprite_id] = moves;
 }
 
@@ -126,24 +127,28 @@ void AnimationLayer::reflowSprites()
 
 void AnimationLayer::handleMoves()
 {
-	//LOG(DEBUG) << "Handling moves";
-	if (m_pending_moves.size() == 0) return;
+	std::vector<int> rem;
+//	LOG(DEBUG) << "Handling moves";
+		if (m_pending_moves.size() == 0) return;
 	for (auto it : m_pending_moves)
 	{
-		//LOG(DEBUG) << "Pending move " << it.first;
+		LOG(DEBUG) << "Pending move " << it.first;
 		if (it.second.size() != 0)
 		{
 
 			executeMoves(it.first);
 			m_animations_done[it.first] = false;
 		}
+		
 		if (it.second.size() == 0)
 		{
-			m_pending_moves.erase(it.first);
+			rem.push_back(it.first);
+			//m_pending_moves.erase(it.first);
 			m_animations_done[it.first] = true;
 		}
 		if (m_pending_moves.size() == 0) break;
 	}
+	for (int i : rem) m_pending_moves.erase(i);
 }
 
 void AnimationLayer::executeMoves(int id)

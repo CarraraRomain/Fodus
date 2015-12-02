@@ -22,13 +22,18 @@ void AbstractEngine::notifyGlobal()
 			LOG(DEBUG) << "Notify";
 			obs.second->updateGlobal(getState());
 			obs.second->updatePlayer(m_players[current_player_uid]);
-			m_players[current_player_uid].resetMoves();
+			//m_players[current_player_uid].resetMoves();
 			notified.push_back(obs.second->CID);
 		}
 		LOG(INFO) << "Already notified";
 	}
 	//notifyPlayer(m_players[current_player_uid]);
 	LOG(INFO) << "=== END NOTIFY ===";
+}
+
+void AbstractEngine::notifySingle(int pid)
+{
+	m_players_obs[pid]->updateGlobal(getState());
 }
 
 void AbstractEngine::notifyElement(Element& el)
