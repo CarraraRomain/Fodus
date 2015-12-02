@@ -380,12 +380,6 @@ void Game::endPlayerTurn()
 {
 	disableActions();
 	is_playing = false;
-	EndTurnCommand command = EndTurnCommand(getEngine(), m_players_id[0]);
-	command.execute();
-}
-
-void Game::watchMovements(int pid)
-{
 	for (auto it : m_move_watcher)
 	{
 		LOG(DEBUG) << "Watcher: " << it.first << " : " << m_game_scene.isAnimationRunning(it.first);
@@ -394,6 +388,13 @@ void Game::watchMovements(int pid)
 			m_move_watcher[it.first] = false;
 		}
 	}
+	EndTurnCommand command = EndTurnCommand(getEngine(), m_players_id[0]);
+	command.execute();
+}
+
+void Game::watchMovements(int pid)
+{
+
 	LOG(DEBUG) << "Watching moves for pl " << pid;
 	// Check moves for each player
 	//for(auto pl: m_players)
@@ -415,6 +416,7 @@ void Game::watchMovements(int pid)
 					m_game_scene.addPendingMovement(ch.second->UID, ch.second->getMoves());
 					//ch.second->moveWatched();
 					m_move_watcher[ch.second->UID] = true;
+					
 					disableActions();
 				}
 				
