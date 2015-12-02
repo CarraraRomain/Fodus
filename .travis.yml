@@ -1,0 +1,11 @@
+language: c++
+compiler:
+    - gcc
+
+install:
+    - sudo apt-get install libsfml-dev
+
+before_script:
+    - ./configure
+script:
+    - ./make
