@@ -5,8 +5,10 @@ addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
+    - kalakris/cmake
     packages:
     - g++-5
+    - cmake
 cache:
   apt: true
   directories:
@@ -17,10 +19,6 @@ cache:
 before_install:
   - if [ "$CC"  == "gcc"     ]; then export CC=gcc-5; fi
   - if [ "$CXX" == "g++"     ]; then export CXX=g++-5; fi
-  - pushd . && cd $HOME
-  - git clone https://github.com/LB--/travis.git travis
-  - source "./travis/update-cmake.sh"
-  - popd
 
 install:
   - wget "http://www.sfml-dev.org/files/SFML-2.3.2-linux-gcc-32-bit.tar.gz" -O SFML.tar.gz
