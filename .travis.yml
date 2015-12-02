@@ -21,7 +21,7 @@ before_install:
   - if [ "$CXX" == "g++"     ]; then export CXX=g++-5; fi
 
 install:
-  - wget "http://www.sfml-dev.org/files/SFML-2.3.2-linux-gcc-32-bit.tar.gz" -O SFML.tar.gz
+  - wget "http://www.sfml-dev.org/files/SFML-2.3.2-linux-gcc-64-bit.tar.gz" -O SFML.tar.gz
   - tar -xvf SFML.tar.gz
   - export PATH="$(pwd)/SFML-2.3.2:$PATH"
   - export SFML_ROOT="$(pwd)/SFML-2.3.2"
