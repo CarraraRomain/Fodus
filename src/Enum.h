@@ -9,6 +9,7 @@ enum CommandType {
 	Dead,
 	Skill,
 	Damage,
+	Restore,
 	Spawn,
 	Load,
 	Mode,
@@ -17,6 +18,7 @@ enum CommandType {
 
 enum SkillType {
 	Fireball,
+	Rejuvenate,
 	ZombieSpawn
 };
 
