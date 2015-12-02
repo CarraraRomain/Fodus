@@ -1,12 +1,35 @@
 language: c++
-compiler:
-    - gcc
+sudo: false
+compiler: gcc
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-5
+cache:
+  apt: true
+  directories:
+  - "$HOME/.travis/cmake/build/install"
+  - "SFML-2.3.2"
+
 
 before_install:
-    - sudo apt-get update
-    - sudo apt-get install libsfml-dev=2.0
+  - if [ "$CC"  == "gcc"     ]; then export CC=gcc-5; fi
+  - if [ "$CXX" == "g++"     ]; then export CXX=g++-5; fi
+  - pushd . && cd $HOME
+  - git clone https://github.com/LB--/travis.git travis
+  - source "./travis/update-cmake.sh"
+  - popd
 
-before_script:
-    - ./configure
+install:
+  - wget "http://www.sfml-dev.org/files/SFML-2.3.2-linux-gcc-32-bit.tar.gz" -O SFML.tar.gz
+  - tar -xjvf SFML.tar.gz
+  - export PATH="$(pwd)/SFML-2.3.2:$PATH"
+  - export SFML_ROOT = "$(pwd)/SFML-2.3.2"
+  - ./configure
 script:
-    - ./make
+  - ./make
+
+notifications:
+  email: false
