@@ -8,6 +8,7 @@
 #include "DeadAction.h"
 #include "DamageAction.hpp"
 #include "EndGameAction.hpp"
+#include "RestoreAction.hpp"
 #include "ActionList.hpp"
 #include "AttackCommand.h"
 #include "SkillCommand.hpp"

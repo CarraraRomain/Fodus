@@ -250,6 +250,17 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 		m_action_list->push_back(action);
 		LOG(DEBUG) << "Fireball succeded from " << uid << " to " << target << " for " << damage << " damages";
 		break;
+
+	case Rejuvenate:
+		int restore = skill->restore * liste->getAttribute("power", uid);
+		if (restore >= 5) restore = 0.8 * restore + rand() % (restore / 5);
+
+		RestoreAction *action = new RestoreAction(target, restore);
+		m_action_list->push_back(action);
+		LOG(DEBUG) << "Rejuvenate succeded from " << uid << "to " << target << "for " << restore << "restoration";
+		break;
+
+
 	}
 
 return false;

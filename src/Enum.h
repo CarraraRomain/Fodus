@@ -18,6 +18,7 @@ enum CommandType {
 
 enum SkillType {
 	Fireball,
+	Rejuvenate,
 	ZombieSpawn
 };
 
