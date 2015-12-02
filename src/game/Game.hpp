@@ -11,7 +11,6 @@
 
 #include "../engine/Observer.hpp"
 
-#include "../AI/Ai.hpp"
 #include "HUD.hpp"
 #include "Coord.hpp"
 #include "IGame.hpp"
@@ -31,6 +30,7 @@ public:
 	void updateGlobal(Etat& e)	 override;
 	void updateElement(Element& el) override;
 	void updateTurn(int turn)  override;
+	void updatePlayer(Player pl) override;
 	void updateNowPlaying(int pid)  override;
 	void canPlay(int pid) 	 override;
 	void hasPlayed(int pid) override;
@@ -58,7 +58,7 @@ private:
 	void game_event_loop();
 	void updateHUD();
 	void endPlayerTurn();
-	void watchMovements();
+	void watchMovements(int);
 	void disableActions();
 	void enableActions();
 

@@ -37,8 +37,8 @@ private :
 	//CommandeListe liste;
 	std::vector<int> m_has_played;
 	std::unique_ptr<Ruler> m_ruler;
-	std::map<int, Player> m_players;
+	
 	void nextPlayer(int played);
 	void nextTurn();
-	int current_player_uid;
+
 };
