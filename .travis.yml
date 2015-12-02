@@ -2,8 +2,9 @@ language: c++
 compiler:
     - gcc
 
-install:
-    - sudo apt-get install libsfml-dev
+before_install:
+    - sudo apt-get update
+    - sudo apt-get install libsfml-dev=2.0
 
 before_script:
     - ./configure
