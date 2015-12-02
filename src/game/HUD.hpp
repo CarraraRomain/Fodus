@@ -18,6 +18,7 @@ public:
 	void newTurn();
 	void actionsDisabled();
 	void actionsEnabled();
+	void updateAction(int);
 
 private:
 	Bootstrap* m_boot;

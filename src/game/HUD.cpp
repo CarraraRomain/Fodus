@@ -60,7 +60,7 @@ void HUD::load(sf::Vector2u window_size)
 	setFont("command");
 	m_text_map["command"].setColor(sf::Color::White);
 	m_text_map["command"].setCharacterSize(24);
-	m_text_map["command"].setString("Echap: Next Turn | Space: Attack | Mouse: Move");
+	m_text_map["command"].setString("Echap: Next Turn | Space: Attack | A: Fireball | Z: Heal | Q+Mouse: Move");
 
 	bbox = m_text_map["command"].getGlobalBounds();
 	m_text_map["command"].setOrigin(bbox.width / 2, bbox.height / 2);
@@ -87,6 +87,29 @@ void HUD::load(sf::Vector2u window_size)
 	bbox = m_text_map["move"].getGlobalBounds();
 	m_text_map["move"].setOrigin(bbox.width,0);
 	m_text_map["move"].setPosition(window_size.x - 16, window_size.y - 32);
+
+	// Action
+	m_text_map["action"] = sf::Text();
+	setFont("action");
+	m_text_map["action"].setColor(sf::Color::White);
+	m_text_map["action"].setCharacterSize(24);
+	m_text_map["action"].setString("Selected Action:");
+
+	bbox = m_text_map["action"].getGlobalBounds();
+	m_text_map["action"].setOrigin(bbox.width, 0);
+	m_text_map["action"].setPosition(window_size.x - 16,8);
+	// Action Name
+	m_text_map["action_name"] = sf::Text();
+	setFont("action_name");
+	m_text_map["action_name"].setColor(sf::Color::White);
+	m_text_map["action_name"].setCharacterSize(24);
+	m_text_map["action_name"].setString("None");
+
+	bbox = m_text_map["action_name"].getGlobalBounds();
+	m_text_map["action_name"].setOrigin(bbox.width, 0);
+	m_text_map["action_name"].setPosition(window_size.x - 32,32);
+
+
 
 }
 
@@ -148,6 +171,24 @@ void HUD::actionsDisabled()
 void HUD::actionsEnabled()
 {
 	updateTurns(m_turns);
+}
+
+void HUD::updateAction(int skillMode)
+{
+	std::string action;
+	switch (skillMode)
+	{
+	case 1:
+		action = "Fireball";
+		break;
+	case 2:
+		action = "Heal";
+		break;
+	default:
+		action = "Move";
+	}
+
+	m_text_map["action_name"].setString(action);
 }
 
 void HUD::setFont(std::string key)

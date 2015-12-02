@@ -37,6 +37,11 @@ void Game::load_gui()
 	int height = (OFFSET_Y + HEIGHT + OFFSET_BOT)*SIZE;
 	m_game_window.reset(new sf::RenderWindow(sf::VideoMode(width, height),
 		"Fodus", sf::Style::Titlebar | sf::Style::Close));
+	m_select_box.setOutlineColor(sf::Color::Green);
+	m_select_box.setFillColor(sf::Color::Transparent);
+	m_select_box.setOutlineThickness(3);
+	m_select_box.setSize(sf::Vector2f(SIZE, SIZE));
+	m_show_box = false;
 }
 
 /**
@@ -96,6 +101,7 @@ void Game::draw()
 
 	m_game_window->draw(m_game_scene);
 	//if (m_disable_actions) m_game_window->draw(m_filter);
+	if (m_show_box) m_game_window->draw(m_select_box);
 	m_game_window->display();
 }
 
@@ -238,8 +244,33 @@ void Game::game_event_loop()
 			// End global
 
 			// Mouse events
-
-			if (event.type == sf::Event::MouseButtonPressed)
+			if(event.type == sf::Event::MouseMoved)
+			{
+				int x = event.mouseMove.x;
+				int y = event.mouseMove.y;
+				if (x >= OFFSET_X * SIZE && x < (OFFSET_X + WIDTH)*SIZE &&
+					y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
+				{
+					m_select_box.setPosition(sf::Vector2f(SIZE* (x / SIZE),SIZE*( y / SIZE)));
+					sf::Color cl;
+					switch(skillMode)
+					{
+					case 1: 
+						cl = sf::Color::Red;
+						break;
+					case 2: 
+						cl = sf::Color::Blue;
+						break;
+					default: 
+						cl = sf::Color::Green;
+						break;
+					}
+					m_select_box.setOutlineColor(cl);
+					m_show_box = true;
+				}
+				else m_show_box = false;
+			}
+			else if (event.type == sf::Event::MouseButtonPressed)
 			{
 				if (m_disable_actions) throw std::logic_error("Action disabled");
 				if (event.mouseButton.button == (sf::Mouse::Left))
@@ -255,6 +286,7 @@ void Game::game_event_loop()
 							y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
 						{
 							// This is the game area
+							
 							move = true;
 							x -= OFFSET_X * SIZE;
 							y -= OFFSET_Y * SIZE;
@@ -334,6 +366,10 @@ void Game::game_event_loop()
 					AttackCommand commandA = AttackCommand(getEngine(), 1, 89, 1);
 					commandA.execute();
 				}
+				if (event.key.code == sf::Keyboard::Q)
+				{
+					skillMode = 0;
+				}
 				if (event.key.code == sf::Keyboard::A)
 				{
 					skillMode = 1;
@@ -351,6 +387,7 @@ void Game::game_event_loop()
 					m_isKeyPressed = true;
 
 				}
+				m_hud.updateAction(skillMode);
 			}
 			// End Keyboard
 		}catch(std::logic_error e)
@@ -382,7 +419,7 @@ void Game::updateHUD()
 	{
 		m_hud.updateAttackCapa(true);
 	}
-
+	m_hud.updateAction(skillMode);
 }
 
 void Game::endPlayerTurn()

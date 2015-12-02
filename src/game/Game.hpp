@@ -47,7 +47,8 @@ private:
 	std::unique_ptr<rapidjson::Document> m_game_level;
 	
 	Perso* m_selected_perso;
-
+	sf::RectangleShape m_select_box;
+	bool m_show_box;
 	int m_client_id;
 	// old
 	bool m_isKeyPressed;
