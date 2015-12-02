@@ -8,6 +8,7 @@ enum CommandType {
 	Attack,
 	Dead,
 	Skill,
+	Status,
 	Damage,
 	Restore,
 	Spawn,

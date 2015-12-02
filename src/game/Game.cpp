@@ -256,7 +256,7 @@ void Game::game_event_loop()
 							command.execute();
 							}
 							else if(skillMode == 1){
-								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, 0, m_player_playing);
+								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, 1, m_player_playing);
 								command.execute();
 								skillMode = 0;
 							}

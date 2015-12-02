@@ -147,7 +147,7 @@ void Engine::start()
 
 	Competence* fireball = new Competence(Fireball,20,3,10);
 	elt->addSkill(fireball);
-	Competence* heal = new Competence(Heal, 20, 3, 15);
+	Competence* heal = new Competence(Rejuvenate, 20, 3, 15);
 	elt->addSkill(heal);
 
 	// Elt index is size-1

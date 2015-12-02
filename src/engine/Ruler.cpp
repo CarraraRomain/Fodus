@@ -243,27 +243,26 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 	switch (skill->type)
 	{
 	case Fireball:
-		int damage = skill->damage * liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
-		if (damage >= 5)damage = 0.8*damage + rand() % (damage / 5);
-
-		DamageAction* action = new DamageAction(target, damage);
-		StatusAction* actionS = new StatusAction(target, 1);
-		m_action_list->push_back(action);
-		m_action_list->push_back(actionS);
-		LOG(DEBUG) << "Fireball succeded from " << uid << " to " << target << " for " << damage << " damages";
-		break;
+		{	
+			int damage = skill->damage * liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
+			if (damage >= 5)damage = 0.8*damage + rand() % (damage / 5);
+			DamageAction* action = new DamageAction(target, damage);
+			StatusAction* actionS = new StatusAction(target, 1);
+			m_action_list->push_back(action);
+			m_action_list->push_back(actionS);
+			LOG(DEBUG) << "Fireball succeded from " << uid << " to " << target << " for " << damage << " damages";
+			break;
+		}
 
 	case Rejuvenate:
-		int restore = skill->restore * liste->getAttribute("power", uid);
-		if (restore >= 5) restore = 0.8 * restore + rand() % (restore / 5);
-
-		RestoreAction *action = new RestoreAction(target, restore);
-		m_action_list->push_back(action);
-		LOG(DEBUG) << "Rejuvenate succeded from " << uid << "to " << target << "for " << restore << "restoration";
-		break;
-
-
->>>>>>> origin/master
+		{
+			int restore = skill->damage * liste->getAttribute("power", uid);
+			if (restore >= 5) restore = 0.8 * restore + rand() % (restore / 5);
+			RestoreAction* actionR = new RestoreAction(target, restore);
+			m_action_list->push_back(actionR);
+			LOG(DEBUG) << "Rejuvenate succeded from " << uid << "to " << target << "for " << restore << "restoration";
+			break;
+		}
 	}
 
 return false;
