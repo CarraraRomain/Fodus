@@ -262,7 +262,7 @@ void Engine::nextPlayer(int played)
 	current_player_uid = toPlay;
 	LOG(DEBUG) << "played : " << played << "     toPlay : " << toPlay;
 
-	LOG(DEBUG) << "=== TURN " << state->getTurn() << " Player :" << current_player_uid;
+	LOG(DEBUG) << "=== TURN " << state->getTurn() << " Player :" << current_player_uid << " ===";
 
 	m_ruler->nextPlayer(played, toPlay, state.get());
 

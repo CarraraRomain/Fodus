@@ -22,6 +22,7 @@ void AbstractEngine::notifyGlobal()
 			LOG(DEBUG) << "Notify";
 			obs.second->updateGlobal(getState());
 			obs.second->updatePlayer(m_players[current_player_uid]);
+			m_players[current_player_uid].resetMoves();
 			notified.push_back(obs.second->CID);
 		}
 		LOG(INFO) << "Already notified";

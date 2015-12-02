@@ -58,7 +58,7 @@ private:
 	void game_event_loop();
 	void updateHUD();
 	void endPlayerTurn();
-	void watchMovements();
+	void watchMovements(int);
 	void disableActions();
 	void enableActions();
 
