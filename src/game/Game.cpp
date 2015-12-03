@@ -21,6 +21,7 @@ Game::Game(Bootstrap* boot, AbstractEngine* engine, int cid): IGame(boot, engine
 {
 	m_has_played = false;
 	m_end = false;
+	m_disable_actions = true;
 }
 
 Game::~Game()
@@ -145,7 +146,10 @@ void Game::update(ObsType type)
 			LOG(DEBUG) << "New Turn!";
 			m_turns = state.getTurn();
 			m_hud.updateTurns(m_turns);
-			is_playing = true;
+			if (m_player_playing == m_players_id[0]) {
+				is_playing = true;
+				enableActions();
+			}
 			for (auto it : m_move_watcher) m_move_watcher[it.first] = false;
 		}
 		//watchMovements();
@@ -211,7 +215,11 @@ void Game::updateGameEnd(int score)
 void Game::updateNowPlaying(int pid)
 {
 	m_player_playing = pid;
-	if (m_players_id[0] == pid) is_playing = true;
+	if (m_players_id[0] == pid)
+	{
+		is_playing = true;
+		enableActions();
+	}
 }
 
 void Game::canPlay(int pid)
