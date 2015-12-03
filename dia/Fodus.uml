@@ -488,11 +488,6 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_3ZeBg5U0EeWTYL3jMWn57g" name="m_hud" type="_SNioUJUyEeWTYL3jMWn57g" aggregation="composite" association="_3ZeBgJU0EeWTYL3jMWn57g"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_1DkEoJU1EeWTYL3jMWn57g" name="m_selectedChar"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_Fex545U2EeWTYL3jMWn57g" name="m_actions_listener" type="_NDwjsJU1EeWTYL3jMWn57g" aggregation="composite" association="_Fex54JU2EeWTYL3jMWn57g"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_bvwMIpU3EeWTYL3jMWn57g" name="tilefactory" type="_NWQXAJU3EeWTYL3jMWn57g" association="_bvvlEJU3EeWTYL3jMWn57g">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eULQsJU3EeWTYL3jMWn57g" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eUNF4JU3EeWTYL3jMWn57g" value="1"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_gB4vspU3EeWTYL3jMWn57g" name="spritefactory" type="_PhQO8JU3EeWTYL3jMWn57g" association="_gB4IoJU3EeWTYL3jMWn57g"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_QpGyYJU4EeWTYL3jMWn57g" name="selectChar"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_ndLAEJU4EeWTYL3jMWn57g" name="disableActions"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_o6vKQJU4EeWTYL3jMWn57g" name="enableActions"/>
@@ -506,15 +501,8 @@
       <ownedOperation xmi:type="uml:Operation" xmi:id="_pBSJEJU2EeWTYL3jMWn57g" name="handleEvents"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_SNioUJUyEeWTYL3jMWn57g" name="HUD" visibility="public">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_8VP_ApU0EeWTYL3jMWn57g" name="characters" type="_TZYJUJUyEeWTYL3jMWn57g" aggregation="composite" association="_8VPX8JU0EeWTYL3jMWn57g">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9kmHAJU0EeWTYL3jMWn57g" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9kpKUJU0EeWTYL3jMWn57g" value="*"/>
-      </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_GZJs4JU1EeWTYL3jMWn57g" name="m_texts"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_BzDEcJU1EeWTYL3jMWn57g" name="draw"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_TZYJUJUyEeWTYL3jMWn57g" name="Character">
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_CY8m0JU1EeWTYL3jMWn57g" name="draw"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_fU0yMJUzEeWTYL3jMWn57g" name="Layer" isAbstract="true">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_3g1tcJU3EeWTYL3jMWn57g" name="m_vertices"/>
@@ -525,12 +513,33 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_6zP2MJUzEeWTYL3jMWn57g" name="ElementLayer">
       <generalization xmi:type="uml:Generalization" xmi:id="_A9QkkJU4EeWTYL3jMWn57g" general="_fU0yMJUzEeWTYL3jMWn57g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8QodAJnPEeWbSOdouY6_Ug" name="tilefactory" type="_NWQXAJU3EeWTYL3jMWn57g" association="_8Qn18JnPEeWbSOdouY6_Ug"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_miPogJnQEeWbSOdouY6_Ug" name="m_depth"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_kRXyEJnQEeWbSOdouY6_Ug" name="update"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_KRaNUJU0EeWTYL3jMWn57g" name="AnimationLayer">
       <generalization xmi:type="uml:Generalization" xmi:id="_B6zx8JU4EeWTYL3jMWn57g" general="_fU0yMJUzEeWTYL3jMWn57g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_7D3H4JnPEeWbSOdouY6_Ug" name="spritefactory" type="_PhQO8JU3EeWTYL3jMWn57g" association="_7DzdgJnPEeWbSOdouY6_Ug"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_FNq0AJnREeWbSOdouY6_Ug" name="frameTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_H2NjkJnREeWbSOdouY6_Ug" name="frameClock"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_JJzSYJnREeWbSOdouY6_Ug" name="speed"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_KGEtYJnREeWbSOdouY6_Ug" name="m_pending_moves"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_LlIsYJnREeWbSOdouY6_Ug" name="m_animation_running"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_NyXY8JnREeWbSOdouY6_Ug" name="m_animations_done"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_PpPbAJnREeWbSOdouY6_Ug" name="m_animations_progress"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_NBGtwJU0EeWTYL3jMWn57g" name="InfoLayer">
       <generalization xmi:type="uml:Generalization" xmi:id="_BjzAIJU4EeWTYL3jMWn57g" general="_fU0yMJUzEeWTYL3jMWn57g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Z6lvAJnREeWbSOdouY6_Ug" name="m_perso_texts"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_bX3lUJnREeWbSOdouY6_Ug" name="m_font"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_lHwLAJnREeWbSOdouY6_Ug" name="m_player"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_mrDJwJnREeWbSOdouY6_Ug" name="m_disable_actions"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ork3EJnREeWbSOdouY6_Ug" name="m_maps"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_ZB_vkJnQEeWbSOdouY6_Ug" name="disable"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_aK4DMJnQEeWbSOdouY6_Ug" name="enable"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_bF1PkJnQEeWbSOdouY6_Ug" name="hideMoveMap"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_c2Co8JnQEeWbSOdouY6_Ug" name="showMoveMap"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_gukZsJnQEeWbSOdouY6_Ug" name="updateVertices"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_tlJnwJU0EeWTYL3jMWn57g" memberEnd="_tlMrEJU0EeWTYL3jMWn57g _tlMrEZU0EeWTYL3jMWn57g" navigableOwnedEnd="_tlMrEJU0EeWTYL3jMWn57g">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_tlLc8JU0EeWTYL3jMWn57g" source="org.eclipse.papyrus">
@@ -543,12 +552,6 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3ZeBgpU0EeWTYL3jMWn57g" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_3ZeokJU0EeWTYL3jMWn57g" name="m_game" type="_Kxg7oJUyEeWTYL3jMWn57g" association="_3ZeBgJU0EeWTYL3jMWn57g"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_8VPX8JU0EeWTYL3jMWn57g" memberEnd="_8VP_ApU0EeWTYL3jMWn57g _8VQmEJU0EeWTYL3jMWn57g">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8VP_AJU0EeWTYL3jMWn57g" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8VP_AZU0EeWTYL3jMWn57g" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_8VQmEJU0EeWTYL3jMWn57g" type="_SNioUJUyEeWTYL3jMWn57g" association="_8VPX8JU0EeWTYL3jMWn57g"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_NDwjsJU1EeWTYL3jMWn57g" name="ActionsListener">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_u49uIJU2EeWTYL3jMWn57g" name="mouseactions" type="_dQ6u0JU1EeWTYL3jMWn57g" aggregation="composite" association="_u49HEJU2EeWTYL3jMWn57g">
@@ -595,26 +598,47 @@
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_NWQXAJU3EeWTYL3jMWn57g" name="TileFactory">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_wnmkwpU3EeWTYL3jMWn57g" name="tile" type="_ObC00JU3EeWTYL3jMWn57g" association="_wnl9sJU3EeWTYL3jMWn57g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_wJRNIJnQEeWbSOdouY6_Ug" name="m_tilesDoc"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xqZBoJnQEeWbSOdouY6_Ug" name="m_boot"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_zdev4JnQEeWbSOdouY6_Ug" name="buildTileforElt"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ObC00JU3EeWTYL3jMWn57g" name="Tile"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ObC00JU3EeWTYL3jMWn57g" name="Tile">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9v6B8JnQEeWbSOdouY6_Ug" name="id"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-XcjEJnQEeWbSOdouY6_Ug" name="x"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__FjmQJnQEeWbSOdouY6_Ug" name="y"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_AFv38JnREeWbSOdouY6_Ug" name="key"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_PhQO8JU3EeWTYL3jMWn57g" name="SpriteFactory">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_xFgowpU3EeWTYL3jMWn57g" name="animatedsprite" type="_QdNg4JU3EeWTYL3jMWn57g" association="_xFgBsJU3EeWTYL3jMWn57g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Ugp14JnREeWbSOdouY6_Ug" name="m_spritesDoc"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_TR15YJnREeWbSOdouY6_Ug" name="buildSpriteForElt"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_QdNg4JU3EeWTYL3jMWn57g" name="AnimatedSprite">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_xbyaw5U3EeWTYL3jMWn57g" name="animation" type="_T-iSkJU3EeWTYL3jMWn57g" association="_xbyawJU3EeWTYL3jMWn57g"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_xbyaw5U3EeWTYL3jMWn57g" name="animations" type="_T-iSkJU3EeWTYL3jMWn57g" aggregation="composite" association="_xbyawJU3EeWTYL3jMWn57g">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bVzd4JnTEeWbSOdouY6_Ug" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bV1TEJnTEeWbSOdouY6_Ug" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_JFtxsJnTEeWbSOdouY6_Ug" name="init"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_VoWL0JnTEeWbSOdouY6_Ug" name="m_type"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9O--0JnTEeWbSOdouY6_Ug" name="m_frameTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-IqY0JnTEeWbSOdouY6_Ug" name="m_currentTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__t4DIJnTEeWbSOdouY6_Ug" name="m_vertices"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Ap0G8JnUEeWbSOdouY6_Ug" name="m_texture"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_yllMoJnSEeWbSOdouY6_Ug" name="play"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_83_3oJnSEeWbSOdouY6_Ug" name="stop"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_98h2wJnSEeWbSOdouY6_Ug" name="getAnimation"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="__GcFIJnSEeWbSOdouY6_Ug" name="setFrame"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="__-nDQJnSEeWbSOdouY6_Ug" name="isPlaying"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_BDp_wJnTEeWbSOdouY6_Ug" name="getFrameTime"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_DBeXUJnTEeWbSOdouY6_Ug" name="setAnimation"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_E3_0EJnTEeWbSOdouY6_Ug" name="setType"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_T-iSkJU3EeWTYL3jMWn57g" name="Animation"/>
-    <packagedElement xmi:type="uml:Association" xmi:id="_bvvlEJU3EeWTYL3jMWn57g" memberEnd="_bvwMIpU3EeWTYL3jMWn57g _bvwMI5U3EeWTYL3jMWn57g">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bvwMIJU3EeWTYL3jMWn57g" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bvwMIZU3EeWTYL3jMWn57g" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_bvwMI5U3EeWTYL3jMWn57g" type="_Kxg7oJUyEeWTYL3jMWn57g" association="_bvvlEJU3EeWTYL3jMWn57g"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_gB4IoJU3EeWTYL3jMWn57g" memberEnd="_gB4vspU3EeWTYL3jMWn57g _gB4vs5U3EeWTYL3jMWn57g">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gB4vsJU3EeWTYL3jMWn57g" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gB4vsZU3EeWTYL3jMWn57g" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_gB4vs5U3EeWTYL3jMWn57g" type="_Kxg7oJUyEeWTYL3jMWn57g" association="_gB4IoJU3EeWTYL3jMWn57g"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_T-iSkJU3EeWTYL3jMWn57g" name="Animation">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_4pG1UJnSEeWbSOdouY6_Ug" name="m_frames"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_6DFgAJnSEeWbSOdouY6_Ug" name="m_texture"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_zZf84JnSEeWbSOdouY6_Ug" name="addFrame"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_0ie-MJnSEeWbSOdouY6_Ug" name="setTexture"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_3NxfwJnSEeWbSOdouY6_Ug" name="getFrame"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_wnl9sJU3EeWTYL3jMWn57g" memberEnd="_wnmkwpU3EeWTYL3jMWn57g _wnmkw5U3EeWTYL3jMWn57g">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wnmkwJU3EeWTYL3jMWn57g" source="org.eclipse.papyrus">
@@ -626,7 +650,7 @@
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xFgowJU3EeWTYL3jMWn57g" source="org.eclipse.papyrus">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xFgowZU3EeWTYL3jMWn57g" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_xFgow5U3EeWTYL3jMWn57g" name="spritefactory" type="_PhQO8JU3EeWTYL3jMWn57g" association="_xFgBsJU3EeWTYL3jMWn57g"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_xFgow5U3EeWTYL3jMWn57g" type="_PhQO8JU3EeWTYL3jMWn57g" association="_xFgBsJU3EeWTYL3jMWn57g"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_xbyawJU3EeWTYL3jMWn57g" memberEnd="_xbyaw5U3EeWTYL3jMWn57g _xbzB0JU3EeWTYL3jMWn57g">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xbyawZU3EeWTYL3jMWn57g" source="org.eclipse.papyrus">
@@ -639,6 +663,39 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__-wU8pU3EeWTYL3jMWn57g" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="__-w8AJU3EeWTYL3jMWn57g" name="scene" type="_RQejIJUyEeWTYL3jMWn57g" association="__-wU8JU3EeWTYL3jMWn57g"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_7DzdgJnPEeWbSOdouY6_Ug" memberEnd="_7D3H4JnPEeWbSOdouY6_Ug _7D3u8JnPEeWbSOdouY6_Ug">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7D15wJnPEeWbSOdouY6_Ug" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7D2g0JnPEeWbSOdouY6_Ug" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_7D3u8JnPEeWbSOdouY6_Ug" type="_KRaNUJU0EeWTYL3jMWn57g" association="_7DzdgJnPEeWbSOdouY6_Ug"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_8Qn18JnPEeWbSOdouY6_Ug" memberEnd="_8QodAJnPEeWbSOdouY6_Ug _8QodAZnPEeWbSOdouY6_Ug">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8Qn18ZnPEeWbSOdouY6_Ug" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8Qn18pnPEeWbSOdouY6_Ug" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_8QodAZnPEeWbSOdouY6_Ug" type="_6zP2MJUzEeWTYL3jMWn57g" association="_8Qn18JnPEeWbSOdouY6_Ug"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_JgtzAJnQEeWbSOdouY6_Ug" name="Player">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_sZbo4JnREeWbSOdouY6_Ug" name="id"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9nIrAZnREeWbSOdouY6_Ug" name="m_chars" type="_KwRWYJnQEeWbSOdouY6_Ug" aggregation="composite" association="_9nHc4JnREeWbSOdouY6_Ug">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AYYqoJnSEeWbSOdouY6_Ug" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AYaf0JnSEeWbSOdouY6_Ug" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_rJZkYJnREeWbSOdouY6_Ug" name="addOwnedPerso"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_vAbgUJnREeWbSOdouY6_Ug" name="removePerso"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_wG71YJnREeWbSOdouY6_Ug" name="operator[]"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_0YUyEJnREeWbSOdouY6_Ug" name="resetMoves"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_2zQjcJnREeWbSOdouY6_Ug" name="resetAttacks"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_4zJXkJnREeWbSOdouY6_Ug" name="begin"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_6jJ8oJnREeWbSOdouY6_Ug" name="end"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_KwRWYJnQEeWbSOdouY6_Ug" name="Character"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_9nHc4JnREeWbSOdouY6_Ug" memberEnd="_9nIrAZnREeWbSOdouY6_Ug _9nIrApnREeWbSOdouY6_Ug">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9nID8JnREeWbSOdouY6_Ug" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9nIrAJnREeWbSOdouY6_Ug" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_9nIrApnREeWbSOdouY6_Ug" type="_JgtzAJnQEeWbSOdouY6_Ug" association="_9nHc4JnREeWbSOdouY6_Ug"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_jXkrYJUyEeWTYL3jMWn57g" name="Packages">
