@@ -159,7 +159,7 @@ void Engine::start()
 	foe->setAttribute("move", 3);
 	foe->setAttribute("range", 2);
 	foe->setX(12);
-	foe->setY(7);
+	foe->setY(5);
 	foe->setD(3);
 	foe->setKey("FOE");
 	foe->setAttribute("health", 100);
