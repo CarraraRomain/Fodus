@@ -260,7 +260,7 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 			if (restore >= 5) restore = 0.8 * restore + rand() % (restore / 5);
 			RestoreAction* actionR = new RestoreAction(target, restore);
 			m_action_list->push_back(actionR);
-			LOG(DEBUG) << "Rejuvenate succeded from " << uid << "to " << target << "for " << restore << "restoration";
+			LOG(DEBUG) << "Rejuvenate succeded from " << uid << " to " << target << " for " << restore << " points";
 			break;
 		}
 	}
@@ -336,9 +336,8 @@ void Ruler::nextPlayer(int played, int toPlay, Etat* state)
 	{
 		int id = ch.second->UID;
 		createMapCharacter(id);
-		//LOG(DEBUG) << "propagate begin with X:" << state->getAttribute("posX", id) << " Y:" << state->getAttribute("posY", id) << " and move : " << state->getAttribute("move", id);
-		propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id), id);
-		//LOG(DEBUG) << "propagate done";
+		if(state->getAttribute("posX", id) > 0 && state->getAttribute("posX", id) < WIDTH && state->getAttribute("posY", id)>0 && state->getAttribute("posY", id) < HEIGHT)
+			propagate(state->getAttribute("posX", id), state->getAttribute("posY", id), state->getAttribute("move", id), id);
 	}
 }
 

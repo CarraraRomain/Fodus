@@ -161,6 +161,13 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 			MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
 			commandM.execute();
 		}
+		else {
+			okX = rand() % (2*liste->getAttribute("move", c.UID));
+			okX = okX - liste->getAttribute("move", c.UID) + liste->getAttribute("posX", c.UID);
+			okY = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posY", c.UID);
+			MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
+			commandM.execute();
+		}
 		if (attaqueDistance > 0)
 		{
 			AttackCommand commandA = AttackCommand(engine, c.UID, proche, playerUid);
