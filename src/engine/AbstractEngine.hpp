@@ -28,6 +28,7 @@ public:
 	virtual void propagate(int x, int y, int valeur, int uid) = 0;
 	virtual int getMapValue(int x, int y, int uid) = 0;
 	////////////////////////////////
+	virtual void notifyGameEnd(Player pl, int score);
 protected:
 	std::map<int, int> m_clients_players;
 	std::vector<int> m_clients;
@@ -43,6 +44,7 @@ protected:
 	virtual void notifyNowPlaying(int pid);
 	virtual void notifyCanPlay(int pid);
 	virtual void notifyPlayer(Player pl);
+	
 	virtual void notifyHasPlayed(int pid);
 
 };

@@ -20,7 +20,7 @@ m_boot(boot), getEngine()(eng), m_hud(boot), m_isKeyPressed(false)
 Game::Game(Bootstrap* boot, AbstractEngine* engine, int cid): IGame(boot, engine, cid), m_hud(boot), m_game_scene(boot)
 {
 	m_has_played = false;
-	
+	m_end = false;
 }
 
 Game::~Game()
@@ -74,7 +74,7 @@ void Game::run()
 	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
-
+		if (m_end) m_game_window->close();
 
 		if (m_player_playing == 1) game_event_loop();
 		
@@ -192,6 +192,19 @@ void Game::updatePlayer(Player pl)
 	m_players[pl.getId()] = pl;
 
 	watchMovements(pl.getId());
+}
+
+void Game::updateGameEnd(int score)
+{
+	LOG(INFO) << "================";
+	if(score > 0) LOG(INFO) << "YOU WON :)";
+	else LOG(INFO) << "YOU LOST :(";
+	LOG(INFO) << "Score: " << score;
+	LOG(INFO) << "================";
+	LOG(INFO) << "Fodus 2.Final";
+	LOG(INFO) << "================";
+
+	m_end = true;
 }
 
 void Game::updateNowPlaying(int pid)

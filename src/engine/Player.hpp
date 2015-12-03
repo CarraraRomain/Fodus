@@ -23,6 +23,7 @@ public:
 
 	Player& operator=(const Player&);
 	Player&operator=(Player&&);
+	int size() const;
 	const Character& operator[](size_t i);
 	iterator begin();
 	iterator end();

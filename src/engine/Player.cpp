@@ -155,6 +155,11 @@ Player &Player::operator=(Player &&player) {
 	return *this;
 }
 
+int Player::size() const
+{
+	return m_chars.size();
+}
+
 Player::Player(const Player &player) {
 	m_id = player.m_id;
 	m_moved.clear();

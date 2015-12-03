@@ -163,7 +163,7 @@ void Engine::start()
 	foe->setD(3);
 	foe->setKey("FOE");
 	foe->setAttribute("health", 100);
-	foe->setAttribute("currentHealth", 100);
+	foe->setAttribute("currentHealth", 10);
 	foe->setAttribute("defence", 70);
 	foe->setAttribute("status",0);
 	foe->setAttribute("side", 2);

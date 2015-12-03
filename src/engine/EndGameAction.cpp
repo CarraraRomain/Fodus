@@ -1,8 +1,7 @@
 #include "EndGameAction.hpp"
 
-EndGameAction::EndGameAction(bool newResult) : Action(Exit)
+EndGameAction::EndGameAction(int score) : Action(Exit), m_score(score)
 {
-	result = newResult;
 }
 
 EndGameAction::~EndGameAction()
@@ -11,5 +10,5 @@ EndGameAction::~EndGameAction()
 
 void EndGameAction::execute(Etat& e)
 {
-	e.setResult(result);
+	e.setResult(m_score);
 }

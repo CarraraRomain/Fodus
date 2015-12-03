@@ -32,6 +32,7 @@ public:
 	void updateElement(Element& el) override;
 	void updateTurn(int turn)  override;
 	void updatePlayer(Player pl) override;
+	void updateGameEnd(int score) override;
 	void updateNowPlaying(int pid)  override;
 	void canPlay(int pid) 	 override;
 	void hasPlayed(int pid) override;
@@ -54,7 +55,7 @@ private:
 	bool m_isKeyPressed;
 	int m_turns;
 	std::map<int, bool> m_move_watcher;
-
+	bool m_end;
 	bool m_has_played;
 	bool is_playing;
 	void game_event_loop();

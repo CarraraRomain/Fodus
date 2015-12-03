@@ -77,6 +77,11 @@ void AbstractEngine::notifyPlayer(Player pl)
 	}
 }
 
+void AbstractEngine::notifyGameEnd(Player pl, int score)
+{
+	m_players_obs[pl.getId()]->updateGameEnd(score);
+}
+
 void AbstractEngine::notifyHasPlayed(int pid)
 {
 	m_players_obs[pid]->hasPlayed(pid);

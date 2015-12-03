@@ -42,7 +42,7 @@ private:
 	std::unique_ptr<ActionList> m_action_list;
 	std::vector< std::vector<int> > map;
 	std::map < int, std::vector< std::vector<int> > > mapCharacter;
-
+	bool m_end;
 	Engine* m_engine;
 };
 

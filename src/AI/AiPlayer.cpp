@@ -68,6 +68,10 @@ void AiPlayer::updatePlayer(Player pl)
 {
 }
 
+void AiPlayer::updateGameEnd(int score)
+{
+}
+
 void AiPlayer::updateNowPlaying(int pid)
 {
 	m_player_playing = pid;

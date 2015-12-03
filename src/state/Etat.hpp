@@ -16,7 +16,7 @@ private:
 	ElementList liste;
 	int turnsCount;
 	bool gameEnded;
-	bool gameResult;
+	int m_score;
 
 public:
 	explicit Etat(int);
@@ -35,7 +35,7 @@ public:
 	void notify() override;
 	int getSize();
 
-	void setResult(bool);
+	void setResult(int);
 	bool hasWin();
 	bool hasEnded();
 

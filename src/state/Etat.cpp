@@ -114,15 +114,15 @@ int Etat::getSize()
 	return liste.size();
 }
 
-void Etat::setResult(bool result)
+void Etat::setResult(int score)
 {
 	gameEnded = true;
-	gameResult = result;
+	m_score = score;
 }
 
 bool Etat::hasWin()
 {
-	return gameResult;
+	return (m_score >0);
 }
 
 bool Etat::hasEnded()

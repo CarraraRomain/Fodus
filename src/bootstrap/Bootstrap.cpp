@@ -331,16 +331,17 @@ void Bootstrap::launch_editor()
 void Bootstrap::launch_game()
 {
 	LOG(DEBUG) << "Launching Game";
+	std::string level = chooseLevel();
 	
 	Engine engine(this);
 	Game game(this, &engine, rand());
 	AiPlayer aiP(this, &engine, rand());
-	engine.loadLevel(chooseLevel());
-	game.start();
 
+	engine.loadLevel(level);
+	game.start();
 	aiP.start();
 	engine.start();
-	
+
 	game.run(); 
 
 	//aiP.run();

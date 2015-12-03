@@ -4,10 +4,10 @@
 class EndGameAction : public Action
 {
 private:
-	bool result;
+	int m_score;
 
 public:
-	EndGameAction(bool result);
+	EndGameAction(int score);
 	~EndGameAction();
 	virtual void execute(Etat& e) override;
 };

@@ -4,7 +4,7 @@
 #include "../state/ElementList.hpp"
 
 
-Ruler::Ruler(Engine* e, Etat& state): m_state(state), m_engine(e)
+Ruler::Ruler(Engine* e, Etat& state): m_state(state), m_engine(e), m_end(false)
 {
 	m_action_list.reset(new ActionList);
 }
@@ -354,9 +354,28 @@ std::vector<std::vector<int>> Ruler::getMap(int uid)
 
 void Ruler::checkRule(Etat * state)
 {
+	if (m_end) return;
 	ElementList* liste = state->getList();
 	int i;
+	for(auto const &pl: m_engine->getPlayers())
+	{
+		
+		int size = pl.second.size();
+		if(size == 0 && pl.first == 1)
+		{
+		
+			m_engine->notifyGameEnd(m_engine->getPlayer(1), 0);
+			m_end = true;
+			return;
+		}
+		else if(size == 0 && pl.first == 2)
+		{
+			m_engine->notifyGameEnd(m_engine->getPlayer(1), 42);
+			m_end = true;
+			return;
+		}
 
+	}
 	for (i = 0; i < liste->size(); i++)
 	{
 		if ((*liste)[i]->getD() >= 3)
@@ -367,10 +386,13 @@ void Ruler::checkRule(Etat * state)
 			{
 				if ((*liste)[i]->getType() == Principal)
 				{
+			
 					EndGameAction* actionE = new EndGameAction(false);
 					m_action_list->push_back(actionE);
 					LOG(INFO) << "============ YOU LOST !!! ============ ";
+					
 				}
+				
 				DeadAction* actionD =new  DeadAction(test);
 				m_engine->death(test);
 				m_action_list->push_back(actionD);
