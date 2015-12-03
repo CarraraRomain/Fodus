@@ -162,9 +162,14 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 			commandM.execute();
 		}
 		else {
+			int count = 10000;
 			while (okX == 0 || okY == 0 || engine->getMapValue(okX, okY, c.UID) == 0) {
 				okX = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posX", c.UID);
 				okY = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posY", c.UID);
+				if (okX < 0 || okX >= WIDTH) okX = 0;
+				if (okY < 0 || okY >= HEIGHT) okY = 0;
+				count--;
+				if (count <= 0) break;
 			}
 			MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
 			commandM.execute();
