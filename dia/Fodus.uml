@@ -405,10 +405,25 @@
       <ownedEnd xmi:type="uml:Property" xmi:id="_CLqjsIlLEeWII_UxwgKZDQ" type="_o7MP4IlIEeWII_UxwgKZDQ" association="_CLoHcIlLEeWII_UxwgKZDQ"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_nC_JUI70EeWBeYmw9yMCAw" name="AbstractEngine">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ULLqcJn4EeWvOP-nrVsSOQ" name="m_players" type="_evoWEJn3EeWvOP-nrVsSOQ" aggregation="composite" association="_ULFj0Jn4EeWvOP-nrVsSOQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WQIkwJn4EeWvOP-nrVsSOQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_WQNdQJn4EeWvOP-nrVsSOQ" value="*"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_tMrEYI70EeWBeYmw9yMCAw" name="start"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_uKdiUI70EeWBeYmw9yMCAw" name="connect"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_8zSTQI78EeWA6_jgfGJbrQ" name="registerPlayer"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_-8uE8I78EeWA6_jgfGJbrQ" name="getState"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_h3bikJn5EeWJzsE4U0vyLg" name="getPlayers"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_ireOoJn5EeWJzsE4U0vyLg" name="getMap"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_ju8d0Jn5EeWJzsE4U0vyLg" name="notifyGameEnd"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_k9HhIJn5EeWJzsE4U0vyLg" name="notifyGlobal"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_nF1hIJn5EeWJzsE4U0vyLg" name="notifySingle"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_olxp4Jn5EeWJzsE4U0vyLg" name="notifyElement"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_p_G0UJn5EeWJzsE4U0vyLg" name="notifyTurn"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_spVl8Jn5EeWJzsE4U0vyLg" name="notifyNowPlaying"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_xl60sJn5EeWJzsE4U0vyLg" name="notifyCanPlay"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_0RiGYJn5EeWJzsE4U0vyLg" name="notifyPlayer"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_1fw0EJn5EeWJzsE4U0vyLg" name="notifyHasPlayed"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Realization" xmi:id="_B83cMI79EeWA6_jgfGJbrQ" client="_VeSSoIlFEeWII_UxwgKZDQ" supplier="_nC_JUI70EeWBeYmw9yMCAw"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_VN62II79EeWA6_jgfGJbrQ" name="AttackAction">
@@ -421,20 +436,44 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_zV2TAI79EeWA6_jgfGJbrQ" name="perso2"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Realization" xmi:id="_1yGTAI79EeWA6_jgfGJbrQ" client="_w-nV4I79EeWA6_jgfGJbrQ" supplier="_o7MP4IlIEeWII_UxwgKZDQ"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_kDqF4I7-EeWA6_jgfGJbrQ" name="Player">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_mkkjcI7-EeWA6_jgfGJbrQ" name="persos"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_oDeKYI7-EeWA6_jgfGJbrQ" name="move"/>
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_o8L7EI7-EeWA6_jgfGJbrQ" name="attack"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_evoWEJn3EeWvOP-nrVsSOQ" name="Player">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_evoWEZn3EeWvOP-nrVsSOQ" name="id"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_evoWEpn3EeWvOP-nrVsSOQ" name="m_chars" type="_evtOkJn3EeWvOP-nrVsSOQ" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_evoWE5n3EeWvOP-nrVsSOQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_evoWFJn3EeWvOP-nrVsSOQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_X5JxAJn4EeWvOP-nrVsSOQ" name="m_characters" type="_evtOkJn3EeWvOP-nrVsSOQ" aggregation="composite" association="_X5GtsJn4EeWvOP-nrVsSOQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_evoWFZn3EeWvOP-nrVsSOQ" name="addOwnedPerso"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_evoWFpn3EeWvOP-nrVsSOQ" name="removePerso"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_evoWF5n3EeWvOP-nrVsSOQ" name="operator[]"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_evoWGJn3EeWvOP-nrVsSOQ" name="resetMoves"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_evoWGZn3EeWvOP-nrVsSOQ" name="resetAttacks"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_evoWGpn3EeWvOP-nrVsSOQ" name="begin"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_evoWG5n3EeWvOP-nrVsSOQ" name="end"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_p_DGQI7-EeWA6_jgfGJbrQ" memberEnd="_p_DtUo7-EeWA6_jgfGJbrQ _p_DtU47-EeWA6_jgfGJbrQ" navigableOwnedEnd="_p_DtUo7-EeWA6_jgfGJbrQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_p_DtUI7-EeWA6_jgfGJbrQ" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_p_DtUY7-EeWA6_jgfGJbrQ" key="nature" value="UML_Nature"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_evtOkJn3EeWvOP-nrVsSOQ" name="Character">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ueDWwJn3EeWvOP-nrVsSOQ" name="m_attacked"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_wukn4Jn3EeWvOP-nrVsSOQ" name="m_moved"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_zOHMcJn3EeWvOP-nrVsSOQ" name="m_movements"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_R0FQMJn4EeWvOP-nrVsSOQ" name="UID"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_noTm8Jn3EeWvOP-nrVsSOQ" name="addMove"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_sp7GsJn3EeWvOP-nrVsSOQ" name="getMoves"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Id484Jn4EeWvOP-nrVsSOQ" name="hasMoved"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Jc-bUJn4EeWvOP-nrVsSOQ" name="hasAttacked"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_QLbQUJn4EeWvOP-nrVsSOQ" name="attack"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_Q1JiwJn4EeWvOP-nrVsSOQ" name="move"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_ULFj0Jn4EeWvOP-nrVsSOQ" visibility="private" memberEnd="_ULLqcJn4EeWvOP-nrVsSOQ _ULMRgJn4EeWvOP-nrVsSOQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ULInIJn4EeWvOP-nrVsSOQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULJ1QJn4EeWvOP-nrVsSOQ" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_p_DtUo7-EeWA6_jgfGJbrQ" name="players" type="_kDqF4I7-EeWA6_jgfGJbrQ" aggregation="composite" association="_p_DGQI7-EeWA6_jgfGJbrQ">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vsDFUI7-EeWA6_jgfGJbrQ" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vsFhkI7-EeWA6_jgfGJbrQ" value="*"/>
-      </ownedEnd>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_p_DtU47-EeWA6_jgfGJbrQ" type="_VeSSoIlFEeWII_UxwgKZDQ" association="_p_DGQI7-EeWA6_jgfGJbrQ"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_ULMRgJn4EeWvOP-nrVsSOQ" type="_nC_JUI70EeWBeYmw9yMCAw" association="_ULFj0Jn4EeWvOP-nrVsSOQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_X5GtsJn4EeWvOP-nrVsSOQ" memberEnd="_X5JxAJn4EeWvOP-nrVsSOQ _X5K_IJn4EeWvOP-nrVsSOQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_X5H70Jn4EeWvOP-nrVsSOQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_X5Ii4Jn4EeWvOP-nrVsSOQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_X5K_IJn4EeWvOP-nrVsSOQ" type="_evoWEJn3EeWvOP-nrVsSOQ" association="_X5GtsJn4EeWvOP-nrVsSOQ"/>
     </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Enumeration" xmi:id="_b8M0cIlJEeWII_UxwgKZDQ" name="AnimationType">
