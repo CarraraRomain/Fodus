@@ -72,6 +72,7 @@ void Ruler::execute(Command* com, Etat* state)
 			{
 				createSkill(state, skill_com->uid, skill_com->skillIndex, skill_com->posX, skill_com->posY, found);
 				success = true;
+				m_engine->getPlayer(skill_com->player)[skill_com->uid].attack();
 			}
 			else LOG(DEBUG) << skill_com->uid << " can't use skill";
 		}
@@ -203,8 +204,7 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 int Ruler::checkSkill(Etat* state, int posX, int posY, int uid, int skillIndex, int player)
 {
 	createMap(state);
-	
-	if (m_engine->getPlayer(player).hasAttacked(uid)) return false;
+	if (m_engine->getPlayer(player)[uid].hasAttacked()) return false;
 
 	int found = 0;
 	int i;

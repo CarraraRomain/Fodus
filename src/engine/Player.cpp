@@ -100,7 +100,8 @@ void Player::addOwnedPerso(int elt)
 }
 
 
-const Character& Player::operator[](size_t i)
+
+Character& Player::operator[](size_t i)
 {
 	return *(m_chars[i]);
 }
