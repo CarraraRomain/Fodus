@@ -141,13 +141,13 @@ void HUD::updateAttackCapa(bool b)
 {
 	if (b)
 	{
-		m_text_map["attack"].setString("Attack possible");
+		m_text_map["attack"].setString("Action possible");
 		m_text_map["attack"].setColor(sf::Color::Green);
 
 	}
 	else
 	{
-		m_text_map["attack"].setString("No more attacks");
+		m_text_map["attack"].setString("No more action");
 		m_text_map["attack"].setColor(sf::Color::Red);
 	}
 }

@@ -64,6 +64,7 @@ private:
 	void watchMovements(int);
 	void disableActions();
 	void enableActions();
+	void reflowSkill();
 
 	int skillMode;
 };

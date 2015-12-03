@@ -81,6 +81,7 @@ void Game::run()
 		getEngine()->run();
 		//handle_event();
 		m_game_scene.updateAnims();
+		reflowSkill();
 		if (!m_game_scene.isAnimationRunning() && is_playing ) {
 			enableActions();
 		}else
@@ -265,20 +266,7 @@ void Game::game_event_loop()
 					y >= OFFSET_Y * SIZE && y < (OFFSET_Y + HEIGHT)*SIZE)
 				{
 					m_select_box.setPosition(sf::Vector2f(SIZE* (x / SIZE),SIZE*( y / SIZE)));
-					sf::Color cl;
-					switch(skillMode)
-					{
-					case 1: 
-						cl = sf::Color::Red;
-						break;
-					case 2: 
-						cl = sf::Color::Blue;
-						break;
-					default: 
-						cl = sf::Color::Green;
-						break;
-					}
-					m_select_box.setOutlineColor(cl);
+					
 					m_show_box = true;
 				}
 				else m_show_box = false;
@@ -400,14 +388,16 @@ void Game::game_event_loop()
 					m_isKeyPressed = true;
 
 				}
-				m_hud.updateAction(skillMode);
+				
 			}
 			// End Keyboard
+
 		}catch(std::logic_error e)
 		{
 			LOG(DEBUG) << e.what();
 		}
 	}
+	
 }
 
 
@@ -432,6 +422,7 @@ void Game::updateHUD()
 	{
 		m_hud.updateAttackCapa(true);
 	}
+
 	m_hud.updateAction(skillMode);
 }
 
@@ -510,4 +501,23 @@ void Game::enableActions()
 	m_hud.actionsEnabled();
 	m_game_scene.getInfos()->enable();
 	
+}
+
+void Game::reflowSkill()
+{
+	sf::Color cl;
+	switch (skillMode)
+	{
+	case 1:
+		cl = sf::Color::Red;
+		break;
+	case 2:
+		cl = sf::Color::Blue;
+		break;
+	default:
+		cl = sf::Color::Green;
+		break;
+	}
+	m_select_box.setOutlineColor(cl);
+	m_hud.updateAction(skillMode);
 }
