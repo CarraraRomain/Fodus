@@ -513,6 +513,9 @@ void Game::reflowSkill()
 		cl = sf::Color::Red;
 		break;
 	case 2:
+		cl = sf::Color::Yellow;
+		break;
+	case 3:
 		cl = sf::Color::Blue;
 		break;
 	default:

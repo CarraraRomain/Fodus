@@ -179,13 +179,16 @@ void HUD::updateAction(int skillMode)
 	switch (skillMode)
 	{
 	case 1:
-		action = "Fireball";
+		action = "Attack";
 		break;
 	case 2:
+		action = "Fireball";
+		break;
+	case 3:
 		action = "Heal";
 		break;
 	default:
-		action = "Move";
+		action = "None";
 	}
 
 	m_text_map["action_name"].setString(action);
