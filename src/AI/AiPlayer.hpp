@@ -2,7 +2,7 @@
 #include "../game/IGame.hpp"
 #include "../engine/EndTurnCommand.hpp"
 #include "../engine/MoveCommand.h"
-#include "../engine/AttackCommand.h"
+#include "../engine/SkillCommand.hpp"
 #include "../engine/Character.hpp"
 
 class AiPlayer : public IGame

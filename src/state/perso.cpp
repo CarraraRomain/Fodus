@@ -105,6 +105,7 @@ int Perso::getAttribute(std::string attribute)
 	if (attribute == "uid") return uid;
 	if (attribute == "owner") return owner;
 	if (attribute == "side") return side;
+	if (attribute == "nbrSkill") return competences.size();
 }
 
 Competence* Perso::getSkill(int i)

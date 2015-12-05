@@ -92,8 +92,8 @@ void AiPlayer::sync(ElementList list)
 
 void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, AbstractEngine* engine)
 {
-	int i, j, x, y;
-	int distanceMin = 0;
+	int i, j, k, x, y, range;
+	int distanceMin = HEIGHT + WIDTH;
 	int proche = 0;
 	int attaqueDistance = 0;
 	int okX = 0, okY = 0;
@@ -106,78 +106,83 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 	}
 	else behavior = Aggression;
 
-	for (i = 0; i < liste->size(); i++)
-	{
-		if ((*liste)[i]->getD() == 3 && liste->getAttribute("side", c.UID) != (*liste)[i]->getAttribute("side"))
-		{
-			x = liste->getAttribute("posX", c.UID) - liste->getAttribute("posX", (*liste)[i]->getUid());
-			y = liste->getAttribute("posY", c.UID) - liste->getAttribute("posY", (*liste)[i]->getUid());
-			if (x < 0)x = -x;
-			if (y < 0)y = -y;
+	for (k = 0; k < liste->getAttribute("nbrSkill", c.UID); k++) {
 
-			if (x != 0 || y != 0)
+		range = 2;
+
+		for (i = 0; i < liste->size(); i++)
+		{
+			if ((*liste)[i]->getD() == 3 && liste->getAttribute("side", c.UID) != (*liste)[i]->getAttribute("side"))
 			{
-				distanceMin = x + y;
-				proche = (*liste)[i]->getUid();
+				x = liste->getAttribute("posX", c.UID) - liste->getAttribute("posX", (*liste)[i]->getUid());
+				y = liste->getAttribute("posY", c.UID) - liste->getAttribute("posY", (*liste)[i]->getUid());
+				if (x < 0)x = -x;
+				if (y < 0)y = -y;
+
+				if ((x != 0 || y != 0) && x + y < distanceMin)
+				{
+					distanceMin = x + y;
+					proche = (*liste)[i]->getUid();
+				}
 			}
 		}
-	}
 
-	if (distanceMin > 0)
-	{
-		for (i = 0; i < WIDTH; i++)
+		if (proche > 0)
 		{
-			for (j = 0; j < HEIGHT; j++)
+			for (i = 0; i < WIDTH; i++)
 			{
-				if (engine->getMapValue(i, j, c.UID) > 0)
+				for (j = 0; j < HEIGHT; j++)
 				{
-					x = i - liste->getAttribute("posX", proche);
-					y = j - liste->getAttribute("posY", proche);
-					if (x < 0)x = -x;
-					if (y < 0)y = -y;
+					if (engine->getMapValue(i, j, c.UID) > 0)
+					{
+						x = i - liste->getAttribute("posX", proche);
+						y = j - liste->getAttribute("posY", proche);
+						if (x < 0)x = -x;
+						if (y < 0)y = -y;
 
-					if (x + y <= liste->getAttribute("range", c.UID) && behavior == Aggression)
-					{
-						if (engine->getMapValue(i, j, c.UID) > attaqueDistance)
+						if (x + y <= liste->getAttribute("range", c.UID) && behavior == Aggression)
 						{
-							attaqueDistance = engine->getMapValue(i, j, c.UID);
-							okX = i;
-							okY = j;
+							if (x+y > attaqueDistance)
+							{
+								attaqueDistance = x+y;
+								okX = i;
+								okY = j;
+							}
 						}
-					}
-					else
-					{
-						if ((x + y < distanceMin && behavior != Fear) || (x + y > distanceMin && behavior == Fear) && attaqueDistance < 1)
+						else
 						{
-							distanceMin = x + y;
-							okX = i;
-							okY = j;
+							if ((x + y < distanceMin && behavior != Fear) || (x + y > distanceMin && behavior == Fear) && attaqueDistance < 1)
+							{
+								distanceMin = x + y;
+								okX = i;
+								okY = j;
+							}
 						}
 					}
 				}
 			}
-		}
-		if (okX > 0 || okY > 0) {
-			MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
-			commandM.execute();
-		}
-		else {
-			int count = 10000;
-			while (okX == 0 || okY == 0 || engine->getMapValue(okX, okY, c.UID) == 0) {
-				okX = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posX", c.UID);
-				okY = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posY", c.UID);
-				if (okX < 0 || okX >= WIDTH) okX = 0;
-				if (okY < 0 || okY >= HEIGHT) okY = 0;
-				count--;
-				if (count <= 0) break;
+			if (okX > 0 || okY > 0) {
+				MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
+				commandM.execute();
 			}
-			MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
-			commandM.execute();
-		}
-		if (attaqueDistance > 0)
-		{
-			AttackCommand commandA = AttackCommand(engine, c.UID, proche, playerUid);
-			commandA.execute();
+			else {
+				int count = 10000;
+				while (okX == 0 || okY == 0 || engine->getMapValue(okX, okY, c.UID) == 0) {
+					okX = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posX", c.UID);
+					okY = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posY", c.UID);
+					if (okX < 0 || okX >= WIDTH) okX = 0;
+					if (okY < 0 || okY >= HEIGHT) okY = 0;
+					count--;
+					if (count <= 0) break;
+				}
+				MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
+				commandM.execute();
+			}
+			if (attaqueDistance > 0)
+			{
+				SkillCommand commandS = SkillCommand(engine, liste->getAttribute("posX", proche), liste->getAttribute("posY", proche), c.UID, 0, playerUid);
+				commandS.execute();
+			}
 		}
 	}
 }

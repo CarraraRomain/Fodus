@@ -11,7 +11,6 @@
 #include "StatusAction.hpp"
 #include "RestoreAction.hpp"
 #include "ActionList.hpp"
-#include "AttackCommand.h"
 #include "SkillCommand.hpp"
 class Engine;
 

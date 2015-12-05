@@ -43,23 +43,6 @@ void Ruler::execute(Command* com, Etat* state)
 			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
 		break;
-
-	case Attack:
-
-		LOG(DEBUG) << "Ruler : exec Attack Command";
-		{
-			AttackCommand* attack_com = dynamic_cast<AttackCommand*>(com);
-
-			if (checkAttack(state, attack_com->uid1, attack_com->uid2, attack_com->player))
-			{
-				createAttack(state, attack_com->uid1, attack_com->uid2);
-				m_engine->getPlayer(attack_com->player).attack(attack_com->uid1);
-				success = true;
-			}
-			else LOG(DEBUG) << attack_com->uid1 << " can't attack " << attack_com->uid2;
-		}
-		break;
-
 		
 	case Skill:
 		LOG(DEBUG) << "Ruler : exec Skill Command";
@@ -102,7 +85,7 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid, int player)
 {
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || m_engine->getPlayer(player).hasMoved(uid)) return false;
 	LOG(DEBUG) << "check";
-	if(mapCharacter[uid][x][y] > 0) return true;
+	if (mapCharacter[uid][x][y] > 0) return true;
 	else return false;
 }
 
@@ -242,7 +225,16 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 
 	switch (skill->type)
 	{
-	case Fireball:
+		case Attack:
+		{
+			int damage = skill->damage * liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
+			DamageAction* action = new DamageAction(target, damage);
+			m_action_list->push_back(action);
+			LOG(DEBUG) << "Attack succeded from " << uid << " to " << target << " for " << damage << " damages";
+			break;
+		}
+
+		case Fireball:
 		{	
 			int damage = skill->damage * liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
 			if (damage >= 5)damage = 0.8*damage + rand() % (damage / 5);
@@ -254,7 +246,7 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 			break;
 		}
 
-	case Rejuvenate:
+		case Rejuvenate:
 		{
 			int restore = skill->damage * 0.02 * liste->getAttribute("power", uid);
 			if (restore >= 5) restore = 0.8 * restore + rand() % (restore / 5);

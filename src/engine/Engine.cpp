@@ -145,6 +145,8 @@ void Engine::start()
 	elt->setAttribute("status", 0);
 	state->getList()->push_back(elt);
 
+	Competence* attack = new Competence(Attack, 10, 2, 2);
+	elt->addSkill(attack);
 	Competence* fireball = new Competence(Fireball,20,3,10);
 	elt->addSkill(fireball);
 	Competence* heal = new Competence(Rejuvenate, 20, 3, 15);
@@ -156,33 +158,39 @@ void Engine::start()
 
 	Perso* foe = new Perso(89, 2);
 	foe->setClass(Monstre);
-	foe->setAttribute("move", 3);
-	foe->setAttribute("range", 2);
+	foe->setAttribute("move", 5);
+	foe->setAttribute("range", 1);
 	foe->setX(12);
 	foe->setY(5);
 	foe->setD(3);
 	foe->setKey("FOE");
 	foe->setAttribute("health", 100);
-	foe->setAttribute("currentHealth", 10);
-	foe->setAttribute("defence", 70);
+	foe->setAttribute("currentHealth", 100);
+	foe->setAttribute("defence", 85);
 	foe->setAttribute("status",0);
 	foe->setAttribute("side", 2);
 	state->getList()->push_back(foe);
+
+	Competence* attack2 = new Competence(Attack, 10, 2, 1);
+	foe->addSkill(attack2);
 	
 	Perso* foe2 = new Perso(55, 2);
 	foe2->setClass(Monstre);
-	foe2->setAttribute("move", 3);
-	foe2->setAttribute("range", 2);
+	foe2->setAttribute("move", 5);
+	foe2->setAttribute("range", 1);
 	foe2->setX(5);
 	foe2->setY(5);
 	foe2->setD(3);
 	foe2->setKey("FOE");
 	foe2->setAttribute("health", 100);
 	foe2->setAttribute("currentHealth", 100);
-	foe2->setAttribute("defence", 70);
+	foe2->setAttribute("defence", 85);
 	foe2->setAttribute("status", 0);
 	foe2->setAttribute("side", 2);
 	state->getList()->push_back(foe2);
+
+	Competence* attack3 = new Competence(Attack, 10, 2, 1);
+	foe2->addSkill(attack3);
 
 	//m_players[0] = Player(1, 1);
 	m_players[2] = Player(89, 1);

@@ -3,7 +3,6 @@
 #include "../render/AnimatedSprite.hpp"
 #include "../engine/MoveCommand.h"
 #include "../engine/EndTurnCommand.hpp"
-#include "../engine/AttackCommand.h"
 
 
 /*
@@ -306,13 +305,8 @@ void Game::game_event_loop()
 								MoveCommand command = MoveCommand(getEngine(), (x / SIZE), y / SIZE, MoveRight, 1, m_player_playing);
 							command.execute();
 							}
-							else if(skillMode == 1){
-								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, 0, m_player_playing);
-								command.execute();
-								skillMode = 0;
-							}
-							else if (skillMode == 2) {
-								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, 1, m_player_playing);
+							else {
+								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, skillMode-1, m_player_playing);
 								command.execute();
 								skillMode = 0;
 							}
@@ -372,8 +366,7 @@ void Game::game_event_loop()
 				}
 				if (event.key.code == sf::Keyboard::Space)
 				{
-					AttackCommand commandA = AttackCommand(getEngine(), 1, 89, 1);
-					commandA.execute();
+					skillMode = 1;
 				}
 				if (event.key.code == sf::Keyboard::Q)
 				{
@@ -381,11 +374,11 @@ void Game::game_event_loop()
 				}
 				if (event.key.code == sf::Keyboard::A)
 				{
-					skillMode = 1;
+					skillMode = 2;
 				}
 				if (event.key.code == sf::Keyboard::Z)
 				{
-					skillMode = 2;
+					skillMode = 3;
 				}
 
 				if (move && !m_isKeyPressed)

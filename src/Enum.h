@@ -5,7 +5,6 @@ enum CommandType {
 	EndTurn,
 	Debug,
 	Move,
-	Attack,
 	Dead,
 	Skill,
 	Status,
@@ -18,6 +17,7 @@ enum CommandType {
 };
 
 enum SkillType {
+	Attack,
 	Fireball,
 	Rejuvenate,
 	ZombieSpawn
