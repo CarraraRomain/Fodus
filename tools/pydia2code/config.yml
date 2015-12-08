@@ -1,7 +1,10 @@
-author: "Timothé Perez, Romain Carrara, Zhuo Li"
+author: "Timothe Perez, Romain Carrara, Zhuo Li"
 project:
   name: "Fodus"
   version: "3.1"
+stylesheets:
+  dia2xml: "dia-uml.xsl"
+  xml2cpp: "dia-uml2cpp.xsl"
 directories:
   input: "../../dia/"
   temp: "tmp/"
@@ -10,3 +13,7 @@ namespaces:
     - engine
     - state
     - render
+includes:
+  engine: "../global.hpp"
+  state: "../global.hpp"
+  render: "../global.hpp"

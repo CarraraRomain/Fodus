@@ -35,7 +35,11 @@ names and more.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
     <xsl:output method="text" indent="yes"/>
     <xsl:param name="directory"/>
-    <xsl:param name="directory"/>
+    <xsl:param name="include"/>
+    <xsl:param name="project"/>
+    <xsl:param name="author"/>
+    <xsl:param name="version"/>
+    <xsl:param name="date"/>
     <xsl:param name="indentation"><xsl:text>  </xsl:text></xsl:param>
 
 
@@ -55,7 +59,7 @@ names and more.
         <xsl:variable name="dtor"><xsl:text>~</xsl:text><xsl:value-of select="@name"/></xsl:variable>
         <xsl:variable name="ctor"><xsl:value-of select="@name"/></xsl:variable>
 
-        <xsl:document href="{$directory}{$CppClass}.h" method="text">
+        <xsl:document href="{$directory}{$CppClass}.hpp" method="text">
             <xsl:variable name="Protect">
                 <xsl:value-of select="concat('__',translate(@name, ' abcdefghijklmnopqrstuvwxyz','_ABCDEFGHIJKLMNOPQRSTUVWXYZ'),'_H__')"/>
             </xsl:variable>
@@ -262,21 +266,21 @@ names and more.
         <xsl:variable name="from"><xsl:value-of select="@from"/></xsl:variable>
         <xsl:text>#include "</xsl:text>
         <xsl:value-of select="translate(../class[@id=$from]/@name, ' ','_')"/>
-        <xsl:text>.h"&#xa;</xsl:text>
+        <xsl:text>.hpp"&#xa;</xsl:text>
     </xsl:template>
 
     <xsl:template match="Dependency" mode="includes">
         <xsl:variable name="dependsOn"><xsl:value-of select="@dependsOn"/></xsl:variable>
         <xsl:text>#include "</xsl:text>
         <xsl:value-of select="translate(../class[@id=$dependsOn]/@name, ' ','_')"/>
-        <xsl:text>.h"&#xa;</xsl:text>
+        <xsl:text>.hpp"&#xa;</xsl:text>
     </xsl:template>
 
     <xsl:template match="Generalization" mode="includes">
         <xsl:variable name="superclass"><xsl:value-of select="@superclass"/></xsl:variable>
         <xsl:text>#include "</xsl:text>
         <xsl:value-of select="translate(../class[@id=$superclass]/@name, ' ','_')"/>
-        <xsl:text>.h"&#xa;</xsl:text>
+        <xsl:text>.hpp"&#xa;</xsl:text>
     </xsl:template>
 
     <xsl:template match="Generalization" mode="derivations">
@@ -343,11 +347,26 @@ names and more.
     <xsl:template name="InterfaceHeader"><xsl:param name="ClassName"/><xsl:param name="GuardCode"/>
         <xsl:text>// </xsl:text>
         <xsl:value-of select="$ClassName"/>
-        <xsl:text>.h
+        <xsl:text>.hpp</xsl:text>
+        <xsl:text>
+// &#xa;// Project: </xsl:text>
+        <xsl:copy-of select="$project"/>
+        <xsl:text>
+// Version: </xsl:text>
+        <xsl:copy-of select="$version"/>
+        <xsl:text>
+// Author: </xsl:text>
+        <xsl:copy-of select="$author"/>
+        <xsl:text>
+// Auto-Generated Date: </xsl:text>
+        <xsl:copy-of select="$date"/>
+        <xsl:text>
+//
 //
 // This header file defines the interfaces to the class </xsl:text><xsl:value-of select="@name"/><xsl:text>
 //
 // This file was generate from a Dia Diagram using pydia2code.py
+// by Timothe Perez &lt;achille.ash@gmail.com&gt;
 // based on the work of Dave Klotzbach &lt;dklotzbach@foxvalley.net&gt;
 //
 // The author asserts no additional copyrights on the derived product. Limitations
@@ -363,14 +382,16 @@ names and more.
 // Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 // MA 02111-1307, USA.
 //
-
-</xsl:text>
-        <xsl:text>#ifndef </xsl:text>
+&#xa;&#xa;#ifndef </xsl:text>
         <xsl:value-of select="$GuardCode"/>
         <xsl:text>&#xa;</xsl:text>
         <xsl:text>#define </xsl:text>
         <xsl:value-of select="$GuardCode"/>
         <xsl:text>&#xa;&#xa;&#xa;</xsl:text>
+        <xsl:text>#include "</xsl:text>
+        <xsl:copy-of select="$include"/>
+        <xsl:text>"&#xa;</xsl:text>
+
     </xsl:template>
 
 </xsl:stylesheet>
