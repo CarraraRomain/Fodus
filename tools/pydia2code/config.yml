@@ -17,3 +17,10 @@ includes:
   engine: "../global.hpp"
   state: "../global.hpp"
   render: "../global.hpp"
+
+decorators:
+  engine:
+    AbstractEngine:
+      - "../state/ElementList"
+      - "../state/Etat"
+      - "../game/EngineObserver"

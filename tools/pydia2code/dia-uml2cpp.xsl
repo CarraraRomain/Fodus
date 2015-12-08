@@ -391,6 +391,9 @@ names and more.
         <xsl:text>#include "</xsl:text>
         <xsl:copy-of select="$include"/>
         <xsl:text>"&#xa;</xsl:text>
+        <xsl:text>#include "</xsl:text>
+        <xsl:copy-of select="$ClassName"/>
+        <xsl:text>.h"&#xa;</xsl:text>
 
     </xsl:template>
 

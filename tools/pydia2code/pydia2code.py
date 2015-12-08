@@ -1,5 +1,5 @@
-import libxml2
-import libxslt
+import lxml.etree as etree
+
 import yaml
 import os
 import glob
@@ -47,25 +47,28 @@ for namespace in config["namespaces"]:
 print("Done")
 
 print("= Step 1 : extracting data from DIA file (Non Gzipped!)")
-styledoc = libxml2.parseFile(dia2xml)
-style = libxslt.parseStylesheetDoc(styledoc)
+styledoc = etree.parse(dia2xml)
+style = etree.XSLT(styledoc)
 for namespace in config["namespaces"]:
     try:
-        doc = libxml2.parseFile(inp_folder + "diagram_" + namespace + ".dia")
-        result = style.applyStylesheet(doc, None)
-        style.saveResultToFilename(tmp_folder + namespace + ".xml", result, 0)
+        doc = etree.parse(inp_folder + "diagram_" + namespace + ".dia")
+        result = style(doc)
+        #print(str(result))
+        f = open(tmp_folder + namespace + ".xml", "w")
+        f.write(str(result))
+        #style.saveResultToFilename(tmp_folder + namespace + ".xml", result, 0)
+        f.close()
         print(namespace + " : Dia2XML OK")
     except:
         print(namespace + " : Fail at Dial2XML")
         print(namespace + " : Is the dia file NOT gzipped?")
 
-style.freeStylesheet()
-doc.freeDoc()
-result.freeDoc()
+
+
 
 print("= Step 2 : creating headers files from XML")
-styledoc = libxml2.parseFile(xml2cpp)
-style = libxslt.parseStylesheetDoc(styledoc)
+styledoc = etree.parse(xml2cpp)
+style = etree.XSLT(styledoc)
 params = {"project": repr(config["project"]["name"]),
           "author": repr(config["author"]),
           "version": repr(config["project"]["version"]),
@@ -76,8 +79,8 @@ for namespace in config["namespaces"]:
         params["directory"] = repr(out_folder + namespace + "/")
         params["include"] = repr(config["includes"][namespace])
 
-        doc = libxml2.parseFile(tmp_folder + namespace + ".xml")
-        result = style.applyStylesheet(doc, params)
+        doc = etree.parse(tmp_folder + namespace + ".xml")
+        result = style(doc, **params)
         print(namespace + " : XML2CPP OK")
     except:
         print(namespace + " : Fail at XML2CPP")
