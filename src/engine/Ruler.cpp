@@ -195,6 +195,7 @@ int Ruler::checkSkill(Etat* state, int posX, int posY, int uid, int skillIndex, 
 	Competence* skill = liste->getSkill(uid, skillIndex);
 
 	if (skill == NULL) return false;
+	if (skill->cooldown != 0) return false;
 
 	for (i = 0; i < liste->size(); i++) {
 		if ((*liste)[i]->getD() == 3)
@@ -222,6 +223,8 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 {
 	ElementList* liste = state->getList();
 	Competence* skill = liste->getSkill(uid, index);
+
+	skill->used();
 
 	switch (skill->type)
 	{
@@ -395,7 +398,9 @@ void Ruler::checkRule(Etat * state)
 
 void Ruler::EndTurnRule(int played, Etat * state)
 {
-	int uid;
+	int uid,i;
+	ElementList* liste = state->getList();
+
 	for (auto const &ch : m_engine->getPlayer(played))
 	{
 		uid = ch.second->UID;
@@ -407,6 +412,10 @@ void Ruler::EndTurnRule(int played, Etat * state)
 			DamageAction* action = new DamageAction(uid, damage);
 			m_action_list->push_back(action);
 			LOG(DEBUG) << "burn for " << uid << ", and for " << damage << " dégâts";
+		}
+
+		for (i = 0; i < state->getAttribute("nbrSkill", uid); i++) {
+			if((*liste)[liste->findUid(uid)]->getSkill(i)->cooldown > 0) (*liste)[liste->findUid(uid)]->getSkill(i)->cooldown--;
 		}
 	}
 }
