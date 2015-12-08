@@ -68,7 +68,7 @@ names and more.
                 <xsl:with-param name="GuardCode"><xsl:value-of select="$Protect"/></xsl:with-param>
             </xsl:call-template>
             <xsl:apply-templates select="comment"/>
-            <xsl:apply-templates select="../Association[@from!=$classid and @to=$classid ]" mode="includes"/>
+            <xsl:apply-templates select="../Association[@from=$classid and @to!=$classid ]" mode="includes"/>
             <xsl:apply-templates select="../Generalization[@subclass=$classid]" mode="includes"/>
             <xsl:apply-templates select="../Dependency[@classId=$classid and @stereotype='bind']" mode="includes"/>
             <xsl:text>&#xa;</xsl:text>
@@ -263,9 +263,9 @@ names and more.
     </xsl:template>
 
     <xsl:template match="Association" mode="includes">
-        <xsl:variable name="from"><xsl:value-of select="@from"/></xsl:variable>
+        <xsl:variable name="to"><xsl:value-of select="@to"/></xsl:variable>
         <xsl:text>#include "</xsl:text>
-        <xsl:value-of select="translate(../class[@id=$from]/@name, ' ','_')"/>
+        <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
         <xsl:text>.hpp"&#xa;</xsl:text>
     </xsl:template>
 
