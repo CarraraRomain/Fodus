@@ -2,6 +2,7 @@
 
 SpawnAction::SpawnAction(Perso * newPerso) : Action(Spawn)
 {
+	persoSpawned = newPerso;
 }
 
 SpawnAction::~SpawnAction()

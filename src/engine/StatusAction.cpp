@@ -15,5 +15,6 @@ StatusAction::~StatusAction()
 
 void StatusAction::execute(Etat & state)
 {
+	if (state.getList()->findUid(uid) == -1) return;
 	state.getList()->setAttribute("status",value,uid);
 }
