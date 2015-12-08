@@ -1,0 +1,12 @@
+author: "Timothé Perez, Romain Carrara, Zhuo Li"
+project:
+  name: "Fodus"
+  version: "3.1"
+directories:
+  input: "../../dia/"
+  temp: "tmp/"
+  output: "out/"
+namespaces:
+    - engine
+    - state
+    - render

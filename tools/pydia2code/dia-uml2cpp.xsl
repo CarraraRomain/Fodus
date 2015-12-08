@@ -33,7 +33,8 @@ names and more.
 
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:output method="text"/>
+    <xsl:output method="text" indent="yes"/>
+    <xsl:param name="directory"/>
     <xsl:param name="directory"/>
     <xsl:param name="indentation"><xsl:text>  </xsl:text></xsl:param>
 
@@ -343,27 +344,27 @@ names and more.
         <xsl:text>// </xsl:text>
         <xsl:value-of select="$ClassName"/>
         <xsl:text>.h
-            //
-            // This header file defines the interfaces to the class </xsl:text><xsl:value-of select="@name"/><xsl:text>
-            //
-            // This file was generate from a Dia Diagram using pydia2code.py
-            // based on the work of Dave Klotzbach &lt;dklotzbach@foxvalley.net&gt;
-            //
-            // The author asserts no additional copyrights on the derived product. Limitations
-            // on the uses of this file are the right and responsibility of authors of the source
-            // diagram.
-            //
-            // The pydia2code.py and dia-uml2cpp.xsl script are distributed in the hope that it will be useful,
-            // but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-            // or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-            // more details.
-            //
-            // A copy of the GNU General Public License is available by writing to the
-            // Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
-            // MA 02111-1307, USA.
-            //
+//
+// This header file defines the interfaces to the class </xsl:text><xsl:value-of select="@name"/><xsl:text>
+//
+// This file was generate from a Dia Diagram using pydia2code.py
+// based on the work of Dave Klotzbach &lt;dklotzbach@foxvalley.net&gt;
+//
+// The author asserts no additional copyrights on the derived product. Limitations
+// on the uses of this file are the right and responsibility of authors of the source
+// diagram.
+//
+// The pydia2code.py and dia-uml2cpp.xsl script are distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+// or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// A copy of the GNU General Public License is available by writing to the
+// Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+// MA 02111-1307, USA.
+//
 
-        </xsl:text>
+</xsl:text>
         <xsl:text>#ifndef </xsl:text>
         <xsl:value-of select="$GuardCode"/>
         <xsl:text>&#xa;</xsl:text>

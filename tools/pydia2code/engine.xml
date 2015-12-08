@@ -1,0 +1,860 @@
+<?xml version="1.0"?>
+<dia-uml>
+  <package name="engine">
+    <Association name="" from="O3" to="O1" id="O5"/>
+    <Association name="" from="O1" to="O3" id="O6"/>
+    <Generalization name="" superclass="O2" subclass="O3" id="O4"/>
+    <class name="Ruler" stereotype="" id="O1">
+      <comment/>
+      <attributes>
+        <attribute visibility="private">
+          <type>Etat&amp;</type>
+          <name>m_state</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="private">
+          <type>std::unique_ptr&lt;ActionList&gt; </type>
+          <name>m_action_list</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="private">
+          <type>bool </type>
+          <name>m_end</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="private">
+          <type>Engine*</type>
+          <name>m_engine</name>
+          <comment/>
+        </attribute>
+      </attributes>
+      <operations>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <name>Ruler</name>
+          <parameters>
+            <parameter>
+              <type>Engine*</type>
+              <name>e</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>Etat&amp;amp;</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <name>~Ruler</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>execute</name>
+          <parameters>
+            <parameter>
+              <type>Command*</type>
+              <name>com</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>update</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>bool </type>
+          <name>checkMove</name>
+          <parameters>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>x</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>y</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>bool </type>
+          <name>createMove</name>
+          <parameters>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>x</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>y</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>bool </type>
+          <name>checkAttack</name>
+          <parameters>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid1</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid2</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>bool </type>
+          <name>createAttack</name>
+          <parameters>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid1</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid2</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>int </type>
+          <name>checkSkill</name>
+          <parameters>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>posX</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>posY</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>skillIndex</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>bool </type>
+          <name>createSkill</name>
+          <parameters>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>index</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>posX</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>posY</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>target</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>createMap</name>
+          <parameters>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>createMapCharacter</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>propagate</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>posX</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>posY</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>value</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>nextPlayer</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>played</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>toPlay</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>int </type>
+          <name>getMapValue</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>x</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>y</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>checkRule</name>
+          <parameters>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>EndTurnRule</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>played</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>Etat*</type>
+              <name>state</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+      </operations>
+    </class>
+    <class name="AbstractEngine" stereotype="" id="O2">
+      <comment/>
+      <attributes>
+        <attribute visibility="protected">
+          <type>std::vector&lt;int&gt; </type>
+          <name>m_clients</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="protected">
+          <type>int </type>
+          <name>m_player_playing</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="protected">
+          <type>int </type>
+          <name>current_player_uid</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="protected">
+          <type>std::map&lt;int, EngineObserver*&gt;</type>
+          <name>m_players_obs</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="protected">
+          <type>std::map&lt;int, Player&gt;</type>
+          <name>m_players</name>
+          <comment/>
+        </attribute>
+      </attributes>
+      <operations>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <name>AbstractEngine</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <name>~AbstractEngine</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual Etat&amp;</type>
+          <name>getState</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual int </type>
+          <name>registerPlayer</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>EngineObserve</type>
+              <name>r</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual int </type>
+          <name>connect</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>client</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual void </type>
+          <name>start</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual void </type>
+          <name>run</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual ElementList </type>
+          <name>syncRequest</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual void </type>
+          <name>syncFull</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>pid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual int </type>
+          <name>whoIsPlaying</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual Player&amp;</type>
+          <name>getPlayer</name>
+          <parameters>
+            <parameter>
+              <type>in</type>
+              <name>t</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual void </type>
+          <name>propagate</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>x</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>y</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>valeur</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual int </type>
+          <name>getMapValue</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>x</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>y</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>virtual void </type>
+          <name>notifyGameEnd</name>
+          <parameters>
+            <parameter>
+              <type>Player</type>
+              <name>pl</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>score</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual int </type>
+          <name>registerPlayer</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual void </type>
+          <name>notifyGlobal</name>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual void </type>
+          <name>notifySingle</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>pid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual void </type>
+          <name>notifyElement</name>
+          <parameters>
+            <parameter>
+              <type>Element&amp;amp;</type>
+              <name>el</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual void </type>
+          <name>notifyTurn</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>turn</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual void </type>
+          <name>notifyNowPlaying</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>pid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual void </type>
+          <name>notifyCanPlay</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>pid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual void </type>
+          <name>notifyPlayer</name>
+          <parameters>
+            <parameter>
+              <type>Player</type>
+              <name>pl</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>virtual void </type>
+          <name>notifyHasPlayed</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>pid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+      </operations>
+    </class>
+    <class name="Engine" stereotype="" id="O3">
+      <comment/>
+      <attributes>
+        <attribute visibility="private">
+          <type>Bootstrap*</type>
+          <name>m_boot</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="private">
+          <type>std::unique_ptr&lt;Etat&gt; </type>
+          <name>state</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="private">
+          <type>std::vector&lt;int&gt; </type>
+          <name>m_has_played</name>
+          <comment/>
+        </attribute>
+        <attribute visibility="private">
+          <type>std::unique_ptr&lt;Ruler&gt; </type>
+          <name>m_ruler</name>
+          <comment/>
+        </attribute>
+      </attributes>
+      <operations>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <name>Engine</name>
+          <parameters>
+            <parameter>
+              <type>Bootstra</type>
+              <name>p</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>loadLevel</name>
+          <parameters>
+            <parameter>
+              <type>std::strin</type>
+              <name>g</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>handleCommand</name>
+          <parameters>
+            <parameter>
+              <type>Comman</type>
+              <name>d</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>run</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>int </type>
+          <name>getCurrentPlayer</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>bool </type>
+          <name>hasPlayed</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>Etat&amp;</type>
+          <name>getState</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>int </type>
+          <name>registerPlayer</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>EngineObserver*</type>
+              <name>obs</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>int </type>
+          <name>connect</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>client</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>start</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>Player&amp;</type>
+          <name>getPlayer</name>
+          <parameters>
+            <parameter>
+              <type>in</type>
+              <name>t</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>int </type>
+          <name>getMapValue</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>x</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>y</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>death</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>propagate</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>x</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>y</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>valeur</name>
+              <comment/>
+            </parameter>
+            <parameter>
+              <type>int</type>
+              <name>uid</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>ElementList </type>
+          <name>syncRequest</name>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>void </type>
+          <name>syncFull</name>
+          <parameters>
+            <parameter>
+              <type>in</type>
+              <name>t</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="public" query="0">
+          <type>int </type>
+          <name>whoIsPlaying</name>
+        </operation>
+        <operation inheritance="leaf" visibility="protected" query="0">
+          <type>int </type>
+          <name>registerPlayer</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>player</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="private" query="0">
+          <type>void </type>
+          <name>nextPlayer</name>
+          <parameters>
+            <parameter>
+              <type>int</type>
+              <name>played</name>
+              <comment/>
+            </parameter>
+          </parameters>
+        </operation>
+        <operation inheritance="leaf" visibility="private" query="0">
+          <type>void </type>
+          <name>nextTurn</name>
+        </operation>
+      </operations>
+    </class>
+  </package>
+</dia-uml>
