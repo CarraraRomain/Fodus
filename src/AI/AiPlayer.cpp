@@ -92,13 +92,41 @@ void AiPlayer::sync(ElementList list)
 
 void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, AbstractEngine* engine)
 {
-	int i, j, k, x, y, range;
+	int i, j, k, x, y;
 	int distanceMin = HEIGHT + WIDTH;
 	int proche = 0;
 	int attaqueDistance = 0;
 	int okX = 0, okY = 0;
 
+	int interest = 0;
+
+	int maxSkill = -1;
+	int maxInterest = 0;
+	int maxPosX = 0;
+	int maxPosY = 0;
+	int targetX = 0;
+	int targetY = 0;
+
+	Competence* skill;
+
 	engine->propagate(liste->getAttribute("posX", c.UID), liste->getAttribute("posY", c.UID), liste->getAttribute("move", c.UID), c.UID);
+
+	for (i = 0; i < liste->size(); i++)
+	{
+		if ((*liste)[i]->getD() == 3 && liste->getAttribute("side", c.UID) != (*liste)[i]->getAttribute("side"))
+		{
+			x = liste->getAttribute("posX", c.UID) - liste->getAttribute("posX", (*liste)[i]->getUid());
+			y = liste->getAttribute("posY", c.UID) - liste->getAttribute("posY", (*liste)[i]->getUid());
+			if (x < 0)x = -x;
+			if (y < 0)y = -y;
+
+			if ((x != 0 || y != 0) && x + y < distanceMin)
+			{
+				distanceMin = x + y;
+				proche = (*liste)[i]->getUid();
+			}
+		}
+	}
 
 	if (liste->getAttribute("currentHealth", c.UID) < liste->getAttribute("health", c.UID) / 2)
 	{
@@ -106,28 +134,18 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 	}
 	else behavior = Aggression;
 
-	for (k = 0; k < liste->getAttribute("nbrSkill", c.UID); k++) {
+	for (k = 0; k < liste->getAttribute("nbrSkill", c.UID); k++) 
+	{
 
-		range = 2;
+		skill = (*liste)[liste->findUid(c.UID)]->getSkill(k);
+		interest = skill->interest * skill->damage;
 
-		for (i = 0; i < liste->size(); i++)
-		{
-			if ((*liste)[i]->getD() == 3 && liste->getAttribute("side", c.UID) != (*liste)[i]->getAttribute("side"))
-			{
-				x = liste->getAttribute("posX", c.UID) - liste->getAttribute("posX", (*liste)[i]->getUid());
-				y = liste->getAttribute("posY", c.UID) - liste->getAttribute("posY", (*liste)[i]->getUid());
-				if (x < 0)x = -x;
-				if (y < 0)y = -y;
+		if (skill->target == 2 && behavior == Fear) interest = interest / 2;
+		if (skill->target == 1 && behavior == Aggression) interest = interest / 2;
+		if (skill->cooldown != 0) interest = 0;
+		if (skill->type == Rejuvenate && liste->getAttribute("currentHealth", c.UID) > 0.9 * liste->getAttribute("Health", c.UID)) interest = 0;
 
-				if ((x != 0 || y != 0) && x + y < distanceMin)
-				{
-					distanceMin = x + y;
-					proche = (*liste)[i]->getUid();
-				}
-			}
-		}
-
-		if (proche > 0)
+		if (proche > 0 && interest > maxInterest)
 		{
 			for (i = 0; i < WIDTH; i++)
 			{
@@ -140,7 +158,7 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 						if (x < 0)x = -x;
 						if (y < 0)y = -y;
 
-						if (x + y <= liste->getAttribute("range", c.UID) && behavior == Aggression)
+						if (x + y <= skill->range && behavior == Aggression)
 						{
 							if (x+y > attaqueDistance)
 							{
@@ -161,28 +179,44 @@ void AiPlayer::recherche1(ElementList* liste, int playerUid, Character& c, Abstr
 					}
 				}
 			}
-			if (okX > 0 || okY > 0) {
-				MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
-				commandM.execute();
+		}
+
+		if (attaqueDistance == 0 && skill->target == 2) interest = 1;
+		if (interest > maxInterest) {
+			maxSkill = k;
+			maxPosX = okX;
+			maxPosY = okY;
+			maxInterest = interest;
+			if (skill->target == 2) {
+				targetX = liste->getAttribute("posX", proche);
+				targetY = liste->getAttribute("posY", proche);
 			}
-			else {
-				int count = 10000;
-				while (okX == 0 || okY == 0 || engine->getMapValue(okX, okY, c.UID) == 0) {
-					okX = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posX", c.UID);
-					okY = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posY", c.UID);
-					if (okX < 0 || okX >= WIDTH) okX = 0;
-					if (okY < 0 || okY >= HEIGHT) okY = 0;
-					count--;
-					if (count <= 0) break;
-				}
-				MoveCommand commandM = MoveCommand(engine, okX, okY, MoveForward, c.UID, playerUid);
-				commandM.execute();
-			}
-			if (attaqueDistance > 0)
-			{
-				SkillCommand commandS = SkillCommand(engine, liste->getAttribute("posX", proche), liste->getAttribute("posY", proche), c.UID, 0, playerUid);
-				commandS.execute();
+			if (skill->target == 1) {
+				targetX = okX;
+				targetY = okY;
 			}
 		}
+	}
+
+
+
+	if (maxPosX > 0 || maxPosY > 0) {
+		MoveCommand commandM = MoveCommand(engine, maxPosX, maxPosY, MoveForward, c.UID, playerUid);
+		commandM.execute();
+	}
+	else {
+		while (maxPosX == 0 || maxPosY == 0 || engine->getMapValue(maxPosX, maxPosY, c.UID) == 0) {
+			maxPosX = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posX", c.UID);
+			maxPosY = rand() % (2 * liste->getAttribute("move", c.UID)) - liste->getAttribute("move", c.UID) + liste->getAttribute("posY", c.UID);
+			if (maxPosX < 0 || maxPosX >= WIDTH) maxPosX = 0;
+			if (maxPosY < 0 || maxPosY >= HEIGHT) maxPosY = 0;
+		}
+		MoveCommand commandM = MoveCommand(engine, maxPosX, maxPosY, MoveForward, c.UID, playerUid);
+		commandM.execute();
+	}
+	//if (attaqueDistance > 0)
+	{
+		SkillCommand commandS = SkillCommand(engine, targetX, targetY, c.UID, maxSkill, playerUid);
+		commandS.execute();
 	}
 }

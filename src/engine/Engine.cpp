@@ -141,15 +141,16 @@ void Engine::start()
 	elt->setKey("MLP");
 	elt->setAttribute("currentHealth", 100);
 	elt->setAttribute("power", 100);
+	elt->setAttribute("defence", 85);
 	elt->setAttribute("side", 1);
 	elt->setAttribute("status", 0);
 	state->getList()->push_back(elt);
 
-	Competence* attack = new Competence(Attack, 10, 2, 2);
+	Competence* attack = new Competence(Attack, 10, 2, 1, 2, 0);
 	elt->addSkill(attack);
-	Competence* fireball = new Competence(Fireball,20,3,10);
+	Competence* fireball = new Competence(Fireball,20, 3, 2, 10, 3);
 	elt->addSkill(fireball);
-	Competence* heal = new Competence(Rejuvenate, 20, 3, 15);
+	Competence* heal = new Competence(Rejuvenate, 20, 3, 1, 15, 3);
 	elt->addSkill(heal);
 
 	// Elt index is size-1
@@ -171,8 +172,12 @@ void Engine::start()
 	foe->setAttribute("side", 2);
 	state->getList()->push_back(foe);
 
-	Competence* attack2 = new Competence(Attack, 10, 2, 1);
+	Competence* attack2 = new Competence(Attack, 10, 2, 1, 1, 0);
 	foe->addSkill(attack2);
+	Competence* heal2 = new Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
+	foe->addSkill(heal2);
+	Competence* fireball2 = new Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
+	foe->addSkill(fireball2);
 	
 	Perso* foe2 = new Perso(55, 2);
 	foe2->setClass(Monstre);
@@ -189,8 +194,12 @@ void Engine::start()
 	foe2->setAttribute("side", 2);
 	state->getList()->push_back(foe2);
 
-	Competence* attack3 = new Competence(Attack, 10, 2, 1);
+	Competence* attack3 = new Competence(Attack, 10, 2, 1, 1, 0);
 	foe2->addSkill(attack3);
+	Competence* heal3 = new Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
+	foe2->addSkill(heal3);
+	Competence* fireball3 = new Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
+	foe2->addSkill(fireball3);
 
 	//m_players[0] = Player(1, 1);
 	m_players[2] = Player(89, 1);
@@ -285,11 +294,9 @@ void Engine::nextPlayer(int played)
 
 	notifyNowPlaying(toPlay);
 	notifyCanPlay(toPlay);
-
 }
 
 void Engine::nextTurn()
 {
-
 	state->nextTurn();
 }
