@@ -12,6 +12,8 @@
 #include "RestoreAction.hpp"
 #include "ActionList.hpp"
 #include "SkillCommand.hpp"
+#include "SpawnAction.hpp"
+
 class Engine;
 
 class Ruler

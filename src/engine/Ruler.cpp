@@ -255,6 +255,22 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 			LOG(DEBUG) << "Rejuvenate succeded from " << uid << " to " << target << " for " << restore << " points";
 			break;
 		}
+
+		case Spawn:
+		{
+			Perso* zombie = new Perso(*zombie);
+			zombie->setClass(Zombie);
+			zombie->setAttribute("posX", posX);
+			zombie->setAttribute("posY", posY);
+			zombie->setAttribute("direction", MoveForward);
+			zombie->setAttribute("health", 500);
+			zombie->setAttribute("defence", 10);
+			zombie->setAttribute("power", 10);
+			SpawnAction* actionZ = new SpawnAction(zombie);
+			m_action_list->push_back(actionZ);
+			LOG(DEBUG) << "Spawn zombie succeded at (" << posX << ", " << posY << ")";
+			break;		
+		}
 	}
 
 return false;
