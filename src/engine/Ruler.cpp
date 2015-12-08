@@ -53,7 +53,7 @@ void Ruler::execute(Command* com, Etat* state)
 
 			if (found = checkSkill(state, skill_com->posX, skill_com->posY, skill_com->uid, skill_com->skillIndex, skill_com->player))
 			{
-				createSkill(state, skill_com->uid, skill_com->skillIndex, skill_com->posX, skill_com->posY, found);
+				createSkill(state, skill_com->uid, skill_com->skillIndex, skill_com->posX, skill_com->posY, found, skill_com->player);
 				success = true;
 				m_engine->getPlayer(skill_com->player)[skill_com->uid].attack();
 			}
@@ -214,12 +214,13 @@ int Ruler::checkSkill(Etat* state, int posX, int posY, int uid, int skillIndex, 
 	if (x < 0) x = -x;
 	if (y < 0) y = -y;
 	
-	if (x + y <= skill->range) return found;
+	if (x + y <= skill->range && skill->target != 0) return found;
+	if (x + y <= skill->range && skill->target == 0) return 1;
 	
 	return false;
 }
 
-bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int target)
+bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int target, int player)
 {
 	ElementList* liste = state->getList();
 	Competence* skill = liste->getSkill(uid, index);
@@ -259,18 +260,35 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 			break;
 		}
 
-		case Spawn:
+		case ZombieSpawn:
 		{
-			Perso* zombie = new Perso(*zombie);
+			Perso* zombie = new Perso(100, 2);
 			zombie->setClass(Zombie);
 			zombie->setAttribute("posX", posX);
 			zombie->setAttribute("posY", posY);
 			zombie->setAttribute("direction", MoveForward);
-			zombie->setAttribute("health", 500);
+			zombie->setAttribute("health", 1500);
+			zombie->setAttribute("currentHealth", 1500);
 			zombie->setAttribute("defence", 10);
 			zombie->setAttribute("power", 10);
+			zombie->setAttribute("side", 1);
+			zombie->setKey("FOE");
+			zombie->setD(3);
+
 			SpawnAction* actionZ = new SpawnAction(zombie);
 			m_action_list->push_back(actionZ);
+
+			/*(*liste)[liste->findUid(100)]->setKey("FOE");
+			(*liste)[liste->findUid(100)]->setD(3);
+			liste->setAttribute("posX", posX, 100);
+			liste->setAttribute("posY", posY, 100);
+			liste->setAttribute("health", 1500, 100);
+			liste->setAttribute("currentHealth", 1500, 100);
+			liste->setAttribute("power", 3, 100);
+			liste->setAttribute("defence", 2, 100);
+			liste->setAttribute("side", 1, 100);*/
+
+			m_engine->getPlayer(2).addOwnedPerso(100);
 			LOG(DEBUG) << "Spawn zombie succeded at (" << posX << ", " << posY << ")";
 			break;		
 		}

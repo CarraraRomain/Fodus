@@ -28,7 +28,7 @@ public :
 	bool checkAttack(Etat* state, int uid1, int uid2, int player);
 	bool createAttack(Etat* state, int uid1, int uid2);
 	int checkSkill(Etat* state, int posX, int posY, int uid, int skillIndex, int player);
-	bool createSkill(Etat* state, int uid, int index, int posX, int posY, int target);
+	bool createSkill(Etat* state, int uid, int index, int posX, int posY, int target, int player);
 	void createMap(Etat* state);
 	void createMapCharacter(int uid);
 	void propagate(int posX, int posY, int value, int uid);

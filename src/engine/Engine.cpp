@@ -150,6 +150,8 @@ void Engine::start()
 	elt->addSkill(attack);
 	Competence* fireball = new Competence(Fireball,20, 3, 2, 10, 3);
 	elt->addSkill(fireball);
+	Competence* spawnZ = new Competence(ZombieSpawn, 20, 0, 1, 3, 0);
+	elt->addSkill(spawnZ);
 	Competence* heal = new Competence(Rejuvenate, 20, 3, 1, 15, 3);
 	elt->addSkill(heal);
 
