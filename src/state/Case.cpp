@@ -1,4 +1,4 @@
-#include "Case.h"
+#include "Case.hpp"
 
 bool Case::isGround()
 {

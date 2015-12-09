@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Element.h"
-#include "perso.hpp"
+#include "Perso.hpp"
 #include <vector>
 #include <memory>
 #include <string>

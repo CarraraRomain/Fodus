@@ -1,4 +1,4 @@
-#include "perso.hpp"
+#include "Perso.hpp"
 
 Element* Perso::clone()
 {

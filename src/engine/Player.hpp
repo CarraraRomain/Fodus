@@ -3,7 +3,7 @@
 #include "../Enum.h"
 #include "Movement.hpp"
 
-#include "../state/perso.hpp"
+#include "../state/Perso.hpp"
 #include "Character.hpp"
 
 class Player
