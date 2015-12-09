@@ -58,9 +58,13 @@ for namespace in config["namespaces"]:
         print("Adding decorators data")
         root = result.getroot()
         decorators = etree.SubElement(root, "decorators")
+        if not config["decorators"][namespace]:
+            continue
         for d in config["decorators"][namespace]:
             dec = etree.Element("class", name=d)
             decorators.append(dec)
+            if not config["decorators"][namespace][d]:
+                continue
             for v in config["decorators"][namespace][d]:
                 dec.append(etree.Element("include", value=v))
         print("Saving tmp xml file")

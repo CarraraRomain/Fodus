@@ -24,19 +24,33 @@ namespaces:
     - engine
     - state
     - render
+    - game
+    - ai
 # Global include in each header in the concerned namespace
 includes:
   engine: "../global.hpp"
   state: "../global.hpp"
   render: "../global.hpp"
+  ai: "../global.hpp"
+  game: "../global.hpp"
 
 # Specific includes for classes in namespaces
 # Typically import from others namespaces
 decorators:
   engine:
     AbstractEngine:
-      - "../state/ElementList.hpp"
       - "../state/Etat.hpp"
       - "../game/EngineObserver.hpp"
     Ruler:
       - "../state/Etat.hpp"
+
+
+  game:
+    EngineObserver:
+      - "../state/Etat.hpp"
+      - "../engine/Player.hpp"
+  state:
+
+  render:
+
+  ai:
