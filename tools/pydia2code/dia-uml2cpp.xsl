@@ -89,6 +89,17 @@ names and more.
                  </xsl:if>
 
              </xsl:for-each>
+            <xsl:for-each select="../Dependency[@stereotype='circular']">
+                 <xsl:if test="@classId = $classid">
+                     <xsl:variable name="dependsOn">
+                         <xsl:value-of select="@dependsOn"/>
+                     </xsl:variable>
+                     <xsl:text>class </xsl:text>
+                     <xsl:value-of select="translate(../class[@id=$dependsOn]/@name, ' ','_')"/>
+                     <xsl:text>;&#xa;&#xa;</xsl:text>
+                 </xsl:if>
+
+             </xsl:for-each>
             <xsl:choose>
                 <xsl:when test="../class[@id=$DepSet and @template='1']">
                     <xsl:text>typedef </xsl:text>
@@ -283,7 +294,7 @@ names and more.
                     <xsl:value-of select="@to"/>
          </xsl:variable>
         <xsl:choose>
-            <xsl:when test="@name != 'circular' and @stereotype != 'extern' ">
+            <xsl:when test="not(@name = 'circular') and not(@stereotype = 'extern') ">
 
                 <xsl:text>#include "</xsl:text>
                 <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
