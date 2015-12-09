@@ -78,6 +78,17 @@ names and more.
             <xsl:value-of select="../../package/@name"/>
             <xsl:text> {&#xa;&#xa;</xsl:text>
 
+             <xsl:for-each select="../Association[@name='circular']">
+                 <xsl:if test="@from = $classid">
+                     <xsl:variable name="to">
+                         <xsl:value-of select="@to"/>
+                     </xsl:variable>
+                     <xsl:text>class </xsl:text>
+                     <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
+                     <xsl:text>;&#xa;&#xa;</xsl:text>
+                 </xsl:if>
+
+             </xsl:for-each>
             <xsl:choose>
                 <xsl:when test="../class[@id=$DepSet and @template='1']">
                     <xsl:text>typedef </xsl:text>
@@ -273,12 +284,7 @@ names and more.
                 <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
                 <xsl:text>.hpp"&#xa;</xsl:text>
             </xsl:when>
-            <xsl:otherwise>
 
-                <xsl:text>class </xsl:text>
-                <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
-                <xsl:text>;&#xa;</xsl:text>
-            </xsl:otherwise>
         </xsl:choose>
 
 
