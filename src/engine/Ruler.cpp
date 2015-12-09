@@ -278,16 +278,6 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 			SpawnAction* actionZ = new SpawnAction(zombie);
 			m_action_list->push_back(actionZ);
 
-			/*(*liste)[liste->findUid(100)]->setKey("FOE");
-			(*liste)[liste->findUid(100)]->setD(3);
-			liste->setAttribute("posX", posX, 100);
-			liste->setAttribute("posY", posY, 100);
-			liste->setAttribute("health", 1500, 100);
-			liste->setAttribute("currentHealth", 1500, 100);
-			liste->setAttribute("power", 3, 100);
-			liste->setAttribute("defence", 2, 100);
-			liste->setAttribute("side", 1, 100);*/
-
 			m_engine->getPlayer(2).addOwnedPerso(100);
 			LOG(DEBUG) << "Spawn zombie succeded at (" << posX << ", " << posY << ")";
 			break;		

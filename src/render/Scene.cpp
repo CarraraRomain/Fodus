@@ -1,5 +1,5 @@
 #include "Scene.hpp"
-#include "../state/Case.h"
+#include "../state/Case.hpp"
 #include "../test/game/TestGame.hpp"
 
 

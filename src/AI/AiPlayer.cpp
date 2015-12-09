@@ -27,10 +27,16 @@ void AiPlayer::start()
 {
 	// This Client has Player 1 (Human) and player 2 (IA)
 	m_players_id.push_back(2);
+	m_players_id.push_back(3);
 
 		int rc = getEngine()->connect(2);
 		if (rc >= 400) LOG(FATAL) << "Cannot connect to engine: " << rc;
 		rc = getEngine()->registerPlayer(2, this);
+		if (rc >= 400) LOG(FATAL) << "Cannot register to engine: " << rc;
+
+		rc = getEngine()->connect(3);
+		if (rc >= 400) LOG(FATAL) << "Cannot connect to engine: " << rc;
+		rc = getEngine()->registerPlayer(3, this);
 		if (rc >= 400) LOG(FATAL) << "Cannot register to engine: " << rc;
 
 
@@ -76,6 +82,7 @@ void AiPlayer::updateNowPlaying(int pid)
 {
 	m_player_playing = pid;
 	if (m_players_id[0] == pid) run();
+	
 }
 
 void AiPlayer::canPlay(int pid)

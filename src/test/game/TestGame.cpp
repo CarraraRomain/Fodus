@@ -1,5 +1,5 @@
 #include "TestGame.hpp"
-#include "../../state/Case.h"
+#include "../../state/Case.hpp"
 
 
 TestGame::TestGame()

@@ -1,6 +1,6 @@
 #include "ElementList.hpp"
 #include <iostream>
-#include "Case.h"
+#include "Case.hpp"
 
 
 ElementList::ElementList()

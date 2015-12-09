@@ -19,7 +19,7 @@
 #include "../render/Scene.hpp"
 #include "SelectBox.hpp"
 #include "../bootstrap/Bootstrap.hpp"
-#include "../state/Case.h"
+#include "../state/Case.hpp"
 
 class Editor
 {

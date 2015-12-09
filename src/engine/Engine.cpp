@@ -1,6 +1,6 @@
 #include "Engine.hpp"
 #include "EndTurnCommand.hpp"
-#include "../state/Case.h"
+#include "../state/Case.hpp"
 
 Engine::Engine(Bootstrap* boot): m_boot(boot)
 {
@@ -201,15 +201,20 @@ void Engine::start()
 	Competence* heal3 = new Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
 	foe2->addSkill(heal3);
 	Competence* fireball3 = new Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
-	foe2->addSkill(fireball3);
+	foe2->addSkill(fireball3);	
 
 	//m_players[0] = Player(1, 1);
 	m_players[2] = Player(89, 1);
 	m_players[2].addOwnedPerso(foe->getUid());
+
+	//[3] = Player(3, 1);
 	m_players[2].addOwnedPerso(foe2->getUid());
+
+	
+
 	nextPlayer(0);
 
-	//m_players[3] = Player(3,1);
+
 }
 
 Player& Engine::getPlayer(int id)

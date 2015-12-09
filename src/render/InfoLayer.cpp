@@ -1,6 +1,6 @@
 #include "InfoLayer.hpp"
 #include "Scene.hpp"
-#include "../state/Case.h"
+#include "../state/Case.hpp"
 
 
 InfoLayer::InfoLayer(Bootstrap* boot, Subject* sub): Layer(boot), Observer(sub)
