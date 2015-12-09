@@ -1,6 +1,6 @@
 #include "HUD.hpp"
 
-
+using namespace game;
 
 HUD::HUD(Bootstrap* boot): m_boot(boot)
 {

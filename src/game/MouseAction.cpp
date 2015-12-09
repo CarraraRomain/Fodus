@@ -1,6 +1,6 @@
 #include "MouseAction.hpp"
 
-
+using namespace game;
 
 MouseAction::MouseAction()
 {

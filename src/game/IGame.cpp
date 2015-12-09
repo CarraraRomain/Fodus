@@ -1,5 +1,6 @@
 #include "IGame.hpp"
 
+using namespace game;
 
 IGame::IGame(Bootstrap* boot, AbstractEngine* engine, int cid): EngineObserver(engine, cid), m_boot(boot)
 {

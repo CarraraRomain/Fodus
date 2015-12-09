@@ -1,9 +1,10 @@
 #include "Game.hpp"
 #include "../render/Animation.hpp"
 #include "../render/AnimatedSprite.hpp"
-#include "../engine/MoveCommand.h"
+#include "../engine/MoveCommand.hpp"
 #include "../engine/EndTurnCommand.hpp"
 
+using namespace game;
 
 /*
 Game::Game(Bootstrap* boot, Engine* eng) : Observer(&eng->getState()),
