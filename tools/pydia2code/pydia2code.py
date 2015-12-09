@@ -8,11 +8,11 @@ import datetime
 # TODO Python 3
 
 print("=== PyDia2Code C++ Header-only generator === ")
-print("Version 1.0.0 | Python 2.7")
+print("Version 1.0.0 | Python 3.4")
 print("By Timothe Perez | 3IS 2015 @ ENSEA | www.ensea.fr")
 
 print("= Step 0 : Initialization")
-file = file("config.yml", "r")
+file = open("config.yml", "r")
 config = yaml.load(file)
 
 print("Generating Headers for " + config["project"]["name"] +
