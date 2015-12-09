@@ -307,7 +307,7 @@ names and more.
     </xsl:template>
 
     <xsl:template match="Dependency" mode="includes">
-        <xsl:if test="@stereotype != 'extern' ">
+        <xsl:if test="not(@stereotype = 'extern') ">
             <xsl:variable name="dependsOn">
                 <xsl:value-of select="@dependsOn"/>
             </xsl:variable>
@@ -379,6 +379,10 @@ names and more.
         </xsl:if>
         <xsl:text> </xsl:text>
         <xsl:value-of select="name"/>
+        <xsl:if test="value">
+            <xsl:text> = </xsl:text>
+            <xsl:value-of select="value"/>
+        </xsl:if>
         <xsl:if test="not(position()=last())">
             <xsl:text>, </xsl:text>
         </xsl:if>

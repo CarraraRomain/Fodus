@@ -47,6 +47,19 @@ decorators:
     Ruler:
       include:
         - "../state/Etat.hpp"
+        - "../engine/Command.hpp"
+    Action:
+      include:
+        - "../state/Etat.hpp"
+    Engine:
+      include:
+        - "../boot/Bootstrap.hpp"
+        - "../state/Etat.hpp"
+        - "../state/Perso.hpp"
+        - "../state/Competence.hpp"
+    SpawnAction:
+      include:
+        - "../state/Perso.hpp"
 
   game:
     EngineObserver:
@@ -55,6 +68,9 @@ decorators:
           - "../engine/Player.hpp"
 
   state:
+    Etat:
+      include:
+        - "../engine/Subject.hpp"
   render:
   ai:
   boot:
