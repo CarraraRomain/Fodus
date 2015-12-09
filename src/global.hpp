@@ -2,6 +2,9 @@
 
 #include <memory>
 
+#include <map>
+#include <vector>
+
 /* RapidJSON lib (fast header only lib) | Tested using v1.0.2
 Lib is included in ../lib/rapidjson
 URL : https://github.com/miloyip/rapidjson
