@@ -1,9 +1,10 @@
 import lxml.etree as etree
-
 import yaml
 import os
 import glob
 import datetime
+
+# TODO Exceptions proper handling
 
 print("=== PyDia2Code C++ Header-only generator === ")
 print("Version 1.0.0")
@@ -53,15 +54,24 @@ for namespace in config["namespaces"]:
     try:
         doc = etree.parse(inp_folder + "diagram_" + namespace + ".dia")
         result = style(doc)
-        #print(str(result))
+        print("Adding decorators data...")
+        root = result.getroot()
+        print(root.tag)
+        decorators = etree.SubElement(root,"decorators")
+        for d in config["decorators"][namespace]:
+            dec = etree.Element("class", name=d)
+            decorators.append(dec)
+            print(d)
+            for v in  config["decorators"][namespace][d]:
+                dec.append(etree.Element("include", value=v))
         f = open(tmp_folder + namespace + ".xml", "w")
         f.write(str(result))
-        #style.saveResultToFilename(tmp_folder + namespace + ".xml", result, 0)
+            #style.saveResultToFilename(tmp_folder + namespace + ".xml", result, 0)
         f.close()
         print(namespace + " : Dia2XML OK")
-    except:
-        print(namespace + " : Fail at Dial2XML")
-        print(namespace + " : Is the dia file NOT gzipped?")
+    except IOError:
+         print(namespace + " : Fail at Dial2XML")
+         print(namespace + " : Is the dia file NOT gzipped / exists?")
 
 
 
@@ -82,8 +92,8 @@ for namespace in config["namespaces"]:
         doc = etree.parse(tmp_folder + namespace + ".xml")
         result = style(doc, **params)
         print(namespace + " : XML2CPP OK")
-    except:
-        print(namespace + " : Fail at XML2CPP")
+    except IOError:
+        print(namespace + " : Fail at XML2CPP (IOError)")
 
 print("Warning generation can fail even if no exception is thrown.")
 print("Make sure your headers are correctly generated.")

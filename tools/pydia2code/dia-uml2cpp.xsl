@@ -391,10 +391,11 @@ names and more.
         <xsl:text>#include "</xsl:text>
         <xsl:copy-of select="$include"/>
         <xsl:text>"&#xa;</xsl:text>
-        <xsl:text>#include "</xsl:text>
-        <xsl:copy-of select="$ClassName"/>
-        <xsl:text>.h"&#xa;</xsl:text>
-
+        <xsl:for-each select="/dia-uml/decorators/class[@name=$ClassName]/include">
+            <xsl:text>#include "</xsl:text>
+            <xsl:value-of select="@value"/>
+            <xsl:text>"&#xa;</xsl:text>
+        </xsl:for-each>
     </xsl:template>
 
 </xsl:stylesheet>

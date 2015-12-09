@@ -21,6 +21,6 @@ includes:
 decorators:
   engine:
     AbstractEngine:
-      - "../state/ElementList"
-      - "../state/Etat"
-      - "../game/EngineObserver"
+      - "../state/ElementList.hpp"
+      - "../state/Etat.hpp"
+      - "../game/EngineObserver.hpp"
