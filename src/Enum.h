@@ -10,6 +10,7 @@ enum CommandType {
 	Status,
 	Damage,
 	Restore,
+	Poison,
 	Spawn,
 	Load,
 	Mode,
@@ -20,7 +21,8 @@ enum SkillType {
 	Attack,
 	Fireball,
 	Rejuvenate,
-	ZombieSpawn
+	ZombieSpawn,
+	Viper
 };
 
 enum AiBehavior {

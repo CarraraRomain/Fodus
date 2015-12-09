@@ -7,6 +7,7 @@ private:
 	int uid;
 	int restore;
 	int health;
+	int currentHealth;
 
 public:
 	virtual void execute(Etat& state) override;

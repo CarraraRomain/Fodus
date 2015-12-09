@@ -13,6 +13,7 @@
 #include "ActionList.hpp"
 #include "SkillCommand.hpp"
 #include "SpawnAction.hpp"
+#include "PoisonAction.hpp"
 
 class Engine;
 

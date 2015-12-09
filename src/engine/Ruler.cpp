@@ -282,6 +282,20 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 			LOG(DEBUG) << "Spawn zombie succeded at (" << posX << ", " << posY << ")";
 			break;		
 		}
+
+		case Viper:
+		{
+			int damage = skill->damage * liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
+			if (damage >= 3)damage = 0.3*damage + rand() % (damage / 5);
+			DamageAction* actionD = new DamageAction(target, damage);
+			int limit = 0.5*liste->getAttribute("range", target)* liste->getAttribute("power", uid) / liste->getAttribute("defence", target);
+			int turn = 3;
+			PoisonAction* actionP = new PoisonAction(target, limit, turn);
+			m_action_list->push_back(actionD);
+			m_action_list->push_back(actionP);
+			LOG(DEBUG) << "Viper succeded from " << uid << " to " << target << " for " << damage << " damages, range is limitted for " << limit << " and this will last " << turn << "turn(s)";
+			break;
+		}
 	}
 
 return false;
