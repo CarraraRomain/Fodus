@@ -1,26 +1,42 @@
+# Author(s) (displayed at the top of each generated header)
 author: "Timothe Perez, Romain Carrara, Zhuo Li"
+# Project Infos
 project:
   name: "Fodus"
   version: "3.1"
+
+# Stylesheets to use
 stylesheets:
   dia2xml: "dia-uml.xsl"
   xml2cpp: "dia-uml2cpp.xsl"
+
+# Script working directories
 directories:
   input: "../../dia/"
   temp: "tmp/"
   output: "out/"
+
+# Diagram filename prefix in the input folder
+dia_prefix: "diagram_"
+
+# Namespace to generate
 namespaces:
     - engine
     - state
     - render
+# Global include in each header in the concerned namespace
 includes:
   engine: "../global.hpp"
   state: "../global.hpp"
   render: "../global.hpp"
 
+# Specific includes for classes in namespaces
+# Typically import from others namespaces
 decorators:
   engine:
     AbstractEngine:
       - "../state/ElementList.hpp"
       - "../state/Etat.hpp"
       - "../game/EngineObserver.hpp"
+    Ruler:
+      - "../state/Etat.hpp"

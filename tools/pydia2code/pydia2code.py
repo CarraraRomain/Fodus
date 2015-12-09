@@ -5,9 +5,10 @@ import glob
 import datetime
 
 # TODO Exceptions proper handling
+# TODO Python 3
 
 print("=== PyDia2Code C++ Header-only generator === ")
-print("Version 1.0.0")
+print("Version 1.0.0 | Python 2.7")
 print("By Timothe Perez | 3IS 2015 @ ENSEA | www.ensea.fr")
 
 print("= Step 0 : Initialization")
@@ -25,7 +26,7 @@ out_folder = config["directories"]["output"]
 dia2xml = config["stylesheets"]["dia2xml"]
 xml2cpp = config["stylesheets"]["xml2cpp"]
 #
-
+# Prerun checks
 print("Checking folders existence")
 if not os.path.exists(tmp_folder):
     print("TMP folder not found. Creating")
@@ -39,14 +40,13 @@ for namespace in config["namespaces"]:
         os.mkdir(out_folder + namespace + "/")
 if not os.path.exists(inp_folder):
     raise IOError("Input folder not found")
-print("Done")
 
 print("Cleaning folders...")
 for namespace in config["namespaces"]:
     for f in glob.glob(out_folder + namespace + "/*.hpp"):
         os.unlink(f)
-print("Done")
 
+# Now running : first transformation DIA -> custom XML
 print("= Step 1 : extracting data from DIA file (Non Gzipped!)")
 styledoc = etree.parse(dia2xml)
 style = etree.XSLT(styledoc)
@@ -54,6 +54,7 @@ for namespace in config["namespaces"]:
     try:
         doc = etree.parse(inp_folder + "diagram_" + namespace + ".dia")
         result = style(doc)
+        # Adding specific decorators (from config file)
         print("Adding decorators data")
         root = result.getroot()
         decorators = etree.SubElement(root, "decorators")
@@ -70,7 +71,7 @@ for namespace in config["namespaces"]:
         print(namespace + " : Dia2XML OK")
     except IOError:
          print(namespace + " : Fail at Dial2XML")
-         print(namespace + " : Is the dia file NOT gzipped / exists?")
+         print(namespace + " : Is the dia file NOT gzipped or even exists?")
 
 
 
@@ -78,6 +79,7 @@ for namespace in config["namespaces"]:
 print("= Step 2 : creating headers files from XML")
 styledoc = etree.parse(xml2cpp)
 style = etree.XSLT(styledoc)
+# Global Infos
 params = {"project": repr(config["project"]["name"]),
           "author": repr(config["author"]),
           "version": repr(config["project"]["version"]),
@@ -94,7 +96,6 @@ for namespace in config["namespaces"]:
     except IOError:
         print(namespace + " : Fail at XML2CPP (IOError)")
 
-print("Warning generation can fail even if no exception is thrown.")
-print("Make sure your headers are correctly generated.")
-
+print("C++ Headers should be generated in " + out_folder)
+print("Job's done!")
 exit(0)
