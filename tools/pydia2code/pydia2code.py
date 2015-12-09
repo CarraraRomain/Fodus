@@ -31,11 +31,11 @@ if not os.path.exists(tmp_folder):
     print("TMP folder not found. Creating")
     os.mkdir(tmp_folder)
 if not os.path.exists(out_folder):
-    print("Out folder not found. Creating")
+    print("Output folder not found. Creating")
     os.mkdir(out_folder)
 for namespace in config["namespaces"]:
     if not os.path.exists(out_folder + namespace + "/"):
-        print("Out folder for " + namespace + " not found. Creating")
+        print("Output folder for " + namespace + " not found. Creating")
         os.mkdir(out_folder + namespace + "/")
 if not os.path.exists(inp_folder):
     raise IOError("Input folder not found")
@@ -54,16 +54,15 @@ for namespace in config["namespaces"]:
     try:
         doc = etree.parse(inp_folder + "diagram_" + namespace + ".dia")
         result = style(doc)
-        print("Adding decorators data...")
+        print("Adding decorators data")
         root = result.getroot()
-        print(root.tag)
-        decorators = etree.SubElement(root,"decorators")
+        decorators = etree.SubElement(root, "decorators")
         for d in config["decorators"][namespace]:
             dec = etree.Element("class", name=d)
             decorators.append(dec)
-            print(d)
-            for v in  config["decorators"][namespace][d]:
+            for v in config["decorators"][namespace][d]:
                 dec.append(etree.Element("include", value=v))
+        print("Saving tmp xml file")
         f = open(tmp_folder + namespace + ".xml", "w")
         f.write(str(result))
             #style.saveResultToFilename(tmp_folder + namespace + ".xml", result, 0)

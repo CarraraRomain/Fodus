@@ -263,10 +263,25 @@ names and more.
     </xsl:template>
 
     <xsl:template match="Association" mode="includes">
-        <xsl:variable name="to"><xsl:value-of select="@to"/></xsl:variable>
-        <xsl:text>#include "</xsl:text>
-        <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
-        <xsl:text>.hpp"&#xa;</xsl:text>
+         <xsl:variable name="to">
+                    <xsl:value-of select="@to"/>
+         </xsl:variable>
+        <xsl:choose>
+            <xsl:when test="@name != 'circular'">
+
+                <xsl:text>#include "</xsl:text>
+                <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
+                <xsl:text>.hpp"&#xa;</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+
+                <xsl:text>class </xsl:text>
+                <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
+                <xsl:text>;&#xa;</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+
+
     </xsl:template>
 
     <xsl:template match="Dependency" mode="includes">
