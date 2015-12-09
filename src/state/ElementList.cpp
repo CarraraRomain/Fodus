@@ -1,7 +1,6 @@
 #include "ElementList.hpp"
-#include <iostream>
-#include "Case.hpp"
 
+using namespace state;
 
 ElementList::ElementList()
 {

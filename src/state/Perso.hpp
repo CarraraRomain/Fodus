@@ -1,52 +1,80 @@
-#pragma once
-#include "Element.hpp"
-#include "Competence.hpp"
+// Perso.hpp
+// 
+// Project: Fodus
+// Version: 3.1
+// Author: Timothe Perez, Romain Carrara, Zhuo Li
+// Auto-Generated Date: 2015-12-09 22:14
+//
+//
+// This header file defines the interfaces to the class Perso
+//
+// This file was generate from a Dia Diagram using pydia2code.py
+// by Timothe Perez <achille.ash@gmail.com>
+// based on the work of Dave Klotzbach <dklotzbach@foxvalley.net>
+//
+// The author asserts no additional copyrights on the derived product. Limitations
+// on the uses of this file are the right and responsibility of authors of the source
+// diagram.
+//
+// The pydia2code.py and dia-uml2cpp.xsl script are distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+// or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// A copy of the GNU General Public License is available by writing to the
+// Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+// MA 02111-1307, USA.
+//
+
+
+#ifndef __PERSO_H__
+#define __PERSO_H__
+
+
 #include "../global.hpp"
+#include "Element.hpp"
 
-class Perso : public Element
-{
+
+namespace state {
+
+class Perso: public Element{
 private:
-
-	
-	std::string nom;
-	int side;
-	int health;
-	int defence;
-	int power;
-	int move;
-	int corruption;
-	int status;
-	int range;
-	int currentHealth;
-	int zombiLimit;
-	int level;
-	int conversion;
-	AnimationType direction;
-	int owner;
-	std::vector<Competence*> competences;
-	Classe type = Principal;
-
+private:
+  std::string  nom;
+  int  side;
+  int  health;
+  int  defence;
+  int  power;
+  int  move;
+  int  corruption;
+  int  status;
+  int  range;
+  int  currentHealth;
+  int  zombiLimit;
+  int  level;
+  int  conversion;
+  AnimationType  direction;
+  int  owner;
+  Classe classe;
 public:
-	Perso(int id, int player) : Element(id, Mobile), side(0), health(100), defence(100), power(100),
-		move(2), corruption(10), status(1), range(5),
-		currentHealth(100), zombiLimit(300), level(1), conversion(42),
-		direction(MoveForward), owner(player)
-	{}
-	Element* clone() override;
-	~Perso();
-	virtual bool isAllie() override;
-	virtual bool isEnnemy() override;
-	virtual bool isNeutral() override;
-	virtual bool isGround() override;
-	virtual Classe getType() override;
-	AnimationType getDir();
-	const int getOwner() const; 
-	const Classe getClass() const;
-	void setClass(Classe);
-	virtual void setAttribute(std::string attribute, int valeur) override;
-	virtual void setAttribute(std::string attribute, std::string valeur) override;
-	virtual int getAttribute(std::string attribute) override;
-	virtual Competence* getSkill(int i) override;
-	void addSkill(Competence* skill);
-	int nbrSkill();
+   Perso(int id, int player);
+  Element* clone();
+   ~Perso();
+  virtual bool  isAllie();
+  virtual bool  isEnnemy();
+  virtual bool  isNeutral();
+  virtual bool  isGround();
+  AnimationType  getDir();
+  const int  getOwner();
+  virtual void  setAttribute(std::string attribute, int valeur);
+  virtual void  setAttribute(std::string attribute, std::string valeur);
+  virtual int  getAttribute(std::string attribute);
+  virtual Competence* getSkill(int i);
+  void  addSkill(state::Competence* skill);
+  int  nbrSkill();
+
 };
+
+};
+
+#endif // defined __PERSO_H__

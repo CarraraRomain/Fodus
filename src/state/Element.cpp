@@ -1,5 +1,7 @@
 #include "Element.hpp"
 
+using namespace state;
+
 void Element::setX(int newX)
 {
 	m_x = newX;
@@ -62,3 +64,18 @@ int Element::getUid()
 	return uid;
 }
 
+ElementType Element::getType() {
+	return type;
+}
+
+void Element::setClasse(Classe c) {
+	classe = c;
+}
+
+const Classe Element::getClasse() const {
+	return classe;
+}
+
+Element::Element(int id, ElementType type): type(type), uid(id)  {
+
+}

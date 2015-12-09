@@ -1,5 +1,7 @@
 #include "Etat.hpp"
+#include "../engine/Observer.hpp"
 
+using namespace state;
 
 Etat::Etat(int i): turnsCount(i), taille(0)
 {
@@ -102,7 +104,7 @@ std::vector<int> Etat::getGround()
 
 void Etat::notify()
 {
-	for (auto obs : m_obs)
+	for (engine::Observer* obs : m_obs)
 	{
 		obs->update(ObsState);
 	}

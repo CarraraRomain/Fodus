@@ -1,8 +1,18 @@
 #include "Perso.hpp"
 
+using namespace state;
+
 Element* Perso::clone()
 {
 	return new Perso(*this);
+}
+
+Perso::Perso(int id, int player) : Element(id, Mobile), side(0), health(100), defence(100), power(100),
+							move(2), corruption(10), status(1), range(5),
+							currentHealth(100), zombiLimit(300), level(1), conversion(42),
+							direction(MoveForward), owner(player)
+{
+
 }
 
 Perso::~Perso()
@@ -11,19 +21,19 @@ Perso::~Perso()
 
 bool Perso::isAllie()
 {
-	if (type == Principal || type == Zombie) return true;
+	if (classe == Principal || classe == Zombie) return true;
 	else return false;
 }
 
 bool Perso::isEnnemy()
 {
-	if (type == Guerrier || type == Mage) return true;
+	if (classe == Guerrier || classe == Mage) return true;
 	else return false;
 }
 
 bool Perso::isNeutral()
 {
-	if (type == Monstre) return true;
+	if (classe == Monstre) return true;
 	else return false;
 }
 
@@ -32,10 +42,6 @@ bool Perso::isGround()
 	return false;
 }
 
-Classe Perso::getType()
-{
-	return type;
-}
 
 AnimationType Perso::getDir()
 {
@@ -47,15 +53,6 @@ const int Perso::getOwner() const
 	return owner;
 }
 
-const Classe Perso::getClass() const
-{
-	return type;
-}
-
-void Perso::setClass(Classe c)
-{
-	type = c;
-}
 
 void Perso::setAttribute(std::string attribute, int valeur)
 {

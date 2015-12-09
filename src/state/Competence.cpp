@@ -1,5 +1,7 @@
 #include "Competence.hpp"
 
+using namespace state;
+
 Competence::Competence(SkillType newType, int newDamage, int newTarget, int newInterest, int newRange, int newCooldown)
 {
 	type = newType;

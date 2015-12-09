@@ -1,5 +1,11 @@
 #include "Case.hpp"
 
+using namespace state;
+
+Case::Case(int id): Element(id, Fixed) {
+
+}
+
 bool Case::isGround()
 {
 	return true;
@@ -43,10 +49,6 @@ Competence * Case::getSkill(int index)
 	return NULL;
 }
 
-Classe Case::getType()
-{
-	return Sol;
-}
 
 Element* Case::clone()
 {
