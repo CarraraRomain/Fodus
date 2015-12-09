@@ -1,45 +1,84 @@
-#pragma once
+// Engine.hpp
+// 
+// Project: Fodus
+// Version: 3.1
+// Author: Timothe Perez, Romain Carrara, Zhuo Li
+// Auto-Generated Date: 2015-12-09 22:14
+//
+//
+// This header file defines the interfaces to the class Engine
+//
+// This file was generate from a Dia Diagram using pydia2code.py
+// by Timothe Perez <achille.ash@gmail.com>
+// based on the work of Dave Klotzbach <dklotzbach@foxvalley.net>
+//
+// The author asserts no additional copyrights on the derived product. Limitations
+// on the uses of this file are the right and responsibility of authors of the source
+// diagram.
+//
+// The pydia2code.py and dia-uml2cpp.xsl script are distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+// or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+// more details.
+//
+// A copy of the GNU General Public License is available by writing to the
+// Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
+// MA 02111-1307, USA.
+//
 
+
+#ifndef __ENGINE_H__
+#define __ENGINE_H__
+
+
+#include "../global.hpp"
+#include "../boot/Bootstrap.hpp"
 #include "../state/Etat.hpp"
-//#include "CommandeListe.hpp"
+#include "../state/Perso.hpp"
+#include "../state/Competence.hpp"
 #include "Ruler.hpp"
 #include "AbstractEngine.hpp"
-#include "../test/game/TestGame.hpp"
-#include "Player.hpp"
 
-class Engine: public AbstractEngine
-{
+
+namespace engine {
+
+class Engine: public AbstractEngine{
+private:
 public:
-	Engine(Bootstrap*);
-	void loadLevel(const std::string);
-	void handleCommand(Command*) override;
-	void run();
-	int getCurrentPlayer();
-	bool hasPlayed(int player);
-	Etat& getState() override;
-	int registerPlayer(int player, EngineObserver* obs) override;
-	int connect(int client) override;
-	void start() override;
-	Player& getPlayer(int) override;
-	std::map<int, Player>& getPlayers() override;
-	int getMapValue(int x, int y, int uid) override;
-	std::vector< std::vector<int> > getMap(int uid) override;
-	void death(int uid);
-	void propagate(int x, int y, int valeur, int uid) override;
-	ElementList syncRequest() override;
-	void syncFull(int) override;
-	int whoIsPlaying() override;
+  virtual ~Engine();
+private:
+  boot::Bootstrap* m_boot;
+  std::unique_ptr<state::Etat>  state;
+  std::vector<int>  m_has_played;
+  std::unique_ptr<Ruler>  m_ruler;
+private:
+  void  nextPlayer(int played);
+  void  nextTurn();
 protected:
-	int registerPlayer(int player) override;
-
-private :
-	Bootstrap* m_boot;
-	std::unique_ptr<Etat> state;
-	//CommandeListe liste;
-	std::vector<int> m_has_played;
-	std::unique_ptr<Ruler> m_ruler;
-	
-	void nextPlayer(int played);
-	void nextTurn();
+  int  registerPlayer(int player);
+public:
+   Engine(boot::Bootstrap* boot);
+  void  loadLevel(std::string );
+  void  handleCommand(Command* );
+  void  run();
+  int  getCurrentPlayer();
+  bool  hasPlayed(int player);
+  state::Etat& getState();
+  int  registerPlayer(int player, game::EngineObserver* obs);
+  int  connect(int client);
+  void  start();
+  Player& getPlayer(int );
+  std::map<int, Player>& getPlayers();
+  int  getMapValue(int x, int y, int uid);
+  std::vector< std::vector<int> > getMap();
+  void  death(int uid);
+  void  propagate(int x, int y, int valeur, int uid);
+  state::ElementList  syncRequest();
+  void  syncFull(int );
+  int  whoIsPlaying();
 
 };
+
+};
+
+#endif // defined __ENGINE_H__

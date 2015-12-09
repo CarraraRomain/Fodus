@@ -1,4 +1,6 @@
-#include "MoveCommand.h"
+#include "MoveCommand.hpp"
+
+using namespace engine;
 
 MoveCommand::MoveCommand(CommandReceiver * receiver, int x , int y , AnimationType type, int uid, int player) : Command(receiver, Move, player)
 {

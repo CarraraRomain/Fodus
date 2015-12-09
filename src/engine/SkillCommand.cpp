@@ -1,5 +1,7 @@
 #include "SkillCommand.hpp"
 
+using namespace engine;
+
 SkillCommand::SkillCommand(CommandReceiver * receiver, int x, int y, int newuid, int skill, int player) :Command(receiver, Skill, player)
 {
 	uid = newuid;

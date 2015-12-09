@@ -1,5 +1,6 @@
 #include "Observer.hpp"
 
+using namespace engine;
 
 Observer::Observer(Subject* sub): m_sub(sub)
 {

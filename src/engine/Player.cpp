@@ -1,6 +1,6 @@
 #include "Player.hpp"
 
-
+using namespace engine;
 
 Player::Player(int id, int control): m_id(id), controlType(control)
 {

@@ -1,6 +1,8 @@
 #include "DamageAction.hpp"
 
-void DamageAction::execute(Etat& state)
+using namespace engine;
+
+void DamageAction::execute(state::Etat& state)
 {
 	if (state.getList()->findUid(uid) == -1) return;
 	int currentHealth = state.getAttribute("currentHealth", uid);

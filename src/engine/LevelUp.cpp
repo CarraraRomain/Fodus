@@ -1,4 +1,6 @@
-#include "LevelUp.h"
+#include "LevelUp.hpp"
+
+using namespace engine;
 
 void LevelUp::execute(Etat* state)
 {

@@ -2,9 +2,11 @@
 #include "EndTurnCommand.hpp"
 #include "../state/Case.hpp"
 
-Engine::Engine(Bootstrap* boot): m_boot(boot)
+using namespace engine;
+
+Engine::Engine(boot::Bootstrap* boot): m_boot(boot)
 {
-	state.reset(new Etat(0));
+	state.reset(new state::Etat(0));
 	m_ruler.reset(new Ruler(this,*state));
 	m_ruler->createMap(state.get());
 }
@@ -41,7 +43,7 @@ void Engine::loadLevel(const std::string level)
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				Case* ptr_case = new Case(rand());
+				state::Case* ptr_case = new state::Case(rand());
 				ptr_case->setKey(e[k]["key"].GetString());
 				ptr_case->setX(posX);
 				ptr_case->setY(i);
@@ -65,9 +67,6 @@ void Engine::handleCommand(Command* com)
 		switch (com->type)
 		{
 		case Move:
-			m_ruler->execute(com, state.get());
-			break;
-		case Attack:
 			m_ruler->execute(com, state.get());
 			break;
 		case Skill:
@@ -104,12 +103,12 @@ bool Engine::hasPlayed(int player)
 	return false;
 }
 
-Etat& Engine::getState()
+state::Etat& Engine::getState()
 {
 	return *state;
 }
 
-int Engine::registerPlayer(int player, EngineObserver* obs)
+int Engine::registerPlayer(int player, game::EngineObserver* obs)
 {
 	if (obs == nullptr) return 403;
 	for(auto i : m_players_obs)
@@ -133,7 +132,7 @@ void Engine::start()
 	//TestGame::test_load_elt_list(state->getList(), m_boot);
 	m_players.erase(0);
 	// Quick and dirty addition of a perso
-	Perso* elt = new Perso(1, 1);
+	state::Perso* elt = new state::Perso(1, 1);
 	elt->setAttribute("move", 10);
 	elt->setX(17);
 	elt->setY(10);
@@ -146,20 +145,20 @@ void Engine::start()
 	elt->setAttribute("status", 0);
 	state->getList()->push_back(elt);
 
-	Competence* attack = new Competence(Attack, 10, 2, 1, 2, 0);
+	state::Competence* attack = new state::Competence(Attack, 10, 2, 1, 2, 0);
 	elt->addSkill(attack);
-	Competence* fireball = new Competence(Fireball,20, 3, 2, 10, 3);
+	state::Competence* fireball = new state::Competence(Fireball,20, 3, 2, 10, 3);
 	elt->addSkill(fireball);
-	Competence* spawnZ = new Competence(ZombieSpawn, 20, 0, 1, 3, 0);
+	state::Competence* spawnZ = new state::Competence(ZombieSpawn, 20, 0, 1, 3, 0);
 	elt->addSkill(spawnZ);
-	Competence* heal = new Competence(Rejuvenate, 20, 3, 1, 15, 3);
+	state::Competence* heal = new state::Competence(Rejuvenate, 20, 3, 1, 15, 3);
 	elt->addSkill(heal);
 
 	// Elt index is size-1
 	m_players[1] = Player(1,0);
 	m_players[1].addOwnedPerso(elt->getUid());
 
-	Perso* foe = new Perso(89, 2);
+	state::Perso* foe = new state::Perso(89, 2);
 	foe->setClass(Monstre);
 	foe->setAttribute("move", 5);
 	foe->setAttribute("range", 1);

@@ -1,11 +1,13 @@
-#include "DeadAction.h"
+#include "DeadAction.hpp"
+
+using namespace engine;
 
 DeadAction::DeadAction(int newUid) : Action(Dead)
 {
 	uid = newUid;
 }
 
-void DeadAction::execute(Etat& state)
+void DeadAction::execute(state::Etat& state)
 {
 	int own = state.getAttribute("owner", uid);
 	state.setAttribute("status", -1, uid);

@@ -1,5 +1,7 @@
 #include "RestoreAction.hpp"
 
+using namespace engine;
+
 void RestoreAction::execute(Etat & state)
 {
 	currentHealth = state.getAttribute("currentHealth", uid);

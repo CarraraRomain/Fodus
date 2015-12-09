@@ -1,6 +1,6 @@
 #include "ModeCommand.hpp"
 
-
+using namespace engine;
 
 ModeCommand::ModeCommand(CommandReceiver* receiver, std::string m) : Command(receiver, Mode)
 {

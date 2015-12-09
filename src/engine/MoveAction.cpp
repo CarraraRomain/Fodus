@@ -1,5 +1,6 @@
 #include "MoveAction.hpp"
 
+using namespace engine;
 
 void MoveAction::execute(Etat& e)
 {

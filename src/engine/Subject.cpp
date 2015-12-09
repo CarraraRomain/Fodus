@@ -1,5 +1,7 @@
 #include "Subject.hpp"
 
+using namespace engine;
+
 Subject::Subject()
 {
 }

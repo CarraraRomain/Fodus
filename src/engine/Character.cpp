@@ -1,6 +1,6 @@
 #include "Character.hpp"
 
-
+using namespace engine;
 
 Character::Character(int id) : UID(id), m_move_watch(false), m_attacked(false), m_moved(false)
 {

@@ -2,6 +2,7 @@
 
 #include "../game/EngineObserver.hpp"
 
+using namespace engine;
 
 AbstractEngine::AbstractEngine(): m_player_playing(1)
 {
@@ -36,7 +37,7 @@ void AbstractEngine::notifySingle(int pid)
 	m_players_obs[pid]->updateGlobal(getState());
 }
 
-void AbstractEngine::notifyElement(Element& el)
+void AbstractEngine::notifyElement(state::Element& el)
 {
 	for (auto obs : m_players_obs) obs.second->updateElement(el);
 }

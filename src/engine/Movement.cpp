@@ -1,5 +1,6 @@
 #include "Movement.hpp"
 
+using namespace engine;
 
 Movement::Movement()
 {

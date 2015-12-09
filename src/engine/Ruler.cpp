@@ -3,8 +3,10 @@
 #include "Engine.hpp"
 #include "../state/ElementList.hpp"
 
+using namespace engine;
 
-Ruler::Ruler(Engine* e, Etat& state): m_state(state), m_engine(e), m_end(false)
+
+Ruler::Ruler(Engine* e, state::Etat& state): m_state(state), m_engine(e), m_end(false)
 {
 	m_action_list.reset(new ActionList);
 }
@@ -15,7 +17,7 @@ Ruler::~Ruler()
 /**
  * Execute a command and generate an action against a state
  */
-void Ruler::execute(Command* com, Etat* state)
+void Ruler::execute(Command* com, state::Etat* state)
 {
 	bool success = false;
 	switch (com->type)
@@ -81,7 +83,7 @@ void Ruler::update()
 /**
  * Check movement legitimacy
  */
-bool Ruler::checkMove(Etat* state, int x, int y, int uid, int player)
+bool Ruler::checkMove(state::Etat* state, int x, int y, int uid, int player)
 {
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT || m_engine->getPlayer(player).hasMoved(uid)) return false;
 	LOG(DEBUG) << "check";
@@ -89,7 +91,7 @@ bool Ruler::checkMove(Etat* state, int x, int y, int uid, int player)
 	else return false;
 }
 
-bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
+bool Ruler::createMove(state::Etat * state, int x, int y, int uid, int player)
 {
 	int i;
 	for (i = 0; i < HEIGHT + WIDTH; i++)
@@ -147,7 +149,7 @@ bool Ruler::createMove(Etat * state, int x, int y, int uid, int player)
 	return false;
 }
 
-bool Ruler::checkAttack(Etat* state, int uid1, int uid2, int player)
+bool Ruler::checkAttack(state::Etat* state, int uid1, int uid2, int player)
 {
 	if (m_engine->getPlayer(player).hasAttacked(uid1)) return false;
 
@@ -165,7 +167,7 @@ bool Ruler::checkAttack(Etat* state, int uid1, int uid2, int player)
 	return false;
 }
 
-bool Ruler::createAttack(Etat * state, int uid1, int uid2)
+bool Ruler::createAttack(state::Etat * state, int uid1, int uid2)
 {
 	int power = state->getAttribute("power", uid1);
 	power = power - state->getAttribute("defence", uid2);
@@ -184,15 +186,15 @@ bool Ruler::createAttack(Etat * state, int uid1, int uid2)
 
 
 
-int Ruler::checkSkill(Etat* state, int posX, int posY, int uid, int skillIndex, int player)
+int Ruler::checkSkill(state::Etat* state, int posX, int posY, int uid, int skillIndex, int player)
 {
 	createMap(state);
 	if (m_engine->getPlayer(player)[uid].hasAttacked()) return false;
 
 	int found = 0;
 	int i;
-	ElementList* liste = state->getList();
-	Competence* skill = liste->getSkill(uid, skillIndex);
+	state::ElementList* liste = state->getList();
+	state::Competence* skill = liste->getSkill(uid, skillIndex);
 
 	if (skill == NULL) return false;
 	if (skill->cooldown != 0) return false;
@@ -220,10 +222,10 @@ int Ruler::checkSkill(Etat* state, int posX, int posY, int uid, int skillIndex, 
 	return false;
 }
 
-bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int target, int player)
+bool Ruler::createSkill(state::Etat* state, int uid, int index, int posX, int posY, int target, int player)
 {
-	ElementList* liste = state->getList();
-	Competence* skill = liste->getSkill(uid, index);
+	state::ElementList* liste = state->getList();
+	state::Competence* skill = liste->getSkill(uid, index);
 
 	skill->used();
 
@@ -262,7 +264,7 @@ bool Ruler::createSkill(Etat* state, int uid, int index, int posX, int posY, int
 
 		case ZombieSpawn:
 		{
-			Perso* zombie = new Perso(100, 2);
+			state::Perso* zombie = new state::Perso(100, 2);
 			zombie->setClass(Zombie);
 			zombie->setAttribute("posX", posX);
 			zombie->setAttribute("posY", posY);
@@ -302,7 +304,7 @@ return false;
 }
 
 
-void Ruler::createMap(Etat * state)
+void Ruler::createMap(state::Etat * state)
 {
 	int i, j;
 
@@ -315,7 +317,7 @@ void Ruler::createMap(Etat * state)
 			map[i][j] = 0;
 		}
 
-	ElementList* liste = state->getList();
+	state::ElementList* liste = state->getList();
 	LOG(DEBUG) << state->getSize();
 	for (int i = 0; i < state->getSize(); i++)
 	{
@@ -352,7 +354,7 @@ void Ruler::propagate(int posX, int posY, int value, int uid)
 	}
 }
 
-void Ruler::nextPlayer(int played, int toPlay, Etat* state)
+void Ruler::nextPlayer(int played, int toPlay, state::Etat* state)
 {
 	if (played != 0)
 	{
@@ -384,10 +386,10 @@ std::vector<std::vector<int>> Ruler::getMap(int uid)
 	return mapCharacter[uid];
 }
 
-void Ruler::checkRule(Etat * state)
+void Ruler::checkRule(state::Etat * state)
 {
 	if (m_end) return;
-	ElementList* liste = state->getList();
+	state::ElementList* liste = state->getList();
 	int i;
 	for(auto const &pl: m_engine->getPlayers())
 	{
@@ -434,10 +436,10 @@ void Ruler::checkRule(Etat * state)
 	update();
 }
 
-void Ruler::EndTurnRule(int played, Etat * state)
+void Ruler::EndTurnRule(int played, state::Etat * state)
 {
 	int uid,i;
-	ElementList* liste = state->getList();
+	state::ElementList* liste = state->getList();
 
 	for (auto const &ch : m_engine->getPlayer(played))
 	{
@@ -449,7 +451,7 @@ void Ruler::EndTurnRule(int played, Etat * state)
 			if (damage < 1) damage = 1;
 			DamageAction* action = new DamageAction(uid, damage);
 			m_action_list->push_back(action);
-			LOG(DEBUG) << "burn for " << uid << ", and for " << damage << " dégâts";
+			LOG(DEBUG) << "burn for " << uid << ", and for " << damage << " dï¿½gï¿½ts";
 		}
 
 		for (i = 0; i < state->getAttribute("nbrSkill", uid); i++) {

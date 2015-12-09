@@ -1,7 +1,6 @@
 #include "EndTurnCommand.hpp"
 
-
-
+using namespace engine;
 
 EndTurnCommand::EndTurnCommand(CommandReceiver* receiver, int player) :
 	Command(receiver, EndTurn), m_player(player)
