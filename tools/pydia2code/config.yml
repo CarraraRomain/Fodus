@@ -14,7 +14,7 @@ stylesheets:
 directories:
   input: "../../dia/"
   temp: "tmp/"
-  output: "out/"
+  output: "../../src/"
 
 # Diagram filename prefix in the input folder
 dia_prefix: "diagram_"

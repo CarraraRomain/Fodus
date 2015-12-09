@@ -105,6 +105,9 @@
        <xsl:attribute name="name">
           <xsl:value-of select="substring-before(substring-after(dia:attribute[@name='name']/dia:string, '#'), '#')"/>
        </xsl:attribute>
+        <xsl:attribute name="stereotype">
+          <xsl:value-of select="substring-before(substring-after(dia:attribute[@name='stereotype']/dia:string, '#'), '#')"/>
+       </xsl:attribute>
        <xsl:for-each select="dia:connections/dia:connection">
           <xsl:choose>
              <xsl:when test="@handle='0'">

@@ -308,7 +308,7 @@ names and more.
     </xsl:template>
 
     <xsl:template match="Generalization" mode="includes">
-        <xsl:if test="@stereotype != 'extern' ">
+        <xsl:if test="@stereotype != 'extern'">
             <xsl:variable name="superclass">
                 <xsl:value-of select="@superclass"/>
             </xsl:variable>
