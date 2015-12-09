@@ -52,7 +52,7 @@ names and more.
     </xsl:template>
 
 
-    <xsl:template match="class" mode="header">
+    <xsl:template match="class[@stereotype !='extern']" mode="header">
         <xsl:variable name="CppClass"><xsl:value-of select="translate(@name, ' ','_')"/></xsl:variable>
         <xsl:variable name="classid"><xsl:value-of select="@id"/></xsl:variable>
         <xsl:variable name="DepSet"><xsl:value-of select="../Dependency[@classId=$classid and @stereotype='bind']/@dependsOn"/></xsl:variable>
@@ -130,7 +130,12 @@ names and more.
                 <xsl:otherwise>
                     <xsl:text>class </xsl:text>
                     <xsl:value-of select="$CppClass"/>
-                    <xsl:apply-templates select="../Generalization[@subclass=$classid]" mode="derivations"/>
+                    <xsl:for-each select="../Generalization[@subclass=$classid]">
+                        <xsl:apply-templates select="." mode="derivations">
+                            <xsl:with-param name="count" select="position()"/>
+                        </xsl:apply-templates>
+                    </xsl:for-each>
+                    <!--<xsl:apply-templates select="../Generalization[@subclass=$classid]" mode="derivations"/>-->
                     <xsl:text>{&#xa;</xsl:text>
                     <xsl:text>private:&#xa;</xsl:text>
                     <xsl:apply-templates select="../Association[@to=$classid]" mode="attibutes"/>
@@ -315,7 +320,16 @@ names and more.
     </xsl:template>
 
     <xsl:template match="Generalization" mode="derivations">
-        <xsl:text>: public </xsl:text>
+        <xsl:param name="count"/>
+        <xsl:choose>
+            <xsl:when test="$count = 1">
+                 <xsl:text>: public </xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>, public </xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+
         <xsl:variable name="superclass"><xsl:value-of select="@superclass"/></xsl:variable>
         <xsl:value-of select="translate(../class[@id=$superclass]/@name,' ','_')"/>
     </xsl:template>
