@@ -3,3 +3,4 @@ build/
 .idea/
 tools/pydia2code/tmp/
 tools/pydia2code/out/
+dia/*.dia~
