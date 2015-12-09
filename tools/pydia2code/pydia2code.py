@@ -55,19 +55,22 @@ for namespace in config["namespaces"]:
         doc = etree.parse(inp_folder + "diagram_" + namespace + ".dia")
         result = style(doc)
         # Adding specific decorators (from config file)
-        print("Adding decorators data")
+        print(namespace + " : Adding decorators data")
         root = result.getroot()
         decorators = etree.SubElement(root, "decorators")
-        if not config["decorators"][namespace]:
-            continue
-        for d in config["decorators"][namespace]:
-            dec = etree.Element("class", name=d)
-            decorators.append(dec)
-            if not config["decorators"][namespace][d]:
-                continue
-            for v in config["decorators"][namespace][d]:
-                dec.append(etree.Element("include", value=v))
-        print("Saving tmp xml file")
+        if namespace in config["decorators"]:
+
+            # for each class in namespace
+            if config["decorators"][namespace]:
+                for class_name in config["decorators"][namespace]:
+                    dec = etree.Element("class", name=class_name)
+                    decorators.append(dec)
+                    class_node = config["decorators"][namespace][class_name]
+                    # includes
+                    if "include" in class_node:
+                        for include in class_node["include"]:
+                            dec.append(etree.Element("include", value=include))
+        print(namespace + " : Saving tmp xml file")
         f = open(tmp_folder + namespace + ".xml", "w")
         f.write(str(result))
             #style.saveResultToFilename(tmp_folder + namespace + ".xml", result, 0)

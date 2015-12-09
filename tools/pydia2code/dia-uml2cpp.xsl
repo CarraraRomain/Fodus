@@ -278,7 +278,7 @@ names and more.
                     <xsl:value-of select="@to"/>
          </xsl:variable>
         <xsl:choose>
-            <xsl:when test="@name != 'circular'">
+            <xsl:when test="@name != 'circular' and @stereotype != 'extern' ">
 
                 <xsl:text>#include "</xsl:text>
                 <xsl:value-of select="translate(../class[@id=$to]/@name, ' ','_')"/>
@@ -291,17 +291,27 @@ names and more.
     </xsl:template>
 
     <xsl:template match="Dependency" mode="includes">
-        <xsl:variable name="dependsOn"><xsl:value-of select="@dependsOn"/></xsl:variable>
-        <xsl:text>#include "</xsl:text>
-        <xsl:value-of select="translate(../class[@id=$dependsOn]/@name, ' ','_')"/>
-        <xsl:text>.hpp"&#xa;</xsl:text>
+        <xsl:if test="@stereotype != 'extern' ">
+            <xsl:variable name="dependsOn">
+                <xsl:value-of select="@dependsOn"/>
+            </xsl:variable>
+            <xsl:text>#include "</xsl:text>
+            <xsl:value-of select="translate(../class[@id=$dependsOn]/@name, ' ','_')"/>
+            <xsl:text>.hpp"&#xa;</xsl:text>
+        </xsl:if>
+
     </xsl:template>
 
     <xsl:template match="Generalization" mode="includes">
-        <xsl:variable name="superclass"><xsl:value-of select="@superclass"/></xsl:variable>
-        <xsl:text>#include "</xsl:text>
-        <xsl:value-of select="translate(../class[@id=$superclass]/@name, ' ','_')"/>
-        <xsl:text>.hpp"&#xa;</xsl:text>
+        <xsl:if test="@stereotype != 'extern' ">
+            <xsl:variable name="superclass">
+                <xsl:value-of select="@superclass"/>
+            </xsl:variable>
+            <xsl:text>#include "</xsl:text>
+            <xsl:value-of select="translate(../class[@id=$superclass]/@name, ' ','_')"/>
+            <xsl:text>.hpp"&#xa;</xsl:text>
+        </xsl:if>
+
     </xsl:template>
 
     <xsl:template match="Generalization" mode="derivations">

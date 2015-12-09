@@ -39,16 +39,20 @@ includes:
 decorators:
   engine:
     AbstractEngine:
-      - "../state/Etat.hpp"
-      - "../game/EngineObserver.hpp"
+      include:
+        - "../state/Etat.hpp"
+        - "../game/EngineObserver.hpp"
     Ruler:
-      - "../state/Etat.hpp"
+      include:
+        - "../state/Etat.hpp"
 
 
   game:
     EngineObserver:
-      - "../state/Etat.hpp"
-      - "../engine/Player.hpp"
+        include:
+        - "../state/Etat.hpp"
+        - "../engine/Player.hpp"
+
   state:
 
   render:
