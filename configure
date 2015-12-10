@@ -27,6 +27,9 @@ while getopts "hs:vf:" option; do
 done
 
 rm build -r
+cd tools/pydia2code
+./clean.py
+cd ../..
 mkdir build
 cd build
 if ["$sfml_path" == ""]; then
@@ -37,3 +40,5 @@ else
 	cmake .. -DSFML_ROOT=$sfml_path
 fi
 
+cd ../tools/pydia2code
+./pydia2code.py

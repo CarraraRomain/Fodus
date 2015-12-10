@@ -4,3 +4,8 @@ build/
 tools/pydia2code/tmp/
 tools/pydia2code/out/
 dia/*.dia~
+src/boot/*.hpp
+src/engine/*.hpp
+src/ai/*.hpp
+src/state/*.hpp
+src/game/*.hpp
