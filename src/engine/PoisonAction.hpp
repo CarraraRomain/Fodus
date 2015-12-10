@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class PoisonAction
@@ -45,7 +45,7 @@ private:
   int  limit;
   int  turn;
 public:
-  virtual void  execute(Etat&amp; state);
+  virtual void  execute(state::Etat& state);
    PoisonAction(int uid, int limit, int turn);
    ~PoisonAction();
 

@@ -14,7 +14,7 @@
 #include <iostream>
 #include <time.h>
 // Project includes
-#include "bootstrap/Bootstrap.hpp"
+#include "boot/Bootstrap.hpp"
 
 // Easylogging startup macro
 INITIALIZE_EASYLOGGINGPP

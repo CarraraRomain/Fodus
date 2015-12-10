@@ -1,9 +1,9 @@
 #include <stdexcept>
 #include "TileFactory.hpp"
 
+using namespace render;
 
-
-TileFactory::TileFactory(Bootstrap* boot) : m_boot(boot){
+TileFactory::TileFactory(boot::Bootstrap* boot) : m_boot(boot){
     LOG(DEBUG) << "Creating factory";
     _tilesDoc.reset(new rapidjson::Document());
     loadTilesDoc("tiles_index");

@@ -1,8 +1,8 @@
 #include "ElementLayer.hpp"
 
+using namespace render;
 
-
-ElementLayer::ElementLayer(Bootstrap* boot, int depth): Layer(boot), m_depth(depth)
+ElementLayer::ElementLayer(boot::Bootstrap* boot, int depth): Layer(boot), m_depth(depth)
 {
 	LOG(DEBUG) << "Creating EltLayer";
 	m_tile_factory.reset(new TileFactory(m_boot));
@@ -16,7 +16,7 @@ ElementLayer::~ElementLayer()
 }
 
 
-void ElementLayer::update(const ElementList& list)
+void ElementLayer::update(const state::ElementList& list)
 {
 	LOG(DEBUG) << "Updating layer";
 	int X = 0;

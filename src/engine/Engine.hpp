@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class Engine
@@ -64,13 +64,13 @@ public:
   int  getCurrentPlayer();
   bool  hasPlayed(int player);
   state::Etat& getState();
-  int  registerPlayer(int player, game::EngineObserver* obs);
+  int  registerPlayer(int player, EngineObserver* obs);
   int  connect(int client);
   void  start();
   Player& getPlayer(int );
   std::map<int, Player>& getPlayers();
   int  getMapValue(int x, int y, int uid);
-  std::vector< std::vector<int> > getMap();
+  std::vector< std::vector<int> > getMap(int uid);
   void  death(int uid);
   void  propagate(int x, int y, int valeur, int uid);
   state::ElementList  syncRequest();

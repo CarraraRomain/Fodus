@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class CommandReceiver
@@ -42,8 +42,8 @@ class CommandReceiver{
 private:
 public:
    CommandReceiver();
-  virtual ~CommandReceiver();
-  virtual virtual void  handleCommand(Command* com) = 0;
+  virtual  ~CommandReceiver();
+  virtual void  handleCommand(Command* com) = 0;
 
 };
 

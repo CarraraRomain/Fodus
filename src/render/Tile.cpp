@@ -5,7 +5,7 @@
 #include "Tile.hpp"
 #include "../../lib/rapidjson/rapidjson.h"
 
-
+using namespace render;
 
 Tile::Tile(const rapidjson::Value& node) {
     // Text. x | y are reversed compared to
@@ -32,7 +32,7 @@ const std::string &Tile::getKey() const {
     return _key;
 }
 
-void Tile::setKey(const std::string &key) {
+void Tile::setKey(const std::string& key) {
     _key = key;
 }
 

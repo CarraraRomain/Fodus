@@ -1,5 +1,6 @@
 #include "AnimatedSprite.hpp"
 
+using namespace render;
 
 AnimatedSprite::~AnimatedSprite()
 {

@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class Element
@@ -61,17 +61,17 @@ public:
   int  getUid();
   void  setKey(std::string key);
   std::string  getKey();
-  virtual virtual bool  isGround() = 0;
-  virtual virtual bool  isAllie() = 0;
-  virtual virtual bool  isNeutral() = 0;
-  virtual virtual bool  isEnnemy() = 0;
-  virtual virtual void  setAttribute(std::string attribute, int valeur) = 0;
-  virtual virtual void  setAttribute(std::string attribute, std::string valeur) = 0;
-  virtual virtual int  getAttribute(std::string attribute) = 0;
-  virtual virtual Competence* getSkill(int index) = 0;
+  virtual bool  isGround() = 0;
+  virtual bool  isAllie() = 0;
+  virtual bool  isNeutral() = 0;
+  virtual bool  isEnnemy() = 0;
+  virtual void  setAttribute(std::string attribute, int valeur) = 0;
+  virtual void  setAttribute(std::string attribute, std::string valeur) = 0;
+  virtual int  getAttribute(std::string attribute) = 0;
+  virtual Competence* getSkill(int index) = 0;
   ElementType getType();
    Element(int id, ElementType type);
-  virtual virtual Element* clone() = 0;
+  virtual Element* clone() = 0;
   void setClasse(Classe c);
   const Classe getClasse() const;
 

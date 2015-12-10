@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class AbstractEngine
@@ -33,12 +33,13 @@
 
 #include "../global.hpp"
 #include "../state/Etat.hpp"
-#include "../game/EngineObserver.hpp"
 #include "Player.hpp"
 #include "CommandReceiver.hpp"
 
 
 namespace engine {
+
+class EngineObserver;
 
 class AbstractEngine: public CommandReceiver{
 private:
@@ -46,13 +47,13 @@ protected:
   std::vector<int>  m_clients;
   int  m_player_playing;
   int  current_player_uid;
-  std::map<int, game::EngineObserver*> m_players_obs;
+  std::map<int, EngineObserver*> m_players_obs;
   std::map<int, Player> m_players;
 public:
   std::map<int, int> m_clients_players;
 
 protected:
-  virtual virtual int  registerPlayer(int player) = 0;
+  virtual int  registerPlayer(int player) = 0;
   virtual void  notifyGlobal();
   virtual void  notifySingle(int pid);
   virtual void  notifyElement(state::Element& el);
@@ -64,20 +65,20 @@ protected:
 public:
    AbstractEngine();
    ~AbstractEngine();
-  virtual virtual state::Etat& getState() = 0;
-  virtual virtual int  registerPlayer(int player, game::EngineObserver* obs) = 0;
-  virtual virtual int  connect(int client) = 0;
-  virtual virtual void  start() = 0;
-  virtual virtual void  run() = 0;
-  virtual virtual state::ElementList  syncRequest() = 0;
-  virtual virtual void  syncFull(int pid) = 0;
-  virtual virtual int  whoIsPlaying() = 0;
-  virtual virtual std::vector< std::vector<int> > getMap(int uid) = 0;
-  virtual virtual std::map<int, Player>& getPlayers() = 0;
-  virtual virtual Player& getPlayer(int ) = 0;
-  virtual virtual void  propagate(int x, int y, int valeur, int uid) = 0;
-  virtual virtual int  getMapValue(int x, int y, int uid) = 0;
-  virtual virtual void  notifyGameEnd(Player pl, int score) = 0;
+  virtual state::Etat& getState() = 0;
+  virtual int  registerPlayer(int player, EngineObserver* obs) = 0;
+  virtual int  connect(int client) = 0;
+  virtual void  start() = 0;
+  virtual void  run() = 0;
+  virtual state::ElementList  syncRequest() = 0;
+  virtual void  syncFull(int pid) = 0;
+  virtual int  whoIsPlaying() = 0;
+  virtual std::vector< std::vector<int> > getMap(int uid) = 0;
+  virtual std::map<int, Player>& getPlayers() = 0;
+  virtual Player& getPlayer(int ) = 0;
+  virtual void  propagate(int x, int y, int valeur, int uid) = 0;
+  virtual int  getMapValue(int x, int y, int uid) = 0;
+  virtual void  notifyGameEnd(Player pl, int score);
 
 };
 

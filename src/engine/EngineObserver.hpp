@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class EngineObserver
@@ -32,34 +32,33 @@
 
 
 #include "../global.hpp"
-#include "../state/Etat.hpp"
-#include "../engine/Player.hpp"
+#include "AbstractEngine.hpp"
 
 
-namespace game {
+namespace engine {
 
 class EngineObserver{
 private:
 private:
-  engine::AbstractEngine* m_engine;
+  AbstractEngine* m_engine;
 public:
   int  CID;
 
 protected:
-  engine::AbstractEngine* getEngine();
+  AbstractEngine* getEngine();
 public:
-   EngineObserver(engine::AbstractEngine* engine, int cid);
+   EngineObserver(AbstractEngine* engine, int cid);
    ~EngineObserver();
-  virtual virtual void  update(ObsType obs) = 0;
-  virtual virtual void  updateGlobal(state::Etat& e) = 0;
-  virtual virtual void  updateElement(state::Element& el) = 0;
-  virtual virtual void  updateTurn(int turn) = 0;
-  virtual virtual void  updatePlayer(engine::Player pl) = 0;
-  virtual virtual void  updateGameEnd(int turn) = 0;
-  virtual virtual void  updateNowPlaying(int pid) = 0;
-  virtual virtual void  canPlay(int pid) = 0;
-  virtual virtual void  hasPlayed(int pid) = 0;
-  virtual virtual void  sync(state::ElementList list) = 0;
+  virtual void  update(ObsType obs) = 0;
+  virtual void  updateGlobal(state::Etat& e) = 0;
+  virtual void  updateElement(state::Element& el) = 0;
+  virtual void  updateTurn(int turn) = 0;
+  virtual void  updatePlayer(Player pl) = 0;
+  virtual void  updateGameEnd(int turn) = 0;
+  virtual void  updateNowPlaying(int pid) = 0;
+  virtual void  canPlay(int pid) = 0;
+  virtual void  hasPlayed(int pid) = 0;
+  virtual void  sync(state::ElementList list) = 0;
 
 };
 

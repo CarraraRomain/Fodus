@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
 	
 	srand(time(NULL));
 
-	Bootstrap boot(argc, argv);
+	boot::Bootstrap boot(argc, argv);
 	
 	boot.start();
 

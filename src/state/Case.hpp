@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class Case
@@ -44,16 +44,16 @@ private:
   int  trap;
   int  start;
 public:
-  virtual bool  isGround();
-  virtual bool  isAllie();
-  virtual bool  isEnnemy();
-  virtual bool  isNeutral();
-  virtual void  setAttribute(std::string attribute, int valeur);
-  virtual void  setAttribute(std::string attribute, std::string valeur);
-  virtual int  getAttribute(std::string attribute);
+  bool  isGround();
+  bool  isAllie();
+  bool  isEnnemy();
+  bool  isNeutral();
+  void  setAttribute(std::string attribute, int valeur);
+  void  setAttribute(std::string attribute, std::string valeur);
+  int  getAttribute(std::string attribute);
   virtual Competence* getSkill(int index);
    Case(int id);
-  virtual Element* clone();
+  Element* clone();
    ~Case();
 
 };

@@ -1,6 +1,6 @@
 #include "Animation.hpp"
 
-
+using namespace render;
 
 Animation::Animation()
 {

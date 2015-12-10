@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class Game
@@ -53,6 +53,11 @@ private:
   bool  m_has_played;
   bool  is_playing;
   int  skillMode;
+public:
+  std::unique_ptr<sf::RenderWindow> m_game_window;
+  std::unique_ptr<rapidjson::Document> m_game_level;
+  std::map<int, bool> m_move_watcher;
+
 private:
   void  game_event_loop();
   void  updateHUD();
@@ -62,7 +67,7 @@ private:
   void  enableActions();
   void  reflowSkill();
 public:
-   Game(boot::Bootstrap boot, AbstractEngine* engine, int cid);
+   Game(boot::Bootstrap* boot, engine::AbstractEngine* engine, int cid);
    ~Game();
   void  load_gui();
   void  load();
@@ -72,15 +77,15 @@ public:
   void  syncRequest();
   void  whoIsPlaying();
   void  update(ObsType type);
-  void  updateGlobal(Etat& e);
-  void  updateElement(Element& el);
+  void  updateGlobal(state::Etat& e);
+  void  updateElement(state::Element& el);
   void  updateTurn(int turn);
-  void  updatePlayer(Player pl);
+  void  updatePlayer(engine::Player pl);
   void  updateGameEnd(int score);
   void  updateNowPlaying(int pid);
   void  canPlay(int pid);
   void  hasPlayed(int pid);
-  void  sync(ElementList list);
+  void  sync(state::ElementList list);
 
 };
 

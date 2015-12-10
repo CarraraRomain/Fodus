@@ -17,7 +17,8 @@ m_boot(boot), getEngine()(eng), m_hud(boot), m_isKeyPressed(false)
 */
 
 
-Game::Game(Bootstrap* boot, AbstractEngine* engine, int cid): IGame(boot, engine, cid), m_hud(boot), m_game_scene(boot)
+Game::Game(boot::Bootstrap* boot, engine::AbstractEngine* engine,
+		   int cid): IGame(boot, engine, cid), m_hud(boot), m_game_scene(boot)
 {
 	m_has_played = false;
 	m_end = false;
@@ -163,7 +164,7 @@ void Game::update(ObsType type)
 	updateHUD();
 }
 
-void Game::updateGlobal(Etat& e)
+void Game::updateGlobal(state::Etat& e)
 {
 	LOG(INFO) << "UPDATE : GLOBAL";
 	if (e.getTurn() != m_turns)
@@ -182,7 +183,7 @@ void Game::updateGlobal(Etat& e)
 	updateHUD();
 }
 
-void Game::updateElement(Element& el)
+void Game::updateElement(state::Element& el)
 {
 }
 
@@ -190,7 +191,7 @@ void Game::updateTurn(int turn)
 {
 }
 
-void Game::updatePlayer(Player pl)
+void Game::updatePlayer(engine::Player pl)
 {
 	LOG(DEBUG) << "Update: Player " << pl.getId();
 	m_players.erase(pl.getId());
@@ -230,7 +231,7 @@ void Game::hasPlayed(int pid)
 {
 }
 
-void Game::sync(ElementList list)
+void Game::sync(state::ElementList list)
 {
 }
 
@@ -303,11 +304,11 @@ void Game::game_event_loop()
 							LOG(DEBUG) << "Y: " << int(y / SIZE);
 
 							if (skillMode == 0) {
-								MoveCommand command = MoveCommand(getEngine(), (x / SIZE), y / SIZE, MoveRight, 1, m_player_playing);
+								engine::MoveCommand command = engine::MoveCommand(getEngine(), (x / SIZE), y / SIZE, MoveRight, 1, m_player_playing);
 							command.execute();
 							}
 							else {
-								SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, skillMode-1, m_player_playing);
+								engine::SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, skillMode-1, m_player_playing);
 								command.execute();
 								skillMode = 0;
 							}
@@ -384,7 +385,7 @@ void Game::game_event_loop()
 
 				if (move && !m_isKeyPressed)
 				{
-					MoveCommand command = MoveCommand(getEngine(), x, y, type, uid, m_players_id[0]);
+					engine::MoveCommand command = engine::MoveCommand(getEngine(), x, y, type, uid, m_players_id[0]);
 					command.execute();
 					disableActions();
 					m_isKeyPressed = true;
@@ -405,7 +406,7 @@ void Game::game_event_loop()
 
 void Game::updateHUD()
 {
-	Character ch = getEngine()->getPlayer(m_players_id[0])[1];
+	engine::Character ch = getEngine()->getPlayer(m_players_id[0])[1];
 	if (m_has_played || ch.hasMoved()) {
 	//if(m_has_played){
 		m_hud.updateMoveCapa(false);
@@ -442,7 +443,7 @@ void Game::endPlayerTurn()
 		}
 	}
 	draw();
-	EndTurnCommand command = EndTurnCommand(getEngine(), m_players_id[0]);
+	engine::EndTurnCommand command = EndTurnCommand(getEngine(), m_players_id[0]);
 	command.execute();
 
 }
@@ -454,7 +455,7 @@ void Game::watchMovements(int pid)
 	// Check moves for each player
 	//for(auto pl: m_players)
 	//{
-	Player pl = m_players[pid];
+	engine::Player pl = m_players[pid];
 		// check move for each unit
 		for (auto const &ch: pl)
 		{
@@ -526,3 +527,4 @@ void Game::reflowSkill()
 	m_select_box.setOutlineColor(cl);
 	m_hud.updateAction(skillMode);
 }
+

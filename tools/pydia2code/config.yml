@@ -43,7 +43,6 @@ decorators:
     AbstractEngine:
       include:
         - "../state/Etat.hpp"
-        - "../game/EngineObserver.hpp"
     Ruler:
       include:
         - "../state/Etat.hpp"
@@ -62,9 +61,17 @@ decorators:
         - "../state/Perso.hpp"
 
   game:
+    IGame:
+      include:
+          - "../boot/Bootstrap.hpp"
+          - "../engine/EngineObserver.hpp"
+    HUD:
+      include:
+        - "../boot/Bootstrap.hpp"
     EngineObserver:
         include:
           - "../state/Etat.hpp"
+          - "../engine/AbstractEngine.hpp"
           - "../engine/Player.hpp"
 
   state:
@@ -72,6 +79,29 @@ decorators:
       include:
         - "../engine/Subject.hpp"
   render:
+    AnimationLayer:
+      include:
+        - "../state/Perso.hpp"
+        - "../engine/Movement.hpp"
+    Layer:
+      include:
+        - "../boot/Bootstrap.hpp"
+        - "../state/ElementList.hpp"
+    Scene:
+      include:
+        - "../engine/Subject.hpp"
+        - "../engine/Movement.hpp"
+    TileFactory:
+      include:
+        - "../boot/Bootstrap.hpp"
+    SpriteFactory:
+      include:
+        - "../boot/Bootstrap.hpp"
+    InfoLayer:
+      include:
+        - "../engine/Observer.hpp"
+        - "../state/Perso.hpp"
+
   ai:
   boot:
     Bootstrap:

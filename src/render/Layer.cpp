@@ -1,8 +1,8 @@
 #include "Layer.hpp"
 
+using namespace render;
 
-
-Layer::Layer(Bootstrap* boot): m_boot(boot)
+Layer::Layer(boot::Bootstrap* boot): m_boot(boot)
 {
 	m_vertices.setPrimitiveType(sf::Quads);
 	m_vertices.resize(WIDTH * HEIGHT * 4);

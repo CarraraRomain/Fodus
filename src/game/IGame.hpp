@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class IGame
@@ -32,12 +32,13 @@
 
 
 #include "../global.hpp"
-#include "EngineObserver.hpp"
+#include "../boot/Bootstrap.hpp"
+#include "../engine/EngineObserver.hpp"
 
 
 namespace game {
 
-class IGame: public EngineObserver{
+class IGame: public engine::EngineObserver{
 private:
 protected:
   boot::Bootstrap* m_boot;
@@ -50,8 +51,8 @@ public:
    IGame(boot::Bootstrap* boot, engine::AbstractEngine* engine, int cid);
    ~IGame();
   void  connect(int pid);
-  virtual virtual void  syncRequest() = 0;
-  virtual virtual void  whoIsPlaying() = 0;
+  virtual void  syncRequest() = 0;
+  virtual void  whoIsPlaying() = 0;
 
 };
 

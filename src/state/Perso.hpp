@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class Perso
@@ -57,15 +57,18 @@ private:
   int  owner;
   Classe classe;
 public:
+   std::vector<Competence*> competences;
+
+public:
    Perso(int id, int player);
   Element* clone();
    ~Perso();
-  virtual bool  isAllie();
-  virtual bool  isEnnemy();
-  virtual bool  isNeutral();
-  virtual bool  isGround();
+  bool  isAllie();
+  bool  isEnnemy();
+  bool  isNeutral();
+  bool  isGround();
   AnimationType  getDir();
-  const int  getOwner();
+  const int  getOwner() const;
   virtual void  setAttribute(std::string attribute, int valeur);
   virtual void  setAttribute(std::string attribute, std::string valeur);
   virtual int  getAttribute(std::string attribute);

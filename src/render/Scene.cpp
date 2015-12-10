@@ -1,9 +1,9 @@
 #include "Scene.hpp"
 #include "../state/Case.hpp"
-#include "../test/game/TestGame.hpp"
 
+using namespace render;
 
-Scene::Scene(Bootstrap* boot): m_boot(boot)
+Scene::Scene(boot::Bootstrap* boot): m_boot(boot)
 {
 	LOG(DEBUG) << "Creating scene";
 	ElementLayer* eltLayer = new ElementLayer(m_boot,0);
@@ -47,7 +47,7 @@ void Scene::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	
 }
 
-void Scene::update(const ElementList& list)
+void Scene::update(const state::ElementList& list)
 {
 	LOG(DEBUG) << "Updating scene";
 	// saving EltList is disabled for now
@@ -75,7 +75,7 @@ void Scene::updateAnims()
 	notify();
 }
 
-void Scene::setEltAt(Element& elt, int x, int y, int depth)
+void Scene::setEltAt(state::Element& elt, int x, int y, int depth)
 {
 	bool found = false;
 	for (int i = 0; i < int(m_elt_list.size()); i++)
@@ -94,7 +94,7 @@ void Scene::setEltAt(Element& elt, int x, int y, int depth)
 	{
 		if(elt.type == Fixed)
 		{
-			Case* ptr_case = new Case(rand());
+			state::Case* ptr_case = new state::Case(rand());
 			ptr_case->setKey(elt.getKey());
 			ptr_case->setX(x);
 			ptr_case->setY(y);
@@ -106,7 +106,7 @@ void Scene::setEltAt(Element& elt, int x, int y, int depth)
 
 }
 
-void Scene::addPendingMovement(int sprite_id, std::vector<Movement> moves)
+void Scene::addPendingMovement(int sprite_id, std::vector<engine::Movement> moves)
 {
 	m_anims->addPendingMovement(sprite_id, moves);
 }

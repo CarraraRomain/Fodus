@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class Command
@@ -48,7 +48,7 @@ public:
 public:
    Command(CommandReceiver* command_receiver, CommandType type, int player = 0);
    ~Command();
-  virtual virtual void  execute() = 0;
+  virtual void  execute() = 0;
 
 };
 

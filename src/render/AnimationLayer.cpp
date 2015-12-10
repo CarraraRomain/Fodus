@@ -1,8 +1,7 @@
 #include "AnimationLayer.hpp"
-#include "../test/game/TestGame.hpp"
+using namespace render;
 
-
-AnimationLayer::AnimationLayer(Bootstrap* boot): Layer(boot), m_animation_running(false), m_factory(boot)
+AnimationLayer::AnimationLayer(boot::Bootstrap* boot): Layer(boot), m_animation_running(false), m_factory(boot)
 {
 }
 
@@ -29,14 +28,14 @@ void AnimationLayer::updateAnims()
 }
 
 
-void AnimationLayer::update(const ElementList& list)
+void AnimationLayer::update(const state::ElementList& list)
 {
 	int uid(0);
 	for (int i = 0; i < list.size(); i++)
 	{
 		if (list[i]->type == Mobile)
 		{
-			Perso* ptr = dynamic_cast<Perso*>(list[i].get());
+			state::Perso* ptr = dynamic_cast<state::Perso*>(list[i].get());
 			uid = ptr->getUid();
 			std::map<int, AnimatedSprite*>::const_iterator it = m_sprites.find(uid);
 			if (it == m_sprites.end())
@@ -82,7 +81,7 @@ AnimatedSprite* AnimationLayer::getSprite(const int& uid)
 	throw std::invalid_argument("Not found");
 }
 
-void AnimationLayer::addPendingMovement(int sprite_id, std::vector<Movement> moves)
+void AnimationLayer::addPendingMovement(int sprite_id, std::vector<engine::Movement> moves)
 {
 	m_animations_done[sprite_id] = false;
 	m_pending_moves[sprite_id] = moves;
@@ -154,7 +153,7 @@ void AnimationLayer::handleMoves()
 void AnimationLayer::executeMoves(int id)
 {
 	AnimatedSprite* sprite = m_sprites[id];
-	Movement move = m_pending_moves[id].back();
+	engine::Movement move = m_pending_moves[id].back();
 	//LOG(DEBUG) << "Moving " << move.getDir();
 	sprite->play(move.getDir());
 	//sprite->setType(move.getDir());

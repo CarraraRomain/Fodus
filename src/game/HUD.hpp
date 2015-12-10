@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-09 22:14
+// Auto-Generated Date: 2015-12-10 02:02
 //
 //
 // This header file defines the interfaces to the class HUD
@@ -32,11 +32,12 @@
 
 
 #include "../global.hpp"
+#include "../boot/Bootstrap.hpp"
 
 
 namespace game {
 
-class HUD{
+class HUD: public sf::Drawable{
 private:
 private:
   boot::Bootstrap* m_boot;
@@ -51,7 +52,7 @@ private:
 public:
    HUD(boot::Bootstrap* boot);
    ~HUD();
-  void  draw(sf::RenderTarget& target, sf::RenderStates states);
+  void  draw(sf::RenderTarget& target, sf::RenderStates states) const;
   void  load(sf::Vector2u window_size);
   void  updateTurns(int turn);
   void  updateMoveCapa(bool b);

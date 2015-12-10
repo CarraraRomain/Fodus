@@ -1,8 +1,8 @@
 #include "SpriteFactory.hpp"
 
+using namespace render;
 
-
-SpriteFactory::SpriteFactory(Bootstrap* boot): m_boot(boot)
+SpriteFactory::SpriteFactory(boot::Bootstrap* boot): m_boot(boot)
 {
 	LOG(DEBUG) << "Creating Sprite factory";
 	m_sprites.reset(new rapidjson::Document());

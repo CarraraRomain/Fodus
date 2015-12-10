@@ -1,9 +1,9 @@
 #include "InfoLayer.hpp"
 #include "Scene.hpp"
-#include "../state/Case.hpp"
 
+using namespace render;
 
-InfoLayer::InfoLayer(Bootstrap* boot, Subject* sub): Layer(boot), Observer(sub)
+InfoLayer::InfoLayer(boot::Bootstrap* boot, engine::Subject* sub): Layer(boot), engine::Observer(sub)
 {
 	if (!m_font.loadFromFile(m_boot->getPath("font"))) LOG(FATAL) << "Font not found";
 	m_coords.resize(HEIGHT*WIDTH);
@@ -36,13 +36,13 @@ void InfoLayer::update(ObsType type)
 	}
 }
 
-void InfoLayer::update(const ElementList& list)
+void InfoLayer::update(const state::ElementList& list)
 {
 	int uid(0);
 	m_perso_texts.clear();
 	for (auto it = list.begin(); it != list.end();++it)
 	{
-		Element* ptr = it->get();
+		state::Element* ptr = it->get();
 		int index = ptr->getX() + WIDTH*ptr->getY();
 		if (m_coords[index] == nullptr) {
 			Coord* c = new Coord(ptr->getX(), ptr->getY());
@@ -61,7 +61,7 @@ void InfoLayer::update(const ElementList& list)
 		}
 		else if(it->get()->type == Mobile)
 		{
-			Perso* ptr = dynamic_cast<Perso*>(it->get());
+			state::Perso* ptr = dynamic_cast<state::Perso*>(it->get());
 			uid = ptr->getUid();
 			if (uid == 1)
 			{

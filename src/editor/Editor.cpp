@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Editor::Editor(Bootstrap* boot)
+Editor::Editor(boot::Bootstrap* boot)
 {
 	m_boot = boot;
 }
@@ -21,8 +21,8 @@ void Editor::load_gui()
 	int width = (2 * OFFSET_X + WIDTH)*SIZE;
 	int height = (OFFSET_Y + HEIGHT + OFFSET_BOT)*SIZE;
 	LOG(DEBUG) << "Loading GUI";
-	m_level_scene.reset(new Scene(m_boot));
-	m_editor_scene.reset(new Scene(m_boot));
+	m_level_scene.reset(new render::Scene(m_boot));
+	m_editor_scene.reset(new render::Scene(m_boot));
 	m_level_window.reset(new sf::RenderWindow(sf::VideoMode(width, height),
 			"Level", sf::Style::Titlebar | sf::Style::Close));
 	m_level_window->setPosition(sf::Vector2i(0, 0));
@@ -102,7 +102,7 @@ void Editor::new_level()
  */
 void Editor::load_elts()
 {
-	m_level_list.reset(new ElementList());
+	m_level_list.reset(new state::ElementList());
 	//std::cout << level["header"].GetString();
 	//cout << level["level"][0][0][0..Depth]["key"].GetString();
 
@@ -120,7 +120,7 @@ void Editor::load_elts()
 			const rapidjson::Value& e = c[j];
 
 			for (rapidjson::SizeType k = 0; k < e.Size(); k++) {
-				Case* ptr_case = new Case(rand());
+				state::Case* ptr_case = new state::Case(rand());
 				ptr_case->setKey(e[k]["key"].GetString());
 				ptr_case->setX(posX);
 				ptr_case->setY(i);
@@ -139,15 +139,15 @@ void Editor::load_elts()
  */
 void Editor::load_tiles()
 {
-	m_editor_list.reset(new ElementList());
+	m_editor_list.reset(new state::ElementList());
 	string key;
 	int i = 0;
-	TileFactory TFactory(m_boot);
+	render::TileFactory TFactory(m_boot);
 	rapidjson::Value::ConstMemberIterator tiles = TFactory.getTilesDoc()->FindMember("tiles");
 	for (rapidjson::Value::ConstMemberIterator itr = tiles->value.MemberBegin();
 	itr != tiles->value.MemberEnd(); ++itr)
 	{
-		Case* ptr_case = new Case(rand());
+		state::Case* ptr_case = new state::Case(rand());
 		ptr_case->setKey(itr->name.GetString());
 		ptr_case->setX(i%WIDTH);
 		LOG(DEBUG) << "i: " << i << ", Y: " << i / WIDTH;
@@ -208,7 +208,7 @@ void Editor::setFile(std::string file)
 
 
 
-void Editor::setElt(Case elt, int x, int y, int depth)
+void Editor::setElt(state::Case elt, int x, int y, int depth)
 {
 	
 	bool found = false;
@@ -226,7 +226,7 @@ void Editor::setElt(Case elt, int x, int y, int depth)
 	{
 		if (elt.type == Fixed)
 		{
-			Case* ptr_case = new Case(rand());
+			state::Case* ptr_case = new state::Case(rand());
 			ptr_case->setKey(elt.getKey());
 			ptr_case->setX(x);
 			ptr_case->setY(y);
@@ -244,14 +244,14 @@ void Editor::setElt(Case elt, int x, int y, int depth)
 /**
  * Get case at X,Y
  */
-Case Editor::getElt(int x, int y, int depth)
+state::Case Editor::getElt(int x, int y, int depth)
 {
 
 	for (int i = 0; i < int(m_editor_list->size()); i++)
 	{
-		Element* elt = (*m_editor_list)[i].get();
+		state::Element* elt = (*m_editor_list)[i].get();
 		if (elt->getX() == x && elt->getY() == y)
-			return *dynamic_cast<Case*>(elt);
+			return *dynamic_cast<state::Case*>(elt);
 	}
 	throw std::domain_error("Bad Coord");
 }
@@ -367,7 +367,7 @@ void Editor::editor_event_loop()
 				std::cout << "mouse x: " << x / SIZE << std::endl;
 				std::cout << "mouse y: " << x / SIZE << std::endl;
 				try {
-					m_selected_elt.reset(new Case(getElt(x / SIZE, y / SIZE, 0)));
+					m_selected_elt.reset(new state::Case(getElt(x / SIZE, y / SIZE, 0)));
 					LOG(INFO) << "Elt: " << m_selected_elt->getKey();
 					LOG(INFO) << "Elt Depth: " << m_selected_elt->getD();
 				}
