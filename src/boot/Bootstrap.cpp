@@ -2,7 +2,7 @@
 
 #include "../editor/Editor.hpp"
 #include "../game/Game.hpp"
-#include "../AI/AiPlayer.hpp"
+#include "../ai/AiPlayer.hpp"
 #include "../engine/Engine.hpp"
 
 using namespace boot;

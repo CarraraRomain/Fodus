@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-10 15:43
+// Auto-Generated Date: 2015-12-10 16:55
 //
 //
 // This header file defines the interfaces to the class Action
@@ -44,7 +44,7 @@ public:
 
 public:
   virtual  ~Action();
-  virtual virtual void  execute(state::Etat& e) = 0;
+  virtual void  execute(state::Etat& e) = 0;
    Action(CommandType type);
 
 };
