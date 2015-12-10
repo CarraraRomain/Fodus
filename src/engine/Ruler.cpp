@@ -418,7 +418,7 @@ void Ruler::checkRule(state::Etat * state)
 
 			if ((*liste)[i]->getAttribute("currentHealth") <= 0 && (*liste)[i]->getAttribute("status") >= 0)
 			{
-				if ((*liste)[i]->getType() == Principal)
+				if ((*liste)[i]->getClasse() == Principal)
 				{
 			
 					EndGameAction* actionE = new EndGameAction(false);
