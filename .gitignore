@@ -9,3 +9,4 @@ src/engine/*.hpp
 src/ai/*.hpp
 src/state/*.hpp
 src/game/*.hpp
+src/render/*.hpp
