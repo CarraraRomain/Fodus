@@ -2,7 +2,7 @@
 
 using namespace engine;
 
-void LevelUp::execute(Etat* state)
+void LevelUp::execute(state::Etat* state)
 {
 	health = state->getAttribute("health", uid) + 10;
 	defence = state->getAttribute("defence", uid) + 5;

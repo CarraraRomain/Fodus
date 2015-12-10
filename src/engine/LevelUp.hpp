@@ -1,4 +1,4 @@
-// ActionsListener.hpp
+// LevelUp.hpp
 // 
 // Project: Fodus
 // Version: 3.1
@@ -6,7 +6,7 @@
 // Auto-Generated Date: 2015-12-10 15:43
 //
 //
-// This header file defines the interfaces to the class ActionsListener
+// This header file defines the interfaces to the class LevelUp
 //
 // This file was generate from a Dia Diagram using pydia2code.py
 // by Timothe Perez <achille.ash@gmail.com>
@@ -27,23 +27,36 @@
 //
 
 
-#ifndef __ACTIONSLISTENER_H__
-#define __ACTIONSLISTENER_H__
+#ifndef __LEVELUP_H__
+#define __LEVELUP_H__
 
 
 #include "../global.hpp"
+#include "../state/Etat.hpp"
 
 
-namespace game {
+namespace engine {
 
-class ActionsListener{
+class LevelUp{
 private:
 public:
-   ActionsListener();
-   ~ActionsListener();
+  LevelUp();
+public:
+  virtual ~LevelUp();
+private:
+  int uid;
+  int health;
+  int defence;
+  int power;
+public:
+  int limitZombie;
+  int level;
+
+public:
+  void execute(state::Etat* state);
 
 };
 
 };
 
-#endif // defined __ACTIONSLISTENER_H__
+#endif // defined __LEVELUP_H__

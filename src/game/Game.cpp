@@ -141,7 +141,7 @@ void Game::update(ObsType type)
 		
 		break;
 	case ObsState:
-		Etat state = getEngine()->getState();
+		state::Etat state = getEngine()->getState();
 		if(state.getTurn() != m_turns)
 		{
 			LOG(DEBUG) << "New Turn!";
@@ -308,7 +308,7 @@ void Game::game_event_loop()
 							command.execute();
 							}
 							else {
-								engine::SkillCommand command = SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, skillMode-1, m_player_playing);
+								engine::SkillCommand command = engine::SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, skillMode-1, m_player_playing);
 								command.execute();
 								skillMode = 0;
 							}
@@ -443,7 +443,7 @@ void Game::endPlayerTurn()
 		}
 	}
 	draw();
-	engine::EndTurnCommand command = EndTurnCommand(getEngine(), m_players_id[0]);
+	engine::EndTurnCommand command = engine::EndTurnCommand(getEngine(), m_players_id[0]);
 	command.execute();
 
 }

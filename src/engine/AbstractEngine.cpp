@@ -1,6 +1,6 @@
 #include "AbstractEngine.hpp"
 
-#include "../game/EngineObserver.hpp"
+#include "../engine/EngineObserver.hpp"
 
 using namespace engine;
 

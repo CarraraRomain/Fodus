@@ -2,7 +2,7 @@
 
 using namespace game;
 
-HUD::HUD(Bootstrap* boot): m_boot(boot)
+HUD::HUD(boot::Bootstrap* boot): m_boot(boot)
 {
 
 }

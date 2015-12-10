@@ -1,4 +1,4 @@
-// ActionsListener.hpp
+// DeadAction.hpp
 // 
 // Project: Fodus
 // Version: 3.1
@@ -6,7 +6,7 @@
 // Auto-Generated Date: 2015-12-10 15:43
 //
 //
-// This header file defines the interfaces to the class ActionsListener
+// This header file defines the interfaces to the class DeadAction
 //
 // This file was generate from a Dia Diagram using pydia2code.py
 // by Timothe Perez <achille.ash@gmail.com>
@@ -27,23 +27,28 @@
 //
 
 
-#ifndef __ACTIONSLISTENER_H__
-#define __ACTIONSLISTENER_H__
+#ifndef __DEADACTION_H__
+#define __DEADACTION_H__
 
 
 #include "../global.hpp"
+#include "Action.hpp"
 
 
-namespace game {
+namespace engine {
 
-class ActionsListener{
+class DeadAction: public Action{
 private:
+private:
+  int  uid;
+  int  value;
 public:
-   ActionsListener();
-   ~ActionsListener();
+   DeadAction(int newUid);
+  virtual void  execute(state::Etat& state);
+   ~DeadAction();
 
 };
 
 };
 
-#endif // defined __ACTIONSLISTENER_H__
+#endif // defined __DEADACTION_H__

@@ -6,7 +6,7 @@ Command::~Command()
 {
 }
 
-Command::Command(CommandReceiver* command_receiver, CommandType type, int player=0)
+Command::Command(CommandReceiver* command_receiver, CommandType type, int player)
 : type(type), player(player), m_command_receiver(command_receiver)
 {
 }

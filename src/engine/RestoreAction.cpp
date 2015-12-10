@@ -2,9 +2,9 @@
 
 using namespace engine;
 
-void RestoreAction::execute(Etat & state)
+void RestoreAction::execute(state::Etat & state)
 {
-	currentHealth = state.getAttribute("currentHealth", uid);
+	int currentHealth = state.getAttribute("currentHealth", uid);
 	health = state.getAttribute("health", uid);
 	restore = currentHealth + restore;
 	if (restore > health) restore = health;

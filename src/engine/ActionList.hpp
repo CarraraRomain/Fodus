@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-10 02:02
+// Auto-Generated Date: 2015-12-10 15:43
 //
 //
 // This header file defines the interfaces to the class ActionList
@@ -47,7 +47,7 @@ public:
    ~ActionList();
    ActionList(const ActionList& );
    ActionList(ActionList&& );
-  size_t  size();
+  size_t  size() const;
   void  push_back(Action* );
   void  clear();
   void  remove(int i);

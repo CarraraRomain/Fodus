@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-10 02:02
+// Auto-Generated Date: 2015-12-10 15:43
 //
 //
 // This header file defines the interfaces to the class Game
@@ -32,6 +32,9 @@
 
 
 #include "../global.hpp"
+#include "../engine/SkillCommand.hpp"
+#include "../render/Scene.hpp"
+#include "../state/Perso.hpp"
 #include "HUD.hpp"
 #include "IGame.hpp"
 

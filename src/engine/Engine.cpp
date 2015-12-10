@@ -108,7 +108,7 @@ state::Etat& Engine::getState()
 	return *state;
 }
 
-int Engine::registerPlayer(int player, game::EngineObserver* obs)
+int Engine::registerPlayer(int player, engine::EngineObserver* obs)
 {
 	if (obs == nullptr) return 403;
 	for(auto i : m_players_obs)
@@ -159,7 +159,7 @@ void Engine::start()
 	m_players[1].addOwnedPerso(elt->getUid());
 
 	state::Perso* foe = new state::Perso(89, 2);
-	foe->setClass(Monstre);
+	foe->setClasse(Monstre);
 	foe->setAttribute("move", 5);
 	foe->setAttribute("range", 1);
 	foe->setX(12);
@@ -173,15 +173,15 @@ void Engine::start()
 	foe->setAttribute("side", 2);
 	state->getList()->push_back(foe);
 
-	Competence* attack2 = new Competence(Attack, 10, 2, 1, 1, 0);
+	state::Competence* attack2 = new state::Competence(Attack, 10, 2, 1, 1, 0);
 	foe->addSkill(attack2);
-	Competence* heal2 = new Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
+	state::Competence* heal2 = new state::Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
 	foe->addSkill(heal2);
-	Competence* fireball2 = new Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
+	state::Competence* fireball2 = new state::Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
 	foe->addSkill(fireball2);
 	
-	Perso* foe2 = new Perso(55, 2);
-	foe2->setClass(Monstre);
+	state::Perso* foe2 = new state::Perso(55, 2);
+	foe2->setClasse(Monstre);
 	foe2->setAttribute("move", 5);
 	foe2->setAttribute("range", 1);
 	foe2->setX(5);
@@ -195,11 +195,11 @@ void Engine::start()
 	foe2->setAttribute("side", 2);
 	state->getList()->push_back(foe2);
 
-	Competence* attack3 = new Competence(Attack, 10, 2, 1, 1, 0);
+	state::Competence* attack3 = new state::Competence(Attack, 10, 2, 1, 1, 0);
 	foe2->addSkill(attack3);
-	Competence* heal3 = new Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
+	state::Competence* heal3 = new state::Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
 	foe2->addSkill(heal3);
-	Competence* fireball3 = new Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
+	state::Competence* fireball3 = new state::Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
 	foe2->addSkill(fireball3);	
 
 	//m_players[0] = Player(1, 1);
@@ -250,9 +250,9 @@ void Engine::propagate(int x, int y, int valeur, int uid)
 	m_ruler->propagate(x, y, valeur, uid);
 }
 
-ElementList Engine::syncRequest()
+state::ElementList Engine::syncRequest()
 {
-	ElementList list = *(state->getList());
+	state::ElementList list = *(state->getList());
 	return list;
 }
 
@@ -275,6 +275,10 @@ int Engine::registerPlayer(int player)
 int Engine::getCurrentPlayer()
 {
 	return current_player_uid;
+}
+
+Engine::~Engine()
+{
 }
 
 void Engine::nextPlayer(int played)

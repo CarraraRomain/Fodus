@@ -1,4 +1,4 @@
-// ActionsListener.hpp
+// Coord.hpp
 // 
 // Project: Fodus
 // Version: 3.1
@@ -6,7 +6,7 @@
 // Auto-Generated Date: 2015-12-10 15:43
 //
 //
-// This header file defines the interfaces to the class ActionsListener
+// This header file defines the interfaces to the class Coord
 //
 // This file was generate from a Dia Diagram using pydia2code.py
 // by Timothe Perez <achille.ash@gmail.com>
@@ -27,23 +27,38 @@
 //
 
 
-#ifndef __ACTIONSLISTENER_H__
-#define __ACTIONSLISTENER_H__
+#ifndef __COORD_H__
+#define __COORD_H__
 
 
 #include "../global.hpp"
 
 
-namespace game {
+namespace render {
 
-class ActionsListener{
+class Coord{
 private:
+private:
+  bool  move;
+  bool  attackable;
 public:
-   ActionsListener();
-   ~ActionsListener();
+  int  x;
+  int  y;
+  int  move_weight;
+  int  attack_weight;
+
+public:
+   Coord(int x, int y);
+   ~Coord();
+  bool  isAttackable();
+  bool  canMoveTo();
+  void  setNotAttackable();
+  void  setAttackable();
+  void  setCanMoveTo();
+  void  setCannotMoveTo();
 
 };
 
 };
 
-#endif // defined __ACTIONSLISTENER_H__
+#endif // defined __COORD_H__

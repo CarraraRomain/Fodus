@@ -2,6 +2,10 @@
 
 using namespace state;
 
+Element::~Element()
+{
+}
+
 void Element::setX(int newX)
 {
 	m_x = newX;

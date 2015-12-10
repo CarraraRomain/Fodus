@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-10 02:02
+// Auto-Generated Date: 2015-12-10 15:43
 //
 //
 // This header file defines the interfaces to the class Ruler
@@ -70,7 +70,7 @@ public:
   bool  checkAttack(state::Etat* state, int uid1, int uid2, int player);
   bool  createAttack(state::Etat* state, int uid1, int uid2);
   int  checkSkill(state::Etat* state, int posX, int posY, int uid, int skillIndex, int player);
-  bool  createSkill(state::Etat* state, int uid, int index, int posX, int posY, int target);
+  bool  createSkill(state::Etat* state, int uid, int index, int posX, int posY, int target, int player);
   void  createMap(state::Etat* state);
   void  createMapCharacter(int uid);
   void  propagate(int posX, int posY, int value, int uid);
@@ -78,6 +78,7 @@ public:
   int  getMapValue(int x, int y, int uid);
   void  checkRule(state::Etat* state);
   void  EndTurnRule(int played, state::Etat* state);
+  std::vector< std::vector<int> > getMap(int uid);
 
 };
 

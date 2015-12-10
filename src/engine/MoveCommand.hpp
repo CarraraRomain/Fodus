@@ -1,4 +1,4 @@
-// ActionsListener.hpp
+// MoveCommand.hpp
 // 
 // Project: Fodus
 // Version: 3.1
@@ -6,7 +6,7 @@
 // Auto-Generated Date: 2015-12-10 15:43
 //
 //
-// This header file defines the interfaces to the class ActionsListener
+// This header file defines the interfaces to the class MoveCommand
 //
 // This file was generate from a Dia Diagram using pydia2code.py
 // by Timothe Perez <achille.ash@gmail.com>
@@ -27,23 +27,31 @@
 //
 
 
-#ifndef __ACTIONSLISTENER_H__
-#define __ACTIONSLISTENER_H__
+#ifndef __MOVECOMMAND_H__
+#define __MOVECOMMAND_H__
 
 
 #include "../global.hpp"
+#include "Command.hpp"
 
 
-namespace game {
+namespace engine {
 
-class ActionsListener{
+class MoveCommand: public Command{
 private:
 public:
-   ActionsListener();
-   ~ActionsListener();
+  int  Uid;
+  int  posX;
+  int  posY;
+  AnimationType dir;
+
+public:
+   MoveCommand(CommandReceiver* receiver, int x, int y, AnimationType type, int uid, int player);
+   ~MoveCommand();
+  virtual void  execute();
 
 };
 
 };
 
-#endif // defined __ACTIONSLISTENER_H__
+#endif // defined __MOVECOMMAND_H__

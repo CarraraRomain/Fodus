@@ -2,7 +2,7 @@
 
 using namespace game;
 
-IGame::IGame(Bootstrap* boot, AbstractEngine* engine, int cid): EngineObserver(engine, cid), m_boot(boot)
+IGame::IGame(boot::Bootstrap* boot, engine::AbstractEngine* engine, int cid): EngineObserver(engine, cid), m_boot(boot)
 {
 }
 

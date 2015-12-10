@@ -1,6 +1,6 @@
 #include "Coord.hpp"
 
-using namespace game;
+using namespace render;
 
 Coord::Coord(int x, int y): x(x), y(y), move(true), attackable(false)
 {

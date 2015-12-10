@@ -2,7 +2,7 @@
 
 using namespace engine;
 
-void MoveAction::execute(Etat& e)
+void MoveAction::execute(state::Etat& e)
 {
 	e.setAttribute("posX", posX, uid);
 	e.setAttribute("posY", posY, uid);

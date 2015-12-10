@@ -50,6 +50,9 @@ decorators:
     Action:
       include:
         - "../state/Etat.hpp"
+    LevelUp:
+      include:
+        - "../state/Etat.hpp"
     Engine:
       include:
         - "../boot/Bootstrap.hpp"
@@ -65,6 +68,11 @@ decorators:
       include:
           - "../boot/Bootstrap.hpp"
           - "../engine/EngineObserver.hpp"
+    Game:
+      include:
+          - "../engine/SkillCommand.hpp"
+          - "../render/Scene.hpp"
+          - "../state/Perso.hpp"
     HUD:
       include:
         - "../boot/Bootstrap.hpp"
@@ -103,6 +111,11 @@ decorators:
         - "../state/Perso.hpp"
 
   ai:
+    AiPlayer:
+      include:
+        - "../boot/Bootstrap.hpp"
+        - "../engine/AbstractEngine.hpp"
+        - "../game/IGame.hpp"
   boot:
     Bootstrap:
       include:

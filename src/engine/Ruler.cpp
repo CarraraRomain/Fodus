@@ -265,7 +265,7 @@ bool Ruler::createSkill(state::Etat* state, int uid, int index, int posX, int po
 		case ZombieSpawn:
 		{
 			state::Perso* zombie = new state::Perso(100, 2);
-			zombie->setClass(Zombie);
+			zombie->setClasse(Zombie);
 			zombie->setAttribute("posX", posX);
 			zombie->setAttribute("posY", posY);
 			zombie->setAttribute("direction", MoveForward);

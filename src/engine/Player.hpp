@@ -3,7 +3,7 @@
 // Project: Fodus
 // Version: 3.1
 // Author: Timothe Perez, Romain Carrara, Zhuo Li
-// Auto-Generated Date: 2015-12-10 02:02
+// Auto-Generated Date: 2015-12-10 15:43
 //
 //
 // This header file defines the interfaces to the class Player
@@ -77,11 +77,11 @@ public:
   const bool  hasAttacked(int );
   void  resetAttack(int perso);
   void  resetAttacks();
-  Player& operator=(Player& );
-  Player& operator=(Player&& ) const;
+  Player& operator=(const Player& player);
+  Player& operator=(Player&& );
   Character& operator[](size_t i);
-  std::map<int, bool>::iterator getMoveBegin();
-  std::map<int, bool>::iterator getMoveEnd();
+  std::map<int, bool>::iterator getMovedBegin();
+  std::map<int, bool>::iterator getMovedEnd();
 
 };
 

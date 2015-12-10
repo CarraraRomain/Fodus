@@ -1,4 +1,4 @@
-// TileFactory.hpp
+// AiPlayer.hpp
 // 
 // Project: Fodus
 // Version: 3.1
@@ -6,7 +6,7 @@
 // Auto-Generated Date: 2015-12-10 15:43
 //
 //
-// This header file defines the interfaces to the class TileFactory
+// This header file defines the interfaces to the class AiPlayer
 //
 // This file was generate from a Dia Diagram using pydia2code.py
 // by Timothe Perez <achille.ash@gmail.com>
@@ -27,37 +27,43 @@
 //
 
 
-#ifndef __TILEFACTORY_H__
-#define __TILEFACTORY_H__
+#ifndef __AIPLAYER_H__
+#define __AIPLAYER_H__
 
 
 #include "../global.hpp"
 #include "../boot/Bootstrap.hpp"
-#include "Tile.hpp"
+#include "../engine/AbstractEngine.hpp"
+#include "../game/IGame.hpp"
 
 
-namespace render {
+namespace ai {
 
-class TileFactory{
+class AiPlayer: public game::IGame{
 private:
 private:
-  boot::Bootstrap* m_boot;
+  AiBehavior  behavior;
 public:
-  std::shared_ptr<rapidjson::Document> _tilesDoc;
-
-private:
-  rapidjson::Value* getFactoryFor(std::string key);
-public:
-   TileFactory(boot::Bootstrap* boot);
-   ~TileFactory();
-  void  setTilesDoc(rapidjson::Document* doc);
-  void  registerFacto(std::string key);
-  Tile* buildTileForElt(std::string key);
-  void  loadTilesDoc(const std::string& doc);
-  std::shared_ptr<rapidjson::Document> getTilesDoc();
+   AiPlayer(boot::Bootstrap* boot, engine::AbstractEngine* engine, int cid);
+   ~AiPlayer();
+  void  run();
+  void  start();
+  virtual void  syncRequest();
+  virtual void  whoIsPlaying();
+  virtual void  update(ObsType obs);
+  virtual void  updateGlobal(state::Etat& e);
+  virtual void  updateElement(state::Element& e1);
+  virtual void  updateTurn(int turn);
+  virtual void  updatePlayer(engine::Player pl);
+  virtual void  updateGameEnd(int score);
+  virtual void  updateNowPlaying(int pid);
+  virtual void  canPlay(int pid);
+  virtual void  hasPlayed(int pid);
+  virtual void  sync(state::ElementList list);
+  void  recherche1(state::ElementList* liste, int playerUid, engine::Character& c, engine::AbstractEngine* engine);
 
 };
 
 };
 
-#endif // defined __TILEFACTORY_H__
+#endif // defined __AIPLAYER_H__

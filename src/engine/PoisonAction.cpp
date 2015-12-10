@@ -2,7 +2,7 @@
 
 using namespace engine;
 
-void PoisonAction::execute(Etat& state)
+void PoisonAction::execute(state::Etat& state)
 {
 	if (state.getList()->findUid(uid) == -1) return;
 	range = state.getAttribute("range", uid);
