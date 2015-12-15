@@ -335,7 +335,7 @@ void Bootstrap::launch_game()
 {
 	LOG(DEBUG) << "Launching Game";
 	std::string level = chooseLevel();
-	
+	LOG(INFO) << "Main thread : " << std::this_thread::get_id();
 	engine::Engine engine(this);
 	game::Game game(this, &engine, rand());
 	ai::AiPlayer aiP(this, &engine, rand());
@@ -346,12 +346,14 @@ void Bootstrap::launch_game()
 	engine.start();
 
 	std::thread th(std::ref(engine));
-	th.detach();
+	//th.detach();
   //  if(th.joignable())
-	// th.join();
+	std::thread aith(std::ref(aiP));
+
 	game.run();
 
 	//aiP.run();
-
+	th.join();
+	aith.join();
 	launch_game();
 }

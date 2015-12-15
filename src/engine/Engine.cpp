@@ -66,9 +66,11 @@ void Engine::handleCommand(Command* com)
 {
 
 	LOG(DEBUG) << "Adding Command";
+	LOG(INFO) << "== Process: " << std::this_thread::get_id();
 	m_boot->mut.lock();
 	m_com_list.push(com);
 	m_boot->mut.unlock();
+	LOG(DEBUG) << "Added Command";
 	return;
 
 
@@ -99,7 +101,8 @@ void Engine::processCommandList() {
 			notifyGlobal();
 		} catch (std::logic_error e)
 		{
-			LOG(DEBUG) << e.what();
+			LOG(WARNING) << e.what();
+			m_boot->mut.unlock();
 		}
 		m_com_list.pop();
 
@@ -342,7 +345,7 @@ void Engine::nextTurn()
 }
 
 void Engine::operator()() {
-	std::cout << "Plop from other thread" << std::endl;
+	LOG(INFO) << "Engine Thread ON " << std::this_thread::get_id() << std::endl;
 	run();
 
 }

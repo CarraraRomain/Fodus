@@ -62,6 +62,10 @@ decorators:
     SpawnAction:
       include:
         - "../state/Perso.hpp"
+    Update:
+      include:
+        - "../state/ElementList.hpp"
+        - "../state/Etat.hpp"
 
   game:
     IGame:

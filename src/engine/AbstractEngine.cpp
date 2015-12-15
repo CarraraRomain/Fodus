@@ -15,6 +15,7 @@ AbstractEngine::~AbstractEngine()
 
 void AbstractEngine::notifyGlobal()
 {
+	LOG(INFO) << "Process: " << std::this_thread::get_id();
 	std::vector<int> notified;
 	for (auto obs : m_players_obs)
 	{
