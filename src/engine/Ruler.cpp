@@ -29,9 +29,9 @@ void Ruler::execute(Command* com, state::Etat* state)
 			// TODO Optimization
 			int x, y;
 
-			if(move_com->posX > 50)x = move_com->posX - 100 + state->getAttribute("posX", move_com->Uid);
+			if (move_com->posX > 50)x = move_com->posX - 100 + state->getAttribute("posX", move_com->Uid);
 			else x = move_com->posX;
-			if(move_com->posY > 50)y = move_com->posY - 100 + state->getAttribute("posY", move_com->Uid);
+			if (move_com->posY > 50)y = move_com->posY - 100 + state->getAttribute("posY", move_com->Uid);
 			else y = move_com->posY;
 
 			if (checkMove(state, x, y, move_com->Uid, move_com->player))
@@ -45,7 +45,7 @@ void Ruler::execute(Command* com, state::Etat* state)
 			else LOG(DEBUG) << move_com->Uid << " can't move at " << "X:" << x << ", Y:" << y;
 		}
 		break;
-		
+
 	case Skill:
 		LOG(DEBUG) << "Ruler : exec Skill Command";
 		{
@@ -62,10 +62,15 @@ void Ruler::execute(Command* com, state::Etat* state)
 			else LOG(DEBUG) << skill_com->uid << " can't use skill";
 		}
 		break;
-		
+
 
 	}
-	if(success) update();
+	if (success) 
+	{
+		update();
+		createMap(state);
+		//propagate(state->getList()->getAttribute("posX", ), liste->getAttribute("posY", uid), liste->getAttribute("move", uid), uid);
+	}
 	else throw std::logic_error("Bad Command");
 }
 /**
@@ -264,7 +269,7 @@ bool Ruler::createSkill(state::Etat* state, int uid, int index, int posX, int po
 
 		case ZombieSpawn:
 		{
-			state::Perso* zombie = new state::Perso(100, 2);
+			state::Perso* zombie = new state::Perso(100*uid + liste->getAttribute("zombiLimit",uid), 2);
 			zombie->setClasse(Zombie);
 			zombie->setAttribute("posX", posX);
 			zombie->setAttribute("posY", posY);
@@ -280,8 +285,11 @@ bool Ruler::createSkill(state::Etat* state, int uid, int index, int posX, int po
 			SpawnAction* actionZ = new SpawnAction(zombie);
 			m_action_list->push_back(actionZ);
 
-			m_engine->getPlayer(2).addOwnedPerso(100);
+			m_engine->getPlayer(2).addOwnedPerso(100 * uid + liste->getAttribute("zombiLimit", uid));
 			LOG(DEBUG) << "Spawn zombie succeded at (" << posX << ", " << posY << ")";
+
+			liste->setAttribute("zombiLimit", liste->getAttribute("zombiLimit", uid) + 1, uid);
+
 			break;		
 		}
 

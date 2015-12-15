@@ -143,6 +143,7 @@ void Engine::start()
 	elt->setAttribute("defence", 85);
 	elt->setAttribute("side", 1);
 	elt->setAttribute("status", 0);
+	elt->setAttribute("zombiLimit", 0);
 	state->getList()->push_back(elt);
 
 	state::Competence* attack = new state::Competence(Attack, 10, 2, 1, 2, 0);
