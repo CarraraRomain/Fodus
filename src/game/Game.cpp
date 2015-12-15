@@ -247,7 +247,7 @@ void Game::updateGameEnd(int score)
 void Game::updateNowPlaying(int pid)
 {
 	m_player_playing = pid;
-
+	m_update.setCurrentPlayerID(pid);
 }
 
 void Game::canPlay(int pid)

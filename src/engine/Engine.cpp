@@ -77,6 +77,7 @@ void Engine::handleCommand(Command* com)
 }
 void Engine::processCommandList() {
 	m_boot->mut.lock();
+	//if (m_com_list.empty()) LOG(WARNING) << "No command. Sleeping...";
 	while(!m_com_list.empty()){
 		Command* com = m_com_list.front();
 
@@ -102,7 +103,6 @@ void Engine::processCommandList() {
 		} catch (std::logic_error e)
 		{
 			LOG(WARNING) << e.what();
-			m_boot->mut.unlock();
 		}
 		m_com_list.pop();
 
@@ -119,7 +119,7 @@ void Engine::run()
 {
 	while(1)
 	{
-		LOG(DEBUG) << "Engine : Wake up";
+		//LOG(DEBUG) << "Engine : Wake up";
 		m_ruler->checkRule(state.get());
 
 		processCommandList();
@@ -345,7 +345,7 @@ void Engine::nextTurn()
 }
 
 void Engine::operator()() {
-	LOG(INFO) << "Engine Thread ON " << std::this_thread::get_id() << std::endl;
+	LOG(INFO) << "Engine ON PID@" << std::this_thread::get_id() << std::endl;
 	run();
 
 }

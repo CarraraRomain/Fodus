@@ -17,21 +17,21 @@ AiPlayer::~AiPlayer()
 void AiPlayer::run()
 {
 	while(1){
-		if(!is_playing){
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-		}else{
-
-		LOG(INFO) << "IA Process: " << std::this_thread::get_id();
+		handleUpdate();
+		if(is_playing){
 		int i;
 		for (auto const& ch: getEngine()->getPlayer(m_player_playing))
 		{
 			recherche1(getEngine()->getState().getList(), m_players_id[0], *ch.second, getEngine());
 		}
 
+
 		engine::EndTurnCommand commandE = engine::EndTurnCommand(getEngine(), m_player_playing);
 		commandE.execute();
+		LOG(DEBUG) << "AI TURN OVER";
+		is_playing = false;
 		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
 }
@@ -93,8 +93,9 @@ void AiPlayer::updateGameEnd(int score)
 
 void AiPlayer::updateNowPlaying(int pid)
 {
+	LOG(DEBUG) << "AI is updating : now playing";
 	m_player_playing = pid;
-	
+	m_update.setCurrentPlayerID(pid);
 }
 
 void AiPlayer::canPlay(int pid)
@@ -250,6 +251,7 @@ mut.lock();
 		if(m_update.isPlayerTurnUpdate()){
 			if (m_players_id[0] == m_update.getCurrentPlayer())
 			{
+				is_playing = true;
 			}
 		}
 		m_update.clear();
@@ -258,8 +260,7 @@ mut.lock();
 }
 
 void AiPlayer::operator()() {
-	LOG(INFO) << "AI Player ON";
-	LOG(INFO) << std::this_thread::get_id();
+	LOG(INFO) << "AI Player ON PID@" << std::this_thread::get_id();
 	run();
 
 }

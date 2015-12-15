@@ -44,6 +44,7 @@ void Update::setList(state::ElementList list) {
 
 void Update::setCurrentPlayerID(int pl) {
 
+	current_player = pl;
     pending_next_player = true;
     pending_update = true;
 }
