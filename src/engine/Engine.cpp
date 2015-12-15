@@ -63,28 +63,46 @@ void Engine::loadLevel(const std::string level)
  */
 void Engine::handleCommand(Command* com)
 {
-	try {
-		switch (com->type)
-		{
-		case Move:
-			m_ruler->execute(com, state.get());
-			break;
-		case Skill:
-			m_ruler->execute(com, state.get());
-			break;
-		case EndTurn:
-			nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
-			break;
-		}
-		//state->notify();
-		LOG(DEBUG) << "Notify : Global";
-		notifyGlobal();
-	} catch (std::logic_error e)
-	{
-		LOG(DEBUG) << e.what();
-	}
-	
+
+	LOG(DEBUG) << "Adding Command";
+	m_com_list.push(com);
+	return;
+
+
 }
+void Engine::processCommandList() {
+	while(!m_com_list.empty()){
+		Command* com = m_com_list.front();
+
+		try {
+			LOG(DEBUG) << "Processing command";
+			LOG(DEBUG) << com->type;
+			switch (com->type)
+			{
+
+				case Move:
+					m_ruler->execute(com, state.get());
+					break;
+				case Skill:
+					m_ruler->execute(com, state.get());
+					break;
+				case EndTurn:
+					nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
+					break;
+			}
+			//state->notify();
+			LOG(DEBUG) << "Notify : Global";
+			notifyGlobal();
+		} catch (std::logic_error e)
+		{
+			LOG(DEBUG) << e.what();
+		}
+		m_com_list.pop();
+
+	}
+
+}
+
 
 /**
  * Main entry point
@@ -92,6 +110,8 @@ void Engine::handleCommand(Command* com)
 void Engine::run()
 {
 	m_ruler->checkRule(state.get());
+
+	processCommandList();
 }
 
 bool Engine::hasPlayed(int player)
@@ -310,3 +330,4 @@ void Engine::nextTurn()
 {
 	state->nextTurn();
 }
+
