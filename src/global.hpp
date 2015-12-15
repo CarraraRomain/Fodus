@@ -4,6 +4,9 @@
 #include <queue>
 #include <map>
 #include <vector>
+#include <thread>
+#include <mutex>
+
 
 /* RapidJSON lib (fast header only lib) | Tested using v1.0.2
 Lib is included in ../lib/rapidjson

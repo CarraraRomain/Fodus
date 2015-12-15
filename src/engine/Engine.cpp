@@ -1,6 +1,7 @@
 #include "Engine.hpp"
 #include "EndTurnCommand.hpp"
 #include "../state/Case.hpp"
+#include <chrono>
 
 using namespace engine;
 
@@ -65,12 +66,15 @@ void Engine::handleCommand(Command* com)
 {
 
 	LOG(DEBUG) << "Adding Command";
+	m_boot->mut.lock();
 	m_com_list.push(com);
+	m_boot->mut.unlock();
 	return;
 
 
 }
 void Engine::processCommandList() {
+	m_boot->mut.lock();
 	while(!m_com_list.empty()){
 		Command* com = m_com_list.front();
 
@@ -100,6 +104,7 @@ void Engine::processCommandList() {
 		m_com_list.pop();
 
 	}
+	m_boot->mut.unlock();
 
 }
 
@@ -109,9 +114,14 @@ void Engine::processCommandList() {
  */
 void Engine::run()
 {
-	m_ruler->checkRule(state.get());
+	while(1)
+	{
+		LOG(DEBUG) << "Engine : Wake up";
+		m_ruler->checkRule(state.get());
 
-	processCommandList();
+		processCommandList();
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+	}
 }
 
 bool Engine::hasPlayed(int player)
@@ -331,3 +341,8 @@ void Engine::nextTurn()
 	state->nextTurn();
 }
 
+void Engine::operator()() {
+	std::cout << "Plop from other thread" << std::endl;
+	run();
+
+}

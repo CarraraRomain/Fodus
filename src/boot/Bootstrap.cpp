@@ -345,7 +345,11 @@ void Bootstrap::launch_game()
 	aiP.start();
 	engine.start();
 
-	game.run(); 
+	std::thread th(std::ref(engine));
+	th.detach();
+  //  if(th.joignable())
+	// th.join();
+	game.run();
 
 	//aiP.run();
 

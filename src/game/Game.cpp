@@ -80,7 +80,7 @@ void Game::run()
 
 		if (m_player_playing == 1) game_event_loop();
 		
-		getEngine()->run();
+		//getEngine()->run();
 		//handle_event();
 		m_game_scene.updateAnims();
 		reflowSkill();
@@ -305,7 +305,8 @@ void Game::game_event_loop()
 
 							if (skillMode == 0) {
 								engine::MoveCommand command = engine::MoveCommand(getEngine(), (x / SIZE), y / SIZE, MoveRight, 1, m_player_playing);
-							command.execute();
+
+								command.execute();
 							}
 							else {
 								engine::SkillCommand command = engine::SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, skillMode-1, m_player_playing);

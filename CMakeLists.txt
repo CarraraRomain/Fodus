@@ -20,7 +20,7 @@ configure_file(
 include_directories("${PROJECT_BINARY_DIR}")
 
 # Use C++11
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
 # Sources files
 file(
