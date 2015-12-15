@@ -3,7 +3,8 @@
     "MLP": 101,
     "FOE": 180,
 	"COW" : 106,
-	"SHEEP" : 108
+	"SHEEP" : 108,
+	"ZOMBIE" : 89
     },
   "header": {
     "version": "0.2",

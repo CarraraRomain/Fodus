@@ -154,47 +154,13 @@ bool Ruler::createMove(state::Etat * state, int x, int y, int uid, int player)
 	return false;
 }
 
-bool Ruler::checkAttack(state::Etat* state, int uid1, int uid2, int player)
-{
-	if (m_engine->getPlayer(player).hasAttacked(uid1)) return false;
-
-	int x = state->getAttribute("posX", uid1) - state->getAttribute("posX", uid2);
-	int y = state->getAttribute("posY", uid1) - state->getAttribute("posY", uid2);
-
-	if (x < 0) x = -x;
-	if (y < 0) y = -y;
-
-	if (state->getAttribute("currentHealth", uid2))
-	{
-		return x + y <= state->getAttribute("range", uid1);
-	}
-
-	return false;
-}
-
-bool Ruler::createAttack(state::Etat * state, int uid1, int uid2)
-{
-	int power = state->getAttribute("power", uid1);
-	power = power - state->getAttribute("defence", uid2);
-
-	if (power < 1) power = 1;
-
-	if (power >= 5) power = 0.8*power + rand() % (power / 5);
-
-	DamageAction* action = new DamageAction(uid2, power);
-	m_action_list->push_back(action);
-
-	LOG(DEBUG)<< "Attack succeded from " << uid1 << " to " << uid2 << " for " << power << " damages";
-
-	return true;
-}
-
-
-
 int Ruler::checkSkill(state::Etat* state, int posX, int posY, int uid, int skillIndex, int player)
 {
 	createMap(state);
-	if (m_engine->getPlayer(player)[uid].hasAttacked()) return false;
+	if (m_engine->getPlayer(player)[uid].hasAttacked()) {
+		LOG(DEBUG) << "already attacked !!!";
+		return false;
+	}
 
 	int found = 0;
 	int i;
@@ -202,7 +168,10 @@ int Ruler::checkSkill(state::Etat* state, int posX, int posY, int uid, int skill
 	state::Competence* skill = liste->getSkill(uid, skillIndex);
 
 	if (skill == NULL) return false;
-	if (skill->cooldown != 0) return false;
+	if (skill->cooldown != 0) {
+		LOG(DEBUG) << "skill on cooldown !";
+		return false;
+	}
 
 	for (i = 0; i < liste->size(); i++) {
 		if ((*liste)[i]->getD() == 3)
@@ -211,16 +180,29 @@ int Ruler::checkSkill(state::Etat* state, int posX, int posY, int uid, int skill
 		}
 	}
 
-	if (skill->target == 0 && (found != 0 || map[posX][posY] != 0)) return false;
-	if (found == 0 && skill->target != 0) return false;
-	if (liste->getAttribute("side", uid) != liste->getAttribute("side", found) && skill->target == 1) return false;
-	if (liste->getAttribute("side", uid) == liste->getAttribute("side", found) && skill->target == 2) return false;
+	if (skill->target == 0 && (found != 0 || map[posX][posY] != 0)) {
+		LOG(DEBUG) << "bad target !";
+		return false;
+	}
+	if (found == 0 && skill->target != 0) {
+		LOG(DEBUG) << "bad target !";
+		return false;
+	}
+	if (liste->getAttribute("side", uid) != liste->getAttribute("side", found) && skill->target == 1) {
+		LOG(DEBUG) << "bad target !";
+		return false;
+	}
+	if (liste->getAttribute("side", uid) == liste->getAttribute("side", found) && skill->target == 2) {
+		LOG(DEBUG) << "bad target !";
+		return false;
+	}
 
 	int x = state->getAttribute("posX", uid) - posX;
 	int y = state->getAttribute("posY", uid) - posY;
 	if (x < 0) x = -x;
 	if (y < 0) y = -y;
 	
+	if (x + y > skill->range)LOG(DEBUG) << "too far !";
 	if (x + y <= skill->range && skill->target != 0) return found;
 	if (x + y <= skill->range && skill->target == 0) return 1;
 	
@@ -278,9 +260,13 @@ bool Ruler::createSkill(state::Etat* state, int uid, int index, int posX, int po
 			zombie->setAttribute("currentHealth", 1500);
 			zombie->setAttribute("defence", 10);
 			zombie->setAttribute("power", 10);
+			zombie->setAttribute("move", 4);
 			zombie->setAttribute("side", 1);
-			zombie->setKey("FOE");
+			zombie->setKey("COW");
 			zombie->setD(3);
+
+			state::Competence* attack = new state::Competence(Attack, 10, 2, 1, 1, 0);
+			zombie->addSkill(attack);
 
 			SpawnAction* actionZ = new SpawnAction(zombie);
 			m_action_list->push_back(actionZ);
