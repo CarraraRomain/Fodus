@@ -1,15 +1,19 @@
 #pragma once
 
 #include <memory>
-
+#include <queue>
 #include <map>
 #include <vector>
+#include <thread>
+#include <mutex>
+
 
 /* RapidJSON lib (fast header only lib) | Tested using v1.0.2
 Lib is included in ../lib/rapidjson
 URL : https://github.com/miloyip/rapidjson
 */
 #define RAPIDJSON_HAS_STDSTRING 1
+#define ELPP_THREAD_SAFE 1
 #include "../lib/rapidjson/document.h"
 #include "../lib/rapidjson/writer.h"
 #include "../lib/rapidjson/prettywriter.h"

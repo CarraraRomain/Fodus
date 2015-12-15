@@ -15,3 +15,7 @@ void EndTurnCommand::execute()
 {
 	m_command_receiver->handleCommand(this);
 }
+
+Command *EndTurnCommand::clone() {
+	return new EndTurnCommand(*this);
+}

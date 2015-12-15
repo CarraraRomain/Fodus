@@ -74,14 +74,16 @@ void Game::run()
 	//update(ObsState);
 	m_player_playing = 1;
 	LOG(DEBUG) << "Loop";
+	handleUpdate();
 	while(m_game_window->isOpen())
 	{
 		if (m_end) m_game_window->close();
 
 		if (m_player_playing == 1) game_event_loop();
 		
-		getEngine()->run();
+		//getEngine()->run();
 		//handle_event();
+		handleUpdate();
 		m_game_scene.updateAnims();
 		reflowSkill();
 		if (!m_game_scene.isAnimationRunning() && is_playing ) {
@@ -164,23 +166,50 @@ void Game::update(ObsType type)
 	updateHUD();
 }
 
+
+void Game::handleUpdate() {
+
+	mut.lock();
+if(m_update.pendingUpdate())
+{
+	LOG(INFO) << "handle update Process: " << std::this_thread::get_id();
+	if(m_update.isStateUpdate()){
+
+		LOG(INFO) << "UPDATE : GLOBAL";
+		if (m_update.getStateUpdate().getTurn() != m_turns)
+		{
+			LOG(DEBUG) << "New Turn!";
+			m_turns = m_update.getStateUpdate().getTurn();
+			m_hud.updateTurns(m_turns);
+			is_playing = true;
+
+		}
+
+		std::vector<std::vector<int>> map = getEngine()->getMap(1);
+		if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
+		else m_game_scene.getInfos()->resetMoveMap();
+		m_game_scene.update(*m_update.getStateUpdate().getList());
+		updateHUD();
+	}
+	if(m_update.isPlayerTurnUpdate()){
+		if (m_players_id[0] == m_update.getCurrentPlayer())
+		{
+			is_playing = true;
+			enableActions();
+		}
+	}
+	m_update.clear();
+}
+	mut.unlock();
+}
+
+
 void Game::updateGlobal(state::Etat& e)
 {
-	LOG(INFO) << "UPDATE : GLOBAL";
-	if (e.getTurn() != m_turns)
-	{
-		LOG(DEBUG) << "New Turn!";
-		m_turns = e.getTurn();
-		m_hud.updateTurns(m_turns);
-		is_playing = true;
-		
-	}
-
-	std::vector<std::vector<int>> map = getEngine()->getMap(1);
-	if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
-	else m_game_scene.getInfos()->resetMoveMap();
-	m_game_scene.update(*e.getList());
-	updateHUD();
+	LOG(INFO) << "UG Process: " << std::this_thread::get_id();
+	mut.lock();
+	m_update.setNewState(e);
+	mut.unlock();
 }
 
 void Game::updateElement(state::Element& el)
@@ -193,6 +222,8 @@ void Game::updateTurn(int turn)
 
 void Game::updatePlayer(engine::Player pl)
 {
+	LOG(INFO) << "UP Process: " << std::this_thread::get_id();
+	m_update.setPlayer(pl);
 	LOG(DEBUG) << "Update: Player " << pl.getId();
 	m_players.erase(pl.getId());
 	m_players[pl.getId()] = pl;
@@ -216,11 +247,7 @@ void Game::updateGameEnd(int score)
 void Game::updateNowPlaying(int pid)
 {
 	m_player_playing = pid;
-	if (m_players_id[0] == pid)
-	{
-		is_playing = true;
-		enableActions();
-	}
+	m_update.setCurrentPlayerID(pid);
 }
 
 void Game::canPlay(int pid)
@@ -305,7 +332,8 @@ void Game::game_event_loop()
 
 							if (skillMode == 0) {
 								engine::MoveCommand command = engine::MoveCommand(getEngine(), (x / SIZE), y / SIZE, MoveRight, 1, m_player_playing);
-							command.execute();
+
+								command.execute();
 							}
 							else {
 								engine::SkillCommand command = engine::SkillCommand(getEngine(), (x / SIZE), y / SIZE, 1, skillMode-1, m_player_playing);
@@ -527,4 +555,3 @@ void Game::reflowSkill()
 	m_select_box.setOutlineColor(cl);
 	m_hud.updateAction(skillMode);
 }
-

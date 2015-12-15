@@ -19,3 +19,7 @@ void SkillCommand::execute()
 	LOG(DEBUG) << "Exec Skill";
 	m_command_receiver->handleCommand(this);
 }
+
+Command *SkillCommand::clone() {
+	return new SkillCommand(*this);
+}

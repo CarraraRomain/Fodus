@@ -2,7 +2,7 @@
 #include "../engine/MoveCommand.hpp"
 #include "../engine/EndTurnCommand.hpp"
 #include "../engine/SkillCommand.hpp"
-
+#include <chrono>
 using namespace ai;
 
 AiPlayer::AiPlayer(boot::Bootstrap* boot, engine::AbstractEngine* engine, int cid) : IGame(boot, engine, cid)
@@ -16,14 +16,24 @@ AiPlayer::~AiPlayer()
 
 void AiPlayer::run()
 {
-	int i;
-	for (auto const& ch: getEngine()->getPlayer(m_player_playing))
-	{
-		recherche1(getEngine()->getState().getList(), m_players_id[0], *ch.second, getEngine());
+	while(1){
+		handleUpdate();
+		if(is_playing){
+		int i;
+		for (auto const& ch: getEngine()->getPlayer(m_player_playing))
+		{
+			recherche1(getEngine()->getState().getList(), m_players_id[0], *ch.second, getEngine());
+		}
+
+
+		engine::EndTurnCommand commandE = engine::EndTurnCommand(getEngine(), m_player_playing);
+		commandE.execute();
+		LOG(DEBUG) << "AI TURN OVER";
+		is_playing = false;
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
-	engine::EndTurnCommand commandE = engine::EndTurnCommand(getEngine(), m_player_playing);
-	commandE.execute();
 }
 
 void AiPlayer::start()
@@ -31,7 +41,7 @@ void AiPlayer::start()
 	// This Client has Player 1 (Human) and player 2 (IA)
 	m_players_id.push_back(2);
 	m_players_id.push_back(3);
-
+	is_playing = false;
 		int rc = getEngine()->connect(2);
 		if (rc >= 400) LOG(FATAL) << "Cannot connect to engine: " << rc;
 		rc = getEngine()->registerPlayer(2, this);
@@ -83,9 +93,9 @@ void AiPlayer::updateGameEnd(int score)
 
 void AiPlayer::updateNowPlaying(int pid)
 {
+	LOG(DEBUG) << "AI is updating : now playing";
 	m_player_playing = pid;
-	if (m_players_id[0] == pid) run();
-	
+	m_update.setCurrentPlayerID(pid);
 }
 
 void AiPlayer::canPlay(int pid)
@@ -229,4 +239,28 @@ void AiPlayer::recherche1(state::ElementList* liste, int playerUid, engine::Char
 		engine::SkillCommand commandS = engine::SkillCommand(engine, targetX, targetY, c.UID, maxSkill, playerUid);
 		commandS.execute();
 	}
+}
+
+void AiPlayer::handleUpdate() {
+mut.lock();
+
+	if(m_update.pendingUpdate())
+	{
+		LOG(INFO) << "handle update Process: " << std::this_thread::get_id();
+
+		if(m_update.isPlayerTurnUpdate()){
+			if (m_players_id[0] == m_update.getCurrentPlayer())
+			{
+				is_playing = true;
+			}
+		}
+		m_update.clear();
+	}
+	mut.unlock();
+}
+
+void AiPlayer::operator()() {
+	LOG(INFO) << "AI Player ON PID@" << std::this_thread::get_id();
+	run();
+
 }

@@ -22,3 +22,7 @@ void MoveCommand::execute()
 	LOG(DEBUG) << "Exec Move";
 	m_command_receiver->handleCommand(this);
 }
+
+Command *MoveCommand::clone() {
+	return new MoveCommand(*this);
+}

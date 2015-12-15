@@ -19,3 +19,7 @@ void ModeCommand::execute()
 {
 	m_command_receiver->handleCommand(this);
 }
+
+Command *ModeCommand::clone() {
+	return new ModeCommand(*this);
+}

@@ -1,6 +1,7 @@
 #include "Engine.hpp"
 #include "EndTurnCommand.hpp"
 #include "../state/Case.hpp"
+#include <chrono>
 
 using namespace engine;
 
@@ -63,35 +64,67 @@ void Engine::loadLevel(const std::string level)
  */
 void Engine::handleCommand(Command* com)
 {
-	try {
-		switch (com->type)
-		{
-		case Move:
-			m_ruler->execute(com, state.get());
-			break;
-		case Skill:
-			m_ruler->execute(com, state.get());
-			break;
-		case EndTurn:
-			nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
-			break;
-		}
-		//state->notify();
-		LOG(DEBUG) << "Notify : Global";
-		notifyGlobal();
-	} catch (std::logic_error e)
-	{
-		LOG(DEBUG) << e.what();
-	}
-	
+
+	LOG(DEBUG) << "Adding Command";
+	LOG(INFO) << "== Process: " << std::this_thread::get_id();
+	m_boot->mut.lock();
+	m_com_list.push(com);
+	m_boot->mut.unlock();
+	LOG(DEBUG) << "Added Command";
+	return;
+
+
 }
+void Engine::processCommandList() {
+	m_boot->mut.lock();
+	//if (m_com_list.empty()) LOG(WARNING) << "No command. Sleeping...";
+	while(!m_com_list.empty()){
+		Command* com = m_com_list.front();
+
+		try {
+			LOG(DEBUG) << "Processing command";
+			LOG(DEBUG) << com->type;
+			switch (com->type)
+			{
+
+				case Move:
+					m_ruler->execute(com, state.get());
+					break;
+				case Skill:
+					m_ruler->execute(com, state.get());
+					break;
+				case EndTurn:
+					nextPlayer(dynamic_cast<EndTurnCommand*>(com)->m_player);
+					break;
+			}
+			//state->notify();
+			LOG(DEBUG) << "Notify : Global";
+			notifyGlobal();
+		} catch (std::logic_error e)
+		{
+			LOG(WARNING) << e.what();
+		}
+		m_com_list.pop();
+
+	}
+	m_boot->mut.unlock();
+
+}
+
 
 /**
  * Main entry point
  */
 void Engine::run()
 {
-	m_ruler->checkRule(state.get());
+	while(1)
+	{
+		//LOG(DEBUG) << "Engine : Wake up";
+		m_ruler->checkRule(state.get());
+
+		processCommandList();
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+	}
 }
 
 bool Engine::hasPlayed(int player)
@@ -310,4 +343,10 @@ void Engine::nextPlayer(int played)
 void Engine::nextTurn()
 {
 	state->nextTurn();
+}
+
+void Engine::operator()() {
+	LOG(INFO) << "Engine ON PID@" << std::this_thread::get_id() << std::endl;
+	run();
+
 }
