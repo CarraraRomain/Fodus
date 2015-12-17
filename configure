@@ -28,7 +28,7 @@ done
 
 rm build -r
 cd tools/pydia2code
-./clean.py
+python clean.py
 cd ../..
 mkdir build
 cd build
@@ -41,4 +41,4 @@ else
 fi
 
 cd ../tools/pydia2code
-./pydia2code.py
+python pydia2code.py
