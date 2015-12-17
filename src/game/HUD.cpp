@@ -60,7 +60,7 @@ void HUD::load(sf::Vector2u window_size)
 	setFont("command");
 	m_text_map["command"].setColor(sf::Color::White);
 	m_text_map["command"].setCharacterSize(24);
-	m_text_map["command"].setString("Echap: Next Turn | Space: Attack | A: Fireball | Z: Heal | Q+Mouse: Move");
+	m_text_map["command"].setString("Echap: Next Turn | A: Fireball | Z: Spawn | Q+Mouse: Move");
 
 	bbox = m_text_map["command"].getGlobalBounds();
 	m_text_map["command"].setOrigin(bbox.width / 2, bbox.height / 2);
@@ -185,7 +185,7 @@ void HUD::updateAction(int skillMode)
 		action = "Fireball";
 		break;
 	case 3:
-		action = "Heal";
+		action = "Spawn";
 		break;
 	default:
 		action = "None";
