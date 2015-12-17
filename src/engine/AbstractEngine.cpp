@@ -81,7 +81,8 @@ void AbstractEngine::notifyPlayer(Player pl)
 
 void AbstractEngine::notifyGameEnd(Player pl, int score)
 {
-	m_players_obs[pl.getId()]->updateGameEnd(score);
+	//m_players_obs[pl.getId()]->updateGameEnd(score);
+	for (auto obs : m_players_obs) obs.second->updateGameEnd(score);
 }
 
 void AbstractEngine::notifyHasPlayed(int pid)

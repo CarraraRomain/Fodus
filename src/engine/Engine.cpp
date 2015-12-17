@@ -117,7 +117,8 @@ void Engine::processCommandList() {
  */
 void Engine::run()
 {
-	while(1)
+	running = true;
+	while(running)
 	{
 		//LOG(DEBUG) << "Engine : Wake up";
 		m_ruler->checkRule(state.get());
@@ -304,6 +305,11 @@ int Engine::registerPlayer(int player)
 {
 	m_clients_players[0] = player;
 	return 1;
+}
+
+void Engine::gameEnded()
+{
+	running = false;
 }
 
 int Engine::getCurrentPlayer()

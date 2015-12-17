@@ -394,12 +394,14 @@ void Ruler::checkRule(state::Etat * state)
 		
 			m_engine->notifyGameEnd(m_engine->getPlayer(1), 0);
 			m_end = true;
+			m_engine->gameEnded();
 			return;
 		}
 		else if(size == 0 && pl.first == 2)
 		{
 			m_engine->notifyGameEnd(m_engine->getPlayer(1), 42);
 			m_end = true;
+			m_engine->gameEnded();
 			return;
 		}
 
@@ -427,6 +429,7 @@ void Ruler::checkRule(state::Etat * state)
 			}
 		}
 	}
+	
 	update();
 }
 

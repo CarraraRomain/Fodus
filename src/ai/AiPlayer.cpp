@@ -16,7 +16,8 @@ AiPlayer::~AiPlayer()
 
 void AiPlayer::run()
 {
-	while(1){
+	running = true;
+	while(running){
 		handleUpdate();
 		if(is_playing){
 		int i;
@@ -89,6 +90,9 @@ void AiPlayer::updatePlayer(engine::Player pl)
 
 void AiPlayer::updateGameEnd(int score)
 {
+	mut.lock();
+	running = false;
+	mut.unlock();
 }
 
 void AiPlayer::updateNowPlaying(int pid)

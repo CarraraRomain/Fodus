@@ -238,7 +238,7 @@ void Game::updateGameEnd(int score)
 	else LOG(INFO) << "YOU LOST :(";
 	LOG(INFO) << "Score: " << score;
 	LOG(INFO) << "================";
-	LOG(INFO) << "Fodus 2.Final";
+	LOG(INFO) << "Fodus 3.Final";
 	LOG(INFO) << "================";
 
 	m_end = true;
@@ -434,27 +434,30 @@ void Game::game_event_loop()
 
 void Game::updateHUD()
 {
-	engine::Character ch = getEngine()->getPlayer(m_players_id[0])[1];
-	if (m_has_played || ch.hasMoved()) {
-	//if(m_has_played){
-		m_hud.updateMoveCapa(false);
-		m_game_scene.hideMoveMap();
-	}
-	else
-	{
-		m_hud.updateMoveCapa(true);
-		m_game_scene.showMoveMap();
-	} 
-	//if (m_has_played) {
-	if (m_has_played || ch.hasAttacked()) {
-		m_hud.updateAttackCapa(false);
-	}
-	else
-	{
-		m_hud.updateAttackCapa(true);
-	}
 
-	m_hud.updateAction(skillMode);
+		if (getEngine()->getPlayer(m_players_id[0]).size() == 0) return;
+		engine::Character ch = getEngine()->getPlayer(m_players_id[0])[1];
+		if (m_has_played || ch.hasMoved()) {
+			//if(m_has_played){
+			m_hud.updateMoveCapa(false);
+			m_game_scene.hideMoveMap();
+		}
+		else
+		{
+			m_hud.updateMoveCapa(true);
+			m_game_scene.showMoveMap();
+		}
+		//if (m_has_played) {
+		if (m_has_played || ch.hasAttacked()) {
+			m_hud.updateAttackCapa(false);
+		}
+		else
+		{
+			m_hud.updateAttackCapa(true);
+		}
+
+		m_hud.updateAction(skillMode);
+
 }
 
 void Game::endPlayerTurn()
