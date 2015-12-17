@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 import lxml.etree as etree
 import yaml
 import os
