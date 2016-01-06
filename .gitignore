@@ -10,3 +10,10 @@ src/ai/*.hpp
 src/state/*.hpp
 src/game/*.hpp
 src/render/*.hpp
+src/network/*.hpp
+
+# Boost
+lib/boost/stage
+lib/boost/bin.v2
+lib/boost/project-config.jam*
+lib/boost/bootstrap.log

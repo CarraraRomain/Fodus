@@ -19,4 +19,4 @@ while getopts "h" option; do
 done
 
 cd build/
-make
+make -j4

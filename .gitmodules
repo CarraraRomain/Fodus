@@ -1,0 +1,6 @@
+[submodule "lib/bonefish"]
+	path = lib/bonefish
+	url = https://github.com/tplgy/bonefish.git
+[submodule "lib/autobahn"]
+	path = lib/autobahn
+	url = https://github.com/crossbario/autobahn-cpp.git

@@ -14,11 +14,11 @@ URL : https://github.com/miloyip/rapidjson
 */
 #define RAPIDJSON_HAS_STDSTRING 1
 #define ELPP_THREAD_SAFE 1
+
 #include "../lib/rapidjson/document.h"
 #include "../lib/rapidjson/writer.h"
 #include "../lib/rapidjson/prettywriter.h"
 #include "../lib/rapidjson/stringbuffer.h"
-
 
 /* SFML Library | Tested using v2.3.2 / 2.3.1
 URL : http://www.sfml-dev.org/
@@ -28,6 +28,11 @@ URL : http://www.sfml-dev.org/
 /* EasyLogging++ lib | v9.81
 Logging library. Has to be include at the top of the file
 */
+
+#include <autobahn.hpp>
+
+
+
 
 #define ELPP_NO_DEFAULT_LOG_FILE
 #include "../lib/easylogging/easylogging++.h"
