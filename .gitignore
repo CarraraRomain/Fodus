@@ -1,9 +1,10 @@
 bin/
-build/
+/build/
 .idea/
 tools/pydia2code/tmp/
 tools/pydia2code/out/
 dia/*.dia~
+dia/*.dia.autosave
 src/boot/*.hpp
 src/engine/*.hpp
 src/ai/*.hpp
