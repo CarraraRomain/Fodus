@@ -27,6 +27,7 @@ namespaces:
     - game
     - ai
     - boot
+    - network
 # Global include in each header in the concerned namespace
 includes:
   engine: "../global.hpp"
@@ -35,6 +36,7 @@ includes:
   ai: "../global.hpp"
   game: "../global.hpp"
   boot: "../global.hpp"
+  network: "../global.hpp"
 
 # Specific includes for classes in namespaces
 # Typically import from others namespaces
@@ -124,3 +126,10 @@ decorators:
     Bootstrap:
       include:
         - "../engine/ModeCommand.hpp"
+  network:
+    NetworkClient:
+      include:
+        - "../game/Game.hpp"
+    NetworkEngine:
+      include:
+        - "../engine/Engine.hpp"
