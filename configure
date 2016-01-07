@@ -30,6 +30,8 @@ rm build -r
 cd tools/pydia2code
 python clean.py
 cd ../..
+echo "Initializing and loading lib..."
+./boot.sh
 mkdir build
 cd build
 if ["$sfml_path" == ""]; then

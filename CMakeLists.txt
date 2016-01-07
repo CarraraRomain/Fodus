@@ -23,7 +23,7 @@ include_directories(lib/autobahn/autobahn)
 include_directories(lib/easylogging)
 include_directories(lib/rapidjson)
 include_directories(lib/bonefish/third-party/msgpack-c/include)
-#find_package(Boost REQUIRED COMPONENTS program_options system thread)
+
 # Use C++11
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated -std=c++11 -pthread")
 
@@ -39,6 +39,17 @@ set(EXECUTABLE_OUTPUT_PATH ../bin/${CMAKE_BUILD_TYPE})
 set(EXECUTABLE_NAME "Fodus")
 add_executable(${EXECUTABLE_NAME} ${SOURCE_FILES})
 
+
+find_package(OpenSSL)
+if (OPENSSL_FOUND)
+  include_directories(${OPENSSL_INCLUDE_DIRS})
+  target_link_libraries (${EXECUTABLE_NAME} ${OPENSSL_LIBRARIES})
+endif (OPENSSL_FOUND)
+#find_package (BZip2)
+#if (BZIP2_FOUND)
+#  include_directories(${BZIP_INCLUDE_DIRS})
+#  target_link_libraries (${EXECUTABLE_NAME} ${BZIP2_LIBRARIES})
+#endif (BZIP2_FOUND)
 ######### BOOST
 set(BOOST_ROOT lib/boost)
 set(BOOST_NO_SYSTEM_PATHS ON)
