@@ -5,4 +5,4 @@ git submodule init
 git submodule update
 cd ../boost
 ./bootstrap.sh --with-toolset=gcc --with-libraries=system,thread,program_options
-./b2
+./b2 -j 4
