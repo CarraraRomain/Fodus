@@ -42,7 +42,7 @@ while getopts "hrdvf:" option; do
 		d)
 			echo "Running the debug bin..."
 			cd bin/Debug
-			./Fodus
+			./Fodus game
 			;;
 		*)
 			echo "No recognized args ; use -d to run debug binary"

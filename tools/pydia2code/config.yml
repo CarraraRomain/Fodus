@@ -130,6 +130,9 @@ decorators:
     NetworkClient:
       include:
         - "../game/Game.hpp"
+    NetworkHandler:
+      include:
+        - "../../lib/custom/wamp_tcp_component.hpp"
     NetworkEngine:
       include:
         - "../engine/Engine.hpp"

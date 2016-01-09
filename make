@@ -20,3 +20,5 @@ done
 
 cd build/
 make -j4
+cd ../bin/Debug/
+ln -s ../../lib/bonefish/build/daemon/bonefish router

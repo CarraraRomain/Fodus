@@ -5,6 +5,8 @@
 #include "../ai/AiPlayer.hpp"
 #include "../engine/Engine.hpp"
 
+#include "../network/NetworkClient.hpp"
+
 using namespace boot;
 
 void Bootstrap::handleCommand(engine::Command* com)
@@ -334,26 +336,90 @@ void Bootstrap::launch_editor()
 void Bootstrap::launch_game()
 {
 	LOG(DEBUG) << "Launching Game";
-	std::string level = chooseLevel();
-	LOG(INFO) << "Main thread : " << std::this_thread::get_id();
-	engine::Engine engine(this);
-	game::Game game(this, &engine, rand());
-	ai::AiPlayer aiP(this, &engine, rand());
 
-	engine.loadLevel(level);
+	LOG(INFO) << "Main thread : " << std::this_thread::get_id();
+
+	std::string mode;
+	do
+	{
+		std::cout <<"> Local mode or network? (l/n) ";
+		std::cin >> mode;
+	}while(mode != "l" && mode != "n");
+
+	if(mode == "l")
+	{
+		std::string level = chooseLevel();
+		engine::Engine engine(this);
+		game::Game game(this, &engine, rand());
+		ai::AiPlayer aiP(this, &engine, rand());
+
+		engine.loadLevel(level);
+		game.start();
+		aiP.start();
+		engine.start();
+
+		std::thread th(std::ref(engine));
+		//th.detach();
+		//  if(th.joignable())
+		std::thread aith(std::ref(aiP));
+
+		game.run();
+
+		//aiP.run();
+		th.join();
+		aith.join();
+		//launch_game();
+	}
+	else if (mode == "n")
+	{
+		std::string choice;
+		do
+		{
+			std::cout <<"> Launch Router? (y/n) ";
+			std::cin >> choice;
+		}while(choice != "y" && choice != "n");
+		if(choice == "y")
+		{
+			choice = "";
+			if(fork() > 0)
+			{
+				LOG(DEBUG) << "Bonefish launch";
+				int rc= execlp("/bin/bash", "/bin/sh", "-c",  "./router -r \"fodus\" -t 9999", NULL);
+				LOG(DEBUG) << rc;
+				if(rc<0) exit(-1);
+			}
+			LOG(DEBUG) << "Routeur launched";
+		}
+		sleep(1);
+		launch_network();
+
+	}
+
+}
+
+void Bootstrap::launch_network()
+{
+
+	engine::Engine engine(this);
+	// check WAMP success
+
+	network::NetworkClient game(this, &engine, rand());
+	ai::AiPlayer aiP(this, &engine, rand());
+	engine.loadLevel("test");
 	game.start();
 	aiP.start();
 	engine.start();
 
 	std::thread th(std::ref(engine));
 	//th.detach();
-  //  if(th.joignable())
+	//  if(th.joignable())
 	std::thread aith(std::ref(aiP));
 
+	sleep(2);
 	game.run();
 
 	//aiP.run();
 	th.join();
 	aith.join();
-	launch_game();
+	//launch_game();
 }
