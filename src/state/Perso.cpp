@@ -107,11 +107,11 @@ int Perso::getAttribute(std::string attribute)
 
 Competence* Perso::getSkill(int i)
 {
-	if(i < competences.size() && i >= 0) return competences[i];
+	if(i < competences.size() && i >= 0) return &competences[i];
 	else return NULL;
 }
 
-void Perso::addSkill(Competence * skill)
+void Perso::addSkill(Competence skill)
 {
 	competences.push_back(skill);
 }

@@ -8,7 +8,7 @@ void chat(const autobahn::wamp_event& event)
     LOG(INFO) << "CHAT : " << event.argument<std::string>(0);
 }
 
-NetworkClient::NetworkClient(boot::Bootstrap *boot, engine::AbstractEngine *engine, int cid) : Game(boot, engine, cid){
+NetworkClient::NetworkClient(boot::Bootstrap *boot, engine::AbstractEngine *engine, int cid) : Game(boot, engine, cid), m_engine(this){
 
 }
 
@@ -111,4 +111,9 @@ void NetworkClient::run()
     while(!m_handler.network_ready);
     //m_handler.session()->subscribe("game.chat", chat);
     game::Game::run();
+}
+
+engine::AbstractEngine* NetworkClient::getEngine()
+{
+    return &m_engine;
 }

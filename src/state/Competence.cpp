@@ -32,3 +32,14 @@ void Competence::used()
 {
 	cooldown = maxCooldown;
 }
+
+Competence::Competence()
+{
+	type = Attack;
+	damage = 0;
+	target = 0;
+	range = 0;
+	interest = 0;
+	cooldown = 0;
+	maxCooldown = 0;
+}

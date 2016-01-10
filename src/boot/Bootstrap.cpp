@@ -6,6 +6,7 @@
 #include "../engine/Engine.hpp"
 
 #include "../network/NetworkClient.hpp"
+#include "../network/NetworkEngine.hpp"
 
 using namespace boot;
 
@@ -400,15 +401,15 @@ void Bootstrap::launch_game()
 void Bootstrap::launch_network()
 {
 	LOG(DEBUG) << "Launch with network";
-	engine::Engine engine(this);
-	// check WAMP success
+	network::NetworkEngine engine(this);
 
 	network::NetworkClient game(this, &engine, rand());
 	ai::AiPlayer aiP(this, &engine, rand());
 	engine.loadLevel("test");
+	engine.start();
 	game.start();
 	aiP.start();
-	engine.start();
+
 	LOG(DEBUG) << "Running on network";
 	std::thread th(std::ref(engine));
 	//th.detach();

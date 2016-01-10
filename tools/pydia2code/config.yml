@@ -92,6 +92,7 @@ decorators:
     Etat:
       include:
         - "../engine/Subject.hpp"
+        - "ElementList.h"
   render:
     AnimationLayer:
       include:
@@ -130,6 +131,9 @@ decorators:
     NetworkClient:
       include:
         - "../game/Game.hpp"
+    NetworkAdapterEngine:
+      include:
+        - "../engine/AbstractEngine.hpp"
     NetworkHandler:
       include:
         - "../../lib/custom/wamp_tcp_component.hpp"

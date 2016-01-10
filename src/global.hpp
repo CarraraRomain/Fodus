@@ -15,6 +15,8 @@ URL : https://github.com/miloyip/rapidjson
 #define RAPIDJSON_HAS_STDSTRING 1
 #define ELPP_THREAD_SAFE 1
 
+
+
 #include "../lib/rapidjson/document.h"
 #include "../lib/rapidjson/writer.h"
 #include "../lib/rapidjson/prettywriter.h"
@@ -47,5 +49,6 @@ Logging library. Has to be include at the top of the file
 #define OFFSET_BOT 5
 
 #include "Enum.h"
+
 
 

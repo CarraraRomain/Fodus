@@ -470,7 +470,7 @@
             <dia:boolean val="false"/>
           </dia:attribute>
           <dia:attribute name="inheritance_type">
-            <dia:enum val="2"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="query">
             <dia:boolean val="false"/>
@@ -1208,7 +1208,7 @@
             <dia:boolean val="false"/>
           </dia:attribute>
           <dia:attribute name="inheritance_type">
-            <dia:enum val="2"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="query">
             <dia:boolean val="false"/>
@@ -3572,17 +3572,17 @@
     </dia:object>
     <dia:object type="UML - Generalization" version="1" id="O10">
       <dia:attribute name="obj_pos">
-        <dia:point val="20.5824,-14.1993"/>
+        <dia:point val="20.5844,-14.1993"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="11.5258,-14.2505;21.4325,5.48941"/>
+        <dia:rectangle val="11.5258,-14.2494;21.4344,5.48941"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="20.5824,-14.1993"/>
-        <dia:point val="20.5605,1.62517"/>
+        <dia:point val="20.5844,-14.1993"/>
+        <dia:point val="20.5824,1.62517"/>
         <dia:point val="11.5758,1.62517"/>
         <dia:point val="11.5758,5.43941"/>
       </dia:attribute>

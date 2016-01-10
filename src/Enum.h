@@ -16,7 +16,7 @@ enum CommandType {
 	Mode,
 	Exit
 };
-
+MSGPACK_ADD_ENUM(CommandType);
 enum SkillType {
 	Attack,
 	Fireball,
@@ -24,7 +24,7 @@ enum SkillType {
 	ZombieSpawn,
 	Viper
 };
-
+MSGPACK_ADD_ENUM(SkillType);
 enum AiBehavior {
 	Aggression,
 	Fear
@@ -37,13 +37,14 @@ enum AnimationType
 	MoveRight,
 	MoveLeft
 };
+MSGPACK_ADD_ENUM(AnimationType);
 
 enum ElementType
 {
 	Mobile,
 	Fixed
 };
-
+MSGPACK_ADD_ENUM(ElementType);
 enum ObsType
 {
 	ObsEngine,
@@ -61,3 +62,4 @@ enum Classe {
 	Mage,
 	Sol
 };
+MSGPACK_ADD_ENUM(Classe);

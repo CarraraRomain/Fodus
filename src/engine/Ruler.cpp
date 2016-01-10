@@ -265,8 +265,8 @@ bool Ruler::createSkill(state::Etat* state, int uid, int index, int posX, int po
 			zombie->setKey("COW");
 			zombie->setD(3);
 
-			state::Competence* attack = new state::Competence(Attack, 10, 2, 1, 1, 0);
-			zombie->addSkill(attack);
+//			state::Competence* attack = new state::Competence(Attack, 10, 2, 1, 1, 0);
+			zombie->addSkill(state::Competence(Attack, 10, 2, 1, 1, 0));
 
 			SpawnAction* actionZ = new SpawnAction(zombie);
 			m_action_list->push_back(actionZ);

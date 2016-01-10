@@ -138,3 +138,7 @@ ElementList* Etat::getList()
 }
 
 
+Etat::Etat(): turnsCount(0), taille(0)
+{
+
+}

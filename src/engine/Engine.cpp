@@ -180,14 +180,14 @@ void Engine::start()
 	elt->setAttribute("zombiLimit", 0);
 	state->getList()->push_back(elt);
 
-	state::Competence* attack = new state::Competence(Attack, 10, 2, 1, 2, 0);
-	elt->addSkill(attack);
-	state::Competence* fireball = new state::Competence(Fireball,20, 3, 2, 10, 3);
-	elt->addSkill(fireball);
-	state::Competence* spawnZ = new state::Competence(ZombieSpawn, 20, 0, 1, 3, 0);
-	elt->addSkill(spawnZ);
-	state::Competence* heal = new state::Competence(Rejuvenate, 20, 3, 1, 15, 3);
-	elt->addSkill(heal);
+	//state::Competence* attack = new
+	elt->addSkill(state::Competence(Attack, 10, 2, 1, 2, 0));
+//	state::Competence* fireball = new state::Competence(Fireball,20, 3, 2, 10, 3);
+	elt->addSkill(state::Competence(Fireball,20, 3, 2, 10, 3));
+//	state::Competence* spawnZ = new state::Competence(ZombieSpawn, 20, 0, 1, 3, 0);
+	elt->addSkill(state::Competence(ZombieSpawn, 20, 0, 1, 3, 0));
+//	state::Competence* heal = new state::Competence(Rejuvenate, 20, 3, 1, 15, 3);
+	elt->addSkill(state::Competence(Rejuvenate, 20, 3, 1, 15, 3));
 
 	// Elt index is size-1
 	m_players[1] = Player(1,0);
@@ -208,12 +208,12 @@ void Engine::start()
 	foe->setAttribute("side", 2);
 	state->getList()->push_back(foe);
 
-	state::Competence* attack2 = new state::Competence(Attack, 10, 2, 1, 1, 0);
-	foe->addSkill(attack2);
-	state::Competence* heal2 = new state::Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
-	foe->addSkill(heal2);
-	state::Competence* fireball2 = new state::Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
-	foe->addSkill(fireball2);
+//	state::Competence* attack2 = new state::Competence(Attack, 10, 2, 1, 1, 0);
+	foe->addSkill(state::Competence(Attack, 10, 2, 1, 1, 0));
+//	state::Competence* heal2 = new state::Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
+	foe->addSkill(state::Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4));
+//	state::Competence* fireball2 = new state::Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
+	foe->addSkill(state::Competence(Fireball, 20, 2, 1, 10, 3, rand()%4));
 	
 	state::Perso* foe2 = new state::Perso(55, 2);
 	foe2->setClasse(Monstre);
@@ -230,12 +230,12 @@ void Engine::start()
 	foe2->setAttribute("side", 2);
 	state->getList()->push_back(foe2);
 
-	state::Competence* attack3 = new state::Competence(Attack, 10, 2, 1, 1, 0);
-	foe2->addSkill(attack3);
-	state::Competence* heal3 = new state::Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
-	foe2->addSkill(heal3);
-	state::Competence* fireball3 = new state::Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
-	foe2->addSkill(fireball3);	
+//	state::Competence* attack3 = new state::Competence(Attack, 10, 2, 1, 1, 0);
+	foe2->addSkill(state::Competence(Attack, 10, 2, 1, 1, 0));
+//	state::Competence* heal3 = new state::Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4);
+	foe2->addSkill(state::Competence(Rejuvenate, 20, 1, 1, 0, 3, rand()%4));
+//	state::Competence* fireball3 = new state::Competence(Fireball, 20, 2, 1, 10, 3, rand()%4);
+	foe2->addSkill(state::Competence(Fireball, 20, 2, 1, 10, 3, rand()%4));
 
 	//m_players[0] = Player(1, 1);
 	m_players[2] = Player(89, 1);
