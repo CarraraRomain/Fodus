@@ -381,7 +381,7 @@ void Bootstrap::launch_game()
 		if(choice == "y")
 		{
 			choice = "";
-			if(fork() > 0)
+			if(fork() == 0)
 			{
 				LOG(DEBUG) << "Bonefish launch";
 				int rc= execlp("/bin/bash", "/bin/sh", "-c",  "./router -r \"fodus\" -t 9999", NULL);
@@ -390,7 +390,7 @@ void Bootstrap::launch_game()
 			}
 			LOG(DEBUG) << "Routeur launched";
 		}
-		sleep(1);
+
 		launch_network();
 
 	}
@@ -399,7 +399,7 @@ void Bootstrap::launch_game()
 
 void Bootstrap::launch_network()
 {
-
+	LOG(DEBUG) << "Launch with network";
 	engine::Engine engine(this);
 	// check WAMP success
 
@@ -409,13 +409,13 @@ void Bootstrap::launch_network()
 	game.start();
 	aiP.start();
 	engine.start();
-
+	LOG(DEBUG) << "Running on network";
 	std::thread th(std::ref(engine));
 	//th.detach();
 	//  if(th.joignable())
 	std::thread aith(std::ref(aiP));
 
-	sleep(2);
+//	sleep(6);
 	game.run();
 
 	//aiP.run();
