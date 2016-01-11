@@ -20,6 +20,20 @@ namespace msgpack {
                     if (o.type != msgpack::type::ARRAY) throw msgpack::type_error();
                     // if (o.via.array.size != 2) throw msgpack::type_error();
                     v = state::ElementList();
+                    int size = o.via.array.size;
+                    for(int i = 0; i < size; i++)
+                    {
+                        state::Element* ptr;
+                        try{
+                            // trying to convert to case
+                            ptr = new state::Case(o.via.array.ptr[i].as<state::Case>());
+                        }catch (const std::exception& e){
+                            // cast to Perso
+                            ptr = new state::Perso(o.via.array.ptr[i].as<state::Perso>());
+                        }
+                    v.push_back(ptr);
+                    }
+
                     return o;
                 }
             };

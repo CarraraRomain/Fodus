@@ -120,3 +120,8 @@ int Perso::nbrSkill()
 {
 	return competences.size();
 }
+
+Perso::Perso(): Element(0, Mobile)
+{
+
+}

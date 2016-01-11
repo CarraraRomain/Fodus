@@ -3,7 +3,7 @@
 
 using namespace state;
 
-Etat::Etat(int i): turnsCount(i), taille(0)
+Etat::Etat(int i): turnsCount(i), taille(0), gameEnded(false), m_score(0)
 {
 }
 

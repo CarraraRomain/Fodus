@@ -110,17 +110,17 @@ int NetworkAdapterEngine::whoIsPlaying()
 
 std::vector<std::vector<int> > NetworkAdapterEngine::getMap(int uid)
 {
-    throw std::logic_error("Not implemented");
+ //   throw std::logic_error("Not implemented");
 }
 
 std::map<int, engine::Player> &NetworkAdapterEngine::getPlayers()
 {
-    throw std::logic_error("Not implemented");
+//    throw std::logic_error("Not implemented");
 }
 
 engine::Player &NetworkAdapterEngine::getPlayer(int i)
 {
-    throw std::logic_error("Not implemented");
+//    throw std::logic_error("Not implemented");
 }
 
 void NetworkAdapterEngine::propagate(int x, int y, int valeur, int uid)

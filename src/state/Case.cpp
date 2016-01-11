@@ -58,3 +58,8 @@ Element* Case::clone()
 Case::~Case()
 {
 }
+
+Case::Case(): Element(0,Fixed)
+{
+
+}
