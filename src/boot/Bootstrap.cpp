@@ -10,6 +10,31 @@
 
 using namespace boot;
 
+/**
+ * Handle signals in order to kill child process
+ */
+void Bootstrap::signalHandler(const boost::system::error_code& error, int signal_number)
+{
+	std::string str;
+	LOG(WARNING) << "Signal Handler";
+	if (!error){
+		if(signal_number == SIGTERM) str = "SIGTERM";
+		if(signal_number == SIGSEGV) str = "SIGSEGV";
+		if(signal_number == SIGINT) str = "SIGINT";
+
+		if(m_pid_router > 0) kill(m_pid_router, SIGTERM);
+		if(str != ""){
+			std::cout<<"Recvd " << str << ", exiting ..";
+			exit(0);
+		}
+
+		return;
+	}
+	std::cerr<<"signalHandler() :"<<error.message();
+	return;
+}
+
+
 void Bootstrap::handleCommand(engine::Command* com)
 {
 	LOG(DEBUG) << "Command received by Bootstrap";
@@ -25,13 +50,15 @@ void Bootstrap::handleCommand(engine::Command* com)
 	}
 }
 
-Bootstrap::Bootstrap(int argc, char** argv)
+Bootstrap::Bootstrap(int argc, char** argv): signals(io, SIGTERM, SIGINT, SIGSEGV)
 {
+	m_pid_router = 0;
 	m_argc = argc;
 	m_argv = argv;
 }
-Bootstrap::Bootstrap()
+Bootstrap::Bootstrap(): signals(io, SIGTERM, SIGINT, SIGSEGV)
 {
+	m_pid_router = 0;
 	m_argc = 0;
 	m_argv = nullptr;
 }
@@ -81,6 +108,12 @@ loadFile("levels_index");
 void Bootstrap::start()
 {
 	LOG(DEBUG) << "Bootstrap is starting";
+
+	signals.async_wait(
+			boost::bind(&Bootstrap::signalHandler,
+						this, boost::asio::placeholders::error,
+						boost::asio::placeholders::signal_number));
+	boost::thread th(boost::bind(&boost::asio::io_service::run, &io));
 	loadConf();
 	loadLevelIndex();
 	
@@ -382,7 +415,8 @@ void Bootstrap::launch_game()
 		if(choice == "y")
 		{
 			choice = "";
-			if(fork() == 0)
+			m_pid_router = fork();
+			if( m_pid_router == 0)
 			{
 				LOG(DEBUG) << "Bonefish launch";
 				int rc= execlp("/bin/bash", "/bin/sh", "-c",  "./router -r \"fodus\" -t 9999", NULL);

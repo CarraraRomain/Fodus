@@ -106,7 +106,7 @@
         <dia:point val="18.6614,7.05805"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="18.6114,7.00805;46.9314,20.908"/>
+        <dia:rectangle val="18.6114,7.00805;46.9314,21.7081"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="18.6614,7.05805"/>
@@ -115,7 +115,7 @@
         <dia:real val="28.219999999999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="13.800000000000001"/>
+        <dia:real val="14.600000000000001"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#Case#</dia:string>
@@ -930,6 +930,36 @@
               </dia:attribute>
             </dia:composite>
           </dia:attribute>
+        </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name">
+            <dia:string>#Case#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="stereotype">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="type">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="visibility">
+            <dia:enum val="0"/>
+          </dia:attribute>
+          <dia:attribute name="comment">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="abstract">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="inheritance_type">
+            <dia:enum val="2"/>
+          </dia:attribute>
+          <dia:attribute name="query">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="class_scope">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="parameters"/>
         </dia:composite>
       </dia:attribute>
       <dia:attribute name="template">
@@ -5250,7 +5280,7 @@
         <dia:point val="48.281,-21.1406"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="48.231,-21.1906;72.701,11.1094"/>
+        <dia:rectangle val="48.231,-21.1906;72.701,11.9094"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="48.281,-21.1406"/>
@@ -5259,7 +5289,7 @@
         <dia:real val="24.369999999999997"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="32.20000000000001"/>
+        <dia:real val="33.000000000000014"/>
       </dia:attribute>
       <dia:attribute name="name">
         <dia:string>#Perso#</dia:string>
@@ -6773,6 +6803,36 @@
             </dia:composite>
           </dia:attribute>
         </dia:composite>
+        <dia:composite type="umloperation">
+          <dia:attribute name="name">
+            <dia:string>#Perso#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="stereotype">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="type">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="visibility">
+            <dia:enum val="0"/>
+          </dia:attribute>
+          <dia:attribute name="comment">
+            <dia:string>##</dia:string>
+          </dia:attribute>
+          <dia:attribute name="abstract">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="inheritance_type">
+            <dia:enum val="2"/>
+          </dia:attribute>
+          <dia:attribute name="query">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="class_scope">
+            <dia:boolean val="false"/>
+          </dia:attribute>
+          <dia:attribute name="parameters"/>
+        </dia:composite>
       </dia:attribute>
       <dia:attribute name="template">
         <dia:boolean val="false"/>
@@ -7107,8 +7167,8 @@
       <dia:attribute name="orth_points">
         <dia:point val="44.3947,-4.1386"/>
         <dia:point val="45.4447,-4.1386"/>
-        <dia:point val="45.4447,8.75022"/>
-        <dia:point val="44.9064,8.75022"/>
+        <dia:point val="45.4447,8.7502"/>
+        <dia:point val="44.9064,8.7502"/>
         <dia:point val="44.9064,22.089"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">

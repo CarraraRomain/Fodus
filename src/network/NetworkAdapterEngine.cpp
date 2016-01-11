@@ -62,6 +62,7 @@ int NetworkAdapterEngine::connect(int client)
                 }
 
             });
+return 200;
 }
 
 void NetworkAdapterEngine::start()

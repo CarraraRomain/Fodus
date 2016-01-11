@@ -8,21 +8,21 @@ if(CMAKE_BUILD_TYPE STREQUAL "")
 endif()
 
 # Version Number
-set(FODUS_VERSION_MAJOR 1)
+set(FODUS_VERSION_MAJOR 4)
 set(FODUS_VERSION_MINOR 2)
 set(PROJECT_SOURCE_DIR src/)
 
 # Generate config.h file
 configure_file(
-        "${PROJECT_SOURCE_DIR}/config.h.in"
-        "../${PROJECT_SOURCE_DIR}/config.h"
+        "${PROJECT_SOURCE_DIR}config.h.in"
+        "${PROJECT_SOURCE_DIR}config.h"
 )
 #include_directories("${PROJECT_BINARY_DIR}")
 include_directories(lib/autobahn/autobahn)
 
 include_directories(lib/easylogging)
 include_directories(lib/rapidjson)
-include_directories(lib/bonefish/third-party/msgpack-c/include)
+include_directories(lib/msgpack-c/include)
 
 # Use C++11
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated -std=c++11 -pthread")
@@ -51,9 +51,9 @@ endif (OPENSSL_FOUND)
 #  target_link_libraries (${EXECUTABLE_NAME} ${BZIP2_LIBRARIES})
 #endif (BZIP2_FOUND)
 ######### BOOST
+set(BOOST_NO_SYSTEM_PATHS TRUE)
+set(BOOST_NO_BOOST_CMAKE TRUE)
 set(BOOST_ROOT lib/boost)
-set(BOOST_NO_SYSTEM_PATHS ON)
-set(BOOST_NO_BOOST_CMAKE ON)
 find_package(Boost REQUIRED COMPONENTS system program_options thread)
 
 if(Boost_FOUND)
