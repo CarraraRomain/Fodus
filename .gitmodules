@@ -4,3 +4,6 @@
 [submodule "lib/msgpack-c"]
 	path = lib/msgpack-c
 	url = https://github.com/msgpack/msgpack-c
+[submodule "lib/bonefish"]
+	path = lib/bonefish
+	url = https://github.com/AchilleAsh/bonefish
