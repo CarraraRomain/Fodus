@@ -4,6 +4,11 @@ git submodule update
 cd lib/bonefish
 git submodule init
 git submodule update
-cd ../boost
+rm -r build
+mkdir build
+cd build
+cmake .. -DBOOST_ROOT=../boost/ -DBOOST_NO_SYSTEM_PATHS=TRUE
+make
+cd ../../boost
 ./bootstrap.sh --with-toolset=gcc --with-libraries=system,thread,program_options
 ./b2 -j 4

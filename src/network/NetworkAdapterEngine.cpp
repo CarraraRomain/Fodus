@@ -108,10 +108,33 @@ int NetworkAdapterEngine::whoIsPlaying()
 {
     return 0;
 }
-
+/**
+ * TODO Implementation
+ */
 std::vector<std::vector<int> > NetworkAdapterEngine::getMap(int uid)
 {
- //   throw std::logic_error("Not implemented");
+    while(!m_client->m_handler.network_ready);
+    autobahn::wamp_call_options call_options;
+    call_options.set_timeout(std::chrono::seconds(10));
+
+    std::tuple<uint64_t> arguments(uid);
+    futures[1] = m_client->m_handler.m_component->session()->call("engine.unit.map", arguments, call_options).then(
+            [&](boost::future<autobahn::wamp_call_result> result) {
+                try {
+
+                    std::vector<std::vector<int> > map = result.get().argument<std::vector<std::vector<int> > >(0);
+                    m_client->checkMoveMap(map);
+//                    state::Etat e = (result.get().arguments<std::array<state::Etat>>())[0];
+                   // m_client->updateGlobal(e);
+                    std::cerr << "call success " << std::endl;
+                } catch (const std::exception& e) {
+                    std::cerr << "call failed: " << e.what() << std::endl;
+                    //return (uint64_t) 500;
+                }
+
+            });
+    std::vector<std::vector<int> > vect;
+    return vect;
 }
 
 std::map<int, engine::Player> &NetworkAdapterEngine::getPlayers()

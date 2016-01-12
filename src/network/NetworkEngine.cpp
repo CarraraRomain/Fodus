@@ -126,7 +126,7 @@ void NetworkEngine::getMap(autobahn::wamp_invocation invocation)
     int uid = invocation->argument<int>(0);
     std::vector<std::vector<int> > map =  engine::Engine::getMap(uid);
 
-    invocation->result(map);
+    invocation->result(std::make_tuple(map));
 }
 
 std::map<int, engine::Player> &NetworkEngine::getPlayers()

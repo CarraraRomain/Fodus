@@ -117,3 +117,17 @@ engine::AbstractEngine* NetworkClient::getEngine()
 {
     return &m_engine;
 }
+
+void NetworkClient::checkMoveMap()
+{
+   getEngine()->getMap(1);
+}
+
+/**
+ * Promise callback : Sync move map
+ */
+void NetworkClient::checkMoveMap(std::vector<std::vector<int> > map)
+{
+    if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
+    else m_game_scene.getInfos()->resetMoveMap();
+}

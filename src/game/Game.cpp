@@ -185,9 +185,7 @@ if(m_update.pendingUpdate())
 
 		}
 
-//		std::vector<std::vector<int>> map = getEngine()->getMap(1);
-//		if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
-//		else m_game_scene.getInfos()->resetMoveMap();
+		checkMoveMap();
 		m_game_scene.update(*m_update.getStateUpdate().getList());
 //		updateHUD();
 	}
@@ -201,6 +199,13 @@ if(m_update.pendingUpdate())
 	m_update.clear();
 }
 	mut.unlock();
+}
+
+void Game::checkMoveMap()
+{
+	std::vector<std::vector<int> > map = getEngine()->getMap(1);
+	if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
+		else m_game_scene.getInfos()->resetMoveMap();
 }
 
 
