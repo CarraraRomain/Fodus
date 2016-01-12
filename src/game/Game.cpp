@@ -189,7 +189,7 @@ if(m_update.pendingUpdate())
 //		if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
 //		else m_game_scene.getInfos()->resetMoveMap();
 		m_game_scene.update(*m_update.getStateUpdate().getList());
-		updateHUD();
+//		updateHUD();
 	}
 	if(m_update.isPlayerTurnUpdate()){
 		if (m_players_id[0] == m_update.getCurrentPlayer())
