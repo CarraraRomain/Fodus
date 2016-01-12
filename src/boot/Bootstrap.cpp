@@ -50,13 +50,15 @@ void Bootstrap::handleCommand(engine::Command* com)
 	}
 }
 
-Bootstrap::Bootstrap(int argc, char** argv): signals(io, SIGTERM, SIGINT, SIGSEGV)
+Bootstrap::Bootstrap(int argc, char** argv)
+		: signals(io, SIGTERM, SIGINT, SIGSEGV)
 {
 	m_pid_router = 0;
 	m_argc = argc;
 	m_argv = argv;
 }
-Bootstrap::Bootstrap(): signals(io, SIGTERM, SIGINT, SIGSEGV)
+Bootstrap::Bootstrap()
+		: signals(io, SIGTERM, SIGINT, SIGSEGV)
 {
 	m_pid_router = 0;
 	m_argc = 0;
@@ -452,9 +454,12 @@ void Bootstrap::launch_network()
 
 //	sleep(6);
 	game.run();
-
+	LOG(DEBUG) << "Joining threads";
 	//aiP.run();
 	th.join();
 	aith.join();
+
 	//launch_game();
+	LOG(DEBUG) << "Exiting";
+	exit(0);
 }

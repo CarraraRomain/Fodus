@@ -391,10 +391,10 @@
         </dia:composite>
         <dia:composite type="umlattribute">
           <dia:attribute name="name">
-            <dia:string>#boost::asio::signal_set#</dia:string>
+            <dia:string>#signals#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#signals#</dia:string>
+            <dia:string>#boost::asio::signal_set#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
@@ -1354,10 +1354,10 @@
             </dia:composite>
             <dia:composite type="umlparameter">
               <dia:attribute name="name">
-                <dia:string>#int#</dia:string>
+                <dia:string>#signal_number#</dia:string>
               </dia:attribute>
               <dia:attribute name="type">
-                <dia:string>#signal_number#</dia:string>
+                <dia:string>#int#</dia:string>
               </dia:attribute>
               <dia:attribute name="value">
                 <dia:string>##</dia:string>

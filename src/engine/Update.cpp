@@ -2,7 +2,8 @@
 
 using namespace engine;
 
-Update::Update(): new_state(0) {
+Update::Update(): new_state(0), pending_end_game(0), pending_update(false), pending_player(false),
+                  pending_next_player(false), pending_list(false)  {
 
 }
 
@@ -43,14 +44,14 @@ void Update::setList(state::ElementList list) {
 }
 
 void Update::setCurrentPlayerID(int pl) {
-
+    LOG(DEBUG) << "Set cur pl ID";
 	current_player = pl;
     pending_next_player = true;
     pending_update = true;
 }
 
 void Update::setPlayer(engine::Player pl) {
-
+    LOG(DEBUG) << "Set pl";
     pending_player = true;
     pending_update = true;
 }
@@ -64,6 +65,7 @@ state::Etat Update::getStateUpdate() {
 }
 
 void Update::setNewState(state::Etat e) {
+    LOG(DEBUG) << "Set new state";
     new_state = e;
     pending_update = true;
     pending_state = true;

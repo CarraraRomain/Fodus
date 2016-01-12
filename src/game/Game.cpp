@@ -73,8 +73,9 @@ void Game::run()
 	//m_game_scene.notify();
 	//update(ObsState);
 	m_player_playing = 1;
-	LOG(DEBUG) << "Loop";
+	LOG(DEBUG) << "Pre-Loop";
 	handleUpdate();
+	LOG(DEBUG) << "Loop";
 	while(m_game_window->isOpen())
 	{
 		if (m_end) m_game_window->close();
@@ -170,9 +171,10 @@ void Game::update(ObsType type)
 void Game::handleUpdate() {
 
 	mut.lock();
-if(m_update.pendingUpdate())
+
+	if(m_update.pendingUpdate())
 {
-	LOG(INFO) << "handle update Process: " << std::this_thread::get_id();
+	LOG(DEBUG) << "Handle update : " << m_update.pendingUpdate();
 	if(m_update.isStateUpdate()){
 
 		LOG(INFO) << "UPDATE : GLOBAL";
@@ -185,7 +187,7 @@ if(m_update.pendingUpdate())
 
 		}
 
-		checkMoveMap();
+//		checkMoveMap();
 		m_game_scene.update(*m_update.getStateUpdate().getList());
 //		updateHUD();
 	}
@@ -211,7 +213,7 @@ void Game::checkMoveMap()
 
 void Game::updateGlobal(state::Etat& e)
 {
-	LOG(INFO) << "UG Process: " << std::this_thread::get_id();
+	LOG(INFO) << "UG state list size: " << e.getList()->size();
 	mut.lock();
 	m_update.setNewState(e);
 	mut.unlock();
@@ -251,6 +253,7 @@ void Game::updateGameEnd(int score)
 
 void Game::updateNowPlaying(int pid)
 {
+	LOG(DEBUG) << "Update now playing";
 	m_player_playing = pid;
 	m_update.setCurrentPlayerID(pid);
 }
@@ -269,6 +272,7 @@ void Game::sync(state::ElementList list)
 
 void Game::syncRequest()
 {
+	LOG(DEBUG) << "Game : sync requesting";
 	//m_list = getEngine()->syncRequest();
 	getEngine()->syncFull(m_players_id[0]);
 }

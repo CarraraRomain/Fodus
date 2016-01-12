@@ -82,6 +82,7 @@ state::ElementList NetworkAdapterEngine::syncRequest()
 
 void NetworkAdapterEngine::syncFull(int pid)
 {
+    LOG(DEBUG) << "Enter sync full";
     while(!m_client->m_handler.network_ready);
     autobahn::wamp_call_options call_options;
     call_options.set_timeout(std::chrono::seconds(10));
@@ -90,10 +91,9 @@ void NetworkAdapterEngine::syncFull(int pid)
     futures[1] = m_client->m_handler.m_component->session()->call("engine.sync.request", arguments, call_options).then(
             [&](boost::future<autobahn::wamp_call_result> result) {
                 try {
-
+                    LOG(DEBUG) << "Future sync full";
                     state::Etat e = result.get().argument<state::Etat>(0);
 
-//                    state::Etat e = (result.get().arguments<std::array<state::Etat>>())[0];
                     m_client->updateGlobal(e);
                     std::cerr << "call success " << std::endl;
                 } catch (const std::exception& e) {
@@ -102,6 +102,7 @@ void NetworkAdapterEngine::syncFull(int pid)
                 }
 
             });
+    LOG(DEBUG) << "End sync full";
 }
 
 int NetworkAdapterEngine::whoIsPlaying()
@@ -121,7 +122,7 @@ std::vector<std::vector<int> > NetworkAdapterEngine::getMap(int uid)
     futures[1] = m_client->m_handler.m_component->session()->call("engine.unit.map", arguments, call_options).then(
             [&](boost::future<autobahn::wamp_call_result> result) {
                 try {
-
+                    LOG(DEBUG) << "Received Move Map";
                     std::vector<std::vector<int> > map = result.get().argument<std::vector<std::vector<int> > >(0);
                     m_client->checkMoveMap(map);
 //                    state::Etat e = (result.get().arguments<std::array<state::Etat>>())[0];
@@ -131,7 +132,7 @@ std::vector<std::vector<int> > NetworkAdapterEngine::getMap(int uid)
                     std::cerr << "call failed: " << e.what() << std::endl;
                     //return (uint64_t) 500;
                 }
-
+                LOG(DEBUG) << "End Received Move Map";
             });
     std::vector<std::vector<int> > vect;
     return vect;

@@ -24,7 +24,7 @@ void NetworkHandler::start()
             std::cerr << "published event" << std::endl;
 //
 //
-          session->subscribe("game.chat", boost::bind(&NetworkHandler::test, this, _1));
+//          session->subscribe("game.chat", boost::bind(&NetworkHandler::test, this, _1));
 //        stopped = autobahn->stop().then([&](boost::future<void>) {
 //            LOG(FATAL) << "AutoBahn stopped";
 //            io_service.stop();

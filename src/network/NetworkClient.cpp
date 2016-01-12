@@ -38,6 +38,7 @@ void NetworkClient::start()
 
 void NetworkClient::syncRequest()
 {
+    while(!m_handler.network_ready);
     game::Game::syncRequest();
 }
 
@@ -53,9 +54,9 @@ void NetworkClient::update(ObsType type)
 
 void NetworkClient::updateGlobal(state::Etat &e)
 {
-    LOG(DEBUG) << "Publishing";
-    std::tuple<std::string> arguments(std::string("Updating"));
-    m_handler.m_component->session()->publish("game.chat", arguments);
+    LOG(DEBUG) << "Update Global";
+//    std::tuple<std::string> arguments(std::string("Updating"));
+//    m_handler.m_component->session()->publish("game.chat", arguments);
     game::Game::updateGlobal(e);
 }
 
@@ -120,6 +121,7 @@ engine::AbstractEngine* NetworkClient::getEngine()
 
 void NetworkClient::checkMoveMap()
 {
+    LOG(DEBUG) << "Check Move Map";
    getEngine()->getMap(1);
 }
 
@@ -128,6 +130,8 @@ void NetworkClient::checkMoveMap()
  */
 void NetworkClient::checkMoveMap(std::vector<std::vector<int> > map)
 {
-    if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
-    else m_game_scene.getInfos()->resetMoveMap();
+    LOG(DEBUG) << "Sync Move Map";
+//    if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
+//    else m_game_scene.getInfos()->resetMoveMap();
+    LOG(DEBUG) << "End Sync Move Map";
 }

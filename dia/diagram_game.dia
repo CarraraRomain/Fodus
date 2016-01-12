@@ -68,7 +68,7 @@
         <dia:point val="-31.004,-12.8519"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="-31.054,-13.9019;25.6994,38.185"/>
+        <dia:rectangle val="-31.054,-13.9019;25.6994,43"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
@@ -80,7 +80,7 @@
         <dia:real val="56.653428599579684"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="50.986876171611684"/>
+        <dia:real val="55.801900000000003"/>
       </dia:attribute>
       <dia:attribute name="line_width">
         <dia:real val="0.10000000149011612"/>
@@ -736,7 +736,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="1"/>
+            <dia:enum val="2"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -943,7 +943,7 @@
             <dia:string>##</dia:string>
           </dia:attribute>
           <dia:attribute name="visibility">
-            <dia:enum val="1"/>
+            <dia:enum val="2"/>
           </dia:attribute>
           <dia:attribute name="abstract">
             <dia:boolean val="false"/>
@@ -1328,7 +1328,7 @@
             <dia:boolean val="false"/>
           </dia:attribute>
           <dia:attribute name="inheritance_type">
-            <dia:enum val="2"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="query">
             <dia:boolean val="false"/>
@@ -1358,7 +1358,7 @@
             <dia:boolean val="false"/>
           </dia:attribute>
           <dia:attribute name="inheritance_type">
-            <dia:enum val="2"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="query">
             <dia:boolean val="false"/>
@@ -1436,7 +1436,7 @@
             <dia:boolean val="false"/>
           </dia:attribute>
           <dia:attribute name="inheritance_type">
-            <dia:enum val="2"/>
+            <dia:enum val="1"/>
           </dia:attribute>
           <dia:attribute name="query">
             <dia:boolean val="false"/>
@@ -3612,7 +3612,7 @@
       </dia:attribute>
       <dia:attribute name="orth_points">
         <dia:point val="20.5845,-14.1993"/>
-        <dia:point val="20.5844,1.62517"/>
+        <dia:point val="20.5845,1.62517"/>
         <dia:point val="11.5758,1.62517"/>
         <dia:point val="11.5758,5.43941"/>
       </dia:attribute>

@@ -38,6 +38,7 @@ void InfoLayer::update(ObsType type)
 
 void InfoLayer::update(const state::ElementList& list)
 {
+	LOG(DEBUG) << "Info Layer update : size " << list.size();
 	int uid(0);
 	m_perso_texts.clear();
 	for (auto it = list.begin(); it != list.end();++it)
@@ -80,7 +81,7 @@ void InfoLayer::update(const state::ElementList& list)
 			else m_coords[index]->setNotAttackable();
 		}
 	}
-	syncMoveMap();
+//	syncMoveMap();
 	//ford(m_player.x, m_player.y);
 	updateVertices();
 }
@@ -195,6 +196,7 @@ void InfoLayer::showMoveMap()
 
 void InfoLayer::syncMoveMap()
 {
+	LOG(DEBUG) << "Sync move map in layer";
 	for (int i = 0; i < m_map.size(); i++)
 	{
 		for (int j = 0; j < m_map[i].size(); j++)
@@ -205,12 +207,14 @@ void InfoLayer::syncMoveMap()
 	}
 }
 
-void InfoLayer::syncMoveMap(std::vector<std::vector<int>>& map)
+void InfoLayer::syncMoveMap(std::vector<std::vector<int> >& map)
 {
 	m_map = map;
 }
-
+/**
+ * Deprecated
+ */
 void InfoLayer::resetMoveMap()
 {
-	for (auto c : m_coords) c->move_weight = 999;
+	//for (auto c : m_coords) c->move_weight = 999;
 }
