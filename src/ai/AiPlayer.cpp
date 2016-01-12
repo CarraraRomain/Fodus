@@ -34,7 +34,6 @@ void AiPlayer::run()
 		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
-
 }
 
 void AiPlayer::start()
@@ -266,5 +265,5 @@ mut.lock();
 void AiPlayer::operator()() {
 	LOG(INFO) << "AI Player ON PID@" << std::this_thread::get_id();
 	run();
-
+	LOG(DEBUG) << "AI Thread exiting";
 }

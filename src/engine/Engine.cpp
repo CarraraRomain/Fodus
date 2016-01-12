@@ -126,6 +126,7 @@ void Engine::run()
 		processCommandList();
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
+
 }
 
 bool Engine::hasPlayed(int player)
@@ -354,5 +355,5 @@ void Engine::nextTurn()
 void Engine::operator()() {
 	LOG(INFO) << "Engine ON PID@" << std::this_thread::get_id() << std::endl;
 	run();
-
+	LOG(DEBUG) << "Engine Thread exiting";
 }

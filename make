@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 OPTIND=1
 
 # Help func
@@ -17,8 +18,17 @@ while getopts "h" option; do
 			;;
 	esac
 done
-
-cd build/
+# Build bonefish
+pushd build/
+pushd ../lib/bonefish/build
+make -j4
+popd
 make -j4
 cd ../bin/Debug/
-ln -s ../../lib/bonefish/build/daemon/bonefish router
+if [ ! -f router ]
+then
+    echo "Creating router symlink..."
+    ln -s ../../lib/bonefish/build/daemon/bonefish router
+else
+    echo "Router symlink already exists"
+fi
