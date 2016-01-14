@@ -1,5 +1,6 @@
 #include "NetworkEngine.hpp"
 #include "../game/Game.hpp"
+#include "../engine/EndTurnCommand.hpp"
 
 using namespace network;
 
@@ -46,6 +47,10 @@ void NetworkEngine::notifyTurn(int turn)
 
 void NetworkEngine::notifyNowPlaying(int pid)
 {
+    LOG(DEBUG) << "Notify Now Playing thr WAMP";
+    std::tuple<uint64_t> arguments(pid);
+    m_handler.m_component->session()->publish("engine.update.now", arguments);
+
 //    engine::Engine::notifyNowPlaying(pid);
 }
 
@@ -64,11 +69,6 @@ void NetworkEngine::notifyHasPlayed(int pid)
 //    engine::Engine::notifyHasPlayed(pid);
 }
 
-void NetworkEngine::connect(autobahn::wamp_invocation invocation)
-{
- LOG(DEBUG) << "NETWORKENGINE: Player Connected! ";
-    invocation->result(std::make_tuple(200));
-}
 
 void NetworkEngine::start()
 {
@@ -76,10 +76,10 @@ void NetworkEngine::start()
 
     m_handler();
 
-    engine::Engine::start();
     // async network : waiting for it
     while(!m_handler.network_ready);
 
+    engine::Engine::start();
     // register RPC
     m_handler.m_component->session()->provide("engine.command.add",
                                               boost::bind(&NetworkEngine::handleCommand, this, _1));
@@ -140,13 +140,6 @@ std::map<int, engine::Player> &NetworkEngine::getPlayers()
    // throw std::logic_error("Not implemented, get players");
 }
 
-void NetworkEngine::getPlayer(autobahn::wamp_invocation invocation)
-{
-    int uid = invocation->argument<int>(0);
-    engine::Player pl =  engine::Engine::getPlayer(uid);
-
-    invocation->result(pl);
-}
 
 int NetworkEngine::getMapValue(int x, int y, int uid)
 {
@@ -172,6 +165,23 @@ void NetworkEngine::processCommandList()
 {
     engine::Engine::processCommandList();
 }
+
+void NetworkEngine::getPlayer(autobahn::wamp_invocation invocation)
+{
+    int uid = invocation->argument<int>(0);
+    engine::Player pl =  engine::Engine::getPlayer(uid);
+
+    invocation->result(pl);
+}
+
+
+void NetworkEngine::connect(autobahn::wamp_invocation invocation)
+{
+    LOG(DEBUG) << "NETWORKENGINE: Player Connected! ";
+    invocation->result(std::make_tuple(200));
+}
+
+
 /**
  * RPC engine.command.add
  */
@@ -185,6 +195,11 @@ void NetworkEngine::handleCommand(autobahn::wamp_invocation invocation)
 
     if(type == Move){
         engine::MoveCommand com = invocation->argument<engine::MoveCommand>(1);
+        engine::Engine::handleCommand(&com);
+
+    }
+    else if(type == EndTurn){
+        engine::EndTurnCommand com = invocation->argument<engine::EndTurnCommand>(1);
         engine::Engine::handleCommand(&com);
 
     }

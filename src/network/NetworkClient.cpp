@@ -32,6 +32,8 @@ void NetworkClient::start()
                                                 boost::bind(&NetworkClient::subGlobal, this, _1));
     m_handler.m_component->session()->subscribe("engine.update.player",
                                                 boost::bind(&NetworkClient::subPlayer, this, _1));
+     m_handler.m_component->session()->subscribe("engine.update.now",
+                                                boost::bind(&NetworkClient::subNowPlaying, this, _1));
     game::Game::start();
 
 
@@ -156,7 +158,11 @@ void NetworkClient::subPlayer(const autobahn::wamp_event &event)
     game::Game::updatePlayer(pl);
 }
 
-void NetworkClient::subTurn(const autobahn::wamp_event &event)
-{
 
+
+void NetworkClient::subNowPlaying(const autobahn::wamp_event &event)
+{
+    LOG(DEBUG) << "Update PLAYER thr WAMP";
+    int pid = event.argument<uint64_t>(0);
+    game::Game::updateNowPlaying(pid);
 }

@@ -19,3 +19,8 @@ void EndTurnCommand::execute()
 Command *EndTurnCommand::clone() {
 	return new EndTurnCommand(*this);
 }
+
+EndTurnCommand::EndTurnCommand():  Command(nullptr, EndTurn)
+{
+
+}

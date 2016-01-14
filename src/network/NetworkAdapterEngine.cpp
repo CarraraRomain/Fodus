@@ -9,6 +9,7 @@
 
 #include "NetworkAdapterEngine.hpp"
 #include "NetworkClient.hpp"
+#include "../engine/EndTurnCommand.hpp"
 
 using namespace network;
 
@@ -167,6 +168,20 @@ void NetworkAdapterEngine::handleCommand(engine::Command *com)
 
 if(com->type == Move){
     std::tuple<CommandType , engine::MoveCommand> arguments(com->type, *dynamic_cast<engine::MoveCommand*>(com));
+    futures[2] = m_client->m_handler.m_component->session()->call("engine.command.add", arguments, call_options).then(
+            [&](boost::future<autobahn::wamp_call_result> result) {
+                try {
+                    LOG(DEBUG) << "Future handled command";
+                    std::cerr << "call success " << std::endl;
+                } catch (const std::exception& e) {
+                    std::cerr << "call failed: " << e.what() << std::endl;
+
+                }
+
+            });
+}
+else if(com->type == EndTurn){
+    std::tuple<CommandType , engine::EndTurnCommand> arguments(com->type, *dynamic_cast<engine::EndTurnCommand*>(com));
     futures[2] = m_client->m_handler.m_component->session()->call("engine.command.add", arguments, call_options).then(
             [&](boost::future<autobahn::wamp_call_result> result) {
                 try {
