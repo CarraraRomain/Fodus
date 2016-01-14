@@ -17,10 +17,13 @@ NetworkEngine::~NetworkEngine()
 
 void NetworkEngine::notifyGlobal()
 {
-    m_handler.m_component->session()->publish("engine.update.global");
+    LOG(DEBUG) << "Notify Global thr WAMP";
+    std::tuple<state::Etat> arguments(getState());
+    m_handler.m_component->session()->publish("engine.update.global", arguments);
     // looping through players
-
-    m_handler.m_component->session()->publish("engine.update.player");
+    engine::Player pl = m_players[current_player_uid];
+    std::tuple<engine::Player> arg(pl);
+    m_handler.m_component->session()->publish("engine.update.player", arg);
 
 
     //engine::Engine::notifyGlobal();
@@ -167,7 +170,7 @@ void NetworkEngine::registerPlayer(autobahn::wamp_invocation invocation)
 
 void NetworkEngine::processCommandList()
 {
-
+    engine::Engine::processCommandList();
 }
 /**
  * RPC engine.command.add

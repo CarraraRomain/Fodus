@@ -26,12 +26,18 @@ void NetworkClient::start()
 {
 
     m_handler();
-
+    // async network : waiting for it to be available
+    while(!m_handler.network_ready);
+    m_handler.m_component->session()->subscribe("engine.update.global",
+                                                boost::bind(&NetworkClient::subGlobal, this, _1));
+    m_handler.m_component->session()->subscribe("engine.update.player",
+                                                boost::bind(&NetworkClient::subPlayer, this, _1));
     game::Game::start();
 
 
 
     LOG(DEBUG) << "Started " << std::this_thread::get_id();
+
 //    std::tuple<std::string> arguments(std::string("Client joined the game"));
 //    m_handler.m_component->session()->publish("game.chat", arguments);
 }
@@ -134,4 +140,23 @@ void NetworkClient::checkMoveMap(std::vector<std::vector<int> > map)
 //    if (is_playing) m_game_scene.getInfos()->syncMoveMap(map);
 //    else m_game_scene.getInfos()->resetMoveMap();
     LOG(DEBUG) << "End Sync Move Map";
+}
+
+void NetworkClient::subGlobal(const autobahn::wamp_event &event)
+{
+    LOG(DEBUG) << "Update GLOBAL thr WAMP";
+    state::Etat e = event.argument<state::Etat>(0);
+    game::Game::updateGlobal(e);
+}
+
+void NetworkClient::subPlayer(const autobahn::wamp_event &event)
+{
+    LOG(DEBUG) << "Update PLAYER thr WAMP";
+    engine::Player pl = event.argument<engine::Player>(0);
+    game::Game::updatePlayer(pl);
+}
+
+void NetworkClient::subTurn(const autobahn::wamp_event &event)
+{
+
 }
