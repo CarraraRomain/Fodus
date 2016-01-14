@@ -52,6 +52,9 @@ decorators:
     Action:
       include:
         - "../state/Etat.hpp"
+    CommandList:
+      include:
+        - "Command.h"
     LevelUp:
       include:
         - "../state/Etat.hpp"

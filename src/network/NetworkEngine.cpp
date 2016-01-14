@@ -78,6 +78,8 @@ void NetworkEngine::start()
     while(!m_handler.network_ready);
 
     // register RPC
+    m_handler.m_component->session()->provide("engine.command.add",
+                                              boost::bind(&NetworkEngine::handleCommand, this, _1));
     m_handler.m_component->session()->provide("engine.sync.request",
                                               boost::bind(&NetworkEngine::syncRequest, this, _1));
     m_handler.m_component->session()->provide("engine.player.get",
@@ -166,4 +168,28 @@ void NetworkEngine::registerPlayer(autobahn::wamp_invocation invocation)
 void NetworkEngine::processCommandList()
 {
 
+}
+/**
+ * RPC engine.command.add
+ */
+void NetworkEngine::handleCommand(autobahn::wamp_invocation invocation)
+{
+    LOG(DEBUG) << "Command recvd from WAMP";
+//    CommandType type = invocation->argument<>(0)[0];
+//        LOG(DEBUG) << "receved com type :" << type;
+//    engine::Command* com = invocation->argument<engine::Command*>(0);
+    CommandType type = invocation->argument<CommandType>(0);
+
+    if(type == Move){
+        engine::MoveCommand com = invocation->argument<engine::MoveCommand>(1);
+        engine::Engine::handleCommand(&com);
+
+    }
+    else{
+        engine::SkillCommand com = invocation->argument<engine::SkillCommand>(1);
+        engine::Engine::handleCommand(&com);
+    }
+
+//    delete(com);
+    invocation->result(std::make_tuple(200));
 }

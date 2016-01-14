@@ -23,3 +23,8 @@ void SkillCommand::execute()
 Command *SkillCommand::clone() {
 	return new SkillCommand(*this);
 }
+
+SkillCommand::SkillCommand(): Command(nullptr, Skill)
+{
+
+}

@@ -26,3 +26,8 @@ void MoveCommand::execute()
 Command *MoveCommand::clone() {
 	return new MoveCommand(*this);
 }
+
+MoveCommand::MoveCommand() : Command(nullptr, Move)
+{
+
+}
