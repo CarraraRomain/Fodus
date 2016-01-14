@@ -107,11 +107,11 @@ void NetworkEngine::start()
    // assert(obj.as<state::ElementList>() == getState().getList());
     LOG(DEBUG) << "NETWORKENGINE: Started";
 }
-
+/**
+ * RPC : engine.sync.request
+ */
 void NetworkEngine::syncRequest(autobahn::wamp_invocation invocation)
 {
-//    msgpack::sbuffer buffer;
-//    msgpack::pack(buffer, );
     state::Etat e = getState();
     invocation->result(std::make_tuple(e));
 }
@@ -126,6 +126,9 @@ int NetworkEngine::whoIsPlaying()
     throw std::logic_error("Not implemented: Who");
 }
 
+/**
+ * RPC : engine.unit.map
+ */
 void NetworkEngine::getMap(autobahn::wamp_invocation invocation)
 {
     int uid = invocation->argument<int>(0);
@@ -166,6 +169,9 @@ void NetworkEngine::processCommandList()
     engine::Engine::processCommandList();
 }
 
+/**
+ * RPC : engine.player.get
+ */
 void NetworkEngine::getPlayer(autobahn::wamp_invocation invocation)
 {
     int uid = invocation->argument<int>(0);
@@ -175,6 +181,10 @@ void NetworkEngine::getPlayer(autobahn::wamp_invocation invocation)
 }
 
 
+
+/**
+ * RPC engine.player.connect
+ */
 void NetworkEngine::connect(autobahn::wamp_invocation invocation)
 {
     LOG(DEBUG) << "NETWORKENGINE: Player Connected! ";

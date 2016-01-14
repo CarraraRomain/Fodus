@@ -144,13 +144,18 @@ void NetworkClient::checkMoveMap(std::vector<std::vector<int> > map)
     LOG(DEBUG) << "End Sync Move Map";
 }
 
+/**
+ * Subscribe handler of engine.update.global
+ */
 void NetworkClient::subGlobal(const autobahn::wamp_event &event)
 {
     LOG(DEBUG) << "Update GLOBAL thr WAMP";
     state::Etat e = event.argument<state::Etat>(0);
     game::Game::updateGlobal(e);
 }
-
+/**
+ * Subscribe handler of  engine.update.player
+ */
 void NetworkClient::subPlayer(const autobahn::wamp_event &event)
 {
     LOG(DEBUG) << "Update PLAYER thr WAMP";
@@ -159,7 +164,9 @@ void NetworkClient::subPlayer(const autobahn::wamp_event &event)
 }
 
 
-
+/**
+ * Subscribe handler of engine.update.now
+ */
 void NetworkClient::subNowPlaying(const autobahn::wamp_event &event)
 {
     LOG(DEBUG) << "Update PLAYER thr WAMP";

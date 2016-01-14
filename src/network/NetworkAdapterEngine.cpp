@@ -43,7 +43,9 @@ int NetworkAdapterEngine::registerPlayer(int player, engine::EngineObserver *obs
 {
    return 200;
 }
-
+/**
+ * Async connexion to engine
+ */
 int NetworkAdapterEngine::connect(int client)
 {
     while(!m_client->m_handler.network_ready);
@@ -81,6 +83,9 @@ state::ElementList NetworkAdapterEngine::syncRequest()
     return state::ElementList();
 }
 
+/**
+ * Async full update
+ */
 void NetworkAdapterEngine::syncFull(int pid)
 {
     LOG(DEBUG) << "Enter sync full";
@@ -111,7 +116,7 @@ int NetworkAdapterEngine::whoIsPlaying()
     return 0;
 }
 /**
- * TODO Implementation
+ * Async get Map for unit
  */
 std::vector<std::vector<int> > NetworkAdapterEngine::getMap(int uid)
 {
@@ -126,8 +131,6 @@ std::vector<std::vector<int> > NetworkAdapterEngine::getMap(int uid)
                     LOG(DEBUG) << "Received Move Map";
                     std::vector<std::vector<int> > map = result.get().argument<std::vector<std::vector<int> > >(0);
                     m_client->checkMoveMap(map);
-//                    state::Etat e = (result.get().arguments<std::array<state::Etat>>())[0];
-                   // m_client->updateGlobal(e);
                     std::cerr << "call success " << std::endl;
                 } catch (const std::exception& e) {
                     std::cerr << "call failed: " << e.what() << std::endl;
@@ -158,8 +161,10 @@ int NetworkAdapterEngine::getMapValue(int x, int y, int uid)
 {
     return 0;
 }
-
-void NetworkAdapterEngine::handleCommand(engine::Command *com)
+/**
+ * Async pass a command to the network engine
+ */
+ void NetworkAdapterEngine::handleCommand(engine::Command *com)
 {
     LOG(DEBUG) << "Enter Handle Command";
 //    while(!m_client->m_handler.network_ready);
